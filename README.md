@@ -26,9 +26,7 @@ Tendo como principal objetivo desenvolver um sistema que facilite o gerenciament
 
 ## 2. Descrição do Projeto
 
-O Hopper é um Sistema de gerenciamento de dados e relatórios com Power BI Embedded, autenticação customizada e pipelines ETL automatizados.
-
-O sistema visa mitigar processos manuais de extração e transformação de dados, falta de centralização no acesso a relatórios e garantir um controle adequado de permissões e visibilidade de dados.
+O Hopper é um Sistema de gerenciamento de dados e relatórios com Power BI Embedded, autenticação customizada e pipelines ETL automatizados. O sistema visa mitigar processos manuais de extração e transformação de dados, falta de centralização no acesso a relatórios e garantir um controle adequado de permissões e visibilidade de dados.
 
 Tendo em vista o tempo e conhecimento técnico, o sistema não abordará análise de dados em tempo real e não incluirá desenvolvimento de visualizações personalizadas fora do Power BI.
 
@@ -54,21 +52,17 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 - **Representação dos Requisitos:**
 
-  - Atores: Administrador, Usuário Final.
-  - Casos de Uso:
-        1. Configurar pipeline ETL (Admin).
-        2. Visualizar relatório (Usuário).
-        3. Gerenciar permissões de acesso (Admin).
+![Hopper_Casos_de_Uso](docs/images/Hopper_Casos_de_Uso.png)
 
 ### 3.2. Considerações de Design
 
 - **Visão Inicial da Arquitetura**:
   - Camada ETL: Airflow para orquestração.
-  - Camada de Dados: Banco de dados PostgreSQL.
-  - Camada de BI: Power BI para modelagem e dashboards.
+  - Camada de Dados: Banco de dados PostgreSQL e modelagem.
+  - Camada de BI: Power BI para visualização dos dashboards.
   - Camada Web: ReactJS (frontend) e Golang (backend).
 
-- **Padrões de Arquitetura**: MVC na camada web, Microserviços para ETL.
+- **Padrões de Arquitetura**: MVC na camada web e Microserviços para ETL.
 
 - **Modelo C4**:
 
@@ -105,7 +99,7 @@ Análisando possíveis questões de segurança e como mitigá-las, foi decidido 
 
 ## 4. Próximos Passos
 
-Após aprovação do documento, os próximos passos são em order:
+Após aprovação do documento, os próximos passos são em ordem:
 
 1. Criação de um backlog.
 2. Implementação de um contâiner com Airflow e pipelines funcionais com diferentes peculiaridades.
