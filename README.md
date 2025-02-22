@@ -105,9 +105,9 @@ Após aprovação do documento, os próximos passos são em ordem:
 2. Implementação de um contâiner com Airflow e pipelines funcionais com diferentes peculiaridades.
 3. Desenvolvimento de relatórios no Powerbi utilizando dos dados importados.
 4. Desenvolvimento da interface web com integração ao Power BI Embedded.
-  4.1. Implementação de funcionalidades para ativação e desativação de cargas.
-  4.2. Permitir o gerenciamento facilitado das cargas, paineis, workspaces, grupos, RLS, etc.
-5. Testes de segurança e carga.
+5. Implementação de funcionalidades para ativação e desativação de cargas.
+6. Permitir o gerenciamento facilitado das cargas, paineis, workspaces, grupos, RLS, etc.
+7. Testes de segurança e carga.
 
 ## 5. Referências
 
