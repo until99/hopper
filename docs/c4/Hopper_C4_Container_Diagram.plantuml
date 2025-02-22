@@ -1,0 +1,41 @@
+@startuml Hopper_C4_Container_Diagram
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+scale max 1500 width
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+Person(admin, "Administrador", "Gerencia pipelines ETL\ne permissões")
+Person(user, "Usuário Final", "Visualiza relatórios")
+
+System_Boundary(hopper, "Sistema Hopper") {
+    Container(web_frontend, "Aplicação Web\n(Frontend/React)", "Interface para visualização\nde relatórios via Power BI")
+    Container(web_backend, "API Backend\n(Golang)", "Autenticação RBAC\nIntegração Power BI/RLS")
+    Container(airflow, "Orquestrador ETL\n(Airflow)", "Pipeline automatizado\nde extração e transformação")
+    ContainerDb(postgres, "Banco de Dados\n(PostgreSQL)", "Armazena dados processados\ne metadados do sistema")
+}
+
+System_Ext(external_data, "Fontes de Dados Externas", "APIs e bancos externos")
+System_Ext(powerbi, "Power BI Service", "Criação/hospedagem\nde relatórios")
+
+' Relacionamentos
+Rel(admin, web_frontend, "Configura pipelines", "HTTPS")
+Rel(user, web_frontend, "Acessa dashboards", "HTTPS")
+
+Rel(web_frontend, web_backend, "API REST", "HTTPS")
+Rel(web_backend, postgres, "Acesso a dados", "JDBC/SSL")
+Rel(web_backend, powerbi, "Gera tokens embed", "Power BI API\nOAuth2")
+
+Rel(airflow, external_data, "Extrai dados", "API/SSH")
+Rel(airflow, postgres, "Carga de dados", "PostgreSQL")
+
+Rel(powerbi, postgres, "Conecta dataset", "ODBC")
+Rel(web_frontend, powerbi, "Exibe relatórios", "Power BI SDK")
+
+' Notas de segurança
+legend right
+  <b>Segurança:</b>
+  * RLS (Power BI)
+  * Criptografia em trânsito/repouso
+  * Autenticação OAuth2
+end legend
