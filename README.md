@@ -1,7 +1,7 @@
 
 # Hopper
 
-![Grace Hopper](docs/images/gracehopperscreenshot.svg)
+![Grace Hopper](docs/images/gracehopperscreenshot.png)
 
 - **Título do Projeto**: Sistema de Gerenciamento e Distribuição de Relatórios Dinâmicos com Power BI Embedded.
 - **Nome do Estudante**: Gabriel Deglmann Kasten.
@@ -119,13 +119,30 @@ Listagem das fontes de pesquisa, frameworks, bibliotecas e ferramentas que serã
 - [Data Pipelines with Apache Airflow (Livro)](https://www.amazon.com.br/Data-Pipelines-Apache-Airflow-Harenslak/dp/1617296902)
 - [Just the Docs (Documentação Geral)](https://just-the-docs.com/)
 - [Plantuml (Diagramas)](https://plantuml.com/)
+- [Docker](https://www.docker.com/)
+- [React](https://react.dev/)
+- [Pandas](https://pandas.pydata.org/)
+- [Numpy](https://numpy.org/)
+- [Psycopg2](https://pypi.org/project/psycopg2/)
+- [Gin Gonic](https://gin-gonic.com/)
+- [Render](https://render.com/)
+- [Git](https://git-scm.com/)
+- [Python](https://www.python.org/)
+- [Golang](https://go.dev/)
+- [Powerbi](https://www.microsoft.com/pt-br/power-platform/products/power-bi)
+- [Powerbi Embedded](https://azure.microsoft.com/pt-br/products/power-bi-embedded)
+- [Biblioteca de ícones](https://phosphoricons.com/)
 
 Para controle de metas e entregas foi utilizado o [Trello](https://trello.com/).
 
+<div style="page-break-after: always;"></div>
+
 ## 6. Avaliações de Professores
 
-Adicionar três páginas no final do RFC para que os Professores escolhidos possam fazer suas considerações e assinatura:
+- Considerações Professor/a:
 
+<div style="page-break-after: always;"></div>
 - Considerações Professor/a:
-- Considerações Professor/a:
+
+<div style="page-break-after: always;"></div>
 - Considerações Professor/a:

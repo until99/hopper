@@ -11,7 +11,7 @@ Person(user, "Usuário Final", "Visualiza relatórios")
 System_Boundary(hopper, "Sistema Hopper") {
     Container(web_frontend, "Aplicação Web\n(Frontend/React)", "Interface para visualização\nde relatórios via Power BI")
     Container(web_backend, "API Backend\n(Golang)", "Autenticação RBAC\nIntegração Power BI/RLS")
-    Container(airflow, "Orquestrador ETL\n(Airflow)", "Pipeline automatizado\nde extração e transformação")
+    Container(airflow, "Orquestrador ETL\n(Airflow)", "Pipeline automatizado\nde extração, transformação\ne carga de dados")
     ContainerDb(postgres, "Banco de Dados\n(PostgreSQL)", "Armazena dados processados\ne metadados do sistema")
 }
 
@@ -25,6 +25,7 @@ Rel(user, web_frontend, "Acessa dashboards", "HTTPS")
 Rel(web_frontend, web_backend, "API REST", "HTTPS")
 Rel(web_backend, postgres, "Acesso a dados", "JDBC/SSL")
 Rel(web_backend, powerbi, "Gera tokens embed", "Power BI API\nOAuth2")
+Rel(web_backend, airflow, "Gerencia Pipelines", "Airflow API\nOAuth2")
 
 Rel(airflow, external_data, "Extrai dados", "API/SSH")
 Rel(airflow, postgres, "Carga de dados", "PostgreSQL")
