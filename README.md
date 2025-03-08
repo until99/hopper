@@ -32,89 +32,28 @@ Tendo em vista o tempo e conhecimento técnico, o sistema não abordará anális
 
 - **Lista de Requisitos Funcionais:**
 
-  - **RF01: Execução automatizada de pipelines ETL com Airflow.**
-    - Implementação:
-      - Utilização de DAGs (Directed Acyclic Graphs) no Airflow para definir fluxos de trabalho.
-      - Operadores customizados em Python para:
-        - Extração de dados de origens heterogêneas (CSV, APIs REST, PostgreSQL).
-        - Transformação com Pandas/Numpy para limpeza, enriquecimento e agregação de dados.
-        - Carga incremental em tabelas do PostgreSQL usando psycopg2.
-      - Sensores para monitorar disponibilidade de dados em diretórios ou APIs.
-      - Gatilhos programados (diários/horários) e manuais via interface do Airflow.
-      - Logs de execução e alertas por e-mail em caso de falhas.
-  - **RF02: Geração de relatórios no Power BI com atualização programada.**
-    - Implementação:
-      - Conexão do Power BI Desktop ao PostgreSQL para criação de datasets
-      - Uso da Power BI REST API para:
-        - Atualização automática de datasets após conclusão do ETL.
-        - Publicação de relatórios em workspaces dedicados.
-      - Versionamento de relatórios via API para controle de mudanças.
-  - **RF03: Autenticação de Usuários via RBAC.**
-    - Implementação:
-      - Backend em Golang (framework Gin) com endpoints REST para:
-        - Registro de usuários (armazenamento em PostgreSQL com hash de senha bcrypt).
-        - Login com geração de tokens JWT (JSON Web Tokens).
-      - Definição de roles (Admin, Analista, Visualizador) no banco de dados.
-      - Middleware de autorização para validar acesso a endpoints críticos.
-      - Integração com OAuth2 para autenticação via Google/Microsoft.
-  - **RF04: Aplicação de RLS conforme perfil do usuário.**
-    - Implementação:
-      - Definição de regras de segurança no Power BI usando DAX (ex: [Department] = USERNAME()).
-      - Geração dinâmica de tokens de embed no backend Golang:
-        - Mapeamento de usuários para grupos de segurança no Power BI Service via API.
-        - Aplicação de filtros RLS baseados no cargo do usuário (ex: Gerente vê todos os dados, Analista vê apenas sua região).
-      - Validação de permissões via claims do token JWT.
-  - **RF05: Publicação de dashboards em uma aplicação web via Power BI Embedded.**
-    - Implementação:
-      - Frontend em React com biblioteca powerbi-client-react para embedar relatórios.
-      - Componente dinâmico que:
-        - Solicita token de acesso ao backend Golang (autenticado via JWT).
-        - Renderiza relatórios em iframe com filtros contextuais (ex: data, região).
-      - Controle de workspace via Power BI Embedded (Azure) para isolamento de ambientes (dev/prod).
-    - **RF06: Monitoramento de Pipelines ETL.**
-      - Implementação:
-        - Implementação de um dashboard no Airflow com métricas de execução (taxa de sucesso/falha, tempo médio por task).
-        - Integração do Airflow com Prometheus via Apache Airflow Exporter para coleta de métricas.
-        - Visualização em tempo real no Grafana com alertas configurados para falhas críticas (ex: SLA ultrapassado).
-        - Geração automática de relatórios semanais de desempenho via tarefa Airflow.
-    - **RF07: Gerenciamento Self-Service de Relatórios.**
-      - Implementação:
-        - Desenvolvimento de uma interface React para administradores com drag-and-drop de arquivos .pbix.
-        - Upload automático para o Power BI Service via Power BI REST API (endpoint /imports).
-        - Associação de relatórios a grupos de segurança do Azure Active Directory (AAD) durante o upload.
-        - Validação prévia de metadados do .pbix (ex: conexões de dados autorizadas).
+  - **RF01:** O sistema deve permitir a execução automatizada de pipelines ETL
+  - **RF02:** O sistema deve ser capaz de realizar a extração de dados de fontes heterogêneas (CSV, APIs REST, PostgreSQL)
+  - **RF03:** O sistema deve ser capaz de realizar a transformação (limpeza, enriquecimento, agregação e etc) de dados
+  - **RF04:** O sistema deve ser capaz de realizar a carga incremental de dados em tabelas. 
+  - **RF05:** O sistema deve ser capaz de gerar relatórios no Power BI.
+  - **RF06:** O sistema deve permitir autenticação de usuários.
+  - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS) nos relatórios do Power BI com base no perfil do usuário autenticado.
+  - **RF08:** O sistema deve permitir a publicação de dashboards do Power BI em uma aplicação web.
+  - **RF09:** O sistema deve monitorar a execução de pipelines ETL, exibindo métricas como taxa de sucesso/falha e tempo médio por task.
+  - **RF010:** O sistema deve oferecer uma interface self-service para upload e gerenciamento de relatórios (.pbix) por administradores.
+  - **RNF11:** O sistema deve permitir a atualização programada dos relatórios.
 
 - **Lista de Requisitos Não Funcionais:**
-
-  - **RNF01: Tempo Máximo de 5 Minutos para Execução do ETL**
-    - Estratégias:
-      - Otimização de queries SQL com índices no PostgreSQL.
-      - Uso de partições em DataFrames do Pandas para processamento em memória.
-      - Paralelização de tarefas no Airflow.
-      - Monitoramento via métricas do Airflow (DAG duration) e ajuste de recursos do contêiner Docker.
-  - **RNF02: Disponibilidade de 99.9% para a Aplicação Web**
-    - Estratégias:
-      - Deploy na render.com com configuração de auto-scaling horizontal.
-      - Health checks para reinicialização automática de contêineres.
-      - Balanceamento de carga entre instâncias do backend Golang.
-      - Uso de CDN para assets estáticos do React.
-  - **RNF03: Criptografia de dados em trânsito e repouso.**
-    - Estratégias:
-      - TLS 1.3 para comunicação entre frontend/backend e APIs externas
-      - Criptografia AES-256 no PostgreSQL para dados sensíveis (ex: PII).
-      - Gerenciamento de segredos (chaves API, credenciais) via variáveis de ambiente no Docker.
-  - **RNF04: Escalabilidade Horizontal do PostgreSQL.**
-    - Estratégias:
-      - Configuração de réplicas de leitura no PostgreSQL para descarregar consultas do Power BI.
-      - Uso do PgBouncer no backend Golang para gerenciar pooling de conexões (máx. 200 conexões ativas).
-      - Balanceamento de leituras entre réplicas usando lógica de read-only routing.
-      - Monitoramento de desempenho via pg_stat_activity e ajuste dinâmico de réplicas.
-  - **RNF05: Auditoria de Acesso.**
-    - Estratégias:
-      - Registro centralizado de logs no PostgreSQL (tabela audit_logs) com campos: user_id, endpoint, timestamp, status_code.
-      - Rotina Airflow diária para exportar logs para AWS S3 em formato Parquet (compressão Snappy).
-      - Política de retenção de 365 dias no S3 com transição para Glacier após 30 dias.
-      - Consulta de logs via Athena para investigação de incidentes.
+  - **RNF01:** O sistema deve ser capaz de definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2 (Google/Microsoft).
+  - **RNF02:** O sistema deve utilizar DAGs no Airflow para orquestração de pipelines, com paralelização de tarefas e otimização de queries SQL (índices) para garantir tempo máximo de execução de 5 minutos.
+  - **RNF03:** O sistema deve utilizar TLS 1.3 para criptografia de dados em trânsito e AES-256 para dados em repouso no PostgreSQL.
+  - **RNF04:** O sistema deve ser implantado em ambiente com auto-scaling horizontal (ex: render.com) para garantir disponibilidade de 99.9%, usando balanceamento de carga e CDN para assets estáticos.
+  - **RNF05:** O sistema deve gerar logs de auditoria centralizados (timestamp, user_id, endpoint).
+  - **RNF06:** O sistema deve utilizar operadores customizados em Python (Pandas/Numpy) para transformação de dados e psycopg2 para carga incremental no PostgreSQL.
+  - **RNF07:** O sistema deve integrar-se à Power BI REST API para atualização automática de datasets e publicação de relatórios em workspaces dedicados.
+  - **RNF08:** O sistema deve utilizar tokens JWT no backend Golang para autorização e mapeamento dinâmico de grupos de segurança no Power BI Service.
+  - **RNF9:** O sistema deve utilizar a biblioteca powerbi-client-react no frontend para embedar relatórios com tokens de acesso validados via JWT.
 
 - **Representação dos Requisitos:**
 
