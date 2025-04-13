@@ -138,7 +138,7 @@ Listagem das fontes de pesquisa, frameworks, bibliotecas e ferramentas que serã
 - [Powerbi Embedded](https://azure.microsoft.com/pt-br/products/power-bi-embedded)
 - [Biblioteca de ícones](https://phosphoricons.com/)
 
-Para controle de metas e entregas foi utilizado o [Trello](https://trello.com/).
+Para controle de metas e entregas foi utilizado o [Trello](https://trello.com/b/CzrWYIOK/backlog).
 
 <div style="page-break-after: always;"></div>
 
