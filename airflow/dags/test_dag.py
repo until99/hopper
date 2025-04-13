@@ -4,7 +4,7 @@ from datetime import datetime
 
 with DAG(
     dag_id="teste_minimal",
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(year=2024, month=1, day=1),
     schedule="@once",
 ) as dag:
 
