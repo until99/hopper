@@ -28,18 +28,14 @@ x-airflow-common: &airflow-common
       condition: service_healthy
 
 services:
+  # [FRONTEND]
   app:
     build:
       context: ./app
-      dockerfile: Dockerfile
-    environment:
-      - APP_ENV=local
-      - NODE_ENV=development
     ports:
       - "5173:5173"
     volumes:
       - ./app:/app
-      - /app/node_modules
     command: npm run dev -- --host 0.0.0.0
     depends_on:
       - postgres
