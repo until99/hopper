@@ -41,6 +41,19 @@ services:
       - postgres
     restart: always
 
+  # [BACKEND]
+  backend:
+    build:
+      context: ./api
+    ports:
+      - "6969:6969"
+    volumes:
+      - ./api:/api
+    command: go run main.go
+    depends_on:
+      - postgres
+    restart: always
+
   # [AIRFLOW]
   postgres:
     image: postgres:13
