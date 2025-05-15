@@ -139,6 +139,7 @@ Listagem das fontes de pesquisa, frameworks, bibliotecas e ferramentas que serã
 - [Biblioteca de ícones](https://phosphoricons.com/)
 
 Para controle de metas e entregas foi utilizado o [Trello](https://trello.com/b/CzrWYIOK/backlog).
+Para o desenvolvimento do design foi utilizado o [Figma](https://www.figma.com/design/EyHG1Z3gfPZUhac4np9miy/Hopper?node-id=3-56&t=P5941xMAqUHPlukk-1).
 
 <div style="page-break-after: always;"></div>
 
