@@ -19,7 +19,7 @@ x-airflow-common: &airflow-common
     - ./airflow/dags:/opt/airflow/dags
     - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
-    - ./airflow/cargas-hopper:/opt/airflow/cargas-hopper
+    - ./airflow/cargas_hopper:/opt/airflow/cargas_hopper
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     redis:
@@ -127,6 +127,7 @@ services:
       start_period: 30s
     environment:
       <<: *airflow-common-env
+      PYTHONPATH: /opt/airflow
       DUMB_INIT_SETSID: "0"
     restart: always
     depends_on:
