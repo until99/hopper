@@ -71,11 +71,23 @@ Tendo em vista o tempo e conhecimento técnico, o sistema não abordará anális
 
 - **Modelo C4**:
 
+## Diagrama de Contexto
+
 ![c1_diagrama_contexto](docs/images/c1_diagrama_contexto.png)
+
+<br><br>
+
+## Diagrama de Container
+
+![Hopper_C4_Container_Diagram](docs/images/Hopper_C4_Container_Diagram.png)
+
+<br><br>
+
+## Diagrama de Componentes
 
 ![c3_diagrama_componentes](docs/images/c3_diagrama_componentes.png)
 
-![Hopper_C4_Container_Diagram](docs/images/Hopper_C4_Container_Diagram.png)
+<br><br>
 
 ### 3.3. Stack Tecnológica
 
