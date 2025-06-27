@@ -1,4 +1,3 @@
-
 # Hopper
 
 ![Grace Hopper](docs/images/gracehopperscreenshot.png)
@@ -8,23 +7,23 @@
 - **Curso**: Engenharia de Software.
 - **Data de Entrega**: [Data].
 
-## Resumo
+## 1. Resumo
 
-Este projeto visa desenvolver uma plataforma integrada para gerenciar processos de ETL (Extract, Transform, Load), relatórios dinâmicos no Power BI e distribuí-los de forma segura em uma aplicação web. O sistema utiliza do Airflow para orquestração de pipelines de dados, Power BI Embedded para disponibilização de dashboards e autenticação baseada em cargos (RBAC) e RLS (Row-Level Security) para controle de acesso.
+Em ambientes corporativos que lidam com grandes volumes de dados provenientes de múltiplas fontes (CSV, APIs REST, bancos de dados relacionais), equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL — extração, transformação e carga incremental de dados —, centralizando e padronizando a preparação de dados. Em seguida, disponibiliza dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
 
-## 1. Introdução
+## 2. Introdução
 
-Organizações modernas demandam relatórios atualizados e personalizados para tomada de decisão. Entretanto, processos manuais de ETL e a distribuição não centralizada de relatórios geram gargalos de eficiência e riscos de segurança. Este projeto propõe uma solução automatizada para esses desafios.
+Organizações modernas demandam relatórios precisos e personalizados para apoiar a tomada de decisão. No entanto, processos manuais de ETL e a distribuição descentralizada de relatórios geram gargalos de eficiência, atrasos na entrega de insights e riscos de segurança.
 
-A integração de ETL, ferramentas de BI e controle de acesso granular é essencial para a engenharia de software, envolvendo arquitetura de sistemas, segurança da informação e gestão de dados.
+O Hopper mitiga esses desafios ao:
 
-## 2. Descrição do Projeto
+- Orquestrar pipelines de dados com Apache Airflow, automatizando completamente a extração, transformação e carga de informações.
+- Realizar carga incremental para otimizar tempo de processamento e evitar duplicações.
+- Centralizar dashboards no Power BI Embedded, oferecendo uma interface self-service e relatórios sempre atualizados.
+- Implementar controle de acesso granular via RBAC e RLS, garantindo que cada usuário visualize apenas os dados autorizados.
+- Monitorar métricas de execução (taxa de sucesso/falha e tempo médio por task), permitindo ações pró-ativas e maior confiabilidade.
 
-O Hopper é um Sistema de gerenciamento de dados e relatórios com Power BI Embedded, autenticação customizada e pipelines ETL automatizados. O sistema visa mitigar processos manuais de extração, transformação e carga de dados, falta de centralização no acesso a relatórios e garantir um controle adequado de permissões e visibilidade de dados.
-
-![Hopper_Technical_Implementation](docs/images/Hopper_Technical_Implementation.png)
-
-Tendo em vista o tempo e conhecimento técnico, o sistema não abordará análise de dados em tempo real e não incluirá desenvolvimento de visualizações personalizadas fora do Power BI.
+Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insights e fortalece a governança de dados.
 
 ## 3. Especificação Técnica
 
@@ -32,28 +31,28 @@ Tendo em vista o tempo e conhecimento técnico, o sistema não abordará anális
 
 - **Lista de Requisitos Funcionais:**
 
-  - **RF01:** O sistema deve permitir a execução automatizada de pipelines ETL
-  - **RF02:** O sistema deve ser capaz de realizar a extração de dados de fontes heterogêneas (CSV, APIs REST, PostgreSQL)
-  - **RF03:** O sistema deve ser capaz de realizar a transformação (limpeza, enriquecimento, agregação e etc) de dados
-  - **RF04:** O sistema deve ser capaz de realizar a carga incremental de dados em tabelas. 
-  - **RF05:** O sistema deve ser capaz de gerar relatórios no Power BI.
-  - **RF06:** O sistema deve permitir autenticação de usuários.
-  - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS) nos relatórios do Power BI com base no perfil do usuário autenticado.
-  - **RF08:** O sistema deve permitir a publicação de dashboards do Power BI em uma aplicação web.
-  - **RF09:** O sistema deve monitorar a execução de pipelines ETL, exibindo métricas como taxa de sucesso/falha e tempo médio por task.
-  - **RF010:** O sistema deve oferecer uma interface self-service para upload e gerenciamento de relatórios (.pbix) por administradores.
-  - **RNF11:** O sistema deve permitir a atualização programada dos relatórios.
+  - **RF01:** O sistema deve permitir a execução automatizada de pipelines ETL com Apache Airflow, utilizando DAGs (Directed Acyclic Graphs), que representam o fluxo de tarefas dependentes entre si, garantindo a orquestração, agendamento e monitoramento das etapas de extração, transformação e carga de dados.
+  - **RF02:** O sistema deve extrair dados de múltiplas fontes (CSV, APIs REST, PostgreSQL) usando operadores Python/Pandas em Airflow, agendados pelo mesmo.
+  - **RF03:** O sistema deve transformar dados (limpeza, enriquecimento, agregação) por meio de scripts Python com Pandas e Numpy, executados em tarefas Airflow pelo administrador
+  - **RF04:** O sistema deve realizar carga incremental no banco PostgreSQL usando a biblioteca psycopg2, orquestrada pelo Airflow.
+  - **RF05:** O sistema deve gerar relatórios no Power BI importando datasets do PostgreSQL e publicando-os em workspaces dedicados da microsoft via Power BI REST API, configurado pelo administrador.
+  - **RF06:** O sistema deve permitir autenticação de usuários via OAuth2 (Google/Microsoft) no backend Go (Gin).
+  - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS) nos relatórios embedados com Power BI Embedded.
+  - **RF08:** O sistema deve publicar dashboards do Power BI em uma aplicação Web React usando a biblioteca powerbi-client-react.
+  - **RF09:** O sistema deve monitorar métricas de execução do Airfow (taxa de sucesso/falha e tempo médio por task).
+  - **RF10:** O sistema deve permitir upload e gerenciamento de relatórios .pbix via Power BI REST API (criação e edição de arquivos realizados externamente no Power BI Desktop).
+  - **RF11:** O sistema deve permitir atualização programada dos relatórios no Power BI por meio de tasks Airflow.
 
 - **Lista de Requisitos Não Funcionais:**
-  - **RNF01:** O sistema deve ser capaz de definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2 (Google/Microsoft).
-  - **RNF02:** O sistema deve utilizar DAGs no Airflow para orquestração de pipelines, com paralelização de tarefas e otimização de queries SQL (índices) para garantir tempo máximo de execução de 5 minutos.
-  - **RNF03:** O sistema deve utilizar TLS 1.3 para criptografia de dados em trânsito e AES-256 para dados em repouso no PostgreSQL.
-  - **RNF04:** O sistema deve ser implantado em ambiente com auto-scaling horizontal (ex: render.com) para garantir disponibilidade de 99.9%, usando balanceamento de carga e CDN para assets estáticos.
-  - **RNF05:** O sistema deve gerar logs de auditoria centralizados (timestamp, user_id, endpoint).
-  - **RNF06:** O sistema deve utilizar operadores customizados em Python (Pandas/Numpy) para transformação de dados e psycopg2 para carga incremental no PostgreSQL.
-  - **RNF07:** O sistema deve integrar-se à Power BI REST API para atualização automática de datasets e publicação de relatórios em workspaces dedicados.
-  - **RNF08:** O sistema deve utilizar tokens JWT no backend Golang para autorização e mapeamento dinâmico de grupos de segurança no Power BI Service.
-  - **RNF9:** O sistema deve utilizar a biblioteca powerbi-client-react no frontend para embedar relatórios com tokens de acesso validados via JWT.
+  - **RNF01:** O sistema deve definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2 (Google/Microsoft) via Auth0, mantido pelo time de segurança.
+  - **RNF02:** O sistema deve usar DAGs no Apache Airflow para paralelização de tasks e otimização de queries indexadas em SQL, garantindo tempo máximo de execução de 5 minutos, implementado pelos engenheiros de dados.
+  - **RNF03:** O sistema deve criptografar dados em trânsito com TLS 1.3 e em repouso com AES-256 no PostgreSQL, configurado pelos engenheiros de infraestrutura.
+  - **RNF04:** O sistema deve ser implantado com auto-scaling horizontal (render.com), balanceamento de carga e CDN para assets estáticos, gerenciado pelos engenheiros de DevOps.
+  - **RNF05:** O sistema deve gerar logs de auditoria centralizados (timestamp, user_id, endpoint) no ELK Stack, mantido pelo time de segurança.
+  - **RNF06:** O sistema deve utilizar operadores customizados em Python (Pandas/Numpy) e psycopg2 para transformação e carga incremental, desenvolvidos pela equipe de engenharia de dados.
+  - **RNF07:** O sistema deve integrar-se à Power BI REST API para atualização automática de datasets e publicação em workspaces dedicados, executado por analistas de BI.
+  - **RNF08:** O sistema deve utilizar tokens JWT no backend Golang para autorização e mapeamento dinâmico de grupos de segurança, implementado pelos desenvolvedores backend.
+  - **RNF09:** O sistema deve utilizar a biblioteca powerbi-client-react no frontend para embed seguro de relatórios com validação de tokens JWT, desenvolvido pelos desenvolvedores frontend.
 
 - **Representação dos Requisitos:**
 

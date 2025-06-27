@@ -14,28 +14,32 @@ actor Administrador
 actor "Usuário Final" as Usuario
 
 rectangle "Sistema Hopper" {
-  Administrador -- (Configurar Pipeline ETL)
-  Administrador -- (Gerenciar Permissões)
-  Administrador -- (Monitorar Execução de Pipelines)
+  (Execução Automatizada de Pipelines ETL)
+  (Extração de Dados de Múltiplas Fontes)
+  (Transformação de Dados)
+  (Carga Incremental de Dados)
+  (Geração de Relatórios no Power BI)
+  (Autenticação de Usuários)
+  ("Aplicação de Regras de Segurança - RLS")
+  (Publicação de Dashboards via Power BI Embedded)
+  (Monitoramento de Métricas de Execução)
+  ("Upload e Gerenciamento de Relatórios .pbix")
+  (Agendamento de Atualização de Relatórios)
 
-  Usuario -- (Visualizar Relatórios)
-  Usuario -- (Aplicar Filtros Personalizados)
-  Usuario -- (Exportar Relatórios)
+  Administrador -- (Execução Automatizada de Pipelines ETL)
+  Administrador -- (Extração de Dados de Múltiplas Fontes)
+  Administrador -- (Transformação de Dados)
+  Administrador -- (Carga Incremental de Dados)
+  Administrador -- (Geração de Relatórios no Power BI)
+  Administrador -- (Autenticação de Usuários)
+  Administrador -- ("Aplicação de Regras de Segurança - RLS")
+  Administrador -- (Publicação de Dashboards via Power BI Embedded)
+  Administrador -- (Monitoramento de Métricas de Execução)
+  Administrador -- ("Upload e Gerenciamento de Relatórios .pbix")
+  Administrador -- (Agendamento de Atualização de Relatórios)
 
-  (Configurar Pipeline ETL) .> (Executar Pipeline ETL) : extends
-  (Visualizar Relatórios) .> (Aplicar Filtros Personalizados) : extends
-}
-
-note right of (Configurar Pipeline ETL)
-  O administrador pode configurar
-  pipelines de ETL para extrair,
-  transformar e carregar dados.
-end note
-
-note right of (Visualizar Relatórios)
-  O usuário final pode visualizar
-  relatórios dinâmicos com base
-  em seu nível de acesso (RLS).
-end note
+    Usuario -- (Geração de Relatórios no Power BI)
+    Usuario -- (Publicação de Dashboards via Power BI Embedded)
+  }
 
 @enduml
