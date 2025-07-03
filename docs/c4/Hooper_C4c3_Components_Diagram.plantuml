@@ -1,0 +1,50 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+LAYOUT_TOP_DOWN()
+HIDE_STEREOTYPE()
+
+' Container: Backend (FastAPI + Go)
+Container(web_backend, "Backend Hopper", "Python (FastAPI) + Go (Gin)", "Exposição de APIs, autenticação OAuth2, orquestração de atualização de relatórios")
+
+' Container: Frontend React
+Container(web_frontend, "Frontend Hopper", "ReactJS", "Interface Web com Power BI Embedded")
+
+' Container: ETL Orchestrator
+Container(airflow, "Apache Airflow", "Python", "Orquestração de pipelines ETL para múltiplas fontes de dados")
+
+' Container: Database
+Container(db_postgres, "PostgreSQL", "Banco de Dados Relacional", "Armazena dados transformados para análise")
+
+' Container: Power BI
+Container(powerbi, "Power BI Embedded", "Serviço Microsoft", "Exibição de relatórios interativos com RLS e autenticação")
+
+' Componentes internos do Backend
+Component(auth_service, "Serviço de Autenticação", "OAuth2 com Google/Microsoft via Auth0", "Gerencia autenticação de usuários")
+Component(token_service, "Serviço de Autorização", "JWT", "Validação e atribuição de permissões de acesso")
+Component(api_controller, "API Controller", "FastAPI", "Roteamento de endpoints da aplicação e comunicação com Power BI")
+
+' Componentes internos do Airflow
+Component(etl_extract, "ETL Extract", "Python Operators", "Extração de dados de fontes externas (CSV, APIs, etc.)")
+Component(etl_transform, "ETL Transform", "Pandas/Numpy", "Limpeza, agregação e enriquecimento dos dados")
+Component(etl_load, "ETL Load", "psycopg2", "Carga incremental no banco PostgreSQL")
+
+' Componentes internos do Frontend
+Component(ui_interface, "Interface Web", "React + powerbi-client-react", "Interface gráfica para visualização dos dashboards")
+Component(embed_logic, "Power BI Embed Logic", "React", "Controle de visualização, aplicação de tokens JWT")
+
+' Relacionamentos
+Rel(web_frontend, web_backend, "Requisições HTTP (REST APIs)")
+Rel(web_frontend, powerbi, "Embed de Dashboards", "powerbi-client-react + JWT")
+Rel(web_backend, auth_service, "Autenticação OAuth2")
+Rel(web_backend, token_service, "Geração/validação de tokens")
+Rel(web_backend, powerbi, "Atualização/publicação de dashboards", "Power BI REST API")
+Rel(airflow, etl_extract, "Executa tarefas de extração")
+Rel(airflow, etl_transform, "Executa tarefas de transformação")
+Rel(airflow, etl_load, "Executa tarefas de carga")
+Rel(etl_load, db_postgres, "Insere dados")
+Rel(etl_extract, db_postgres, "Consulta dados referenciais", "eventual")
+Rel(web_backend, db_postgres, "Consulta dados e permissões")
+Rel(powerbi, db_postgres, "Consulta datasets", "Import/DirectQuery")
+
+@enduml

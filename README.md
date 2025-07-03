@@ -1,6 +1,11 @@
 # Hopper
+<br/>
 
-![Grace Hopper](docs/images/gracehopperscreenshot.png)
+<p align="center">
+  <img src="docs/images/Brand.png" width="300" alt="Logo Hopper">
+</p>
+
+<br/>
 
 - **Título do Projeto**: Sistema de Gerenciamento e Distribuição de Relatórios Dinâmicos com Power BI Embedded.
 - **Nome do Estudante**: Gabriel Deglmann Kasten.
@@ -9,7 +14,7 @@
 
 ## 1. Resumo
 
-Em ambientes corporativos que lidam com grandes volumes de dados provenientes de múltiplas fontes (CSV, APIs REST, bancos de dados relacionais), equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL — extração, transformação e carga incremental de dados —, centralizando e padronizando a preparação de dados. Em seguida, disponibiliza dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
+Em ambientes corporativos que lidam com grandes volumes de dados provenientes de múltiplas fontes (CSV, APIs REST, bancos de dados relacionais, etc), equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL — extração, transformação e carga incremental de dados —, centralizando e padronizando a preparação de dados. Em seguida, disponibiliza dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
 
 ## 2. Introdução
 
@@ -36,7 +41,7 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
   - **RF03:** O sistema deve transformar dados (limpeza, enriquecimento, agregação) por meio de scripts Python com Pandas e Numpy, executados em tarefas Airflow pelo administrador
   - **RF04:** O sistema deve realizar carga incremental no banco PostgreSQL usando a biblioteca psycopg2, orquestrada pelo Airflow.
   - **RF05:** O sistema deve gerar relatórios no Power BI importando datasets do PostgreSQL e publicando-os em workspaces dedicados da microsoft via Power BI REST API, configurado pelo administrador.
-  - **RF06:** O sistema deve permitir autenticação de usuários via OAuth2 (Google/Microsoft) no backend Go (Gin).
+  - **RF06:** O sistema deve permitir autenticação de usuários via OAuth2 (Google/Microsoft) no backend Python (FastAPI).
   - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS) nos relatórios embedados com Power BI Embedded.
   - **RF08:** O sistema deve publicar dashboards do Power BI em uma aplicação Web React usando a biblioteca powerbi-client-react.
   - **RF09:** O sistema deve monitorar métricas de execução do Airfow (taxa de sucesso/falha e tempo médio por task).
@@ -56,7 +61,11 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
 
 - **Representação dos Requisitos:**
 
-![Hopper_Casos_de_Uso](docs/images/Hopper_Casos_de_Uso.png)
+<!-- ![Hopper_Casos_de_Uso](docs/images/Hopper_Casos_de_Uso.png) -->
+
+<p align="center">
+  <img src="docs/images/Hopper_Casos_de_Uso.png" width="500" alt="Logo Hopper">
+</p>
 
 ### 3.2. Considerações de Design
 
@@ -72,19 +81,31 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
 
 ## Diagrama de Contexto
 
-![c1_diagrama_contexto](docs/images/c1_diagrama_contexto.png)
+<!-- ![c1_diagrama_contexto](docs/images/c1_diagrama_contexto.png) -->
+
+<p align="center">
+  <img src="docs/images/c1_diagrama_contexto.png" width="500" alt="Logo Hopper">
+</p>
 
 <br><br>
 
 ## Diagrama de Container
 
-![Hopper_C4_Container_Diagram](docs/images/Hopper_C4_Container_Diagram.png)
+<!-- ![Hopper_C4_Container_Diagram](docs/images/Hopper_C4_Container_Diagram.png) -->
+
+<p align="center">
+  <img src="docs/images/Hopper_C4_Container_Diagram.png" width="500" alt="Logo Hopper">
+</p>
 
 <br><br>
 
 ## Diagrama de Componentes
 
-![c3_diagrama_componentes](docs/images/c3_diagrama_componentes.png)
+<!-- ![c3_diagrama_componentes](docs/images/c3_diagrama_componentes.png) -->
+
+<p align="center">
+  <img src="docs/images/c3_diagrama_componentes.png" alt="Logo Hopper">
+</p>
 
 <br><br>
 
@@ -143,12 +164,13 @@ Listagem das fontes de pesquisa, frameworks, bibliotecas e ferramentas que serã
 - [Pandas](https://pandas.pydata.org/)
 - [Numpy](https://numpy.org/)
 - [Psycopg2](https://pypi.org/project/psycopg2/)
-- [Gin Gonic](https://gin-gonic.com/)
 - [Render](https://render.com/)
 - [Git](https://git-scm.com/)
 - [Python](https://www.python.org/)
+- [FastAPI](https://fastapi.tiangolo.com/)
 - [Powerbi](https://www.microsoft.com/pt-br/power-platform/products/power-bi)
 - [Powerbi Embedded](https://azure.microsoft.com/pt-br/products/power-bi-embedded)
+- [Powerbi React](https://github.com/microsoft/powerbi-client-react)
 - [Biblioteca de ícones](https://phosphoricons.com/)
 
 Para controle de metas e entregas foi utilizado o [Trello](https://trello.com/b/CzrWYIOK/backlog).
@@ -160,8 +182,6 @@ Para o desenvolvimento do design foi utilizado o [Figma](https://www.figma.com/d
 
 - Considerações Professor/a:
 
-<div style="page-break-after: always;"></div>
 - Considerações Professor/a:
 
-<div style="page-break-after: always;"></div>
 - Considerações Professor/a:
