@@ -51,7 +51,7 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
   - **RNF05:** O sistema deve gerar logs de auditoria centralizados (timestamp, user_id, endpoint) no ELK Stack, mantido pelo time de segurança.
   - **RNF06:** O sistema deve utilizar operadores customizados em Python (Pandas/Numpy) e psycopg2 para transformação e carga incremental, desenvolvidos pela equipe de engenharia de dados.
   - **RNF07:** O sistema deve integrar-se à Power BI REST API para atualização automática de datasets e publicação em workspaces dedicados, executado por analistas de BI.
-  - **RNF08:** O sistema deve utilizar tokens JWT no backend Golang para autorização e mapeamento dinâmico de grupos de segurança, implementado pelos desenvolvedores backend.
+  - **RNF08:** O sistema deve utilizar tokens JWT no backend Python (FastAPI) para autorização e mapeamento dinâmico de grupos de segurança, implementado pelos desenvolvedores backend.
   - **RNF09:** O sistema deve utilizar a biblioteca powerbi-client-react no frontend para embed seguro de relatórios com validação de tokens JWT, desenvolvido pelos desenvolvedores frontend.
 
 - **Representação dos Requisitos:**
@@ -64,7 +64,7 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
   - Camada ETL: Airflow para orquestração.
   - Camada de Dados: Banco de dados PostgreSQL e modelagem.
   - Camada de BI: Power BI para visualização dos dashboards.
-  - Camada Web: ReactJS (frontend) e Golang (backend).
+  - Camada Web: ReactJS (frontend) e Python (FastAPI) (backend).
 
 - **Padrões de Arquitetura**: MVC na camada web e Microserviços para ETL.
 
@@ -91,14 +91,13 @@ Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insi
 ### 3.3. Stack Tecnológica
 
 - **Linguagens de Programação**:
-  - Python (ETL),
-  - JavaScript/React (frontend).
-  - Golang (backend)
+  - Python (ETL e backend via FastAPI)
+  - JavaScript/React (frontend)
 
 - **Frameworks e Bibliotecas**:
   - Apache Airflow,
   - React,
-  - Gin (API)
+  - FastAPI,
   - Power BI REST API.
   - Pandas
   - Numpy
@@ -148,7 +147,6 @@ Listagem das fontes de pesquisa, frameworks, bibliotecas e ferramentas que serã
 - [Render](https://render.com/)
 - [Git](https://git-scm.com/)
 - [Python](https://www.python.org/)
-- [Golang](https://go.dev/)
 - [Powerbi](https://www.microsoft.com/pt-br/power-platform/products/power-bi)
 - [Powerbi Embedded](https://azure.microsoft.com/pt-br/products/power-bi-embedded)
 - [Biblioteca de ícones](https://phosphoricons.com/)
