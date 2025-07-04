@@ -65,9 +65,12 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
     - **RNF08:** O sistema deve utilizar tokens JWT no backend para autorização.
     - **RNF09:** O sistema deve utilizar a biblioteca powerbi-client-react no frontend para embed seguro.
 
-- **Representação dos Requisitos:**
+### **Representação dos Requisitos:**
 
-![Casos de Uso](docs/images/Hopper_Casos_de_Uso.png)
+<p align="center">
+  <img src="docs/images/Hopper_Casos_de_Uso.png">
+<!-- ![Casos de Uso](docs/images/Hopper_Casos_de_Uso.png) -->
+</p>
 
 ### 3.2. Considerações de Design
 - **Visão Inicial da Arquitetura**:
@@ -80,15 +83,24 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 #### Diagrama de Contexto
 
-![Diagrama de Contexto](docs/images/c1_diagrama_contexto.png)
+<p align="center">
+  <img src="docs/images/c1_diagrama_contexto.png">
+  <!-- ![Diagrama de Contexto](docs/images/c1_diagrama_contexto.png) -->
+</p>
+
+<div style="page-break-after: always;"></div>
 
 #### Diagrama de Container
 
 ![Diagrama de Container](docs/images/Hopper_C4_Container_Diagram.png)
 
+<div style="page-break-after: always;"></div>
+
 #### Diagrama de Componentes
 
-![Diagrama de Componentes](docs/images/c3_diagrama_componentes.png)
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <img src="docs/images/c3_diagrama_componentes.png" alt="Diagrama de Componentes" style="max-height: 100vh; max-width: 125vw; transform: rotate(90deg); display: block;">
+</div>
 
 ### 3.3. Stack Tecnológica
 
@@ -149,7 +161,6 @@ Após aprovação do documento, os próximos passos são em ordem:
 4. Desenvolvimento da interface web com integração ao Power BI Embedded.
 5. Implementação de funcionalidades para ativação e desativação de cargas.
 6. Permitir o gerenciamento facilitado das cargas, paineis, workspaces, etc.
-7. Testes de segurança e carga.
 
 ## 5. Referências
 
@@ -190,6 +201,8 @@ Após aprovação do documento, os próximos passos são em ordem:
 - **Power BI REST API**: Interface de programação que permite automação e gerenciamento de recursos do Power BI, como relatórios e workspaces.
 
 - **Render**: Plataforma de cloud para deploy automatizado de aplicações, com suporte a autoescalabilidade e balanceamento de carga.
+
+<div style="page-break-after: always;"></div>
 
 ## 7. Avaliações de Professores
 
