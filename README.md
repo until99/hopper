@@ -42,17 +42,17 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 - **Lista de Requisitos:**
 
   - **Requisitos Funcionais (RF):**
-    - **RF01:** O sistema deve permitir a execução automatizada de pipelines ETL com Apache Airflow.
-    - **RF02:** O sistema deve extrair dados de múltiplas fontes (CSV, APIs REST, PostgreSQL).
-    - **RF03:** O sistema deve transformar dados (limpeza, enriquecimento, agregação) com Python (Pandas/Numpy).
-    - **RF04:** O sistema deve realizar carga incremental no banco PostgreSQL.
-    - **RF05:** O sistema deve gerar relatórios no Power BI importando datasets do PostgreSQL.
-    - **RF06:** O sistema deve permitir autenticação de usuários via OAuth2 (Google/Microsoft).
-    - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS) nos relatórios.
-    - **RF08:** O sistema deve publicar dashboards do Power BI em uma aplicação Web React.
-    - **RF09:** O sistema deve monitorar métricas de execução do Airflow.
-    - **RF10:** O sistema deve permitir upload e gerenciamento de relatórios .pbix via Power BI REST API.
-    - **RF11:** O sistema deve permitir atualização programada dos relatórios no Power BI.
+    - **RF01:** O sistema deve permitir a execução automatizada de pipelines.
+    - **RF02:** O sistema deve extrair dados de múltiplas fontes.
+    - **RF03:** O sistema deve transformar dados (limpeza, enriquecimento, agregação).
+    - **RF04:** O sistema deve realizar carga incremental de dados no banco.
+    - **RF05:** O sistema deve gerar relatórios.
+    - **RF06:** O sistema deve permitir autenticação de usuários.
+    - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS).
+    - **RF08:** O sistema deve ser capaz de publicar dashboards.
+    - **RF09:** O sistema deve monitorar métricas de execução.
+    - **RF10:** O sistema deve permitir upload e gerenciamento de relatórios.
+    - **RF11:** O sistema deve permitir atualização programada dos relatórios.
 
   - **Requisitos Não Funcionais (RNF):**
     - **RNF01:** O sistema deve definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2.
