@@ -1,4 +1,4 @@
-@startuml Hopper_Casos_de_Uso
+@startuml
 left to right direction
 skinparam packageStyle rectangle
 skinparam usecase {
@@ -8,38 +8,57 @@ skinparam usecase {
   FontSize 14
 }
 
-title Diagrama de Casos de Uso - Hopper
+title Diagrama de Casos de Uso - Hopper (Ordenado Verticalmente)
 
 actor Administrador
 actor "Usuário Final" as Usuario
 
-rectangle "Sistema Hopper" {
-  (Executar pipelines ETL automaticamente)
-  (Extrair dados de múltiplas fontes)
-  (Transformar dados)
-  (Carregar dados incrementalmente)
-  (Gerar relatórios no Power BI)
-  (Autenticar usuários)
-  (Aplicar regras de segurança - RLS)
-  (Publicar dashboards via Power BI Embedded)
-  (Monitorar métricas de execução)
-  (Fazer upload e gerenciar relatórios .pbix)
-  (Agendar atualização de relatórios)
+rectangle "Pipeline de Dados (ETL)" {
+  (Configurar pipelines ETL) as UC1
+  (Extrair dados de múltiplas fontes) as UC2
+  (Transformar dados) as UC3
+  (Carregar dados incrementalmente) as UC4
+  (Monitorar métricas de execução) as UC5
 
-  Administrador -- (Executar pipelines ETL automaticamente)
-  Administrador -- (Extrair dados de múltiplas fontes)
-  Administrador -- (Transformar dados)
-  Administrador -- (Carregar dados incrementalmente)
-  Administrador -- (Gerar relatórios no Power BI)
-  Administrador -- (Autenticar usuários)
-  Administrador -- (Aplicar regras de segurança - RLS)
-  Administrador -- (Publicar dashboards via Power BI Embedded)
-  Administrador -- (Monitorar métricas de execução)
-  Administrador -- (Fazer upload e gerenciar relatórios .pbix)
-  Administrador -- (Agendar atualização de relatórios)
 
-  Usuario -- (Gerar relatórios no Power BI)
-  Usuario -- (Publicar dashboards via Power BI Embedded)
+  UC1 -left-> UC2
+  UC2 -left-> UC3
+  UC3 -left-> UC4
+  UC4 -left-> UC5
+
+  Administrador -- UC1
+  Administrador -- UC2
+  Administrador -- UC3
+  Administrador -- UC4
+  Administrador -- UC5
 }
 
+rectangle "Gerenciamento e Segurança" {
+  (Fazer upload e gerenciar relatórios .pbix) as GC1
+  (Agendar atualização de relatórios) as GC2
+  (Aplicar regras de segurança - RLS) as GC3
+  (Autenticar usuários) as GC4
+
+  GC1 -left-> GC2
+  GC2 -left-> GC3
+  GC3 -left-> GC4
+
+  Administrador -- GC1
+  Administrador -- GC2
+  Administrador -- GC3
+  Administrador -- GC4
+  Usuario -- GC4
+}
+
+rectangle "Visualização e Acesso a Relatórios" {
+  (Publicar dashboards via Power BI Desktop) as VC1
+  (Gerar relatórios no Power BI Desktop) as VC2
+
+  VC1 -left-> VC2
+
+  Administrador -- VC1
+  Administrador -- VC2
+  Usuario -- VC1
+  Usuario -- VC2
+}
 @enduml

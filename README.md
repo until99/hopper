@@ -42,17 +42,18 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 - **Lista de Requisitos:**
 
   - **Requisitos Funcionais (RF):**
-    - **RF01:** O sistema deve permitir a execução automatizada de pipelines.
-    - **RF02:** O sistema deve extrair dados de múltiplas fontes.
-    - **RF03:** O sistema deve transformar dados (limpeza, enriquecimento, agregação).
-    - **RF04:** O sistema deve realizar carga incremental de dados no banco.
-    - **RF05:** O sistema deve gerar relatórios.
+    - **RF01:** O sistema deve permitir a configuração de pipelines ETL.
+    - **RF02:** O sistema deve permitir a execução automatizada de pipelines.
+    - **RF03:** O sistema deve extrair dados de múltiplas fontes.
+    - **RF04:** O sistema deve transformar dados (limpeza, enriquecimento, agregação).
+    - **RF05:** O sistema deve realizar carga incremental de dados no banco.
     - **RF06:** O sistema deve permitir autenticação de usuários.
     - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS).
-    - **RF08:** O sistema deve ser capaz de publicar dashboards.
-    - **RF09:** O sistema deve monitorar métricas de execução.
-    - **RF10:** O sistema deve permitir upload e gerenciamento de relatórios.
-    - **RF11:** O sistema deve permitir atualização programada dos relatórios.
+    - **RF08:** O sistema deve permitir upload e gerenciamento de relatórios.
+    - **RF09:** O sistema deve ser capaz de publicar dashboards.
+    - **RF10:** O sistema deve permitir atualização programada dos relatórios.
+    - **RF11:** O sistema deve gerar relatórios.
+    - **RF12:** O sistema deve monitorar métricas de execução.
 
   - **Requisitos Não Funcionais (RNF):**
     - **RNF01:** O sistema deve definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2.
