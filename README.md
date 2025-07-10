@@ -19,18 +19,27 @@ Em ambientes corporativos que lidam com grandes volumes de dados, equipes de neg
 
 ## 1. Introdução
 
-- **Contexto**: Organizações modernas demandam relatórios precisos e personalizados para apoiar a tomada de decisão. No entanto, processos manuais de ETL e a distribuição descentralizada de relatórios geram gargalos de eficiência, atrasos na entrega de insights e riscos de segurança.
-- **Justificativa**: O Hopper mitiga esses desafios ao orquestrar pipelines de dados com Apache Airflow, automatizando a extração, transformação e carga de informações, e centralizando dashboards no Power BI Embedded. Dessa forma, o sistema reduz erros manuais, acelera a disponibilização de insights e fortalece a governança de dados.
-- **Objetivos**: O objetivo principal é oferecer uma plataforma que automatiza o fluxo de ETL e disponibiliza dashboards interativos. Objetivos secundários incluem implementar controle de acesso granular, monitorar métricas de execução e permitir o gerenciamento de relatórios.
+A construção de um sistema como o Hopper se justifica pela necessidade crescente de automatizar e padronizar o tratamento de dados em empresas que buscam agilidade, confiabilidade e segurança na geração de relatórios. Soluções manuais são propensas a erros, dificultam a escalabilidade e aumentam o risco de exposição de informações sensíveis. Ao centralizar o gerenciamento de pipelines ETL usando o Apache Airflow e a distribuição de dashboards com o Power BI Embedded, o Hopper reduz custos operacionais, melhora a governança de dados e permite que as equipes foquem na análise estratégica, em vez de tarefas repetitivas e suscetíveis a falhas.
+
+O Apache Airflow é uma plataforma open source de orquestração de workflows, projetada para programar, monitorar e gerenciar pipelines de dados complexos de forma programática e escalável. Utilizando DAGs (Directed Acyclic Graphs), o Airflow permite a definição explícita de dependências, agendamento e execução de tarefas, além de oferecer integração nativa com diversos sistemas de armazenamento, bancos de dados e serviços em nuvem. Sua arquitetura modular e extensível facilita a automação de processos ETL, garantindo rastreabilidade, reprocessamento eficiente e monitoramento detalhado das execuções, aspectos essenciais para ambientes corporativos que demandam alta confiabilidade e auditabilidade no tratamento de dados.
+
+O Power BI Embedded é um serviço da Microsoft Azure que permite incorporar dashboards e relatórios interativos do Power BI diretamente em aplicações web ou portais internos de empresas. Diferente do Power BI tradicional, que é acessado via portal próprio, o Embedded oferece APIs e SDKs para que desenvolvedores possam integrar visualizações de dados personalizadas e seguras em suas próprias soluções, proporcionando uma experiência de análise de dados fluida para os usuários finais, sem a necessidade de alternar entre diferentes plataformas. Isso facilita o acesso a informações estratégicas, mantendo o controle de acesso e a segurança dos dados conforme as necessidades do negócio.
+
+**Objetivos**
+
+O projeto visa criar uma plataforma capaz de automatizar todo o fluxo de ETL (Extração, Transformação e Carga de dados), eliminando tarefas manuais e reduzindo erros no tratamento de informações. Além disso, busca disponibilizar dashboards interativos utilizando o Power BI Embedded, permitindo que usuários acessem relatórios atualizados e visualizações dinâmicas diretamente pela aplicação, sem depender de múltiplas ferramentas ou processos manuais.
+
+Entre os objetivos complementares, destaca-se a implementação de um controle de acesso granular, garantindo que cada usuário visualize apenas os dados pertinentes ao seu perfil ou função. O sistema também irá monitorar métricas de execução dos pipelines e relatórios, fornecendo indicadores de desempenho e alertas para possíveis falhas ou gargalos. Por fim, será possível gerenciar relatórios de forma centralizada, facilitando o upload, atualização e organização dos dashboards dentro da plataforma.
 
 ## 2. Descrição do Projeto
+- **Tema do Projeto**: Desenvolvimento de uma plataforma de gerenciamento e distribuição de relatórios dinâmicos, chamada Hopper, que automatiza o processo de ETL e utiliza o Power BI Embedded para visualização de dados.
 
-- **Tema do Projeto**: Desenvolvimento de uma plataforma de gerenciamento e distribuição de relatórios dinâmicos, chamada Hopper, que automatiza o processo de ETL e utiliza Power BI Embedded para visualização de dados.
 - **Problemas a Resolver**:
   - Atrasos e inconsistências na consolidação e análise manual de dados.
   - Gargalos de eficiência em processos de ETL.
   - Riscos de segurança na distribuição de relatórios.
-  - Falta de relatórios atualizados e escaláveis para decisões estratégicas.
+  - Falta de relatórios atualizado para decisões estratégicas.
+  
 - **Limitações**: O projeto não abordará a criação de visualizações customizadas além das capacidades do Power BI, nem o desenvolvimento de algoritmos de machine learning para análise preditiva. A gestão de infraestrutura de hardware subjacente fica a cargo dos serviços de nuvem (Render.com).
 
 ## 3. Especificação Técnica
@@ -45,15 +54,15 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
     - **RF01:** O sistema deve permitir a configuração de pipelines ETL.
     - **RF02:** O sistema deve permitir a execução automatizada de pipelines.
     - **RF03:** O sistema deve extrair dados de múltiplas fontes.
-    - **RF04:** O sistema deve transformar dados (limpeza, enriquecimento, agregação).
+    - **RF04:** O sistema deve transformar dados.
     - **RF05:** O sistema deve realizar carga incremental de dados no banco.
     - **RF06:** O sistema deve permitir autenticação de usuários.
-    - **RF07:** O sistema deve aplicar regras de segurança em nível de linha (RLS).
+    - **RF07:** O sistema deve aplicar regras de segurança em nível de linha.
     - **RF08:** O sistema deve permitir upload e gerenciamento de relatórios.
     - **RF09:** O sistema deve ser capaz de publicar dashboards.
     - **RF10:** O sistema deve permitir atualização programada dos relatórios.
-    - **RF11:** O sistema deve gerar relatórios.
     - **RF12:** O sistema deve monitorar métricas de execução.
+    - **RF13:** O sistema deve permitir gerenciamento de relatórios.
 
   - **Requisitos Não Funcionais (RNF):**
     - **RNF01:** O sistema deve definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2.
@@ -70,7 +79,6 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 <p align="center">
   <img src="docs/images/Hopper_Casos_de_Uso.png">
-<!-- ![Casos de Uso](docs/images/Hopper_Casos_de_Uso.png) -->
 </p>
 
 ### 3.2. Considerações de Design
@@ -86,7 +94,6 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 <p align="center">
   <img src="docs/images/c1_diagrama_contexto.png">
-  <!-- ![Diagrama de Contexto](docs/images/c1_diagrama_contexto.png) -->
 </p>
 
 <div style="page-break-after: always;"></div>
@@ -99,7 +106,7 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 #### Diagrama de Componentes
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+<div style="display: flex; justify-cont ent: center; align-items: center; height: 100vh;">
   <img src="docs/images/c3_diagrama_componentes.png" alt="Diagrama de Componentes" style="max-height: 100vh; max-width: 125vw; transform: rotate(90deg); display: block;">
 </div>
 
