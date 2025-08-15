@@ -2,3 +2,5 @@ airflow/logs/
 airflow/airflow.cfg
 airflow/airflow-venv
 TODO.md
+.env
+api/.env
