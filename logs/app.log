@@ -1,0 +1,1847 @@
+2025-08-15T18:41:46-0300 | INFO | uvicorn.error | Will watch for changes in these directories: ['C:\\Projects\\hopper\\api']
+2025-08-15T18:41:46-0300 | INFO | uvicorn.error | Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2025-08-15T18:41:46-0300 | INFO | uvicorn.error | Started reloader process [21032] using WatchFiles
+2025-08-15T18:41:47-0300 | INFO | uvicorn.error | Started server process [8724]
+2025-08-15T18:41:47-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:41:47-0300 | INFO | api | application startup
+2025-08-15T18:41:47-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:42:00-0300 | INFO | api | request start path=/docs method=GET
+2025-08-15T18:42:00-0300 | INFO | api | request end path=/docs method=GET status=200
+2025-08-15T18:42:00-0300 | INFO | api | request start path=/openapi.json method=GET
+2025-08-15T18:42:00-0300 | INFO | api | request end path=/openapi.json method=GET status=200
+2025-08-15T18:42:22-0300 | INFO | api | request start path=/api/v1/dashboards/report method=GET
+2025-08-15T18:42:22-0300 | INFO | api.powerbi | Obtendo HTML do relatório id=eba69c33-25be-4395-822a-aee72a1dd286/49ae2ea581471c14a9a0
+2025-08-15T18:42:22-0300 | ERROR | api | request error path=/api/v1/dashboards/report method=GET
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\main.py", line 18, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 14, in report_view
+    html = get_report_html(report_id)
+  File "C:\Projects\hopper\api\services\powerbi.py", line 46, in get_report_html
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286/49ae2ea581471c14a9a0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-08-15T18:42:22-0300 | ERROR | uvicorn.error | Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         self.scope, self.receive, self.send
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\main.py", line 18, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Projects\hopper\api\v1\reports.py", line 14, in report_view
+    |     html = get_report_html(report_id)
+    |   File "C:\Projects\hopper\api\services\powerbi.py", line 46, in get_report_html
+    |     response.raise_for_status()
+    |     ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    |     raise HTTPStatusError(message, request=request, response=self)
+    | httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286/49ae2ea581471c14a9a0'
+    | For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\main.py", line 18, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 14, in report_view
+    html = get_report_html(report_id)
+  File "C:\Projects\hopper\api\services\powerbi.py", line 46, in get_report_html
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286/49ae2ea581471c14a9a0'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-08-15T18:43:59-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:43:59-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:43:59-0300 | INFO | api | application shutdown
+2025-08-15T18:43:59-0300 | INFO | api | application shutdown
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:43:59-0300 | INFO | uvicorn.error | Finished server process [8724]
+
+2025-08-15T18:44:00-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Started server process [17832]
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:01-0300 | INFO | api | application startup
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Started server process [18428]
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:01-0300 | INFO | api | application startup
+2025-08-15T18:44:01-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:08-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:44:08-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:08-0300 | INFO | api | application shutdown
+2025-08-15T18:44:08-0300 | INFO | api | application shutdown
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Finished server process [18428]
+2025-08-15T18:44:08-0300 | INFO | uvicorn.error | Finished server process [17832]
+2025-08-15T18:44:09-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Started server process [19448]
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Started server process [6368]
+2025-08-15T18:44:10-0300 | INFO | api | application startup
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:10-0300 | INFO | api | application startup
+2025-08-15T18:44:10-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:22-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:44:22-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-08-15T18:44:22-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:22-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:23-0300 | INFO | api | application shutdown
+2025-08-15T18:44:23-0300 | INFO | api | application shutdown
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Finished server process [19448]
+2025-08-15T18:44:23-0300 | INFO | uvicorn.error | Finished server process [6368]
+2025-08-15T18:44:23-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:44:23-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-08-15T18:44:24-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Started server process [22696]
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:24-0300 | INFO | api | application startup
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Started server process [3644]
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:24-0300 | INFO | api | application startup
+2025-08-15T18:44:24-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:40-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:44:40-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'main.py'. Reloading...
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:40-0300 | INFO | api | application shutdown
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Finished server process [22696]
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:44:40-0300 | INFO | api | application shutdown
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:44:40-0300 | INFO | uvicorn.error | Finished server process [3644]
+2025-08-15T18:44:41-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Started server process [14492]
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:41-0300 | INFO | api | application startup
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Started server process [14640]
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:44:41-0300 | INFO | api | application startup
+2025-08-15T18:44:41-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:06-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:45:06-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:06-0300 | INFO | api | application shutdown
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Finished server process [14492]
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:06-0300 | INFO | api | application shutdown
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:06-0300 | INFO | uvicorn.error | Finished server process [14640]
+2025-08-15T18:45:08-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Started server process [9348]
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Started server process [16908]
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:08-0300 | INFO | api | application startup
+2025-08-15T18:45:08-0300 | INFO | api | application startup
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:08-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:18-0300 | INFO | api | request start path=/docs method=GET
+2025-08-15T18:45:18-0300 | INFO | api | request end path=/docs method=GET status=200
+2025-08-15T18:45:19-0300 | INFO | api | request start path=/openapi.json method=GET
+2025-08-15T18:45:19-0300 | INFO | api | request end path=/openapi.json method=GET status=200
+2025-08-15T18:45:22-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:45:22-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:22-0300 | INFO | api | application shutdown
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:22-0300 | INFO | api | application shutdown
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Finished server process [16908]
+2025-08-15T18:45:22-0300 | INFO | uvicorn.error | Finished server process [9348]
+2025-08-15T18:45:24-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Started server process [6204]
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:24-0300 | INFO | api | application startup
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Started server process [17220]
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:24-0300 | INFO | api | application startup
+2025-08-15T18:45:24-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:32-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:45:32-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:32-0300 | INFO | api | application shutdown
+2025-08-15T18:45:32-0300 | INFO | api | application shutdown
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Finished server process [17220]
+2025-08-15T18:45:32-0300 | INFO | uvicorn.error | Finished server process [6204]
+2025-08-15T18:45:34-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Started server process [8560]
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Started server process [2852]
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:34-0300 | INFO | api | application startup
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:34-0300 | INFO | api | application startup
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:34-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:39-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:45:39-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:45:39-0300 | INFO | api | application shutdown
+2025-08-15T18:45:39-0300 | INFO | api | application shutdown
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Finished server process [2852]
+2025-08-15T18:45:39-0300 | INFO | uvicorn.error | Finished server process [8560]
+2025-08-15T18:45:40-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:45:40-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Started server process [19732]
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:40-0300 | INFO | api | application startup
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Started server process [19404]
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:40-0300 | INFO | api | application startup
+2025-08-15T18:45:40-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:41-0300 | INFO | api | application shutdown
+2025-08-15T18:45:41-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:45:41-0300 | INFO | api | application shutdown
+2025-08-15T18:45:41-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:45:41-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Started server process [16916]
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:42-0300 | INFO | api | application startup
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Started server process [7936]
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:45:42-0300 | INFO | api | application startup
+2025-08-15T18:45:42-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:45:42-0300 | INFO | api | request start path=/docs method=GET
+2025-08-15T18:45:42-0300 | INFO | api | request end path=/docs method=GET status=200
+2025-08-15T18:45:42-0300 | INFO | api | request start path=/openapi.json method=GET
+2025-08-15T18:45:42-0300 | INFO | api | request end path=/openapi.json method=GET status=200
+2025-08-15T18:46:00-0300 | INFO | api | request start path=/api/v1/dashboards/report/groups method=GET
+2025-08-15T18:46:00-0300 | INFO | api.powerbi | Obtendo lista de grupos do Power BI
+2025-08-15T18:46:00-0300 | INFO | api.powerbi | Grupos do Power BI obtidos com sucesso (total=3)
+2025-08-15T18:46:00-0300 | ERROR | api | request error path=/api/v1/dashboards/report/groups method=GET
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 24, in report_groups_view
+    return HTMLResponse(content=groups)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    self.body = self.render(content)
+                ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 55, in render
+    return content.encode(self.charset)  # type: ignore
+           ^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'encode'
+2025-08-15T18:46:00-0300 | ERROR | api | unhandled_error path=/api/v1/dashboards/report/groups
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Projects\hopper\api\v1\reports.py", line 24, in report_groups_view
+    |     return HTMLResponse(content=groups)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    |     self.body = self.render(content)
+    |                 ~~~~~~~~~~~^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 55, in render
+    |     return content.encode(self.charset)  # type: ignore
+    |            ^^^^^^^^^^^^^^
+    | AttributeError: 'list' object has no attribute 'encode'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 24, in report_groups_view
+    return HTMLResponse(content=groups)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    self.body = self.render(content)
+                ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 55, in render
+    return content.encode(self.charset)  # type: ignore
+           ^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'encode'
+2025-08-15T18:46:00-0300 | ERROR | uvicorn.error | Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         self.scope, self.receive, self.send
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Projects\hopper\api\v1\reports.py", line 24, in report_groups_view
+    |     return HTMLResponse(content=groups)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    |     self.body = self.render(content)
+    |                 ~~~~~~~~~~~^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 55, in render
+    |     return content.encode(self.charset)  # type: ignore
+    |            ^^^^^^^^^^^^^^
+    | AttributeError: 'list' object has no attribute 'encode'
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 24, in report_groups_view
+    return HTMLResponse(content=groups)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 47, in __init__
+    self.body = self.render(content)
+                ~~~~~~~~~~~^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\responses.py", line 55, in render
+    return content.encode(self.charset)  # type: ignore
+           ^^^^^^^^^^^^^^
+AttributeError: 'list' object has no attribute 'encode'
+2025-08-15T18:47:01-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:01-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:01-0300 | INFO | api | application shutdown
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Finished server process [7936]
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:01-0300 | INFO | api | application shutdown
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:01-0300 | INFO | uvicorn.error | Finished server process [16916]
+2025-08-15T18:47:02-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Started server process [11648]
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:02-0300 | INFO | api | application startup
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Started server process [20016]
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:02-0300 | INFO | api | application startup
+2025-08-15T18:47:02-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:09-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:09-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:09-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:09-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:10-0300 | INFO | api | application shutdown
+2025-08-15T18:47:10-0300 | INFO | api | application shutdown
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Finished server process [20016]
+2025-08-15T18:47:10-0300 | INFO | uvicorn.error | Finished server process [11648]
+2025-08-15T18:47:11-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Started server process [19688]
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Started server process [3772]
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:11-0300 | INFO | api | application startup
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:11-0300 | INFO | api | application startup
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:11-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:11-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:11-0300 | INFO | api | application shutdown
+2025-08-15T18:47:11-0300 | INFO | api | application shutdown
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Finished server process [3772]
+2025-08-15T18:47:11-0300 | INFO | uvicorn.error | Finished server process [19688]
+2025-08-15T18:47:13-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:47:13-0300 | INFO | uvicorn.error | Started server process [4240]
+2025-08-15T18:47:13-0300 | INFO | uvicorn.error | Started server process [17960]
+
+2025-08-15T18:47:13-0300 | INFO | api | application startup
+2025-08-15T18:47:13-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:13-0300 | INFO | api | application startup
+2025-08-15T18:47:13-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:13-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:14-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:14-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:14-0300 | INFO | api | application shutdown
+2025-08-15T18:47:14-0300 | INFO | api | application shutdown
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Finished server process [17960]
+2025-08-15T18:47:14-0300 | INFO | uvicorn.error | Finished server process [4240]
+2025-08-15T18:47:15-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:15-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Started server process [22276]
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Started server process [6288]
+2025-08-15T18:47:15-0300 | INFO | api | application startup
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:15-0300 | INFO | api | application startup
+2025-08-15T18:47:15-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:15-0300 | INFO | api | application shutdown
+2025-08-15T18:47:15-0300 | INFO | api | application shutdown
+2025-08-15T18:47:15-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:47:15-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:47:16-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Started server process [20092]
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:17-0300 | INFO | api | application startup
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Started server process [8204]
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:17-0300 | INFO | api | application startup
+2025-08-15T18:47:17-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:31-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:31-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:47:31-0300 | INFO | api | application shutdown
+2025-08-15T18:47:31-0300 | INFO | api | application shutdown
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Finished server process [20092]
+2025-08-15T18:47:31-0300 | INFO | uvicorn.error | Finished server process [8204]
+2025-08-15T18:47:32-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:32-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:32-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:47:32-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Started server process [2240]
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Started server process [4236]
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:33-0300 | INFO | api | application startup
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:33-0300 | INFO | api | application startup
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:33-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:33-0300 | INFO | api | application shutdown
+2025-08-15T18:47:33-0300 | INFO | api | application shutdown
+2025-08-15T18:47:33-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:47:33-0300 | ERROR | uvicorn.error | Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-08-15T18:47:34-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Started server process [14324]
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:34-0300 | INFO | api | application startup
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Started server process [1204]
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:47:34-0300 | INFO | api | application startup
+2025-08-15T18:47:34-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:47:34-0300 | INFO | api | request start path=/docs method=GET
+2025-08-15T18:47:34-0300 | INFO | api | request end path=/docs method=GET status=200
+2025-08-15T18:47:35-0300 | INFO | api | request start path=/openapi.json method=GET
+2025-08-15T18:47:35-0300 | INFO | api | request end path=/openapi.json method=GET status=200
+2025-08-15T18:47:37-0300 | INFO | api | request start path=/api/v1/dashboards/report/groups method=GET
+2025-08-15T18:47:37-0300 | INFO | api.powerbi | Obtendo lista de grupos do Power BI
+2025-08-15T18:47:38-0300 | INFO | api.powerbi | Grupos do Power BI obtidos com sucesso (total=3)
+2025-08-15T18:47:38-0300 | INFO | api | request end path=/api/v1/dashboards/report/groups method=GET status=200
+2025-08-15T18:47:58-0300 | INFO | api | request start path=/api/v1/dashboards/report/groups method=GET
+2025-08-15T18:47:58-0300 | INFO | api.powerbi | Obtendo lista de grupos do Power BI
+2025-08-15T18:47:58-0300 | INFO | api.powerbi | Grupos do Power BI obtidos com sucesso (total=3)
+2025-08-15T18:47:58-0300 | INFO | api | request end path=/api/v1/dashboards/report/groups method=GET status=200
+2025-08-15T18:47:59-0300 | INFO | api | request start path=/favicon.ico method=GET
+2025-08-15T18:47:59-0300 | WARNING | api | http_error path=/favicon.ico status=404 detail=Not Found
+2025-08-15T18:47:59-0300 | INFO | api | request end path=/favicon.ico method=GET status=404
+2025-08-15T18:49:48-0300 | INFO | api | request start path=/docs method=GET
+2025-08-15T18:49:48-0300 | INFO | api | request end path=/docs method=GET status=200
+2025-08-15T18:49:48-0300 | INFO | api | request start path=/openapi.json method=GET
+2025-08-15T18:49:48-0300 | INFO | api | request end path=/openapi.json method=GET status=200
+2025-08-15T18:50:14-0300 | INFO | api | request start path=/api/v1/dashboards/report method=GET
+2025-08-15T18:50:14-0300 | INFO | api.powerbi | Obtendo HTML do relatório id=eba69c33-25be-4395-822a-aee72a1dd286
+2025-08-15T18:50:15-0300 | ERROR | api | request error path=/api/v1/dashboards/report method=GET
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 151, in call_next
+    message = await recv_stream.receive()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\streams\memory.py", line 126, in receive
+    raise EndOfStream from None
+anyio.EndOfStream
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 15, in report_view
+    html = get_report_html(report_id)
+  File "C:\Projects\hopper\api\services\powerbi.py", line 64, in get_report_html
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-08-15T18:50:15-0300 | ERROR | api | unhandled_error path=/api/v1/dashboards/report
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Projects\hopper\api\v1\reports.py", line 15, in report_view
+    |     html = get_report_html(report_id)
+    |   File "C:\Projects\hopper\api\services\powerbi.py", line 64, in get_report_html
+    |     response.raise_for_status()
+    |     ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    |     raise HTTPStatusError(message, request=request, response=self)
+    | httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286'
+    | For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 15, in report_view
+    html = get_report_html(report_id)
+  File "C:\Projects\hopper\api\services\powerbi.py", line 64, in get_report_html
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-08-15T18:50:15-0300 | ERROR | uvicorn.error | Exception in ASGI application
+  + Exception Group Traceback (most recent call last):
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 77, in collapse_excgroups
+  |     yield
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 183, in __call__
+  |     async with anyio.create_task_group() as task_group:
+  |                ~~~~~~~~~~~~~~~~~~~~~~~^^
+  |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 772, in __aexit__
+  |     raise BaseExceptionGroup(
+  |         "unhandled errors in a TaskGroup", self._exceptions
+  |     ) from None
+  | ExceptionGroup: unhandled errors in a TaskGroup (1 sub-exception)
+  +-+---------------- 1 ----------------
+    | Traceback (most recent call last):
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    |     result = await app(  # type: ignore[func-returns-value]
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         self.scope, self.receive, self.send
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    |     return await self.app(scope, receive, send)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    |     await super().__call__(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    |     await self.app(scope, receive, _send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    |     with recv_stream, send_stream, collapse_excgroups():
+    |                                    ~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    |     self.gen.throw(value)
+    |     ~~~~~~~~~~~~~~^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    |     response = await self.dispatch_func(request, call_next)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    |     response = await call_next(request)
+    |                ^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    |     raise app_exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    |     await self.app(scope, receive_or_disconnect, send_no_error)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    |     await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    |     await self.middleware_stack(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    |     await route.handle(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    |     await self.app(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    |     await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    |     raise exc
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    |     await app(scope, receive, sender)
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    |     response = await f(request)
+    |                ^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    |     raw_response = await run_endpoint_function(
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     ...<3 lines>...
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    |     return await run_in_threadpool(dependant.call, **values)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    |     return await anyio.to_thread.run_sync(func)
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    |     return await get_async_backend().run_sync_in_worker_thread(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |         func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |     )
+    |     ^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    |     return await future
+    |            ^^^^^^^^^^^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    |     result = context.run(func, *args)
+    |   File "C:\Projects\hopper\api\v1\reports.py", line 15, in report_view
+    |     html = get_report_html(report_id)
+    |   File "C:\Projects\hopper\api\services\powerbi.py", line 64, in get_report_html
+    |     response.raise_for_status()
+    |     ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+    |   File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    |     raise HTTPStatusError(message, request=request, response=self)
+    | httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286'
+    | For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+    +------------------------------------
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        self.scope, self.receive, self.send
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\applications.py", line 113, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 186, in __call__
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 182, in __call__
+    with recv_stream, send_stream, collapse_excgroups():
+                                   ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_utils.py", line 83, in collapse_excgroups
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 184, in __call__
+    response = await self.dispatch_func(request, call_next)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\main.py", line 21, in log_requests
+    response = await call_next(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 159, in call_next
+    raise app_exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\base.py", line 144, in coro
+    await self.app(scope, receive_or_disconnect, send_no_error)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\middleware\exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 78, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\routing.py", line 75, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 302, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\fastapi\routing.py", line 215, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\starlette\concurrency.py", line 38, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 2476, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\anyio\_backends\_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "C:\Projects\hopper\api\v1\reports.py", line 15, in report_view
+    html = get_report_html(report_id)
+  File "C:\Projects\hopper\api\services\powerbi.py", line 64, in get_report_html
+    response.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\httpx\_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '403 Forbidden' for url 'https://api.powerbi.com/v1.0/myorg/reports/eba69c33-25be-4395-822a-aee72a1dd286'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403
+2025-08-15T18:51:15-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:51:15-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:15-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:15-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:51:15-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:51:15-0300 | INFO | api | application shutdown
+2025-08-15T18:51:15-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:51:15-0300 | INFO | uvicorn.error | Finished server process [14324]
+2025-08-15T18:51:16-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:51:16-0300 | INFO | api | application shutdown
+2025-08-15T18:51:16-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:51:16-0300 | INFO | uvicorn.error | Finished server process [1204]
+2025-08-15T18:51:17-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:17-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:18-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:51:26-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:26-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:27-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:27-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:28-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:51:30-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:30-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:32-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:51:33-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:33-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:34-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:51:37-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:37-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:39-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:51:45-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:45-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:47-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:51:47-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:47-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:51:48-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:51:55-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:51:55-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:51:56-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:52:06-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:06-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:07-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:10-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:10-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:12-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:52:16-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:16-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:17-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:17-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:18-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:21-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:21-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:22-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Started server process [9568]
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Started server process [15336]
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:22-0300 | INFO | api | application startup
+2025-08-15T18:52:22-0300 | INFO | api | application startup
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:22-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:23-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:23-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:23-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:23-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:23-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:23-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:23-0300 | INFO | api | application shutdown
+2025-08-15T18:52:23-0300 | INFO | api | application shutdown
+2025-08-15T18:52:23-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:24-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:24-0300 | INFO | uvicorn.error | Finished server process [9568]
+2025-08-15T18:52:24-0300 | INFO | uvicorn.error | Finished server process [15336]
+2025-08-15T18:52:25-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:25-0300 | INFO | uvicorn.error | Started server process [8052]
+2025-08-15T18:52:25-0300 | INFO | uvicorn.error | Started server process [19984]
+2025-08-15T18:52:25-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:25-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:25-0300 | INFO | api | application startup
+2025-08-15T18:52:25-0300 | INFO | api | application startup
+2025-08-15T18:52:25-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:26-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:26-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:26-0300 | INFO | api | application shutdown
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Finished server process [19984]
+2025-08-15T18:52:26-0300 | INFO | uvicorn.error | Finished server process [8052]
+2025-08-15T18:52:27-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:27-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:28-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:28-0300 | INFO | uvicorn.error | Started server process [8488]
+2025-08-15T18:52:28-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:28-0300 | INFO | api | application startup
+2025-08-15T18:52:28-0300 | INFO | api | application startup
+2025-08-15T18:52:28-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:28-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:29-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:29-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'services\powerbi.py'. Reloading...
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:29-0300 | INFO | api | application shutdown
+2025-08-15T18:52:29-0300 | INFO | api | application shutdown
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Finished server process [3380]
+2025-08-15T18:52:29-0300 | INFO | uvicorn.error | Finished server process [8488]
+2025-08-15T18:52:30-0300 | INFO | watchfiles.main | 7 changes detected
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Started server process [9668]
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:30-0300 | INFO | api | application startup
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Started server process [13984]
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:30-0300 | INFO | api | application startup
+2025-08-15T18:52:30-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:34-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:34-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'v1\reports.py'. Reloading...
+2025-08-15T18:52:34-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:34-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:35-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:35-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:35-0300 | INFO | api | application shutdown
+2025-08-15T18:52:35-0300 | INFO | api | application shutdown
+2025-08-15T18:52:35-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:35-0300 | INFO | uvicorn.error | Finished server process [9668]
+2025-08-15T18:52:35-0300 | INFO | uvicorn.error | Finished server process [13984]
+2025-08-15T18:52:36-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Started server process [15048]
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Started server process [9260]
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Waiting for application startup.
+2025-08-15T18:52:36-0300 | INFO | api | application startup
+2025-08-15T18:52:36-0300 | INFO | api | application startup
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:36-0300 | INFO | uvicorn.error | Application startup complete.
+2025-08-15T18:52:44-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:44-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'config.py'. Reloading...
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Shutting down
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Waiting for application shutdown.
+2025-08-15T18:52:44-0300 | INFO | api | application shutdown
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Application shutdown complete.
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Finished server process [9260]
+2025-08-15T18:52:44-0300 | INFO | uvicorn.error | Finished server process [15048]
+2025-08-15T18:52:45-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:45-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'config.py'. Reloading...
+2025-08-15T18:52:46-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:52:56-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:52:56-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'logging_config.py'. Reloading...
+2025-08-15T18:53:07-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:53:07-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'config.py'. Reloading...
+2025-08-15T18:53:08-0300 | INFO | watchfiles.main | 5 changes detected
+2025-08-15T18:53:42-0300 | INFO | watchfiles.main | 1 change detected
+2025-08-15T18:53:42-0300 | WARNING | uvicorn.error | WatchFiles detected changes in 'config.py'. Reloading...
