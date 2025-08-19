@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 
@@ -6,23 +6,34 @@ export const Route = createFileRoute("/dashboards")({
   component: RouteComponent,
 });
 
-function ReportCard({ title, description, category, categoryColor }) {
+function ReportCard({
+  dashboardId,
+  title,
+  description,
+  category,
+  categoryColor,
+}) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4">
-      <div className="flex justify-between align-top">
-        <div>
-          <h3 className="text-lg font-semibold">{title}</h3>
-          <p className="text-sm text-gray-500">{description}</p>
+    <Link
+      to="/dashboards/$dashboardId"
+      params={{ dashboardId }}
+    >
+      <div className="rounded-lg border border-slate-200 bg-white p-4">
+        <div className="flex justify-between align-top">
+          <div>
+            <h3 className="text-lg font-semibold">{title}</h3>
+            <p className="text-sm text-gray-500">{description}</p>
+          </div>
+          <div
+            className={`h-fit rounded-full border border-${categoryColor}-300 bg-${categoryColor}-200 px-3 pb-0.5 text-sm font-semibold text-${categoryColor}-600`}
+          >
+            {category}
+          </div>
         </div>
-        <div
-          className={`h-fit rounded-full border border-${categoryColor}-300 bg-${categoryColor}-200 px-3 pb-0.5 text-sm font-semibold text-${categoryColor}-600`}
-        >
-          {category}
-        </div>
-      </div>
 
-      <p className="mt-8 text-sm text-slate-500">Updated just now</p>
-    </div>
+        <p className="mt-8 text-sm text-slate-500">Updated just now</p>
+      </div>
+    </Link>
   );
 }
 
@@ -54,18 +65,21 @@ function RouteComponent() {
 
         <div className="grid w-full grid-cols-3 grid-rows-1 gap-2">
           <ReportCard
+            dashboardId="sales-overview"
             title="Sales Overview"
             description="Monthly sales performance by region"
             category="Sales"
             categoryColor="blue"
           />
           <ReportCard
+            dashboardId="marketing-insights"
             title="Marketing Insights"
             description="Effectiveness of marketing campaigns"
             category="Marketing"
             categoryColor="emerald"
           />
           <ReportCard
+            dashboardId="user-engagement"
             title="User Engagement"
             description="User activity and engagement metrics"
             category="Product"
