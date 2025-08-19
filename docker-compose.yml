@@ -4,8 +4,8 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__EXECUTOR: CeleryExecutor
 
     # [AIRFLOW] - [DATABASE]
-    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
-    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@airflow_postgres/airflow
+    AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@airflow_postgres/airflow
 
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
     AIRFLOW__CORE__FERNET_KEY: "46BKJoQYlPPOexq0OhDZnIlNepKFfYWF9KCaCKbw8vI="
@@ -33,9 +33,10 @@ services:
       context: ./app
     container_name: hopper_app
     ports:
-      - "3000:3000"
+      - "3000:5173"
     volumes:
       - ./app:/usr/src/app
+      - /usr/src/app/node_modules
 
   # [BACKEND]
   backend:

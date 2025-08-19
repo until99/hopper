@@ -1,8 +1,11 @@
+import Navbar from '../components/navbar.jsx'
+
 function Home() {
   return (
-    <div>
-      
-    </div>
+    <>
+      <Navbar />
+      <h1 className="text-4xl font-bold">Hello World</h1>
+    </>
   );
 }
 
