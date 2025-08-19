@@ -4,14 +4,16 @@ FROM node:20-alpine
 # Set working directory
 WORKDIR /usr/src/app
 
-# Install pnpm globally
-RUN npm install -g pnpm
+# Install pnpm globally with SSL configuration
+RUN npm install -g pnpm    
 
 # Copy package files
 COPY package.json pnpm-lock.yaml ./
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install dependencies with SSL configuration
+RUN pnpm config set strict-ssl false && \
+    pnpm install --frozen-lockfile && \
+    pnpm config set strict-ssl true
 
 # Copy application code
 COPY . .
