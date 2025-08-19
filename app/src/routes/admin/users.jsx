@@ -5,11 +5,11 @@ import {
   MagnifyingGlassIcon,
   TrashIcon,
   PencilSimpleIcon,
-  X,
+  XIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
 
-export const Route = createFileRoute("/users")({
+export const Route = createFileRoute("/admin/users")({
   component: RouteComponent,
 });
 
@@ -50,7 +50,7 @@ function RouteComponent() {
                 className="flex hover:cursor-pointer"
                 onClick={() => setShowAddUserDialog(false)}
               >
-                <X />
+                <XIcon />
               </button>
             </div>
 

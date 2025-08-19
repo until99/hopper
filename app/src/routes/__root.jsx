@@ -38,7 +38,7 @@ export const Route = createRootRoute({
               </li>
               <li>
                 <Link
-                  to="/users"
+                  to="/admin/users"
                   className="focus:ring-none flex items-center rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
                 >
                   <ChartLineIcon size={22} className="mr-2 inline-block" />
@@ -57,7 +57,7 @@ export const Route = createRootRoute({
                 href="#"
                 className="rounded-full bg-red-300 px-4 py-0.5 text-sm font-semibold text-red-800"
               >
-                Production
+                Development
               </a>
               <div className="flex items-center">
                 {/* Bell Dropdown */}

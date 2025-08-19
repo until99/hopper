@@ -9,19 +9,43 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as UsersRouteImport } from './routes/users'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as QueriesRouteImport } from './routes/queries'
 import { Route as DashboardsRouteImport } from './routes/dashboards'
+import { Route as AdminUsersRouteImport } from './routes/admin/users'
+import { Route as AdminAdmin_dashboardRouteImport } from './routes/admin/admin_dashboard'
+import { Route as AdminAccess_managementRouteImport } from './routes/admin/access_management'
 import { Route as AccountSettingsRouteImport } from './routes/account/settings'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
 
-const UsersRoute = UsersRouteImport.update({
-  id: '/users',
-  path: '/users',
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QueriesRoute = QueriesRouteImport.update({
+  id: '/queries',
+  path: '/queries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardsRoute = DashboardsRouteImport.update({
   id: '/dashboards',
   path: '/dashboards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminUsersRoute = AdminUsersRouteImport.update({
+  id: '/admin/users',
+  path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAdmin_dashboardRoute = AdminAdmin_dashboardRouteImport.update({
+  id: '/admin/admin_dashboard',
+  path: '/admin/admin_dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAccess_managementRoute = AdminAccess_managementRouteImport.update({
+  id: '/admin/access_management',
+  path: '/admin/access_management',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountSettingsRoute = AccountSettingsRouteImport.update({
@@ -37,50 +61,93 @@ const AccountProfileRoute = AccountProfileRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/dashboards': typeof DashboardsRoute
-  '/users': typeof UsersRoute
+  '/queries': typeof QueriesRoute
+  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
+  '/admin/access_management': typeof AdminAccess_managementRoute
+  '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/users': typeof AdminUsersRoute
 }
 export interface FileRoutesByTo {
   '/dashboards': typeof DashboardsRoute
-  '/users': typeof UsersRoute
+  '/queries': typeof QueriesRoute
+  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
+  '/admin/access_management': typeof AdminAccess_managementRoute
+  '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/users': typeof AdminUsersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/dashboards': typeof DashboardsRoute
-  '/users': typeof UsersRoute
+  '/queries': typeof QueriesRoute
+  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
+  '/admin/access_management': typeof AdminAccess_managementRoute
+  '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/users': typeof AdminUsersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/dashboards' | '/users' | '/account/profile' | '/account/settings'
+  fullPaths:
+    | '/dashboards'
+    | '/queries'
+    | '/reports'
+    | '/account/profile'
+    | '/account/settings'
+    | '/admin/access_management'
+    | '/admin/admin_dashboard'
+    | '/admin/users'
   fileRoutesByTo: FileRoutesByTo
-  to: '/dashboards' | '/users' | '/account/profile' | '/account/settings'
+  to:
+    | '/dashboards'
+    | '/queries'
+    | '/reports'
+    | '/account/profile'
+    | '/account/settings'
+    | '/admin/access_management'
+    | '/admin/admin_dashboard'
+    | '/admin/users'
   id:
     | '__root__'
     | '/dashboards'
-    | '/users'
+    | '/queries'
+    | '/reports'
     | '/account/profile'
     | '/account/settings'
+    | '/admin/access_management'
+    | '/admin/admin_dashboard'
+    | '/admin/users'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   DashboardsRoute: typeof DashboardsRoute
-  UsersRoute: typeof UsersRoute
+  QueriesRoute: typeof QueriesRoute
+  ReportsRoute: typeof ReportsRoute
   AccountProfileRoute: typeof AccountProfileRoute
   AccountSettingsRoute: typeof AccountSettingsRoute
+  AdminAccess_managementRoute: typeof AdminAccess_managementRoute
+  AdminAdmin_dashboardRoute: typeof AdminAdmin_dashboardRoute
+  AdminUsersRoute: typeof AdminUsersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/users': {
-      id: '/users'
-      path: '/users'
-      fullPath: '/users'
-      preLoaderRoute: typeof UsersRouteImport
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/queries': {
+      id: '/queries'
+      path: '/queries'
+      fullPath: '/queries'
+      preLoaderRoute: typeof QueriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboards': {
@@ -88,6 +155,27 @@ declare module '@tanstack/react-router' {
       path: '/dashboards'
       fullPath: '/dashboards'
       preLoaderRoute: typeof DashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/users': {
+      id: '/admin/users'
+      path: '/admin/users'
+      fullPath: '/admin/users'
+      preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/admin_dashboard': {
+      id: '/admin/admin_dashboard'
+      path: '/admin/admin_dashboard'
+      fullPath: '/admin/admin_dashboard'
+      preLoaderRoute: typeof AdminAdmin_dashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/access_management': {
+      id: '/admin/access_management'
+      path: '/admin/access_management'
+      fullPath: '/admin/access_management'
+      preLoaderRoute: typeof AdminAccess_managementRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account/settings': {
@@ -109,9 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   DashboardsRoute: DashboardsRoute,
-  UsersRoute: UsersRoute,
+  QueriesRoute: QueriesRoute,
+  ReportsRoute: ReportsRoute,
   AccountProfileRoute: AccountProfileRoute,
   AccountSettingsRoute: AccountSettingsRoute,
+  AdminAccess_managementRoute: AdminAccess_managementRoute,
+  AdminAdmin_dashboardRoute: AdminAdmin_dashboardRoute,
+  AdminUsersRoute: AdminUsersRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
