@@ -1,15 +1,20 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
+import { routeTree } from "./routeTree.gen";
+
 import "./index.css";
 
-import DefaultLayout from "./layout/Default.jsx";
-import HomePage from "./pages/Home.jsx";
-import UserPage from "./pages/Users.jsx";
+const router = createRouter({ routeTree });
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <DefaultLayout>
-      <UserPage />
-    </DefaultLayout>
-  </StrictMode>,
-);
+const rootElement = document.getElementById("root");
+if (rootElement && !rootElement.innerHTML) {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(
+    <StrictMode>
+      <div className="min-h-screen bg-gray-50 text-gray-900">
+        <RouterProvider router={router} />
+      </div>
+    </StrictMode>,
+  );
+}

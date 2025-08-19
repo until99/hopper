@@ -1,12 +1,19 @@
+import { createFileRoute } from "@tanstack/react-router";
+
 import {
   PlusIcon,
   MagnifyingGlassIcon,
   TrashIcon,
   PencilSimpleIcon,
+  X,
 } from "@phosphor-icons/react";
 import { useState } from "react";
 
-function UserPage() {
+export const Route = createFileRoute("/users")({
+  component: RouteComponent,
+});
+
+function RouteComponent() {
   const [showAddUserDialog, setShowAddUserDialog] = useState(false);
   const [formData, setFormData] = useState({
     fullName: "",
@@ -32,10 +39,20 @@ function UserPage() {
       {showAddUserDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
           <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-            <h2 className="mb-2 text-xl font-bold">Add New User</h2>
-            <p className="text-md mb-6 text-gray-500">
-              Add a new user and set their permissions.
-            </p>
+            <div className="items-top flex justify-between">
+              <div>
+                <h2 className="mb-2 text-xl font-bold">Add New User</h2>
+                <p className="text-md mb-6 text-gray-500">
+                  Add a new user and set their permissions.
+                </p>
+              </div>
+              <button
+                className="flex hover:cursor-pointer"
+                onClick={() => setShowAddUserDialog(false)}
+              >
+                <X />
+              </button>
+            </div>
 
             <div className="flex flex-col gap-6">
               <div className="flex flex-col gap-2">
@@ -203,5 +220,3 @@ function UserPage() {
     </>
   );
 }
-
-export default UserPage;
