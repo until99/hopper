@@ -8,23 +8,22 @@ x-airflow-common: &airflow-common
     AIRFLOW__CELERY__RESULT_BACKEND: db+postgresql://airflow:airflow@postgres/airflow
 
     AIRFLOW__CELERY__BROKER_URL: redis://:@redis:6379/0
-    AIRFLOW__CORE__FERNET_KEY: '46BKJoQYlPPOexq0OhDZnIlNepKFfYWF9KCaCKbw8vI='
-    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: 'true'
-    AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
-    AIRFLOW__API__AUTH_BACKENDS: 'airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session'
-    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: 'true'
-    AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: '10'
+    AIRFLOW__CORE__FERNET_KEY: "46BKJoQYlPPOexq0OhDZnIlNepKFfYWF9KCaCKbw8vI="
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__API__AUTH_BACKENDS: "airflow.api.auth.backend.basic_auth,airflow.api.auth.backend.session"
+    AIRFLOW__SCHEDULER__ENABLE_HEALTH_CHECK: "true"
+    AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: "10"
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
     - ./airflow/dags:/opt/airflow/dags
-    - ./airflow/logs:/opt/airflow/logs
     - ./airflow/plugins:/opt/airflow/plugins
     - ./airflow/cargas_hopper:/opt/airflow/cargas_hopper
   user: "${AIRFLOW_UID:-50000}:0"
   depends_on: &airflow-common-depends-on
     redis:
       condition: service_healthy
-    postgres:
+    airflow_postgres:
       condition: service_healthy
 
 services:
@@ -32,31 +31,43 @@ services:
   app:
     build:
       context: ./app
+    container_name: hopper_app
     ports:
-      - "5173:5173"
+      - "3000:3000"
     volumes:
-      - ./app:/app
-    command: npm run dev -- --host 0.0.0.0
-    depends_on:
-      - postgres
-    restart: always
+      - ./app:/usr/src/app
 
   # [BACKEND]
   backend:
     build:
       context: ./api
+    container_name: hopper_api
     ports:
-      - "6969:6969"
+      - "8000:8000"
     volumes:
-      - ./api:/api
-    command: go run main.go
-    depends_on:
-      - postgres
-    restart: always
+      - ./api:/app
+
+  api_database:
+    image: postgres:15
+    container_name: hopper_postgres
+    environment:
+      POSTGRES_DB: hopper
+      POSTGRES_USER: dinner_bone
+      POSTGRES_PASSWORD: K^bjn9*DWGsEj6
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dinner_bone"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    ports:
+      - "5432:5432"
 
   # [AIRFLOW]
-  postgres:
+  airflow_postgres:
     image: postgres:13
+    container_name: airflow_postgres
     environment:
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -64,20 +75,20 @@ services:
     volumes:
       - postgres-db-volume:/var/lib/postgresql/data
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "airflow" ]
+      test: ["CMD", "pg_isready", "-U", "airflow"]
       interval: 10s
       retries: 5
       start_period: 5s
     restart: always
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   redis:
     image: redis:latest
     expose:
       - 6379
     healthcheck:
-      test: [ "CMD", "redis-cli", "ping" ]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 30s
       retries: 50
@@ -90,7 +101,7 @@ services:
     ports:
       - "8080:8080"
     healthcheck:
-      test: [ "CMD", "curl", "--fail", "http://localhost:8080/health" ]
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -105,7 +116,7 @@ services:
     <<: *airflow-common
     command: scheduler
     healthcheck:
-      test: [ "CMD", "curl", "--fail", "http://localhost:8974/health" ]
+      test: ["CMD", "curl", "--fail", "http://localhost:8974/health"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -148,14 +159,15 @@ services:
         exec /entrypoint airflow db init
     environment:
       <<: *airflow-common-env
-      _AIRFLOW_DB_MIGRATE: 'true'
-      _AIRFLOW_WWW_USER_CREATE: 'true'
+      _AIRFLOW_DB_MIGRATE: "true"
+      _AIRFLOW_WWW_USER_CREATE: "true"
       _AIRFLOW_WWW_USER_USERNAME: ${_AIRFLOW_WWW_USER_USERNAME:-airflow}
       _AIRFLOW_WWW_USER_PASSWORD: ${_AIRFLOW_WWW_USER_PASSWORD:-airflow}
-      _PIP_ADDITIONAL_REQUIREMENTS: ''
+      _PIP_ADDITIONAL_REQUIREMENTS: ""
     user: "0:0"
     volumes:
       - ./airflow:/opt/airflow
 
 volumes:
   postgres-db-volume:
+  postgres_data:
