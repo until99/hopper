@@ -1,1 +1,79 @@
 @import "tailwindcss";
+
+/* ==== 1) Theme variables (easy to tweak) ==== */
+:root {
+  --sb-size: 10px;
+  --sb-radius: 999px;
+
+  /* Light theme */
+  --sb-track: #f1f1f3;
+  --sb-thumb: #b7bac4;
+  --sb-thumb-hover: #9aa0ae;
+}
+
+/* Optional: Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --sb-track: #0f172b;
+    --sb-thumb: #0f172b;
+    --sb-thumb-hover: #1e58b2;
+  }
+}
+
+/* ==== 2) Apply globally (html) or to a container (.scroll-area) ==== */
+/* Firefox (global) */
+html {
+  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+  overflow-y: auto;
+  scrollbar-gutter: stable; /* reserva espaço fixo para a barra */
+}
+
+/* WebKit (global) */
+html::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size); /* horizontal bars */
+}
+html::-webkit-scrollbar-track {
+  background: var(--sb-track);
+}
+html::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 2px solid var(--sb-track); /* ring for contrast */
+}
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+html::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+
+/* ==== 3) Scope to a specific element instead (uncomment to use) ==== */
+/*
+.scroll-area {
+  max-height: 320px;
+  overflow: auto;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+.scroll-area::-webkit-scrollbar {
+  width: var(--sb-size);
+  height: var(--sb-size);
+}
+.scroll-area::-webkit-scrollbar-track {
+  background: var(--sb-track);
+}
+.scroll-area::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb);
+  border-radius: var(--sb-radius);
+  border: 2px solid var(--sb-track);
+}
+.scroll-area::-webkit-scrollbar-thumb:hover {
+  background: var(--sb-thumb-hover);
+}
+.scroll-area::-webkit-scrollbar-corner {
+  background: var(--sb-track);
+}
+*/

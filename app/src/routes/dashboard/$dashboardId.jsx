@@ -73,7 +73,7 @@ function RouteComponent() {
   const [showControls, setShowControls] = useState(true);
 
   return (
-    <section className="flex h-screen flex-col overflow-hidden p-4">
+    <section className="flex h-[calc(100vh-4.5rem)] flex-col overflow-hidden p-4">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold">{dashboardTitle}</h1>
@@ -89,11 +89,11 @@ function RouteComponent() {
           <p className="pb-1 text-sm font-semibold">Back to Dashboards</p>
         </Link>
       </div>
-      <div className="relative mt-6 flex max-h-[calc(100vh-12rem)] flex-1 flex-col border bg-white">
+      <div className="relative mt-6 flex h-screen flex-1 flex-col bg-white shadow">
         {/* Toggle Controls Button */}
         {iframeLoaded && (
           <button
-            className="absolute top-4 right-4 z-30 rounded-full bg-white p-2 shadow hover:bg-slate-100"
+            className="absolute top-7 left-4 z-30 rounded-full bg-white p-2 shadow hover:bg-slate-100"
             onClick={() => setShowControls((v) => !v)}
             type="button"
             aria-label={showControls ? "Hide controls" : "Show controls"}
@@ -104,7 +104,7 @@ function RouteComponent() {
 
         {/* Controls Overlay */}
         {iframeLoaded && showControls && (
-          <div className="absolute top-4 left-4 z-20 flex items-center gap-4 rounded-lg bg-white/80 p-2 shadow">
+          <div className="absolute top-4 left-16 z-20 flex items-center gap-4 rounded-lg bg-white/80 p-2 shadow">
             {controls.map((control) => (
               <button
                 key={control.label}

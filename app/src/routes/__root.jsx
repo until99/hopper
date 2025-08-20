@@ -86,7 +86,7 @@ export const Route = createRootRoute({
     const [showUserDropdown, setShowUserDropdown] = useState(false);
     return (
       <>
-        <div className="flex bg-slate-50">
+        <div className="flex bg-slate-50 scrollbar-thumb-sky-700 scrollbar-track-sky-300">
           <aside className="border-r bg-slate-900">
             <div className="flex h-16 items-center gap-4 border-b border-slate-200 bg-slate-900 p-4">
               <CpuIcon

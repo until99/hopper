@@ -12,7 +12,7 @@ if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <div className="min-h-screen bg-gray-50 text-gray-900">
+      <div className="">
         <RouterProvider router={router} />
       </div>
     </StrictMode>,
