@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 
 import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 
-export const Route = createFileRoute("/dashboards")({
+export const Route = createFileRoute("/dashboard/list-dashboards")({
   component: RouteComponent,
 });
 
@@ -13,22 +13,24 @@ function ReportCard({
   category,
   categoryColor,
 }) {
+  const colorClassMap = {
+    blue: "border-blue-300 bg-blue-200 text-blue-600",
+    emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
+    violet: "border-violet-300 bg-violet-200 text-violet-600",
+    red: "border-red-300 bg-red-200 text-red-600",
+    yellow: "border-yellow-300 bg-yellow-200 text-yellow-600",
+  };
+  const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[categoryColor] || ``}`;
+
   return (
-    <Link
-      to="/dashboards/$dashboardId"
-      params={{ dashboardId }}
-    >
+    <Link to="/dashboard/$dashboardId" params={{ dashboardId }}>
       <div className="rounded-lg border border-slate-200 bg-white p-4">
         <div className="flex justify-between align-top">
           <div>
             <h3 className="text-lg font-semibold">{title}</h3>
             <p className="text-sm text-gray-500">{description}</p>
           </div>
-          <div
-            className={`h-fit rounded-full border border-${categoryColor}-300 bg-${categoryColor}-200 px-3 pb-0.5 text-sm font-semibold text-${categoryColor}-600`}
-          >
-            {category}
-          </div>
+          <div className={categoryStyle}>{category}</div>
         </div>
 
         <p className="mt-8 text-sm text-slate-500">Updated just now</p>

@@ -9,45 +9,51 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ReportsRouteImport } from './routes/reports'
-import { Route as QueriesRouteImport } from './routes/queries'
-import { Route as DashboardsRouteImport } from './routes/dashboards'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardsDashboardIdRouteImport } from './routes/dashboards.$dashboardId'
+import { Route as ReportsListReportsRouteImport } from './routes/reports/list-reports'
+import { Route as DashboardListDashboardsRouteImport } from './routes/dashboard/list-dashboards'
+import { Route as DashboardDashboardIdRouteImport } from './routes/dashboard/$dashboardId'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
+import { Route as AdminReportsRouteImport } from './routes/admin/reports'
+import { Route as AdminDashboardRouteImport } from './routes/admin/dashboard'
 import { Route as AdminAdmin_dashboardRouteImport } from './routes/admin/admin_dashboard'
 import { Route as AdminAccess_managementRouteImport } from './routes/admin/access_management'
 import { Route as AccountSettingsRouteImport } from './routes/account/settings'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
 
-const ReportsRoute = ReportsRouteImport.update({
-  id: '/reports',
-  path: '/reports',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const QueriesRoute = QueriesRouteImport.update({
-  id: '/queries',
-  path: '/queries',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardsRoute = DashboardsRouteImport.update({
-  id: '/dashboards',
-  path: '/dashboards',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardsDashboardIdRoute = DashboardsDashboardIdRouteImport.update({
-  id: '/$dashboardId',
-  path: '/$dashboardId',
-  getParentRoute: () => DashboardsRoute,
+const ReportsListReportsRoute = ReportsListReportsRouteImport.update({
+  id: '/reports/list-reports',
+  path: '/reports/list-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardListDashboardsRoute = DashboardListDashboardsRouteImport.update({
+  id: '/dashboard/list-dashboards',
+  path: '/dashboard/list-dashboards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardDashboardIdRoute = DashboardDashboardIdRouteImport.update({
+  id: '/dashboard/$dashboardId',
+  path: '/dashboard/$dashboardId',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminUsersRoute = AdminUsersRouteImport.update({
   id: '/admin/users',
   path: '/admin/users',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminReportsRoute = AdminReportsRouteImport.update({
+  id: '/admin/reports',
+  path: '/admin/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDashboardRoute = AdminDashboardRouteImport.update({
+  id: '/admin/dashboard',
+  path: '/admin/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminAdmin_dashboardRoute = AdminAdmin_dashboardRouteImport.update({
@@ -73,115 +79,102 @@ const AccountProfileRoute = AccountProfileRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/dashboards': typeof DashboardsRouteWithChildren
-  '/queries': typeof QueriesRoute
-  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/access_management': typeof AdminAccess_managementRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboards/$dashboardId': typeof DashboardsDashboardIdRoute
+  '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
+  '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/dashboards': typeof DashboardsRouteWithChildren
-  '/queries': typeof QueriesRoute
-  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/access_management': typeof AdminAccess_managementRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboards/$dashboardId': typeof DashboardsDashboardIdRoute
+  '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
+  '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/dashboards': typeof DashboardsRouteWithChildren
-  '/queries': typeof QueriesRoute
-  '/reports': typeof ReportsRoute
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/access_management': typeof AdminAccess_managementRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboard': typeof AdminDashboardRoute
+  '/admin/reports': typeof AdminReportsRoute
   '/admin/users': typeof AdminUsersRoute
-  '/dashboards/$dashboardId': typeof DashboardsDashboardIdRoute
+  '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
+  '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/dashboards'
-    | '/queries'
-    | '/reports'
     | '/account/profile'
     | '/account/settings'
     | '/admin/access_management'
     | '/admin/admin_dashboard'
+    | '/admin/dashboard'
+    | '/admin/reports'
     | '/admin/users'
-    | '/dashboards/$dashboardId'
+    | '/dashboard/$dashboardId'
+    | '/dashboard/list-dashboards'
+    | '/reports/list-reports'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/dashboards'
-    | '/queries'
-    | '/reports'
     | '/account/profile'
     | '/account/settings'
     | '/admin/access_management'
     | '/admin/admin_dashboard'
+    | '/admin/dashboard'
+    | '/admin/reports'
     | '/admin/users'
-    | '/dashboards/$dashboardId'
+    | '/dashboard/$dashboardId'
+    | '/dashboard/list-dashboards'
+    | '/reports/list-reports'
   id:
     | '__root__'
     | '/'
-    | '/dashboards'
-    | '/queries'
-    | '/reports'
     | '/account/profile'
     | '/account/settings'
     | '/admin/access_management'
     | '/admin/admin_dashboard'
+    | '/admin/dashboard'
+    | '/admin/reports'
     | '/admin/users'
-    | '/dashboards/$dashboardId'
+    | '/dashboard/$dashboardId'
+    | '/dashboard/list-dashboards'
+    | '/reports/list-reports'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardsRoute: typeof DashboardsRouteWithChildren
-  QueriesRoute: typeof QueriesRoute
-  ReportsRoute: typeof ReportsRoute
   AccountProfileRoute: typeof AccountProfileRoute
   AccountSettingsRoute: typeof AccountSettingsRoute
   AdminAccess_managementRoute: typeof AdminAccess_managementRoute
   AdminAdmin_dashboardRoute: typeof AdminAdmin_dashboardRoute
+  AdminDashboardRoute: typeof AdminDashboardRoute
+  AdminReportsRoute: typeof AdminReportsRoute
   AdminUsersRoute: typeof AdminUsersRoute
+  DashboardDashboardIdRoute: typeof DashboardDashboardIdRoute
+  DashboardListDashboardsRoute: typeof DashboardListDashboardsRoute
+  ReportsListReportsRoute: typeof ReportsListReportsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/reports': {
-      id: '/reports'
-      path: '/reports'
-      fullPath: '/reports'
-      preLoaderRoute: typeof ReportsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/queries': {
-      id: '/queries'
-      path: '/queries'
-      fullPath: '/queries'
-      preLoaderRoute: typeof QueriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/dashboards': {
-      id: '/dashboards'
-      path: '/dashboards'
-      fullPath: '/dashboards'
-      preLoaderRoute: typeof DashboardsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/': {
       id: '/'
       path: '/'
@@ -189,18 +182,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/dashboards/$dashboardId': {
-      id: '/dashboards/$dashboardId'
-      path: '/$dashboardId'
-      fullPath: '/dashboards/$dashboardId'
-      preLoaderRoute: typeof DashboardsDashboardIdRouteImport
-      parentRoute: typeof DashboardsRoute
+    '/reports/list-reports': {
+      id: '/reports/list-reports'
+      path: '/reports/list-reports'
+      fullPath: '/reports/list-reports'
+      preLoaderRoute: typeof ReportsListReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/list-dashboards': {
+      id: '/dashboard/list-dashboards'
+      path: '/dashboard/list-dashboards'
+      fullPath: '/dashboard/list-dashboards'
+      preLoaderRoute: typeof DashboardListDashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard/$dashboardId': {
+      id: '/dashboard/$dashboardId'
+      path: '/dashboard/$dashboardId'
+      fullPath: '/dashboard/$dashboardId'
+      preLoaderRoute: typeof DashboardDashboardIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/admin/users': {
       id: '/admin/users'
       path: '/admin/users'
       fullPath: '/admin/users'
       preLoaderRoute: typeof AdminUsersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reports': {
+      id: '/admin/reports'
+      path: '/admin/reports'
+      fullPath: '/admin/reports'
+      preLoaderRoute: typeof AdminReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/dashboard': {
+      id: '/admin/dashboard'
+      path: '/admin/dashboard'
+      fullPath: '/admin/dashboard'
+      preLoaderRoute: typeof AdminDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/admin_dashboard': {
@@ -234,28 +255,18 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface DashboardsRouteChildren {
-  DashboardsDashboardIdRoute: typeof DashboardsDashboardIdRoute
-}
-
-const DashboardsRouteChildren: DashboardsRouteChildren = {
-  DashboardsDashboardIdRoute: DashboardsDashboardIdRoute,
-}
-
-const DashboardsRouteWithChildren = DashboardsRoute._addFileChildren(
-  DashboardsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardsRoute: DashboardsRouteWithChildren,
-  QueriesRoute: QueriesRoute,
-  ReportsRoute: ReportsRoute,
   AccountProfileRoute: AccountProfileRoute,
   AccountSettingsRoute: AccountSettingsRoute,
   AdminAccess_managementRoute: AdminAccess_managementRoute,
   AdminAdmin_dashboardRoute: AdminAdmin_dashboardRoute,
+  AdminDashboardRoute: AdminDashboardRoute,
+  AdminReportsRoute: AdminReportsRoute,
   AdminUsersRoute: AdminUsersRoute,
+  DashboardDashboardIdRoute: DashboardDashboardIdRoute,
+  DashboardListDashboardsRoute: DashboardListDashboardsRoute,
+  ReportsListReportsRoute: ReportsListReportsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

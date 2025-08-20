@@ -29,7 +29,7 @@ export const Route = createRootRoute({
             <ul className="p-2">
               <li>
                 <Link
-                  to="/dashboards"
+                  to="/dashboard/list-dashboards"
                   className="focus:ring-none flex items-center rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
                 >
                   <ChartLineIcon size={22} className="mr-2 inline-block" />
