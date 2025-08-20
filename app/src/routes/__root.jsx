@@ -1,14 +1,83 @@
 import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import {
   CpuIcon,
-  ChartLineIcon,
   ShieldIcon,
   BellIcon,
+  FolderOpenIcon,
+  FileTextIcon,
+  GearIcon,
+  UsersIcon,
+  FileSqlIcon,
+  ChartPieSliceIcon,
+  ChartBarIcon,
 } from "@phosphor-icons/react";
 
 import { useState } from "react";
+
+let menu_items = [
+  {
+    route: "dashboard/list-dashboards",
+    icon: <ChartBarIcon size={22} className="mr-2 inline-block" />,
+    routeName: "My Dashboards",
+    admin_only: false,
+  },
+  {
+    route: "reports/list-reports",
+    icon: <FileTextIcon size={22} className="mr-2 inline-block" />,
+    routeName: "My Reports",
+    admin_only: false,
+  },
+  {
+    route: "admin/dashboard",
+    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Dashboards",
+    admin_only: true,
+  },
+  {
+    route: "admin/reports",
+    icon: <FileSqlIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Reports",
+    admin_only: true,
+  },
+  {
+    route: "admin/users",
+    icon: <UsersIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Users",
+    admin_only: true,
+  },
+  {
+    route: "admin/groups",
+    icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Groups",
+    admin_only: true,
+  },
+  {
+    route: "admin/settings",
+    icon: <GearIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Settings",
+    admin_only: false,
+  },
+];
+
+function MenuItems({ route, icon, routeName, admin_only }) {
+  return (
+    <li>
+      <Link
+        to={`/${route}`}
+        className="focus:ring-none flex items-center justify-between rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
+      >
+        <div className="flex items-center">
+          {icon}
+          <p>{routeName}</p>
+        </div>
+        {admin_only && (
+          <ShieldIcon size={14} className="ml-21 inline-block text-blue-400" />
+        )}
+      </Link>
+    </li>
+  );
+}
 
 export const Route = createRootRoute({
   component: () => {
@@ -27,28 +96,9 @@ export const Route = createRootRoute({
               <h1 className="text-2xl font-bold text-white">Hopper</h1>
             </div>
             <ul className="p-2">
-              <li>
-                <Link
-                  to="/dashboard/list-dashboards"
-                  className="focus:ring-none flex items-center rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
-                >
-                  <ChartLineIcon size={22} className="mr-2 inline-block" />
-                  <p>My Dashboards</p>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/admin/users"
-                  className="focus:ring-none flex items-center rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
-                >
-                  <ChartLineIcon size={22} className="mr-2 inline-block" />
-                  <p>Users</p>
-                  <ShieldIcon
-                    size={14}
-                    className="ml-21 inline-block text-blue-400"
-                  />
-                </Link>
-              </li>
+              {menu_items.map(({ ...item }) => (
+                <MenuItems key={item.route} {...item} />
+              ))}
             </ul>
           </aside>
           <main className="min-h-screen w-screen overflow-y-auto">

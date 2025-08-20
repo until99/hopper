@@ -23,7 +23,11 @@ function ReportCard({
   const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[categoryColor] || ``}`;
 
   return (
-    <Link to="/dashboard/$dashboardId" params={{ dashboardId }}>
+    <Link
+      to="/dashboard/$dashboardId"
+      params={{ dashboardId: dashboardId }}
+      search={{ dashboardTitle: title, dashboardDescription: description }}
+    >
       <div className="rounded-lg border border-slate-200 bg-white p-4">
         <div className="flex justify-between align-top">
           <div>
@@ -42,7 +46,6 @@ function ReportCard({
 function RouteComponent() {
   return (
     <>
-      {" "}
       <section className="p-4">
         <div className="flex items-center justify-between">
           <div>
@@ -81,9 +84,9 @@ function RouteComponent() {
             categoryColor="emerald"
           />
           <ReportCard
-            dashboardId="user-engagement"
-            title="User Engagement"
-            description="User activity and engagement metrics"
+            dashboardId="eba69c33-25be-4395-822a-aee72a1dd286"
+            title="Gender Distribution Report"
+            description="Gender distribution of users"
             category="Product"
             categoryColor="violet"
           />
