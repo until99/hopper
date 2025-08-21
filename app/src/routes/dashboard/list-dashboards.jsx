@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 
+import { dashboards_list } from "../../utils/variables/mockData";
+
 import {
   MagnifyingGlassIcon,
   CaretDownIcon,
@@ -10,55 +12,6 @@ import {
 export const Route = createFileRoute("/dashboard/list-dashboards")({
   component: RouteComponent,
 });
-
-const dashboards_list = [
-  {
-    workspaceId: "22eff978-155c-4454-a002-30b3de540b32",
-    workspace: "Sales",
-    dashboardId: "9f971e88-c287-4286-976d-ab24a3f1e112",
-    title: "Sales Teams Quarterly Performance",
-    description: "Quarterly performance metrics for sales teams",
-    category: "Sales",
-    categoryColor: "blue",
-  },
-  {
-    workspaceId: "22eff978-155c-4454-a002-30b3de540b32",
-    workspace: "Sales",
-    dashboardId: "641157d8-582e-4161-83bd-3da433ce938f",
-    title: "Root Cause Analysis Dashboard",
-    description: "Analyze the root causes of sales performance issues",
-    category: "Sales",
-    categoryColor: "emerald",
-  },
-  {
-    workspaceId: "22eff978-155c-4454-a002-30b3de540b32",
-    workspace: "Sales",
-    dashboardId: "1de786d4-1414-407f-a39d-7dc8e6b28728",
-    title: "Performance Dashboard",
-    description: "Monitor key performance indicators for sales teams",
-    category: "Performance",
-    categoryColor: "violet",
-  },
-  {
-    workspaceId: "22eff978-155c-4454-a002-30b3de540b32",
-    workspace: "Sales",
-    dashboardId: "84199815-6dd4-461f-b52d-39d0a9ded8a4",
-    title: "GeoSales Dashboard - Azure Map",
-    description: "Visualize sales data on a geographical map",
-    category: "Map",
-    categoryColor: "blue",
-  },
-  {
-    workspaceId: "22eff978-155c-4454-a002-30b3de540b32",
-    workspace: "Agents",
-    dashboardId: "577da494-5741-4f43-a67c-ca690c668dc4",
-    title: "Agents Performance",
-    description:
-      "Monitor key performance indicators for customer support agents",
-    category: "Performance",
-    categoryColor: "yellow",
-  },
-];
 
 function ReportCard({
   dashboardId,
@@ -217,7 +170,7 @@ function RouteComponent() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
-            placeholder="Search dashboards... (Use :d=text for description, :cat=text for category)"
+            placeholder="Search dashboards... (Use :des=text for description, :cat=text for category)"
           />
         </div>
 

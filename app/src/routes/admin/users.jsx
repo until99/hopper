@@ -8,6 +8,7 @@ import {
   XIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
+import { users_list } from "../../utils/variables/mockData";
 
 export const Route = createFileRoute("/admin/users")({
   component: RouteComponent,
@@ -187,31 +188,48 @@ function RouteComponent() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-t border-slate-200 hover:bg-slate-50">
-                  <td className="p-3 text-sm text-black">John Doe</td>
-                  <td className="p-3 text-sm text-black">
-                    johndoe@example.com
-                  </td>
-                  <td className="p-3 text-sm text-black">
-                    <p className="w-fit rounded-full border border-red-400 bg-red-200 px-4 py-0.5 text-xs font-semibold text-red-700">
-                      Analyst
-                    </p>
-                  </td>
-                  <td className="p-3 text-sm text-black">
-                    <p className="w-fit rounded-full border border-green-400 bg-green-200 px-4 py-0.5 text-xs font-semibold text-green-700">
-                      Active
-                    </p>
-                  </td>
-                  <td className="p-3 text-sm text-black">2023-04-10 08:20</td>
-                  <td className="p-3 text-sm text-black">
-                    <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
-                      <PencilSimpleIcon size={16} className="text-black" />
-                    </button>
-                    <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
-                      <TrashIcon size={16} className="text-red-600" />
-                    </button>
-                  </td>
-                </tr>
+                {users_list.map((user) => (
+                  <tr
+                    key={user.id}
+                    className="border-t border-slate-200 hover:bg-slate-50"
+                  >
+                    <td className="p-3 text-sm text-black">{user.fullName}</td>
+                    <td className="p-3 text-sm text-black">{user.email}</td>
+                    <td className="p-3 text-sm text-black">
+                      <p
+                        className={`w-fit rounded-full border px-4 py-0.5 text-xs font-semibold ${
+                          user.role === "Admin"
+                            ? "border-violet-400 bg-violet-200 text-violet-700"
+                            : user.role === "Analyst"
+                              ? "border-blue-400 bg-blue-200 text-blue-700"
+                              : "border-yellow-400 bg-yellow-200 text-yellow-700"
+                        }`}
+                      >
+                        {user.role}
+                      </p>
+                    </td>
+                    <td className="p-3 text-sm text-black">
+                      <p
+                        className={`w-fit rounded-full border px-4 py-0.5 text-xs font-semibold ${
+                          user.isActive
+                            ? "border-green-400 bg-green-200 text-green-700"
+                            : "border-gray-400 bg-gray-200 text-gray-700"
+                        }`}
+                      >
+                        {user.isActive ? "Active" : "Inactive"}
+                      </p>
+                    </td>
+                    <td className="p-3 text-sm text-black">{user.lastLogin}</td>
+                    <td className="p-3 text-sm text-black">
+                      <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
+                        <PencilSimpleIcon size={16} className="text-black" />
+                      </button>
+                      <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
+                        <TrashIcon size={16} className="text-red-600" />
+                      </button>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
