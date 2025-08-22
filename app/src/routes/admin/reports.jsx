@@ -47,11 +47,9 @@ function RouteComponent() {
 
   const handleCreateQuery = () => {
     if (formData.name && formData.query && formData.database) {
-      // Parse bind variables from query
       const bindVariables = parseBindVariables(formData.query);
 
       if (selectedQuery) {
-        // Editing existing query
         const updatedQuery = {
           ...selectedQuery,
           ...formData,
@@ -63,12 +61,11 @@ function RouteComponent() {
           queries.map((q) => (q.id === selectedQuery.id ? updatedQuery : q)),
         );
       } else {
-        // Creating new query
         const newQuery = {
           id: Math.max(...queries.map((q) => q.id)) + 1,
           ...formData,
           bindVariables,
-          createdBy: 1, // Current user
+          createdBy: 1,
           createdAt: new Date().toLocaleString(),
           updatedAt: new Date().toLocaleString(),
         };
@@ -76,7 +73,6 @@ function RouteComponent() {
         setQueries([...queries, newQuery]);
       }
 
-      // Reset form and close dialog
       setFormData({
         name: "",
         description: "",
@@ -359,7 +355,9 @@ function RouteComponent() {
                 <input
                   type="text"
                   value={formData.workspace}
-                  onChange={(e) => handleInputChange("workspace", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("workspace", e.target.value)
+                  }
                   className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   placeholder="Workspace name"
                 />

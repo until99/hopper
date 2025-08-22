@@ -14,6 +14,7 @@ function RouteComponent() {
   const [autoBackup, setAutoBackup] = useState(true);
   const [maxConnections, setMaxConnections] = useState(100);
   const [dataRetention, setDataRetention] = useState(30);
+  const [unlimitedRetention, setUnlimitedRetention] = useState(false);
   const [theme, setTheme] = useState("light");
   const [language, setLanguage] = useState("en");
   const [timezone, setTimezone] = useState("UTC");
@@ -30,7 +31,6 @@ function RouteComponent() {
   }, [appName]);
 
   const handleSaveSettings = () => {
-    // Here you would typically save to backend/localStorage
     const settings = {
       appName,
       queryTimeout,
@@ -40,6 +40,7 @@ function RouteComponent() {
       autoBackup,
       maxConnections,
       dataRetention,
+      unlimitedRetention,
       theme,
       language,
       timezone,
@@ -52,10 +53,7 @@ function RouteComponent() {
     };
     
     console.log("Settings saved:", settings);
-    
-    // Save to localStorage as example
     localStorage.setItem('hopperSettings', JSON.stringify(settings));
-    
     alert("Settings saved successfully!");
   };
 
@@ -69,6 +67,7 @@ function RouteComponent() {
       setAutoBackup(true);
       setMaxConnections(100);
       setDataRetention(30);
+      setUnlimitedRetention(false);
       setTheme("light");
       setLanguage("en");
       setTimezone("UTC");
@@ -196,14 +195,31 @@ function RouteComponent() {
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Data Retention Period (days)
               </label>
-              <input
-                type="number"
-                value={dataRetention}
-                onChange={(e) => setDataRetention(Number(e.target.value))}
-                min="1"
-                max="365"
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              />
+              <div className="space-y-3">
+                <input
+                  type="number"
+                  value={dataRetention}
+                  onChange={(e) => setDataRetention(Number(e.target.value))}
+                  min="1"
+                  max="365"
+                  disabled={unlimitedRetention}
+                  className={`w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                    unlimitedRetention ? 'bg-gray-100 text-gray-500' : ''
+                  }`}
+                />
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="unlimitedRetention"
+                    checked={unlimitedRetention}
+                    onChange={(e) => setUnlimitedRetention(e.target.checked)}
+                    className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
+                  />
+                  <label htmlFor="unlimitedRetention" className="ml-2 text-sm text-gray-700">
+                    Keep data indefinitely (ignore retention period)
+                  </label>
+                </div>
+              </div>
             </div>
             <div className="flex items-center justify-between">
               <label className="text-sm font-medium text-gray-700">
@@ -359,27 +375,6 @@ function RouteComponent() {
               />
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* Export/Import Settings */}
-      <div className="mt-6">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-lg font-semibold mb-4">Configuration Management</h3>
-          <div className="flex gap-4">
-            <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
-              Export Settings
-            </button>
-            <button className="px-4 py-2 bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors">
-              Import Settings
-            </button>
-            <button className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
-              Factory Reset
-            </button>
-          </div>
-          <p className="text-sm text-gray-500 mt-2">
-            Export your current settings, import from a backup, or reset to factory defaults.
-          </p>
         </div>
       </div>
     </section>
