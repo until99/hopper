@@ -36,6 +36,7 @@ function RouteComponent() {
     query: "",
     category: "Analytics",
     categoryColor: "blue",
+    workspace: "",
   });
 
   const [queries, setQueries] = useState(sql_queries);
@@ -83,6 +84,7 @@ function RouteComponent() {
         query: "",
         category: "Analytics",
         categoryColor: "blue",
+        workspace: "",
       });
       setSelectedQuery(null);
       setShowQueryDialog(false);
@@ -97,6 +99,7 @@ function RouteComponent() {
       query: query.query,
       category: query.category,
       categoryColor: query.categoryColor,
+      workspace: query.workspace || "",
     });
     setSelectedQuery(query);
     setShowQueryDialog(true);
@@ -177,6 +180,7 @@ function RouteComponent() {
               query: "",
               category: "Analytics",
               categoryColor: "blue",
+              workspace: "",
             });
             setShowQueryDialog(true);
           }}
@@ -200,15 +204,50 @@ function RouteComponent() {
         />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {filteredQueries.map((query) => (
-          <QueryCard
-            key={query.id}
-            query={query}
-            onEdit={handleEditQuery}
-            onDelete={handleDeleteQuery}
-          />
-        ))}
+      {/* Tabela de Reports */}
+      <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-200 bg-slate-50">
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Name</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Description</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Database</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Category</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Workspace</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Parameters</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Updated</div>
+                </th>
+                <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
+                  <div className="flex items-center">Actions</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredQueries.map((query) => (
+                <QueryRow
+                  key={query.id}
+                  query={query}
+                  onEdit={handleEditQuery}
+                  onDelete={handleDeleteQuery}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {/* Create/Edit Query Dialog */}
@@ -315,6 +354,19 @@ function RouteComponent() {
 
               <div>
                 <label className="block text-sm font-medium text-gray-700">
+                  Workspace
+                </label>
+                <input
+                  type="text"
+                  value={formData.workspace}
+                  onChange={(e) => handleInputChange("workspace", e.target.value)}
+                  className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
+                  placeholder="Workspace name"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">
                   SQL Query
                 </label>
                 <textarea
@@ -343,6 +395,7 @@ function RouteComponent() {
                     query: "",
                     category: "Analytics",
                     categoryColor: "blue",
+                    workspace: "",
                   });
                 }}
                 className="rounded-lg border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50"
@@ -404,6 +457,72 @@ function RouteComponent() {
         </div>
       )}
     </section>
+  );
+}
+
+function QueryRow({ query, onEdit, onDelete }) {
+  const colorClassMap = {
+    blue: "border-blue-300 bg-blue-200 text-blue-600",
+    emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
+    violet: "border-violet-300 bg-violet-200 text-violet-600",
+    red: "border-red-300 bg-red-200 text-red-600",
+    yellow: "border-yellow-300 bg-yellow-200 text-yellow-600",
+  };
+
+  const categoryStyle = `w-fit rounded-full border px-3 py-0.5 text-xs font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
+
+  const createdByUser = users_list.find((u) => u.id === query.createdBy);
+
+  return (
+    <tr className="border-t border-slate-200 hover:bg-slate-50">
+      <td className="p-3 text-sm text-black">
+        <div className="font-medium">{query.name}</div>
+      </td>
+      <td className="p-3 text-sm text-black">
+        <div className="max-w-xs truncate">{query.description}</div>
+      </td>
+      <td className="p-3 text-sm text-black">
+        <div className="flex items-center gap-1">
+          <DatabaseIcon size={14} />
+          <span>{query.database}</span>
+        </div>
+      </td>
+      <td className="p-3 text-sm text-black">
+        <div className={categoryStyle}>{query.category}</div>
+      </td>
+      <td className="p-3 text-sm text-black">
+        <div className="w-fit rounded-full border border-slate-300 bg-slate-200 px-3 py-0.5 text-xs font-semibold text-slate-600">
+          {query.workspace || "Default"}
+        </div>
+      </td>
+      <td className="p-3 text-sm text-black">
+        {query.bindVariables?.length > 0 && (
+          <div className="flex items-center gap-1">
+            <FunnelIcon size={14} />
+            <span>{query.bindVariables.length}</span>
+          </div>
+        )}
+      </td>
+      <td className="p-3 text-sm text-black">{query.updatedAt}</td>
+      <td className="p-3 text-sm text-black">
+        <div className="flex gap-1">
+          <button
+            onClick={() => onEdit(query)}
+            className="rounded-lg p-2 text-blue-600 hover:bg-blue-100"
+            title="Edit Query"
+          >
+            <PencilIcon size={16} />
+          </button>
+          <button
+            onClick={() => onDelete(query)}
+            className="rounded-lg p-2 text-red-600 hover:bg-red-100"
+            title="Delete Query"
+          >
+            <TrashIcon size={16} />
+          </button>
+        </div>
+      </td>
+    </tr>
   );
 }
 

@@ -297,7 +297,56 @@ function ExecuteQueryDialog({
   );
 }
 
+function WorkspaceGroup({
+  workspace,
+  queries,
+  isCollapsed,
+  onToggleCollapse,
+  onExecute,
+}) {
+  return (
+    <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4">
+      <div
+        className={`-m-2 flex cursor-pointer justify-between rounded-lg p-2 align-top transition-colors hover:bg-slate-50 ${isCollapsed ? "" : "mb-4"}`}
+        onClick={() => onToggleCollapse(workspace)}
+      >
+        <div className="flex items-center gap-2">
+          <div className="flex h-6 w-6 items-center justify-center rounded transition-colors hover:bg-slate-200">
+            {isCollapsed ? (
+              <CaretDownIcon size={16} className="text-slate-600" />
+            ) : (
+              <CaretUpIcon size={16} className="text-slate-600" />
+            )}
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">{workspace}</h3>
+            <p className="text-sm text-gray-500">
+              {queries.length} report{queries.length !== 1 ? "s" : ""}
+            </p>
+          </div>
+        </div>
+        <div className="h-fit rounded-full border-slate-300 bg-slate-200 px-3 pb-0.5 text-sm font-semibold text-slate-600">
+          Workspace
+        </div>
+      </div>
+
+      {!isCollapsed && (
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {queries.map((query) => (
+            <ReportCard
+              key={query.id}
+              query={query}
+              onExecute={onExecute}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 function RouteComponent() {
+  const [collapsedWorkspaces, setCollapsedWorkspaces] = useState(new Set());
   const [searchQuery, setSearchQuery] = useState("");
   const [showExecuteDialog, setShowExecuteDialog] = useState(false);
   const [selectedQuery, setSelectedQuery] = useState(null);
@@ -420,27 +469,42 @@ function RouteComponent() {
       query.name.toLowerCase().includes(search) ||
       query.description.toLowerCase().includes(search) ||
       query.category.toLowerCase().includes(search) ||
-      query.database.toLowerCase().includes(search)
+      query.database.toLowerCase().includes(search) ||
+      query.workspace.toLowerCase().includes(search)
     );
   });
+
+  const groupedQueries = filteredQueries.reduce((groups, query) => {
+    const workspace = query.workspace;
+    if (!groups[workspace]) {
+      groups[workspace] = [];
+    }
+    groups[workspace].push(query);
+    return groups;
+  }, {});
+
+  const toggleWorkspaceCollapse = (workspace) => {
+    setCollapsedWorkspaces((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(workspace)) {
+        newSet.delete(workspace);
+      } else {
+        newSet.add(workspace);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <>
       <section className="p-4">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold">SQL Reports</h1>
+            <h1 className="text-3xl font-bold">Reports</h1>
             <h2 className="text-md text-gray-500">
               Execute queries and download results as CSV
             </h2>
           </div>
-          <Link
-            to="/admin/reports"
-            className="flex items-center gap-2 rounded-lg border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50"
-          >
-            <CodeIcon size={16} />
-            Manage Queries
-          </Link>
         </div>
 
         <div className="relative my-6">
@@ -457,18 +521,21 @@ function RouteComponent() {
           />
         </div>
 
-        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {filteredQueries.length === 0 ? (
-            <div className="col-span-full py-8 text-center">
+        <div className="space-y-5">
+          {Object.entries(groupedQueries).length === 0 ? (
+            <div className="py-8 text-center">
               <p className="text-gray-500">
-                No SQL reports found matching your search.
+                No reports found matching your search.
               </p>
             </div>
           ) : (
-            filteredQueries.map((query) => (
-              <ReportCard
-                key={query.id}
-                query={query}
+            Object.entries(groupedQueries).map(([workspace, queries]) => (
+              <WorkspaceGroup
+                key={workspace}
+                workspace={workspace}
+                queries={queries}
+                isCollapsed={collapsedWorkspaces.has(workspace)}
+                onToggleCollapse={toggleWorkspaceCollapse}
                 onExecute={handleExecuteQuery}
               />
             ))

@@ -124,9 +124,11 @@ const sql_queries = [
   {
     id: 1,
     name: "Sales Report by Region",
-    description: "Monthly sales report grouped by region with optional date filter",
+    description:
+      "Monthly sales report grouped by region with optional date filter",
     database: "sales_db",
     connectionString: "server=localhost;database=sales_db;user=admin",
+    workspace: "Sales",
     query: `SELECT 
       region,
       SUM(amount) as total_sales,
@@ -142,21 +144,21 @@ const sql_queries = [
         type: "date",
         required: true,
         defaultValue: null,
-        description: "Start date for the report"
+        description: "Start date for the report",
       },
       {
         name: "region",
         type: "string",
         required: false,
         defaultValue: null,
-        description: "Filter by specific region (optional)"
-      }
+        description: "Filter by specific region (optional)",
+      },
     ],
     category: "Sales",
     categoryColor: "blue",
     createdBy: 1,
     createdAt: "2023-04-10 10:30",
-    updatedAt: "2023-04-12 15:20"
+    updatedAt: "2023-04-12 15:20",
   },
   {
     id: 2,
@@ -164,6 +166,7 @@ const sql_queries = [
     description: "Customer performance metrics with lifetime value calculation",
     database: "crm_db",
     connectionString: "server=localhost;database=crm_db;user=admin",
+    workspace: "Sales",
     query: `SELECT 
       customer_id,
       customer_name,
@@ -183,21 +186,21 @@ const sql_queries = [
         type: "number",
         required: false,
         defaultValue: 1,
-        description: "Minimum number of orders to include customer"
+        description: "Minimum number of orders to include customer",
       },
       {
         name: "limit_records",
         type: "number",
         required: true,
         defaultValue: 100,
-        description: "Maximum number of records to return"
-      }
+        description: "Maximum number of records to return",
+      },
     ],
     category: "Analytics",
     categoryColor: "emerald",
     createdBy: 2,
     createdAt: "2023-04-11 09:15",
-    updatedAt: "2023-04-11 09:15"
+    updatedAt: "2023-04-11 09:15",
   },
   {
     id: 3,
@@ -205,6 +208,7 @@ const sql_queries = [
     description: "Current inventory levels with low stock alerts",
     database: "inventory_db",
     connectionString: "server=localhost;database=inventory_db;user=admin",
+    workspace: "Operations",
     query: `SELECT 
       product_code,
       product_name,
@@ -230,7 +234,7 @@ const sql_queries = [
         type: "string",
         required: false,
         defaultValue: null,
-        description: "Filter by product category"
+        description: "Filter by product category",
       },
       {
         name: "stock_status",
@@ -238,15 +242,15 @@ const sql_queries = [
         required: false,
         defaultValue: null,
         options: ["Low Stock", "Warning", "Normal"],
-        description: "Filter by stock status"
-      }
+        description: "Filter by stock status",
+      },
     ],
     category: "Operations",
     categoryColor: "yellow",
     createdBy: 1,
     createdAt: "2023-04-09 14:20",
-    updatedAt: "2023-04-10 11:30"
-  }
+    updatedAt: "2023-04-10 11:30",
+  },
 ];
 
 const databases = [
@@ -257,7 +261,7 @@ const databases = [
     host: "localhost",
     port: 5432,
     database: "sales_db",
-    description: "Sales database with transaction data"
+    description: "Sales database with transaction data",
   },
   {
     id: 2,
@@ -266,7 +270,7 @@ const databases = [
     host: "localhost",
     port: 3306,
     database: "crm_db",
-    description: "Customer relationship management database"
+    description: "Customer relationship management database",
   },
   {
     id: 3,
@@ -275,8 +279,8 @@ const databases = [
     host: "localhost",
     port: 1433,
     database: "inventory_db",
-    description: "Inventory management system database"
-  }
+    description: "Inventory management system database",
+  },
 ];
 
 export { dashboards_list, users_list, groups_list, sql_queries, databases };

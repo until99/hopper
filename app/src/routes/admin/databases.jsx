@@ -19,6 +19,8 @@ export const Route = createFileRoute("/admin/databases")({
 
 function RouteComponent() {
   const [showDatabaseDialog, setShowDatabaseDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [databaseToDelete, setDatabaseToDelete] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDatabase, setSelectedDatabase] = useState(null);
   const [connectionStatus, setConnectionStatus] = useState({});
@@ -82,9 +84,23 @@ function RouteComponent() {
   };
 
   const handleDeleteDatabase = (database) => {
-    if (confirm(`Are you sure you want to delete "${database.name}"?`)) {
-      setDatabaseList(databaseList.filter((db) => db.id !== database.id));
+    setDatabaseToDelete(database);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (databaseToDelete) {
+      setDatabaseList(
+        databaseList.filter((db) => db.id !== databaseToDelete.id),
+      );
+      setShowDeleteDialog(false);
+      setDatabaseToDelete(null);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteDialog(false);
+    setDatabaseToDelete(null);
   };
 
   const testConnection = async (database) => {
@@ -362,6 +378,51 @@ function RouteComponent() {
           </div>
         </div>
       )}
+
+      {/* Delete Confirmation Dialog */}
+      {showDeleteDialog && databaseToDelete && (
+        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="mx-4 w-fit max-w-lg rounded-lg bg-white p-6">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+                <TrashIcon size={20} className="text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Confirmar exclusão
+                </h3>
+                <p className="text-sm text-gray-500">
+                  Esta ação não pode ser desfeita
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-700">
+                Tem certeza que deseja excluir a conexão{" "}
+                <span className="font-semibold">"{databaseToDelete.name}"</span>
+                ?
+              </p>
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={cancelDelete}
+                className="rounded-lg border border-slate-200 px-4 py-2 text-gray-700 hover:bg-slate-50"
+              >
+                <p className="text-sm">Cancelar</p>
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+              >
+                <TrashIcon size={16} weight="bold" />
+                <p className="text-sm">Excluir</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -375,7 +436,7 @@ function DatabaseCard({
   onTestConnection,
 }) {
   return (
-    <div className="h-fit rounded-lg border border-slate-200 bg-white p-4">
+    <div className="group h-fit rounded-lg border border-slate-200 bg-white p-4 transition-shadow hover:shadow-md">
       <div className="flex justify-between align-top">
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -433,7 +494,7 @@ function DatabaseCard({
           ) : (
             <>
               <CheckCircleIcon size={16} />
-              Test Connection
+              <p className="text-sm">Test Connection</p>
             </>
           )}
         </button>
@@ -441,17 +502,17 @@ function DatabaseCard({
         <div className="flex gap-2">
           <button
             onClick={() => onEdit(database)}
-            className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700"
+            className="rounded-lg p-2 text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-blue-200"
             title="Edit Database"
           >
-            <PencilIcon size={16} />
+            <PencilIcon size={14} />
           </button>
           <button
             onClick={() => onDelete(database)}
-            className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
+            className="rounded-lg p-2 text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-200"
             title="Delete Database"
           >
-            <TrashIcon size={16} />
+            <TrashIcon size={14} />
           </button>
         </div>
       </div>
