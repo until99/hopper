@@ -235,102 +235,10 @@ function RouteComponent() {
           </div>
         </div>
 
-        {/* User Interface Settings */}
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-lg font-semibold mb-4">User Interface</h3>
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Theme
-              </label>
-              <select
-                value={theme}
-                onChange={(e) => setTheme(e.target.value)}
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-                <option value="auto">Auto</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Language
-              </label>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="en">English</option>
-                <option value="pt">Português</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Timezone
-              </label>
-              <select
-                value={timezone}
-                onChange={(e) => setTimezone(e.target.value)}
-                className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-              >
-                <option value="UTC">UTC</option>
-                <option value="America/Sao_Paulo">America/São Paulo</option>
-                <option value="America/New_York">America/New York</option>
-                <option value="Europe/London">Europe/London</option>
-                <option value="Europe/Paris">Europe/Paris</option>
-                <option value="Asia/Tokyo">Asia/Tokyo</option>
-              </select>
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Additional Settings Sections */}
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {/* Notifications */}
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-lg font-semibold mb-4">Notifications</h3>
-          <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                Email Notifications
-              </label>
-              <input
-                type="checkbox"
-                checked={emailNotifications}
-                onChange={(e) => setEmailNotifications(e.target.checked)}
-                className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                System Alerts
-              </label>
-              <input
-                type="checkbox"
-                checked={systemAlerts}
-                onChange={(e) => setSystemAlerts(e.target.checked)}
-                className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
-              />
-            </div>
-            <div className="flex items-center justify-between">
-              <label className="text-sm font-medium text-gray-700">
-                Query Completion Alerts
-              </label>
-              <input
-                type="checkbox"
-                checked={queryAlerts}
-                onChange={(e) => setQueryAlerts(e.target.checked)}
-                className="h-4 w-4 text-blue-600 rounded focus:ring-blue-500"
-              />
-            </div>
-          </div>
-        </div>
-
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-1">
         {/* Performance */}
         <div className="rounded-lg border border-slate-200 bg-white p-6">
           <h3 className="text-lg font-semibold mb-4">Performance</h3>

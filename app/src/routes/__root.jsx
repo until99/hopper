@@ -183,7 +183,7 @@ export const Route = createRootRoute({
                         </Link>
                         <hr className="border-gray-100 px-2" />
                         <button
-                          className="block truncate px-4 py-2 text-sm font-medium text-black hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden"
+                          className="block w-full truncate px-4 py-2 text-sm font-medium text-black hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden"
                           onClick={() => {
                             // Handle sign out logic here
                           }}
