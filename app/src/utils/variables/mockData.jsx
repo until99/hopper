@@ -1,3 +1,14 @@
+import {
+  ChartBarIcon,
+  ChartPieSliceIcon,
+  DatabaseIcon,
+  FileSqlIcon,
+  FileTextIcon,
+  FolderOpenIcon,
+  GearIcon,
+  UsersIcon,
+} from "@phosphor-icons/react";
+
 const dashboards_list = [
   {
     id: 1,
@@ -66,6 +77,57 @@ const groups_list = [
     description: "Customer support agents group",
     members: [5, 6],
     dashboards: [2, 5],
+  },
+];
+
+let menu_items = [
+  {
+    route: "dashboard/list-dashboards",
+    icon: <ChartBarIcon size={22} className="mr-2 inline-block" />,
+    routeName: "My Dashboards",
+    admin_only: false,
+  },
+  {
+    route: "admin/users",
+    icon: <UsersIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Users",
+    admin_only: true,
+  },
+  {
+    route: "admin/groups",
+    icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Groups",
+    admin_only: true,
+  },
+  {
+    route: "reports/list-reports",
+    icon: <FileTextIcon size={22} className="mr-2 inline-block" />,
+    routeName: "My Reports",
+    admin_only: false,
+  },
+  {
+    route: "admin/reports",
+    icon: <FileSqlIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Reports",
+    admin_only: true,
+  },
+  {
+    route: "admin/databases",
+    icon: <DatabaseIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Databases",
+    admin_only: true,
+  },
+  {
+    route: "admin/workspaces",
+    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Workspaces",
+    admin_only: true,
+  },
+  {
+    route: "admin/settings",
+    icon: <GearIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Settings",
+    admin_only: false,
   },
 ];
 
@@ -295,4 +357,11 @@ const databases = [
   },
 ];
 
-export { dashboards_list, users_list, groups_list, sql_queries, databases };
+export {
+  dashboards_list,
+  users_list,
+  groups_list,
+  sql_queries,
+  databases,
+  menu_items,
+};

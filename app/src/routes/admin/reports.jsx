@@ -17,7 +17,7 @@ import {
   sql_queries,
   databases,
   users_list,
-} from "../../utils/variables/mockData";
+} from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/reports")({
   component: RouteComponent,

@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
-import { dashboards_list } from "../../utils/variables/mockData";
+import { dashboards_list } from "../../utils/variables/mockData.jsx";
 
 import {
   MagnifyingGlassIcon,
@@ -20,6 +20,21 @@ function ReportCard({
   category,
   categoryColor,
 }) {
+  useState(() => {
+    const currentPath = window.location.pathname;
+    const previousPath = document.referrer;
+
+    if (
+      previousPath.includes("/auth/login") ||
+      previousPath.includes("/auth/register")
+    ) {
+      if (!sessionStorage.getItem("pageReloaded")) {
+        sessionStorage.setItem("pageReloaded", "true");
+        window.location.reload();
+      }
+    }
+  }, []);
+
   const colorClassMap = {
     blue: "border-blue-300 bg-blue-200 text-blue-600",
     emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",

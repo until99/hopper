@@ -14,7 +14,7 @@ import {
 } from "@phosphor-icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { dashboards_list } from "../../utils/variables/mockData";
+import { dashboards_list } from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/workspaces")({
   component: RouteComponent,

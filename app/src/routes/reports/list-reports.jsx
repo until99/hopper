@@ -12,7 +12,7 @@ import {
   CaretUpIcon,
 } from "@phosphor-icons/react";
 
-import { sql_queries, users_list } from "../../utils/variables/mockData";
+import { sql_queries, users_list } from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/reports/list-reports")({
   component: RouteComponent,

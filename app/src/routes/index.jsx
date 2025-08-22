@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 
 function RouteComponent() {
   const isAuthenticated = authentication.isUserAuthenticated();
-  
+
   if (isAuthenticated) {
     return <Navigate to="/dashboard/list-dashboards" />;
   } else {

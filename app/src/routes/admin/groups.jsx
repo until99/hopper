@@ -17,7 +17,7 @@ import {
   groups_list,
   users_list,
   dashboards_list,
-} from "../../utils/variables/mockData";
+} from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/groups")({
   component: RouteComponent,

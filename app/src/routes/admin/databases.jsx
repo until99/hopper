@@ -11,7 +11,7 @@ import {
   XCircleIcon,
 } from "@phosphor-icons/react";
 
-import { databases } from "../../utils/variables/mockData";
+import { databases } from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/databases")({
   component: RouteComponent,

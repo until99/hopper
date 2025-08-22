@@ -8,7 +8,7 @@ import {
   XIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
-import { users_list } from "../../utils/variables/mockData";
+import { users_list } from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/users")({
   component: RouteComponent,

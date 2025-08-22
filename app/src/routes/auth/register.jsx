@@ -1,21 +1,21 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  Eye,
-  EyeSlash,
-  Envelope,
-  Lock,
-  User,
   CpuIcon,
+  UserIcon,
+  EnvelopeIcon,
+  LockIcon,
+  EyeIcon,
+  EyeSlashIcon,
 } from "@phosphor-icons/react";
-import authentication from '../../store/auth/authentication'
+import authentication from "../../store/auth/authentication";
 
 export const Route = createFileRoute("/auth/register")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,10 +59,8 @@ function RouteComponent() {
 
     setTimeout(() => {
       console.log("Registration attempt:", formData);
-      // Set user as authenticated after registration
-      authentication.setUserAuthenticated(true);
-      // Navigate to dashboard
-      navigate({ to: '/dashboard/list-dashboards' });
+      authentication.setUserIconAuthenticated(true);
+      navigate({ to: "/dashboard/list-dashboards" });
       setIsLoading(false);
     }, 1000);
   };
@@ -119,7 +117,7 @@ function RouteComponent() {
                   Nome completo
                 </label>
                 <div className="relative">
-                  <User
+                  <UserIcon
                     className="absolute top-1/2 left-3 -translate-y-1/2 transform text-slate-400"
                     size={18}
                   />
@@ -152,7 +150,7 @@ function RouteComponent() {
                   E-mail
                 </label>
                 <div className="relative">
-                  <Envelope
+                  <EnvelopeIcon
                     className="absolute top-1/2 left-3 -translate-y-1/2 transform text-slate-400"
                     size={18}
                   />
@@ -185,7 +183,7 @@ function RouteComponent() {
                   Senha
                 </label>
                 <div className="relative">
-                  <Lock
+                  <LockIcon
                     className="absolute top-1/2 left-3 -translate-y-1/2 transform text-slate-400"
                     size={18}
                   />
@@ -209,7 +207,7 @@ function RouteComponent() {
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute top-1/2 right-3 -translate-y-1/2 transform text-slate-400 transition-colors hover:text-slate-600"
                   >
-                    {showPassword ? <EyeSlash size={18} /> : <Eye size={18} />}
+                    {showPassword ? <EyeSlashIcon size={18} /> : <EyeIcon size={18} />}
                   </button>
                 </div>
                 {errors.password && (
@@ -225,7 +223,7 @@ function RouteComponent() {
                   Confirmar senha
                 </label>
                 <div className="relative">
-                  <Lock
+                  <LockIcon
                     className="absolute top-1/2 left-3 -translate-y-1/2 transform text-slate-400"
                     size={18}
                   />
@@ -250,9 +248,9 @@ function RouteComponent() {
                     className="absolute top-1/2 right-3 -translate-y-1/2 transform text-slate-400 transition-colors hover:text-slate-600"
                   >
                     {showConfirmPassword ? (
-                      <EyeSlash size={18} />
+                      <EyeSlashIcon size={18} />
                     ) : (
-                      <Eye size={18} />
+                      <EyeIcon size={18} />
                     )}
                   </button>
                 </div>
@@ -312,10 +310,10 @@ function RouteComponent() {
 
             <div className="text-center">
               <p className="text-sm text-slate-600">
-                Já tem uma conta?{' '}
+                Já tem uma conta?{" "}
                 <Link
                   to="/auth/login"
-                  className="font-medium text-blue-600 hover:text-blue-500 transition-colors"
+                  className="font-medium text-blue-600 transition-colors hover:text-blue-500"
                 >
                   Entrar
                 </Link>
