@@ -5,6 +5,12 @@ function isUserAuthenticated() {
 
 function setUserAuthenticated(value) {
   localStorage.setItem("isAuthenticated", value.toString());
+
+  window.dispatchEvent(
+    new CustomEvent("authStatusChanged", {
+      detail: { isAuthenticated: value },
+    }),
+  );
 }
 
 export default {
