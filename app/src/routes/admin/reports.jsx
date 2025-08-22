@@ -14,7 +14,11 @@ import {
   FunnelIcon,
 } from "@phosphor-icons/react";
 
-import { sql_queries, databases, users_list } from "../../utils/variables/mockData";
+import {
+  sql_queries,
+  databases,
+  users_list,
+} from "../../utils/variables/mockData";
 
 export const Route = createFileRoute("/admin/reports")({
   component: RouteComponent,
@@ -23,6 +27,8 @@ export const Route = createFileRoute("/admin/reports")({
 function RouteComponent() {
   const [showQueryDialog, setShowQueryDialog] = useState(false);
   const [showExecuteDialog, setShowExecuteDialog] = useState(false);
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+  const [queryToDelete, setQueryToDelete] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedQuery, setSelectedQuery] = useState(null);
   const [executeParams, setExecuteParams] = useState({});
@@ -40,24 +46,41 @@ function RouteComponent() {
   const [queries, setQueries] = useState(sql_queries);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleCreateQuery = () => {
     if (formData.name && formData.query && formData.database) {
       // Parse bind variables from query
       const bindVariables = parseBindVariables(formData.query);
-      
-      const newQuery = {
-        id: Math.max(...queries.map(q => q.id)) + 1,
-        ...formData,
-        bindVariables,
-        createdBy: 1, // Current user
-        createdAt: new Date().toLocaleString(),
-        updatedAt: new Date().toLocaleString(),
-      };
-      
-      setQueries([...queries, newQuery]);
+
+      if (selectedQuery) {
+        // Editing existing query
+        const updatedQuery = {
+          ...selectedQuery,
+          ...formData,
+          bindVariables,
+          updatedAt: new Date().toLocaleString(),
+        };
+
+        setQueries(
+          queries.map((q) => (q.id === selectedQuery.id ? updatedQuery : q)),
+        );
+      } else {
+        // Creating new query
+        const newQuery = {
+          id: Math.max(...queries.map((q) => q.id)) + 1,
+          ...formData,
+          bindVariables,
+          createdBy: 1, // Current user
+          createdAt: new Date().toLocaleString(),
+          updatedAt: new Date().toLocaleString(),
+        };
+
+        setQueries([...queries, newQuery]);
+      }
+
+      // Reset form and close dialog
       setFormData({
         name: "",
         description: "",
@@ -66,6 +89,7 @@ function RouteComponent() {
         category: "Analytics",
         categoryColor: "blue",
       });
+      setSelectedQuery(null);
       setShowQueryDialog(false);
     }
   };
@@ -84,9 +108,21 @@ function RouteComponent() {
   };
 
   const handleDeleteQuery = (query) => {
-    if (confirm(`Are you sure you want to delete "${query.name}"?`)) {
-      setQueries(queries.filter(q => q.id !== query.id));
+    setQueryToDelete(query);
+    setShowDeleteDialog(true);
+  };
+
+  const confirmDelete = () => {
+    if (queryToDelete) {
+      setQueries(queries.filter((q) => q.id !== queryToDelete.id));
+      setShowDeleteDialog(false);
+      setQueryToDelete(null);
     }
+  };
+
+  const cancelDelete = () => {
+    setShowDeleteDialog(false);
+    setQueryToDelete(null);
   };
 
   const handleExecuteQuery = (query) => {
@@ -98,7 +134,7 @@ function RouteComponent() {
 
   const executeQuery = async () => {
     setIsExecuting(true);
-    
+
     // Simulate API call
     setTimeout(() => {
       const mockResult = {
@@ -109,9 +145,9 @@ function RouteComponent() {
           ["Value7", "Value8", "Value9"],
         ],
         rowCount: 3,
-        executionTime: "0.245s"
+        executionTime: "0.245s",
       };
-      
+
       setExecutionResult(mockResult);
       setIsExecuting(false);
     }, 2000);
@@ -119,12 +155,12 @@ function RouteComponent() {
 
   const downloadCSV = () => {
     if (!executionResult) return;
-    
+
     const csv = [
       executionResult.columns.join(","),
-      ...executionResult.data.map(row => row.join(","))
+      ...executionResult.data.map((row) => row.join(",")),
     ].join("\n");
-    
+
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -137,21 +173,21 @@ function RouteComponent() {
   const parseBindVariables = (query) => {
     const matches = query.match(/:(\w+)/g);
     if (!matches) return [];
-    
+
     const unique = [...new Set(matches)];
-    return unique.map(match => {
+    return unique.map((match) => {
       const name = match.substring(1);
       return {
         name,
         type: "string",
         required: true,
         defaultValue: null,
-        description: `Parameter ${name}`
+        description: `Parameter ${name}`,
       };
     });
   };
 
-  const filteredQueries = queries.filter(query => {
+  const filteredQueries = queries.filter((query) => {
     if (!searchQuery.trim()) return true;
     const search = searchQuery.toLowerCase();
     return (
@@ -182,7 +218,18 @@ function RouteComponent() {
         </div>
         <button
           className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
-          onClick={() => setShowQueryDialog(true)}
+          onClick={() => {
+            setSelectedQuery(null);
+            setFormData({
+              name: "",
+              description: "",
+              database: "",
+              query: "",
+              category: "Analytics",
+              categoryColor: "blue",
+            });
+            setShowQueryDialog(true);
+          }}
         >
           <PlusIcon size={16} />
           New Query
@@ -217,7 +264,7 @@ function RouteComponent() {
 
       {/* Create/Edit Query Dialog */}
       {showQueryDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
           <div className="mx-4 w-full max-w-2xl rounded-lg bg-white p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">
@@ -227,16 +274,26 @@ function RouteComponent() {
                 onClick={() => {
                   setShowQueryDialog(false);
                   setSelectedQuery(null);
+                  setFormData({
+                    name: "",
+                    description: "",
+                    database: "",
+                    query: "",
+                    category: "Analytics",
+                    categoryColor: "blue",
+                  });
                 }}
                 className="text-gray-500 hover:text-gray-700"
               >
                 <XIcon size={20} />
               </button>
             </div>
-            
+
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Name</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
                 <input
                   type="text"
                   value={formData.name}
@@ -245,53 +302,72 @@ function RouteComponent() {
                   placeholder="Query name"
                 />
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Description
+                </label>
                 <textarea
                   value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   rows="2"
                   placeholder="Query description"
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Database</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Database
+                  </label>
                   <select
                     value={formData.database}
-                    onChange={(e) => handleInputChange("database", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("database", e.target.value)
+                    }
                     className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   >
                     <option value="">Select database</option>
-                    {databases.map(db => (
-                      <option key={db.id} value={db.name}>{db.name} ({db.type})</option>
+                    {databases.map((db) => (
+                      <option key={db.id} value={db.name}>
+                        {db.name} ({db.type})
+                      </option>
                     ))}
                   </select>
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Category</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Category
+                  </label>
                   <select
                     value={formData.category}
                     onChange={(e) => {
                       const category = e.target.value;
                       handleInputChange("category", category);
-                      handleInputChange("categoryColor", categoryColors[category] || "blue");
+                      handleInputChange(
+                        "categoryColor",
+                        categoryColors[category] || "blue",
+                      );
                     }}
                     className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   >
-                    {Object.keys(categoryColors).map(cat => (
-                      <option key={cat} value={cat}>{cat}</option>
+                    {Object.keys(categoryColors).map((cat) => (
+                      <option key={cat} value={cat}>
+                        {cat}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-700">SQL Query</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  SQL Query
+                </label>
                 <textarea
                   value={formData.query}
                   onChange={(e) => handleInputChange("query", e.target.value)}
@@ -300,24 +376,33 @@ function RouteComponent() {
                   placeholder="SELECT * FROM table WHERE column = :parameter"
                 />
                 <p className="mt-1 text-xs text-gray-500">
-                  Use :parameter_name for bind variables (e.g., :start_date, :user_id)
+                  Use :parameter_name for bind variables (e.g., :start_date,
+                  :user_id)
                 </p>
               </div>
             </div>
-            
+
             <div className="mt-6 flex justify-end gap-2">
               <button
                 onClick={() => {
                   setShowQueryDialog(false);
                   setSelectedQuery(null);
+                  setFormData({
+                    name: "",
+                    description: "",
+                    database: "",
+                    query: "",
+                    category: "Analytics",
+                    categoryColor: "blue",
+                  });
                 }}
-                className="rounded-lg border border-slate-200 px-4 py-2 hover:bg-slate-50"
+                className="rounded-lg border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50"
               >
                 Cancel
               </button>
               <button
                 onClick={handleCreateQuery}
-                className="rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+                className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
               >
                 {selectedQuery ? "Update" : "Create"} Query
               </button>
@@ -339,6 +424,50 @@ function RouteComponent() {
           onClose={() => setShowExecuteDialog(false)}
         />
       )}
+
+      {/* Delete Confirmation Dialog */}
+      {showDeleteDialog && queryToDelete && (
+        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="mx-4 w-fit max-w-lg rounded-lg bg-white p-6">
+            <div className="mb-4 flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+                <TrashIcon size={20} className="text-red-600" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-gray-900">
+                  Confirmar exclusão
+                </h3>
+                <p className="text-sm text-gray-500">
+                  Esta ação não pode ser desfeita
+                </p>
+              </div>
+            </div>
+
+            <div className="mb-6">
+              <p className="text-sm text-gray-700">
+                Tem certeza que deseja excluir a query{" "}
+                <span className="font-semibold">"{queryToDelete.name}"</span>?
+              </p>
+            </div>
+
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={cancelDelete}
+                className="rounded-lg border border-slate-200 px-4 py-2 text-gray-700 hover:bg-slate-50"
+              >
+                <p className="text-sm">Cancelar</p>
+              </button>
+              <button
+                onClick={confirmDelete}
+                className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
+              >
+                <TrashIcon size={16} weight="bold" />
+                <p className="text-sm">Excluir</p>
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
@@ -354,10 +483,10 @@ function QueryCard({ query, onEdit, onDelete, onExecute }) {
 
   const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
 
-  const createdByUser = users_list.find(u => u.id === query.createdBy);
+  const createdByUser = users_list.find((u) => u.id === query.createdBy);
 
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4">
+    <div className="group rounded-lg border border-slate-200 bg-white p-4 transition-shadow hover:shadow-md">
       <div className="flex justify-between align-top">
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{query.name}</h3>
@@ -384,25 +513,25 @@ function QueryCard({ query, onEdit, onDelete, onExecute }) {
         </div>
         <div className="flex gap-2">
           <button
+            onClick={() => onEdit(query)}
+            className="rounded-lg p-2 text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-blue-200"
+            title="Edit Query"
+          >
+            <PencilIcon size={14} />
+          </button>
+          <button
+            onClick={() => onDelete(query)}
+            className="rounded-lg p-2 text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-200"
+            title="Delete Query"
+          >
+            <TrashIcon size={14} />
+          </button>
+          <button
             onClick={() => onExecute(query)}
             className="rounded-lg bg-green-600 p-2 text-white hover:bg-green-700"
             title="Execute Query"
           >
-            <PlayIcon size={16} />
-          </button>
-          <button
-            onClick={() => onEdit(query)}
-            className="rounded-lg bg-blue-600 p-2 text-white hover:bg-blue-700"
-            title="Edit Query"
-          >
-            <PencilIcon size={16} />
-          </button>
-          <button
-            onClick={() => onDelete(query)}
-            className="rounded-lg bg-red-600 p-2 text-white hover:bg-red-700"
-            title="Delete Query"
-          >
-            <TrashIcon size={16} />
+            <PlayIcon weight="fill" size={14} />
           </button>
         </div>
       </div>
@@ -410,21 +539,30 @@ function QueryCard({ query, onEdit, onDelete, onExecute }) {
   );
 }
 
-function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionResult, isExecuting, onExecute, onDownload, onClose }) {
+function ExecuteQueryDialog({
+  query,
+  executeParams,
+  setExecuteParams,
+  executionResult,
+  isExecuting,
+  onExecute,
+  onDownload,
+  onClose,
+}) {
   const handleParamChange = (paramName, value) => {
-    setExecuteParams(prev => ({
+    setExecuteParams((prev) => ({
       ...prev,
-      [paramName]: value
+      [paramName]: value,
     }));
   };
 
-  const canExecute = query.bindVariables.every(param => 
-    !param.required || executeParams[param.name]
+  const canExecute = query.bindVariables.every(
+    (param) => !param.required || executeParams[param.name],
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="mx-4 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg bg-white p-6">
+    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+      <div className="mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-semibold">Execute Query: {query.name}</h3>
           <button
@@ -437,12 +575,12 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
 
         {/* Query Info */}
         <div className="mb-4 rounded-lg bg-gray-50 p-4">
-          <div className="flex items-center gap-2 mb-2">
+          <div className="mb-2 flex items-center gap-2">
             <CodeIcon size={16} />
             <span className="font-medium">SQL Query</span>
             <span className="text-sm text-gray-500">({query.database})</span>
           </div>
-          <pre className="text-sm bg-white p-3 rounded border overflow-x-auto">
+          <pre className="overflow-x-auto rounded border bg-white p-3 text-sm">
             <code>{query.query}</code>
           </pre>
         </div>
@@ -454,29 +592,47 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
             <div className="space-y-3">
               {query.bindVariables.map((param) => (
                 <div key={param.name} className="flex flex-col">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="mb-1 block text-sm font-medium text-gray-700">
                     {param.name}
                     {param.required && <span className="text-red-500">*</span>}
                   </label>
                   {param.description && (
-                    <p className="text-xs text-gray-500 mb-1">{param.description}</p>
+                    <p className="mb-1 text-xs text-gray-500">
+                      {param.description}
+                    </p>
                   )}
                   {param.type === "select" ? (
                     <select
-                      value={executeParams[param.name] || param.defaultValue || ""}
-                      onChange={(e) => handleParamChange(param.name, e.target.value)}
+                      value={
+                        executeParams[param.name] || param.defaultValue || ""
+                      }
+                      onChange={(e) =>
+                        handleParamChange(param.name, e.target.value)
+                      }
                       className="w-full rounded-lg border border-slate-200 px-3 py-2"
                     >
                       <option value="">Select option</option>
-                      {param.options?.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                      {param.options?.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
                       ))}
                     </select>
                   ) : (
                     <input
-                      type={param.type === "date" ? "date" : param.type === "number" ? "number" : "text"}
-                      value={executeParams[param.name] || param.defaultValue || ""}
-                      onChange={(e) => handleParamChange(param.name, e.target.value)}
+                      type={
+                        param.type === "date"
+                          ? "date"
+                          : param.type === "number"
+                            ? "number"
+                            : "text"
+                      }
+                      value={
+                        executeParams[param.name] || param.defaultValue || ""
+                      }
+                      onChange={(e) =>
+                        handleParamChange(param.name, e.target.value)
+                      }
                       className="w-full rounded-lg border border-slate-200 px-3 py-2"
                       placeholder={param.description}
                     />
@@ -492,9 +648,9 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
           <button
             onClick={onExecute}
             disabled={!canExecute || isExecuting}
-            className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <PlayIcon size={16} />
+            <PlayIcon weight="fill" size={16} />
             {isExecuting ? "Executing..." : "Execute Query"}
           </button>
         </div>
@@ -502,7 +658,7 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
         {/* Results */}
         {isExecuting && (
           <div className="mb-4 text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
             <p className="mt-2 text-gray-600">Executing query...</p>
           </div>
         )}
@@ -513,41 +669,55 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
               <h4 className="font-medium">Results</h4>
               <div className="flex items-center gap-4">
                 <span className="text-sm text-gray-600">
-                  {executionResult.rowCount} rows • {executionResult.executionTime}
+                  {executionResult.rowCount} rows •{" "}
+                  {executionResult.executionTime}
                 </span>
                 <button
                   onClick={onDownload}
-                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+                  disabled={!canExecute || isExecuting}
+                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  <DownloadIcon size={14} />
-                  Download CSV
+                  <DownloadIcon weight="fill" size={16} />
+                  {isExecuting ? "Executing..." : "Download CSV"}
                 </button>
               </div>
             </div>
-            
-            <div className="overflow-x-auto rounded-lg border">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    {executionResult.columns.map((col, index) => (
-                      <th key={index} className="px-4 py-2 text-left font-medium">
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {executionResult.data.map((row, index) => (
-                    <tr key={index} className="border-t">
-                      {row.map((cell, cellIndex) => (
-                        <td key={cellIndex} className="px-4 py-2">
-                          {cell}
-                        </td>
+
+            {/* Tabela de Resultados */}
+            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50">
+                      {executionResult.columns.map((col, index) => (
+                        <th
+                          key={index}
+                          className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500"
+                        >
+                          <div className="flex items-center">{col}</div>
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {executionResult.data.map((row, index) => (
+                      <tr
+                        key={index}
+                        className="border-t border-slate-200 hover:bg-slate-50"
+                      >
+                        {row.map((cell, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className="p-3 text-sm text-black"
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}

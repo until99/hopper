@@ -37,27 +37,31 @@ function RouteComponent() {
   const [databaseList, setDatabaseList] = useState(databases);
 
   const handleInputChange = (field, value) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const handleCreateDatabase = () => {
     if (formData.name && formData.host && formData.database) {
       const newDatabase = {
-        id: Math.max(...databaseList.map(db => db.id)) + 1,
+        id: Math.max(...databaseList.map((db) => db.id)) + 1,
         ...formData,
         port: parseInt(formData.port) || getDefaultPort(formData.type),
       };
-      
+
       if (selectedDatabase) {
         // Update existing
-        setDatabaseList(databaseList.map(db => 
-          db.id === selectedDatabase.id ? { ...selectedDatabase, ...formData } : db
-        ));
+        setDatabaseList(
+          databaseList.map((db) =>
+            db.id === selectedDatabase.id
+              ? { ...selectedDatabase, ...formData }
+              : db,
+          ),
+        );
       } else {
         // Create new
         setDatabaseList([...databaseList, newDatabase]);
       }
-      
+
       resetForm();
     }
   };
@@ -79,25 +83,25 @@ function RouteComponent() {
 
   const handleDeleteDatabase = (database) => {
     if (confirm(`Are you sure you want to delete "${database.name}"?`)) {
-      setDatabaseList(databaseList.filter(db => db.id !== database.id));
+      setDatabaseList(databaseList.filter((db) => db.id !== database.id));
     }
   };
 
   const testConnection = async (database) => {
-    setTestingConnection(prev => ({ ...prev, [database.id]: true }));
-    
+    setTestingConnection((prev) => ({ ...prev, [database.id]: true }));
+
     // Simulate connection test
     setTimeout(() => {
       const success = Math.random() > 0.3; // 70% success rate for demo
-      setConnectionStatus(prev => ({ 
-        ...prev, 
+      setConnectionStatus((prev) => ({
+        ...prev,
         [database.id]: {
           success,
           message: success ? "Connection successful" : "Connection failed",
-          timestamp: new Date().toLocaleString()
-        }
+          timestamp: new Date().toLocaleString(),
+        },
       }));
-      setTestingConnection(prev => ({ ...prev, [database.id]: false }));
+      setTestingConnection((prev) => ({ ...prev, [database.id]: false }));
     }, 2000);
   };
 
@@ -127,7 +131,7 @@ function RouteComponent() {
     return ports[type] || 5432;
   };
 
-  const filteredDatabases = databaseList.filter(database => {
+  const filteredDatabases = databaseList.filter((database) => {
     if (!searchQuery.trim()) return true;
     const search = searchQuery.toLowerCase();
     return (
@@ -195,11 +199,13 @@ function RouteComponent() {
 
       {/* Create/Edit Database Dialog */}
       {showDatabaseDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
           <div className="mx-4 w-full max-w-2xl rounded-lg bg-white p-6">
             <div className="mb-4 flex items-center justify-between">
               <h3 className="text-lg font-semibold">
-                {selectedDatabase ? "Edit Database Connection" : "Create New Database Connection"}
+                {selectedDatabase
+                  ? "Edit Database Connection"
+                  : "Create New Database Connection"}
               </h3>
               <button
                 onClick={resetForm}
@@ -208,11 +214,13 @@ function RouteComponent() {
                 <XIcon size={20} />
               </button>
             </div>
-            
+
             <div className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Name</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Name
+                  </label>
                   <input
                     type="text"
                     value={formData.name}
@@ -221,38 +229,51 @@ function RouteComponent() {
                     placeholder="Database name"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Type</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Type
+                  </label>
                   <select
                     value={formData.type}
                     onChange={(e) => {
                       handleInputChange("type", e.target.value);
-                      handleInputChange("port", getDefaultPort(e.target.value).toString());
+                      handleInputChange(
+                        "port",
+                        getDefaultPort(e.target.value).toString(),
+                      );
                     }}
                     className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   >
-                    {databaseTypes.map(type => (
-                      <option key={type} value={type}>{type}</option>
+                    {databaseTypes.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
                     ))}
                   </select>
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Description
+                </label>
                 <textarea
                   value={formData.description}
-                  onChange={(e) => handleInputChange("description", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("description", e.target.value)
+                  }
                   className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   rows="2"
                   placeholder="Database description"
                 />
               </div>
-              
+
               <div className="grid grid-cols-3 gap-4">
                 <div className="col-span-2">
-                  <label className="block text-sm font-medium text-gray-700">Host</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Host
+                  </label>
                   <input
                     type="text"
                     value={formData.host}
@@ -261,9 +282,11 @@ function RouteComponent() {
                     placeholder="localhost or IP address"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Port</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Port
+                  </label>
                   <input
                     type="number"
                     value={formData.port}
@@ -273,43 +296,55 @@ function RouteComponent() {
                   />
                 </div>
               </div>
-              
+
               <div>
-                <label className="block text-sm font-medium text-gray-700">Database Name</label>
+                <label className="block text-sm font-medium text-gray-700">
+                  Database Name
+                </label>
                 <input
                   type="text"
                   value={formData.database}
-                  onChange={(e) => handleInputChange("database", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange("database", e.target.value)
+                  }
                   className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                   placeholder="Database name"
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Username</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Username
+                  </label>
                   <input
                     type="text"
                     value={formData.username}
-                    onChange={(e) => handleInputChange("username", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("username", e.target.value)
+                    }
                     className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                     placeholder="Database username"
                   />
                 </div>
-                
+
                 <div>
-                  <label className="block text-sm font-medium text-gray-700">Password</label>
+                  <label className="block text-sm font-medium text-gray-700">
+                    Password
+                  </label>
                   <input
                     type="password"
                     value={formData.password}
-                    onChange={(e) => handleInputChange("password", e.target.value)}
+                    onChange={(e) =>
+                      handleInputChange("password", e.target.value)
+                    }
                     className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
                     placeholder="Database password"
                   />
                 </div>
               </div>
             </div>
-            
+
             <div className="mt-6 flex justify-end gap-2">
               <button
                 onClick={resetForm}
@@ -331,9 +366,16 @@ function RouteComponent() {
   );
 }
 
-function DatabaseCard({ database, connectionStatus, isTestingConnection, onEdit, onDelete, onTestConnection }) {
+function DatabaseCard({
+  database,
+  connectionStatus,
+  isTestingConnection,
+  onEdit,
+  onDelete,
+  onTestConnection,
+}) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-white p-4">
+    <div className="h-fit rounded-lg border border-slate-200 bg-white p-4">
       <div className="flex justify-between align-top">
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -342,9 +384,16 @@ function DatabaseCard({ database, connectionStatus, isTestingConnection, onEdit,
           </div>
           <p className="text-sm text-gray-500">{database.description}</p>
           <div className="mt-2 space-y-1 text-xs text-gray-400">
-            <p><span className="font-medium">Type:</span> {database.type}</p>
-            <p><span className="font-medium">Host:</span> {database.host}:{database.port}</p>
-            <p><span className="font-medium">Database:</span> {database.database}</p>
+            <p>
+              <span className="font-medium">Type:</span> {database.type}
+            </p>
+            <p>
+              <span className="font-medium">Host:</span> {database.host}:
+              {database.port}
+            </p>
+            <p>
+              <span className="font-medium">Database:</span> {database.database}
+            </p>
           </div>
         </div>
       </div>
@@ -358,11 +407,15 @@ function DatabaseCard({ database, connectionStatus, isTestingConnection, onEdit,
             ) : (
               <XCircleIcon size={16} className="text-red-600" />
             )}
-            <span className={`text-sm ${connectionStatus.success ? 'text-green-600' : 'text-red-600'}`}>
+            <span
+              className={`text-sm ${connectionStatus.success ? "text-green-600" : "text-red-600"}`}
+            >
               {connectionStatus.message}
             </span>
           </div>
-          <p className="text-xs text-gray-500 mt-1">{connectionStatus.timestamp}</p>
+          <p className="mt-1 text-xs text-gray-500">
+            {connectionStatus.timestamp}
+          </p>
         </div>
       )}
 
@@ -370,11 +423,11 @@ function DatabaseCard({ database, connectionStatus, isTestingConnection, onEdit,
         <button
           onClick={() => onTestConnection(database)}
           disabled={isTestingConnection}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-3 py-2 text-sm text-white hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="flex items-center gap-2 rounded-lg bg-green-600 px-3 py-2 text-sm text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {isTestingConnection ? (
             <>
-              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+              <div className="h-4 w-4 animate-spin rounded-full border-b-2 border-white"></div>
               Testing...
             </>
           ) : (
@@ -384,7 +437,7 @@ function DatabaseCard({ database, connectionStatus, isTestingConnection, onEdit,
             </>
           )}
         </button>
-        
+
         <div className="flex gap-2">
           <button
             onClick={() => onEdit(database)}

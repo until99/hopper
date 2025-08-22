@@ -429,12 +429,12 @@ function RouteComponent() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
           <div className="w-full max-w-2xl rounded-lg bg-white shadow-lg">
             {/* Header */}
-            <div className="flex items-center justify-between border-b p-6">
+            <div className="flex items-center justify-between p-6">
               <div>
                 <h2 className="text-xl font-bold">
                   Add Dashboards to Workspace
                 </h2>
-                <p className="text-md text-gray-500">
+                <p className="text-sm text-gray-500">
                   Select dashboards to add to "{selectedWorkspace}" workspace.
                 </p>
               </div>
@@ -447,7 +447,7 @@ function RouteComponent() {
             </div>
 
             {/* Search Bar */}
-            <div className="border-b p-4">
+            <div className="p-4">
               <div className="relative">
                 <MagnifyingGlassIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
                 <input
@@ -565,7 +565,7 @@ function RouteComponent() {
             </div>
 
             {/* Footer */}
-            <div className="flex items-center justify-between border-t bg-gray-50 px-6 py-4">
+            <div className="flex items-center justify-between border-t border-slate-200 bg-gray-50 px-6 py-4">
               <div className="text-sm text-gray-600">
                 {selectedDashboardIds.length > 0 ? (
                   <span className="font-medium">
