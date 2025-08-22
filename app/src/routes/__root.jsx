@@ -11,6 +11,7 @@ import {
   FileSqlIcon,
   ChartPieSliceIcon,
   ChartBarIcon,
+  DatabaseIcon,
 } from "@phosphor-icons/react";
 
 import { useState } from "react";
@@ -29,15 +30,21 @@ let menu_items = [
     admin_only: false,
   },
   {
-    route: "admin/dashboard",
+    route: "admin/workspaces",
     icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
-    routeName: "Dashboards",
+    routeName: "Workspaces",
     admin_only: true,
   },
   {
     route: "admin/reports",
     icon: <FileSqlIcon size={22} className="mr-2 inline-block" />,
     routeName: "Reports",
+    admin_only: true,
+  },
+  {
+    route: "admin/databases",
+    icon: <DatabaseIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Databases",
     admin_only: true,
   },
   {

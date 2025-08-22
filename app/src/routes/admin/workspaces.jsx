@@ -16,7 +16,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
 import { dashboards_list } from "../../utils/variables/mockData";
 
-export const Route = createFileRoute("/admin/dashboard")({
+export const Route = createFileRoute("/admin/workspaces")({
   component: RouteComponent,
 });
 
@@ -35,6 +35,13 @@ function RouteComponent() {
   const [showWorkspaceDropdown, setShowWorkspaceDropdown] = useState(false);
   const [selectedWorkspace, setSelectedWorkspace] = useState(null);
   const [dashboardSearch, setDashboardSearch] = useState("");
+  const [
+    showAddDashboardToWorkspaceDialog,
+    setShowAddDashboardToWorkspaceDialog,
+  ] = useState(false);
+  const [selectedDashboardIds, setSelectedDashboardIds] = useState([]);
+  const [dashboardSelectionSearchTerm, setDashboardSelectionSearchTerm] =
+    useState("");
 
   const workspaceRef = useRef(null);
 
@@ -155,6 +162,82 @@ function RouteComponent() {
       .catch((err) => {
         console.error("Failed to copy dashboard ID:", err);
       });
+  };
+
+  const handleAddDashboardToWorkspace = () => {
+    if (!selectedWorkspace) return;
+    setShowAddDashboardToWorkspaceDialog(true);
+    setSelectedDashboardIds([]);
+    setDashboardSelectionSearchTerm("");
+  };
+
+  const handleDashboardToggle = (dashboardId) => {
+    setSelectedDashboardIds((prev) =>
+      prev.includes(dashboardId)
+        ? prev.filter((id) => id !== dashboardId)
+        : [...prev, dashboardId],
+    );
+  };
+
+  const handleSelectAllDashboards = () => {
+    const filtered = getFilteredAvailableDashboards();
+    const allSelected = filtered.every((dashboard) =>
+      selectedDashboardIds.includes(dashboard.id),
+    );
+
+    if (allSelected) {
+      // Deselecionar todos os dashboards filtrados
+      setSelectedDashboardIds((prev) =>
+        prev.filter((id) => !filtered.some((dashboard) => dashboard.id === id)),
+      );
+    } else {
+      // Selecionar todos os dashboards filtrados
+      const newIds = filtered
+        .filter((dashboard) => !selectedDashboardIds.includes(dashboard.id))
+        .map((dashboard) => dashboard.id);
+      setSelectedDashboardIds((prev) => [...prev, ...newIds]);
+    }
+  };
+
+  const handleConfirmAddDashboards = () => {
+    console.log(
+      "Add dashboards to workspace:",
+      selectedWorkspace,
+      selectedDashboardIds,
+    );
+    // Implementar lógica de adição de dashboards ao workspace
+    setShowAddDashboardToWorkspaceDialog(false);
+    setSelectedDashboardIds([]);
+    setDashboardSelectionSearchTerm("");
+  };
+
+  const getAvailableDashboards = () => {
+    if (!selectedWorkspace) return [];
+    // Retornar dashboards que não estão no workspace selecionado
+    return dashboards_list.filter(
+      (dashboard) => dashboard.workspace !== selectedWorkspace,
+    );
+  };
+
+  const getFilteredAvailableDashboards = () => {
+    const availableDashboards = getAvailableDashboards();
+    if (!dashboardSelectionSearchTerm.trim()) return availableDashboards;
+
+    return availableDashboards.filter(
+      (dashboard) =>
+        dashboard.title
+          .toLowerCase()
+          .includes(dashboardSelectionSearchTerm.toLowerCase()) ||
+        dashboard.description
+          .toLowerCase()
+          .includes(dashboardSelectionSearchTerm.toLowerCase()) ||
+        dashboard.category
+          .toLowerCase()
+          .includes(dashboardSelectionSearchTerm.toLowerCase()) ||
+        dashboard.workspace
+          .toLowerCase()
+          .includes(dashboardSelectionSearchTerm.toLowerCase()),
+    );
   };
   return (
     <>
@@ -279,7 +362,7 @@ function RouteComponent() {
                       {formData.workspace || "Select a workspace"}
                     </span>
                     <CaretDownIcon
-                      className={`transition-transform ${showWorkspaceDropdown ? "rotate-180" : ""}`}
+                      className={`transition-transform ${showWorkspaceDropdown ? `rotate-180` : ``}`}
                     />
                   </div>
 
@@ -341,6 +424,186 @@ function RouteComponent() {
           </div>
         </div>
       )}
+
+      {showAddDashboardToWorkspaceDialog && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+          <div className="w-full max-w-2xl rounded-lg bg-white shadow-lg">
+            {/* Header */}
+            <div className="flex items-center justify-between border-b p-6">
+              <div>
+                <h2 className="text-xl font-bold">
+                  Add Dashboards to Workspace
+                </h2>
+                <p className="text-md text-gray-500">
+                  Select dashboards to add to "{selectedWorkspace}" workspace.
+                </p>
+              </div>
+              <button
+                className="flex hover:cursor-pointer"
+                onClick={() => setShowAddDashboardToWorkspaceDialog(false)}
+              >
+                <XIcon className="h-6 w-6" />
+              </button>
+            </div>
+
+            {/* Search Bar */}
+            <div className="border-b p-4">
+              <div className="relative">
+                <MagnifyingGlassIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search dashboards by title, description, category or workspace..."
+                  value={dashboardSelectionSearchTerm}
+                  onChange={(e) =>
+                    setDashboardSelectionSearchTerm(e.target.value)
+                  }
+                  className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-9 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              {(() => {
+                const availableDashboards = getAvailableDashboards();
+                const filteredDashboards = getFilteredAvailableDashboards();
+
+                if (availableDashboards.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <ChartBarIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No dashboards available
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        All dashboards are already in this workspace
+                      </p>
+                    </div>
+                  );
+                }
+
+                if (filteredDashboards.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <MagnifyingGlassIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No dashboards found
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        Try adjusting your search terms
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {/* Select All Option */}
+                    <div className="mb-4 flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-3">
+                      <input
+                        type="checkbox"
+                        checked={
+                          filteredDashboards.length > 0 &&
+                          filteredDashboards.every((dashboard) =>
+                            selectedDashboardIds.includes(dashboard.id),
+                          )
+                        }
+                        onChange={handleSelectAllDashboards}
+                        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <div className="flex-1">
+                        <div className="text-sm font-medium text-blue-900">
+                          Select All ({filteredDashboards.length} dashboards)
+                        </div>
+                        <div className="text-xs text-blue-700">
+                          {selectedDashboardIds.length > 0
+                            ? `${selectedDashboardIds.length} selected`
+                            : "None selected"}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Dashboard List */}
+                    <div className="max-h-80 space-y-2 overflow-y-auto">
+                      {filteredDashboards.map((dashboard) => (
+                        <div
+                          key={dashboard.id}
+                          className={`flex items-center gap-3 rounded-lg border p-3 transition-colors ${
+                            selectedDashboardIds.includes(dashboard.id)
+                              ? "border-blue-300 bg-blue-50"
+                              : "border-slate-200 hover:bg-gray-50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedDashboardIds.includes(
+                              dashboard.id,
+                            )}
+                            onChange={() => handleDashboardToggle(dashboard.id)}
+                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <ChartBarIcon className="h-5 w-5 text-blue-600" />
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">
+                              {dashboard.title}
+                            </div>
+                            <div className="text-xs text-slate-500">
+                              {dashboard.workspace} • {dashboard.category}
+                            </div>
+                            {dashboard.description && (
+                              <div className="mt-1 truncate text-xs text-slate-400">
+                                {dashboard.description}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
+            </div>
+
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t bg-gray-50 px-6 py-4">
+              <div className="text-sm text-gray-600">
+                {selectedDashboardIds.length > 0 ? (
+                  <span className="font-medium">
+                    {selectedDashboardIds.length} dashboard
+                    {selectedDashboardIds.length !== 1 ? "s" : ""} selected
+                  </span>
+                ) : (
+                  "No dashboards selected"
+                )}
+              </div>
+              <div className="flex gap-3">
+                <button
+                  className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
+                  onClick={() => setShowAddDashboardToWorkspaceDialog(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={`rounded px-4 py-2 text-sm font-semibold text-white ${
+                    selectedDashboardIds.length > 0
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "cursor-not-allowed bg-gray-400"
+                  }`}
+                  onClick={handleConfirmAddDashboards}
+                  disabled={selectedDashboardIds.length === 0}
+                >
+                  Add{" "}
+                  {selectedDashboardIds.length > 0
+                    ? selectedDashboardIds.length
+                    : ""}{" "}
+                  Dashboard{selectedDashboardIds.length !== 1 ? "s" : ""}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <section className="p-4">
         <div className="flex items-center justify-between">
           <div>
@@ -379,7 +642,7 @@ function RouteComponent() {
             </div>
             <div className="flex flex-col rounded-b-md border-x border-b border-slate-200 bg-white p-2">
               {workspaces.map((workspace) => (
-                <div key={workspace} className="mb-3 last:mb-0">
+                <div key={workspace} className="group mb-3 last:mb-0">
                   <div
                     className={`flex cursor-pointer items-center justify-between rounded-md border-slate-200 p-3 transition-colors hover:bg-slate-100 ${
                       selectedWorkspace === workspace
@@ -408,7 +671,7 @@ function RouteComponent() {
                       onClick={(e) => e.stopPropagation()}
                     >
                       <button
-                        className="rounded-lg p-2 hover:cursor-pointer hover:bg-slate-200"
+                        className="rounded-lg p-1.5 opacity-0 transition-opacity group-hover:opacity-100 hover:cursor-pointer hover:bg-slate-200"
                         onClick={() => handleEditWorkspace(workspace)}
                         title="Edit workspace"
                       >
@@ -418,7 +681,7 @@ function RouteComponent() {
                         />
                       </button>
                       <button
-                        className="rounded-lg p-2 hover:cursor-pointer hover:bg-slate-200"
+                        className="rounded-lg p-1.5 opacity-0 transition-opacity group-hover:opacity-100 hover:cursor-pointer hover:bg-red-100"
                         onClick={() => handleDeleteWorkspace(workspace)}
                         title="Delete workspace"
                       >
@@ -447,15 +710,28 @@ function RouteComponent() {
             {selectedWorkspace ? (
               <div>
                 <div className="mb-4 border-b border-slate-200 pb-4">
-                  <h3 className="font-bold text-slate-900">
-                    Workspace: {selectedWorkspace}
-                  </h3>
-                  <p className="text-sm text-slate-500">
-                    Showing all dashboards in the {selectedWorkspace} workspace
-                  </p>
-                  <div className="mt-2 text-xs text-slate-400">
-                    {selectedDashboards.length} dashboard
-                    {selectedDashboards.length !== 1 ? "s" : ""} found
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-bold text-slate-900">
+                        Workspace: {selectedWorkspace}
+                      </h3>
+                      <p className="text-sm text-slate-500">
+                        Showing all dashboards in the {selectedWorkspace}{" "}
+                        workspace
+                      </p>
+                      <div className="mt-2 text-xs text-slate-400">
+                        {selectedDashboards.length} dashboard
+                        {selectedDashboards.length !== 1 ? "s" : ""} found
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <button
+                        className="flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                        onClick={handleAddDashboardToWorkspace}
+                      >
+                        <PlusIcon weight="bold" size={14} /> Add Dashboard
+                      </button>
+                    </div>
                   </div>
                 </div>
 

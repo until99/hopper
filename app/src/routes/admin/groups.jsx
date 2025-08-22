@@ -39,6 +39,10 @@ function RouteComponent() {
   const [activeTab, setActiveTab] = useState("members");
   const [availableUsers, setAvailableUsers] = useState([]);
   const [availableDashboards, setAvailableDashboards] = useState([]);
+  const [selectedUserIds, setSelectedUserIds] = useState([]);
+  const [memberSearchTerm, setMemberSearchTerm] = useState("");
+  const [selectedDashboardIds, setSelectedDashboardIds] = useState([]);
+  const [dashboardSearchTerm, setDashboardSearchTerm] = useState("");
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -68,6 +72,8 @@ function RouteComponent() {
 
   const handleAddMember = () => {
     setShowAddMemberDialog(true);
+    setSelectedUserIds([]);
+    setMemberSearchTerm("");
     // Obter usuários que não estão no grupo
     if (selectedGroup) {
       const nonMembers = users_list.filter(
@@ -79,6 +85,8 @@ function RouteComponent() {
 
   const handleAddDashboard = () => {
     setShowAddDashboardDialog(true);
+    setSelectedDashboardIds([]);
+    setDashboardSearchTerm("");
     // Obter dashboards que o grupo não tem acesso
     if (selectedGroup) {
       const nonAccessible = dashboards_list.filter(
@@ -101,6 +109,109 @@ function RouteComponent() {
       selectedGroup.id,
     );
     // Implementar lógica de remoção
+  };
+
+  const handleUserToggle = (userId) => {
+    setSelectedUserIds((prev) =>
+      prev.includes(userId)
+        ? prev.filter((id) => id !== userId)
+        : [...prev, userId],
+    );
+  };
+
+  const handleSelectAllUsers = () => {
+    const filtered = getFilteredAvailableUsers();
+    const allSelected = filtered.every((user) =>
+      selectedUserIds.includes(user.id),
+    );
+
+    if (allSelected) {
+      // Deselecionar todos os usuários filtrados
+      setSelectedUserIds((prev) =>
+        prev.filter((id) => !filtered.some((user) => user.id === id)),
+      );
+    } else {
+      // Selecionar todos os usuários filtrados
+      const newIds = filtered
+        .filter((user) => !selectedUserIds.includes(user.id))
+        .map((user) => user.id);
+      setSelectedUserIds((prev) => [...prev, ...newIds]);
+    }
+  };
+
+  const handleConfirmAddMembers = () => {
+    console.log("Add users to group:", selectedUserIds);
+    // Implementar lógica de adição
+    setShowAddMemberDialog(false);
+    setSelectedUserIds([]);
+    setMemberSearchTerm("");
+  };
+
+  const getFilteredAvailableUsers = () => {
+    if (!memberSearchTerm.trim()) return availableUsers;
+
+    return availableUsers.filter(
+      (user) =>
+        user.fullName.toLowerCase().includes(memberSearchTerm.toLowerCase()) ||
+        user.email.toLowerCase().includes(memberSearchTerm.toLowerCase()) ||
+        user.role.toLowerCase().includes(memberSearchTerm.toLowerCase()),
+    );
+  };
+
+  const handleDashboardToggle = (dashboardId) => {
+    setSelectedDashboardIds((prev) =>
+      prev.includes(dashboardId)
+        ? prev.filter((id) => id !== dashboardId)
+        : [...prev, dashboardId],
+    );
+  };
+
+  const handleSelectAllDashboards = () => {
+    const filtered = getFilteredAvailableDashboards();
+    const allSelected = filtered.every((dashboard) =>
+      selectedDashboardIds.includes(dashboard.id),
+    );
+
+    if (allSelected) {
+      // Deselecionar todos os dashboards filtrados
+      setSelectedDashboardIds((prev) =>
+        prev.filter((id) => !filtered.some((dashboard) => dashboard.id === id)),
+      );
+    } else {
+      // Selecionar todos os dashboards filtrados
+      const newIds = filtered
+        .filter((dashboard) => !selectedDashboardIds.includes(dashboard.id))
+        .map((dashboard) => dashboard.id);
+      setSelectedDashboardIds((prev) => [...prev, ...newIds]);
+    }
+  };
+
+  const handleConfirmAddDashboards = () => {
+    console.log("Grant dashboard access to group:", selectedDashboardIds);
+    // Implementar lógica de concessão de acesso
+    setShowAddDashboardDialog(false);
+    setSelectedDashboardIds([]);
+    setDashboardSearchTerm("");
+  };
+
+  const getFilteredAvailableDashboards = () => {
+    if (!dashboardSearchTerm.trim()) return availableDashboards;
+
+    return availableDashboards.filter(
+      (dashboard) =>
+        dashboard.title
+          .toLowerCase()
+          .includes(dashboardSearchTerm.toLowerCase()) ||
+        dashboard.description
+          .toLowerCase()
+          .includes(dashboardSearchTerm.toLowerCase()) ||
+        dashboard.category
+          .toLowerCase()
+          .includes(dashboardSearchTerm.toLowerCase()) ||
+        dashboard.workspace
+          .toLowerCase()
+          .includes(dashboardSearchTerm.toLowerCase()),
+    );
   };
 
   // Obter usuários do grupo selecionado
@@ -151,11 +262,12 @@ function RouteComponent() {
     <>
       {showAddMemberDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-            <div className="items-top flex justify-between">
+          <div className="w-full max-w-2xl rounded-lg bg-white shadow-lg">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6">
               <div>
-                <h2 className="mb-2 text-xl font-bold">Add Members to Group</h2>
-                <p className="text-md mb-6 text-gray-500">
+                <h2 className="text-xl font-bold">Add Members to Group</h2>
+                <p className="text-sm text-gray-500">
                   Select users to add to "{selectedGroup?.name}" group.
                 </p>
               </div>
@@ -167,55 +279,146 @@ function RouteComponent() {
               </button>
             </div>
 
-            <div className="flex max-h-96 flex-col gap-4 overflow-y-auto">
-              {availableUsers.length > 0 ? (
-                availableUsers.map((user) => (
-                  <div
-                    key={user.id}
-                    className="flex items-center justify-between rounded-lg border border-slate-200 p-3"
-                  >
-                    <div className="flex items-center gap-3">
-                      <UserIcon className="h-5 w-5 text-slate-400" />
-                      <div>
-                        <div className="text-sm font-medium">
-                          {user.fullName}
+            {/* Search Bar */}
+            <div className="p-4">
+              <div className="relative">
+                <MagnifyingGlassIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search users by name, email or role..."
+                  value={memberSearchTerm}
+                  onChange={(e) => setMemberSearchTerm(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-9 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              {(() => {
+                const filteredUsers = getFilteredAvailableUsers();
+
+                if (availableUsers.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <UserIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No users available
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        All users are already members of this group
+                      </p>
+                    </div>
+                  );
+                }
+
+                if (filteredUsers.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <MagnifyingGlassIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No users found
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        Try adjusting your search terms
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {/* Select All Option */}
+                    <div className="mb-4 flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-3">
+                      <input
+                        type="checkbox"
+                        checked={
+                          filteredUsers.length > 0 &&
+                          filteredUsers.every((user) =>
+                            selectedUserIds.includes(user.id),
+                          )
+                        }
+                        onChange={handleSelectAllUsers}
+                        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <div className="flex-1">
+                        <div className="text-sm font-medium text-blue-900">
+                          Select All ({filteredUsers.length} users)
                         </div>
-                        <div className="text-xs text-slate-500">
-                          {user.email} • {user.role}
+                        <div className="text-xs text-blue-700">
+                          {selectedUserIds.length > 0
+                            ? `${selectedUserIds.length} selected`
+                            : "None selected"}
                         </div>
                       </div>
                     </div>
-                    <button
-                      className="rounded bg-green-600 px-3 py-1 text-xs font-medium text-white hover:bg-green-700"
-                      onClick={() => {
-                        console.log("Add user to group:", user.id);
-                        // Implementar lógica de adição
-                      }}
-                    >
-                      Add
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div className="py-8 text-center">
-                  <UserIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-                  <p className="font-medium text-gray-500">
-                    No users available
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    All users are already members of this group
-                  </p>
-                </div>
-              )}
+
+                    {/* User List */}
+                    <div className="max-h-80 space-y-2 overflow-y-auto">
+                      {filteredUsers.map((user) => (
+                        <div
+                          key={user.id}
+                          className={`flex items-center gap-3 rounded-lg border p-3 transition-colors ${
+                            selectedUserIds.includes(user.id)
+                              ? "border-blue-300 bg-blue-50"
+                              : "border-slate-200 hover:bg-gray-50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedUserIds.includes(user.id)}
+                            onChange={() => handleUserToggle(user.id)}
+                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <UserIcon className="h-5 w-5 text-slate-400" />
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">
+                              {user.fullName}
+                            </div>
+                            <div className="text-xs text-slate-500">
+                              {user.email} • {user.role}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
-            <div className="mt-6 flex justify-end">
-              <button
-                className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
-                onClick={() => setShowAddMemberDialog(false)}
-              >
-                Close
-              </button>
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t border-slate-200 bg-gray-50 px-6 py-4">
+              <div className="text-sm text-gray-600">
+                {selectedUserIds.length > 0 ? (
+                  <span className="font-medium">
+                    {selectedUserIds.length} user
+                    {selectedUserIds.length !== 1 ? "s" : ""} selected
+                  </span>
+                ) : (
+                  "No users selected"
+                )}
+              </div>
+              <div className="flex gap-3">
+                <button
+                  className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
+                  onClick={() => setShowAddMemberDialog(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={`rounded px-4 py-2 text-sm font-semibold text-white ${
+                    selectedUserIds.length > 0
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "cursor-not-allowed bg-gray-400"
+                  }`}
+                  onClick={handleConfirmAddMembers}
+                  disabled={selectedUserIds.length === 0}
+                >
+                  Add {selectedUserIds.length > 0 ? selectedUserIds.length : ""}{" "}
+                  Member{selectedUserIds.length !== 1 ? "s" : ""}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -223,11 +426,12 @@ function RouteComponent() {
 
       {showAddDashboardDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-            <div className="items-top flex justify-between">
+          <div className="w-full max-w-2xl rounded-lg bg-white shadow-lg">
+            {/* Header */}
+            <div className="flex items-center justify-between p-6">
               <div>
-                <h2 className="mb-2 text-xl font-bold">Add Dashboard Access</h2>
-                <p className="text-md mb-6 text-gray-500">
+                <h2 className="text-xl font-bold">Add Dashboard Access</h2>
+                <p className="text-sm text-gray-500">
                   Grant "{selectedGroup?.name}" group access to dashboards.
                 </p>
               </div>
@@ -239,55 +443,156 @@ function RouteComponent() {
               </button>
             </div>
 
-            <div className="flex max-h-96 flex-col gap-4 overflow-y-auto">
-              {availableDashboards.length > 0 ? (
-                availableDashboards.map((dashboard) => (
-                  <div
-                    key={dashboard.id}
-                    className="flex items-center justify-between rounded-lg border border-slate-200 p-3"
-                  >
-                    <div className="flex items-center gap-3">
-                      <ChartBarIcon className="h-5 w-5 text-blue-600" />
+            {/* Search Bar */}
+            <div className="p-4">
+              <div className="relative">
+                <MagnifyingGlassIcon className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <input
+                  type="text"
+                  placeholder="Search dashboards by title, description, category or workspace..."
+                  value={dashboardSearchTerm}
+                  onChange={(e) => setDashboardSearchTerm(e.target.value)}
+                  className="w-full rounded-lg border border-gray-300 py-2 pr-4 pl-9 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Content */}
+            <div className="p-6">
+              {(() => {
+                const filteredDashboards = getFilteredAvailableDashboards();
+
+                if (availableDashboards.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <ChartBarIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No dashboards available
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        This group already has access to all dashboards
+                      </p>
+                    </div>
+                  );
+                }
+
+                if (filteredDashboards.length === 0) {
+                  return (
+                    <div className="py-8 text-center">
+                      <MagnifyingGlassIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
+                      <p className="font-medium text-gray-500">
+                        No dashboards found
+                      </p>
+                      <p className="text-sm text-gray-400">
+                        Try adjusting your search terms
+                      </p>
+                    </div>
+                  );
+                }
+
+                return (
+                  <>
+                    {/* Select All Option */}
+                    <div className="mb-4 flex items-center gap-3 rounded-lg border border-blue-200 bg-blue-50 p-3">
+                      <input
+                        type="checkbox"
+                        checked={
+                          filteredDashboards.length > 0 &&
+                          filteredDashboards.every((dashboard) =>
+                            selectedDashboardIds.includes(dashboard.id),
+                          )
+                        }
+                        onChange={handleSelectAllDashboards}
+                        className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
                       <div className="flex-1">
-                        <div className="text-sm font-medium">
-                          {dashboard.title}
+                        <div className="text-sm font-medium text-blue-900">
+                          Select All ({filteredDashboards.length} dashboards)
                         </div>
-                        <div className="text-xs text-slate-500">
-                          {dashboard.workspace} • {dashboard.category}
+                        <div className="text-xs text-blue-700">
+                          {selectedDashboardIds.length > 0
+                            ? `${selectedDashboardIds.length} selected`
+                            : "None selected"}
                         </div>
                       </div>
                     </div>
-                    <button
-                      className="rounded bg-green-600 px-3 py-1 text-xs font-medium text-white hover:bg-green-700"
-                      onClick={() => {
-                        console.log("Grant dashboard access:", dashboard.id);
-                        // Implementar lógica de concessão de acesso
-                      }}
-                    >
-                      Grant
-                    </button>
-                  </div>
-                ))
-              ) : (
-                <div className="py-8 text-center">
-                  <ChartBarIcon className="mx-auto mb-4 h-12 w-12 text-gray-300" />
-                  <p className="font-medium text-gray-500">
-                    No dashboards available
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    This group already has access to all dashboards
-                  </p>
-                </div>
-              )}
+
+                    {/* Dashboard List */}
+                    <div className="max-h-80 space-y-2 overflow-y-auto">
+                      {filteredDashboards.map((dashboard) => (
+                        <div
+                          key={dashboard.id}
+                          className={`flex items-center gap-3 rounded-lg border p-3 transition-colors ${
+                            selectedDashboardIds.includes(dashboard.id)
+                              ? "border-blue-300 bg-blue-50"
+                              : "border-slate-200 hover:bg-gray-50"
+                          }`}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedDashboardIds.includes(
+                              dashboard.id,
+                            )}
+                            onChange={() => handleDashboardToggle(dashboard.id)}
+                            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                          />
+                          <ChartBarIcon className="h-5 w-5 text-blue-600" />
+                          <div className="flex-1">
+                            <div className="text-sm font-medium">
+                              {dashboard.title}
+                            </div>
+                            <div className="text-xs text-slate-500">
+                              {dashboard.workspace} • {dashboard.category}
+                            </div>
+                            {dashboard.description && (
+                              <div className="mt-1 truncate text-xs text-slate-400">
+                                {dashboard.description}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
             </div>
 
-            <div className="mt-6 flex justify-end">
-              <button
-                className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
-                onClick={() => setShowAddDashboardDialog(false)}
-              >
-                Close
-              </button>
+            {/* Footer */}
+            <div className="flex items-center justify-between border-t border-slate-200 bg-gray-50 px-6 py-4">
+              <div className="text-sm text-gray-600">
+                {selectedDashboardIds.length > 0 ? (
+                  <span className="font-medium">
+                    {selectedDashboardIds.length} dashboard
+                    {selectedDashboardIds.length !== 1 ? "s" : ""} selected
+                  </span>
+                ) : (
+                  "No dashboards selected"
+                )}
+              </div>
+              <div className="flex gap-3">
+                <button
+                  className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
+                  onClick={() => setShowAddDashboardDialog(false)}
+                >
+                  Cancel
+                </button>
+                <button
+                  className={`rounded px-4 py-2 text-sm font-semibold text-white ${
+                    selectedDashboardIds.length > 0
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "cursor-not-allowed bg-gray-400"
+                  }`}
+                  onClick={handleConfirmAddDashboards}
+                  disabled={selectedDashboardIds.length === 0}
+                >
+                  Grant Access to{" "}
+                  {selectedDashboardIds.length > 0
+                    ? selectedDashboardIds.length
+                    : ""}{" "}
+                  Dashboard{selectedDashboardIds.length !== 1 ? "s" : ""}
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -380,7 +685,7 @@ function RouteComponent() {
             </div>
             <div className="flex flex-col rounded-b-md border-x border-b border-slate-200 bg-white p-2">
               {groups_list.map((group) => (
-                <div key={group.id} className="mb-3 last:mb-0">
+                <div key={group.id} className="group mb-3 last:mb-0">
                   <div
                     className={`flex cursor-pointer items-center justify-between rounded-md border-slate-200 p-3 transition-colors hover:bg-slate-100 ${
                       selectedGroup?.id === group.id
@@ -402,6 +707,31 @@ function RouteComponent() {
                           {group.dashboards.length !== 1 ? "s" : ""}
                         </p>
                       </div>
+                    </div>
+                    <div className="flex gap-1">
+                      <button
+                        className="rounded-lg p-1.5 opacity-0 transition-opacity group-hover:opacity-100 hover:cursor-pointer hover:bg-slate-200"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleEditGroup(group);
+                        }}
+                        title="Edit group"
+                      >
+                        <PencilSimpleIcon
+                          size={14}
+                          className="text-slate-600"
+                        />
+                      </button>
+                      <button
+                        className="rounded-lg p-1.5 opacity-0 transition-opacity group-hover:opacity-100 hover:cursor-pointer hover:bg-red-100"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleDeleteGroup(group);
+                        }}
+                        title="Delete group"
+                      >
+                        <TrashIcon size={14} className="text-red-600" />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -432,21 +762,37 @@ function RouteComponent() {
                         {selectedGroup.description}
                       </p>
                     </div>
-                    <div className="flex gap-2">
-                      <button
-                        className="rounded-lg p-2 hover:cursor-pointer hover:bg-slate-200"
-                        onClick={() => handleEditGroup(selectedGroup)}
-                        title="Edit group"
-                      >
-                        <PencilSimpleIcon size={16} className="text-black" />
-                      </button>
-                      <button
-                        className="rounded-lg p-2 hover:cursor-pointer hover:bg-slate-200"
-                        onClick={() => handleDeleteGroup(selectedGroup)}
-                        title="Delete group"
-                      >
-                        <TrashIcon size={16} className="text-red-600" />
-                      </button>
+                    <div className="flex gap-3">
+                      {activeTab === "members" && (
+                        // <button
+                        //   className="flex items-center gap-2 rounded-md bg-green-600 px-4 py-1 text-xs font-medium text-white hover:bg-green-700"
+                        //   onClick={handleAddMember}
+                        // >
+                        //   <UserPlusIcon weight="bold" size={14} /> Add Member
+                        // </button>
+
+                        <button
+                          className="flex items-center gap-2 rounded-md bg-green-600 px-4 py-2 text-sm font-medium text-white hover:bg-green-700"
+                          onClick={handleAddMember}
+                        >
+                          <UserPlusIcon weight="bold" size={14} /> Add Member
+                        </button>
+                      )}
+                      {activeTab === "dashboards" && (
+                        // <button
+                        //   className="flex items-center gap-2 rounded-md bg-blue-600 px-4 py-1 text-xs font-medium text-white hover:bg-blue-700"
+                        //   onClick={handleAddDashboard}
+                        // >
+                        //   <PlusIcon weight="bold" size={14} /> Grant Access
+                        // </button>
+
+                        <button
+                          className="flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+                          onClick={handleAddDashboard}
+                        >
+                          <UserPlusIcon weight="bold" size={14} /> Add Dashboard
+                        </button>
+                      )}
                     </div>
                   </div>
                   <div className="mt-3 flex gap-6 text-xs text-slate-400">
@@ -487,24 +833,6 @@ function RouteComponent() {
                           Dashboards ({groupDashboards.length})
                         </button>
                       </nav>
-                      <div className="flex gap-2">
-                        {activeTab === "members" && (
-                          <button
-                            className="flex items-center gap-1 rounded-md bg-green-600 px-3 py-1 text-xs font-medium text-white hover:bg-green-700"
-                            onClick={handleAddMember}
-                          >
-                            <UserPlusIcon size={14} /> Add Member
-                          </button>
-                        )}
-                        {activeTab === "dashboards" && (
-                          <button
-                            className="flex items-center gap-1 rounded-md bg-blue-600 px-3 py-1 text-xs font-medium text-white hover:bg-blue-700"
-                            onClick={handleAddDashboard}
-                          >
-                            <PlusIcon size={14} /> Grant Access
-                          </button>
-                        )}
-                      </div>
                     </div>
                   </div>
                 </div>

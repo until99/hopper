@@ -120,4 +120,163 @@ const users_list = [
   },
 ];
 
-export { dashboards_list, users_list, groups_list };
+const sql_queries = [
+  {
+    id: 1,
+    name: "Sales Report by Region",
+    description: "Monthly sales report grouped by region with optional date filter",
+    database: "sales_db",
+    connectionString: "server=localhost;database=sales_db;user=admin",
+    query: `SELECT 
+      region,
+      SUM(amount) as total_sales,
+      COUNT(*) as transactions_count
+    FROM sales 
+    WHERE date >= :start_date 
+    AND (:region IS NULL OR region = :region)
+    GROUP BY region
+    ORDER BY total_sales DESC`,
+    bindVariables: [
+      {
+        name: "start_date",
+        type: "date",
+        required: true,
+        defaultValue: null,
+        description: "Start date for the report"
+      },
+      {
+        name: "region",
+        type: "string",
+        required: false,
+        defaultValue: null,
+        description: "Filter by specific region (optional)"
+      }
+    ],
+    category: "Sales",
+    categoryColor: "blue",
+    createdBy: 1,
+    createdAt: "2023-04-10 10:30",
+    updatedAt: "2023-04-12 15:20"
+  },
+  {
+    id: 2,
+    name: "Customer Performance",
+    description: "Customer performance metrics with lifetime value calculation",
+    database: "crm_db",
+    connectionString: "server=localhost;database=crm_db;user=admin",
+    query: `SELECT 
+      customer_id,
+      customer_name,
+      SUM(order_value) as lifetime_value,
+      COUNT(order_id) as total_orders,
+      AVG(order_value) as avg_order_value
+    FROM customers c
+    LEFT JOIN orders o ON c.id = o.customer_id
+    WHERE c.status = 'active'
+    AND (:min_orders IS NULL OR COUNT(order_id) >= :min_orders)
+    GROUP BY customer_id, customer_name
+    ORDER BY lifetime_value DESC
+    LIMIT :limit_records`,
+    bindVariables: [
+      {
+        name: "min_orders",
+        type: "number",
+        required: false,
+        defaultValue: 1,
+        description: "Minimum number of orders to include customer"
+      },
+      {
+        name: "limit_records",
+        type: "number",
+        required: true,
+        defaultValue: 100,
+        description: "Maximum number of records to return"
+      }
+    ],
+    category: "Analytics",
+    categoryColor: "emerald",
+    createdBy: 2,
+    createdAt: "2023-04-11 09:15",
+    updatedAt: "2023-04-11 09:15"
+  },
+  {
+    id: 3,
+    name: "Inventory Status",
+    description: "Current inventory levels with low stock alerts",
+    database: "inventory_db",
+    connectionString: "server=localhost;database=inventory_db;user=admin",
+    query: `SELECT 
+      product_code,
+      product_name,
+      current_stock,
+      minimum_stock,
+      CASE 
+        WHEN current_stock <= minimum_stock THEN 'Low Stock'
+        WHEN current_stock <= minimum_stock * 1.5 THEN 'Warning'
+        ELSE 'Normal'
+      END as stock_status
+    FROM inventory
+    WHERE (:category IS NULL OR category = :category)
+    AND (:stock_status IS NULL OR 
+      CASE 
+        WHEN current_stock <= minimum_stock THEN 'Low Stock'
+        WHEN current_stock <= minimum_stock * 1.5 THEN 'Warning'
+        ELSE 'Normal'
+      END = :stock_status)
+    ORDER BY current_stock ASC`,
+    bindVariables: [
+      {
+        name: "category",
+        type: "string",
+        required: false,
+        defaultValue: null,
+        description: "Filter by product category"
+      },
+      {
+        name: "stock_status",
+        type: "select",
+        required: false,
+        defaultValue: null,
+        options: ["Low Stock", "Warning", "Normal"],
+        description: "Filter by stock status"
+      }
+    ],
+    category: "Operations",
+    categoryColor: "yellow",
+    createdBy: 1,
+    createdAt: "2023-04-09 14:20",
+    updatedAt: "2023-04-10 11:30"
+  }
+];
+
+const databases = [
+  {
+    id: 1,
+    name: "sales_db",
+    type: "PostgreSQL",
+    host: "localhost",
+    port: 5432,
+    database: "sales_db",
+    description: "Sales database with transaction data"
+  },
+  {
+    id: 2,
+    name: "crm_db",
+    type: "MySQL",
+    host: "localhost",
+    port: 3306,
+    database: "crm_db",
+    description: "Customer relationship management database"
+  },
+  {
+    id: 3,
+    name: "inventory_db",
+    type: "SQL Server",
+    host: "localhost",
+    port: 1433,
+    database: "inventory_db",
+    description: "Inventory management system database"
+  }
+];
+
+export { dashboards_list, users_list, groups_list, sql_queries, databases };
