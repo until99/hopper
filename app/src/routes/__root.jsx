@@ -1,4 +1,9 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import {
+  createRootRoute,
+  Link,
+  Outlet,
+  redirect,
+} from "@tanstack/react-router";
 
 import {
   CpuIcon,
@@ -15,6 +20,7 @@ import {
 } from "@phosphor-icons/react";
 
 import { useState } from "react";
+import authentication from "../store/auth/authentication";
 
 let menu_items = [
   {
@@ -91,9 +97,32 @@ export const Route = createRootRoute({
     const [showNotificationDropdown, setShowNotificationDropdown] =
       useState(false);
     const [showUserDropdown, setShowUserDropdown] = useState(false);
+    
+    const isAuthenticated = authentication.isUserAuthenticated();
+    const { pathname } = window.location;
+    const isAuthRoute = pathname.startsWith('/auth');
+
+    // If not authenticated and not on auth route, show auth pages without layout
+    if (!isAuthenticated && !isAuthRoute) {
+      window.location.replace('/auth/login');
+      return null;
+    }
+
+    // If authenticated and on auth route, redirect to dashboard
+    if (isAuthenticated && isAuthRoute) {
+      window.location.replace('/dashboard/list-dashboards');
+      return null;
+    }
+
+    // If on auth route, render without main layout
+    if (isAuthRoute) {
+      return <Outlet />;
+    }
+
+    // Render main layout for authenticated users
     return (
       <>
-        <div className="flex bg-slate-50 scrollbar-thumb-sky-700 scrollbar-track-sky-300">
+        <div className="scrollbar-thumb-sky-700 scrollbar-track-sky-300 flex bg-slate-50">
           <aside className="border-r bg-slate-900">
             <div className="flex h-16 items-center gap-4 border-b border-slate-200 bg-slate-900 p-4">
               <CpuIcon
@@ -185,7 +214,8 @@ export const Route = createRootRoute({
                         <button
                           className="block w-full truncate px-4 py-2 text-sm font-medium text-black hover:bg-gray-100 focus:bg-gray-100 focus:outline-hidden"
                           onClick={() => {
-                            // Handle sign out logic here
+                            authentication.setUserAuthenticated(false);
+                            window.location.replace('/auth/login');
                           }}
                         >
                           Sign Out

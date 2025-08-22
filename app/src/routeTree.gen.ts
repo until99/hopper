@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReportsListReportsRouteImport } from './routes/reports/list-reports'
 import { Route as DashboardListDashboardsRouteImport } from './routes/dashboard/list-dashboards'
 import { Route as DashboardDashboardIdRouteImport } from './routes/dashboard/$dashboardId'
+import { Route as AuthRegisterRouteImport } from './routes/auth/register'
+import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AdminWorkspacesRouteImport } from './routes/admin/workspaces'
 import { Route as AdminUsersRouteImport } from './routes/admin/users'
 import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
@@ -41,6 +43,16 @@ const DashboardListDashboardsRoute = DashboardListDashboardsRouteImport.update({
 const DashboardDashboardIdRoute = DashboardDashboardIdRouteImport.update({
   id: '/dashboard/$dashboardId',
   path: '/dashboard/$dashboardId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRegisterRoute = AuthRegisterRouteImport.update({
+  id: '/auth/register',
+  path: '/auth/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminWorkspacesRoute = AdminWorkspacesRouteImport.update({
@@ -100,6 +112,8 @@ export interface FileRoutesByFullPath {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/workspaces': typeof AdminWorkspacesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
@@ -115,6 +129,8 @@ export interface FileRoutesByTo {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/workspaces': typeof AdminWorkspacesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
@@ -131,6 +147,8 @@ export interface FileRoutesById {
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/users': typeof AdminUsersRoute
   '/admin/workspaces': typeof AdminWorkspacesRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
@@ -148,6 +166,8 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/workspaces'
+    | '/auth/login'
+    | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
     | '/reports/list-reports'
@@ -163,6 +183,8 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/workspaces'
+    | '/auth/login'
+    | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
     | '/reports/list-reports'
@@ -178,6 +200,8 @@ export interface FileRouteTypes {
     | '/admin/settings'
     | '/admin/users'
     | '/admin/workspaces'
+    | '/auth/login'
+    | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
     | '/reports/list-reports'
@@ -194,6 +218,8 @@ export interface RootRouteChildren {
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminUsersRoute: typeof AdminUsersRoute
   AdminWorkspacesRoute: typeof AdminWorkspacesRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
   DashboardDashboardIdRoute: typeof DashboardDashboardIdRoute
   DashboardListDashboardsRoute: typeof DashboardListDashboardsRoute
   ReportsListReportsRoute: typeof ReportsListReportsRoute
@@ -227,6 +253,20 @@ declare module '@tanstack/react-router' {
       path: '/dashboard/$dashboardId'
       fullPath: '/dashboard/$dashboardId'
       preLoaderRoute: typeof DashboardDashboardIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/register': {
+      id: '/auth/register'
+      path: '/auth/register'
+      fullPath: '/auth/register'
+      preLoaderRoute: typeof AuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/workspaces': {
@@ -306,6 +346,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminSettingsRoute: AdminSettingsRoute,
   AdminUsersRoute: AdminUsersRoute,
   AdminWorkspacesRoute: AdminWorkspacesRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
   DashboardDashboardIdRoute: DashboardDashboardIdRoute,
   DashboardListDashboardsRoute: DashboardListDashboardsRoute,
   ReportsListReportsRoute: ReportsListReportsRoute,

@@ -73,7 +73,9 @@ const users_list = [
   {
     id: 1,
     fullName: "John Doe",
+    username: "john.doe",
     email: "johndoe@example.com",
+    password: "Password123!",
     role: "Analyst",
     isActive: true,
     lastLogin: "2023-04-10 08:20",
@@ -81,7 +83,9 @@ const users_list = [
   {
     id: 2,
     fullName: "Jane Smith",
+    username: "jane.smith",
     email: "janesmith@example.com",
+    password: "SecurePass456@",
     role: "Admin",
     isActive: true,
     lastLogin: "2023-04-11 14:35",
@@ -89,7 +93,9 @@ const users_list = [
   {
     id: 3,
     fullName: "Mike Johnson",
+    username: "mike.johnson",
     email: "mikejohnson@example.com",
+    password: "MyPassword789#",
     role: "Viewer",
     isActive: false,
     lastLogin: "2023-04-08 10:15",
@@ -97,7 +103,9 @@ const users_list = [
   {
     id: 4,
     fullName: "Sarah Wilson",
+    username: "sarah.wilson",
     email: "sarahwilson@example.com",
+    password: "AdminPass321$",
     role: "Admin",
     isActive: true,
     lastLogin: "2023-04-12 16:42",
@@ -105,7 +113,9 @@ const users_list = [
   {
     id: 5,
     fullName: "David Brown",
+    username: "david.brown",
     email: "davidbrown@example.com",
+    password: "AnalystKey654%",
     role: "Analyst",
     isActive: true,
     lastLogin: "2023-04-09 11:28",
@@ -113,7 +123,9 @@ const users_list = [
   {
     id: 6,
     fullName: "Lisa Davis",
+    username: "lisa.davis",
     email: "lisadavis@example.com",
+    password: "ViewerPass987&",
     role: "Viewer",
     isActive: false,
     lastLogin: "2023-04-07 09:45",
