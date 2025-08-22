@@ -2,78 +2,100 @@
 
 /* ==== 1) Theme variables (easy to tweak) ==== */
 :root {
-  --sb-size: 10px;
-  --sb-radius: 999px;
+  --sb-size: 8px;
+  --sb-radius: 6px;
 
-  /* Light theme */
-  --sb-track: #f1f1f3;
-  --sb-thumb: #b7bac4;
-  --sb-thumb-hover: #9aa0ae;
+  /* Light theme - Modern blue-gray theme */
+  --sb-track: #f1f5f9;
+  --sb-thumb: #94a3b8;
+  --sb-thumb-hover: #64748b;
+  --sb-thumb-active: #475569;
 }
 
 /* Optional: Dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --sb-track: #0f172b;
-    --sb-thumb: #0f172b;
-    --sb-thumb-hover: #1e58b2;
+    --sb-track: #1e293b;
+    --sb-thumb: #475569;
+    --sb-thumb-hover: #64748b;
+    --sb-thumb-active: #94a3b8;
   }
 }
 
-/* ==== 2) Apply globally (html) or to a container (.scroll-area) ==== */
+/* ==== 2) Apply globally to ALL elements ==== */
 /* Firefox (global) */
-html {
-  scrollbar-width: thin; /* "auto" | "thin" | "none" */
+* {
+  scrollbar-width: thin;
   scrollbar-color: var(--sb-thumb) var(--sb-track);
+}
+
+html {
   overflow-y: auto;
   scrollbar-gutter: stable; /* reserva espaço fixo para a barra */
 }
 
-/* WebKit (global) */
-html::-webkit-scrollbar {
+/* WebKit (global for all elements) */
+*::-webkit-scrollbar {
   width: var(--sb-size);
   height: var(--sb-size); /* horizontal bars */
 }
-html::-webkit-scrollbar-track {
+
+*::-webkit-scrollbar-track {
   background: var(--sb-track);
+  border-radius: var(--sb-radius);
 }
-html::-webkit-scrollbar-thumb {
+
+*::-webkit-scrollbar-thumb {
   background: var(--sb-thumb);
   border-radius: var(--sb-radius);
-  border: 2px solid var(--sb-track); /* ring for contrast */
+  border: 1px solid var(--sb-track); /* ring for contrast */
+  transition: background-color 0.2s ease;
 }
-html::-webkit-scrollbar-thumb:hover {
+
+*::-webkit-scrollbar-thumb:hover {
   background: var(--sb-thumb-hover);
 }
-html::-webkit-scrollbar-corner {
+
+*::-webkit-scrollbar-thumb:active {
+  background: var(--sb-thumb-active);
+}
+
+*::-webkit-scrollbar-corner {
   background: var(--sb-track);
 }
 
-/* ==== 3) Scope to a specific element instead (uncomment to use) ==== */
-/*
-.scroll-area {
-  max-height: 320px;
-  overflow: auto;
-
+/* ==== 3) Optional: Special scrollbar variants ==== */
+/* Use esta classe apenas quando precisar de uma scrollbar diferente do padrão global */
+.scroll-area-compact {
   scrollbar-width: thin;
   scrollbar-color: var(--sb-thumb) var(--sb-track);
 }
-.scroll-area::-webkit-scrollbar {
-  width: var(--sb-size);
-  height: var(--sb-size);
+
+.scroll-area-compact::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
-.scroll-area::-webkit-scrollbar-track {
-  background: var(--sb-track);
+
+.scroll-area-compact::-webkit-scrollbar-track {
+  background: transparent;
 }
-.scroll-area::-webkit-scrollbar-thumb {
+
+.scroll-area-compact::-webkit-scrollbar-thumb {
   background: var(--sb-thumb);
   border-radius: var(--sb-radius);
-  border: 2px solid var(--sb-track);
+  border: none;
 }
-.scroll-area::-webkit-scrollbar-thumb:hover {
+
+.scroll-area-compact::-webkit-scrollbar-thumb:hover {
   background: var(--sb-thumb-hover);
 }
-.scroll-area::-webkit-scrollbar-corner {
-  background: var(--sb-track);
+
+/* Hidden scrollbar - use when you want to hide scrollbars but keep scrolling */
+.scroll-area-hidden {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
 }
-*/
+
+.scroll-area-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
