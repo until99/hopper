@@ -5,7 +5,6 @@ import {
   PlusIcon,
   PencilIcon,
   TrashIcon,
-  PlayIcon,
   DatabaseIcon,
   CodeIcon,
   XIcon,
@@ -26,14 +25,10 @@ export const Route = createFileRoute("/admin/reports")({
 
 function RouteComponent() {
   const [showQueryDialog, setShowQueryDialog] = useState(false);
-  const [showExecuteDialog, setShowExecuteDialog] = useState(false);
   const [showDeleteDialog, setShowDeleteDialog] = useState(false);
   const [queryToDelete, setQueryToDelete] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedQuery, setSelectedQuery] = useState(null);
-  const [executeParams, setExecuteParams] = useState({});
-  const [executionResult, setExecutionResult] = useState(null);
-  const [isExecuting, setIsExecuting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -125,51 +120,6 @@ function RouteComponent() {
     setQueryToDelete(null);
   };
 
-  const handleExecuteQuery = (query) => {
-    setSelectedQuery(query);
-    setExecuteParams({});
-    setExecutionResult(null);
-    setShowExecuteDialog(true);
-  };
-
-  const executeQuery = async () => {
-    setIsExecuting(true);
-
-    // Simulate API call
-    setTimeout(() => {
-      const mockResult = {
-        columns: ["Column1", "Column2", "Column3"],
-        data: [
-          ["Value1", "Value2", "Value3"],
-          ["Value4", "Value5", "Value6"],
-          ["Value7", "Value8", "Value9"],
-        ],
-        rowCount: 3,
-        executionTime: "0.245s",
-      };
-
-      setExecutionResult(mockResult);
-      setIsExecuting(false);
-    }, 2000);
-  };
-
-  const downloadCSV = () => {
-    if (!executionResult) return;
-
-    const csv = [
-      executionResult.columns.join(","),
-      ...executionResult.data.map((row) => row.join(",")),
-    ].join("\n");
-
-    const blob = new Blob([csv], { type: "text/csv" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${selectedQuery.name.replace(/\s+/g, "_")}.csv`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
-
   const parseBindVariables = (query) => {
     const matches = query.match(/:(\w+)/g);
     if (!matches) return [];
@@ -257,7 +207,6 @@ function RouteComponent() {
             query={query}
             onEdit={handleEditQuery}
             onDelete={handleDeleteQuery}
-            onExecute={handleExecuteQuery}
           />
         ))}
       </div>
@@ -411,20 +360,6 @@ function RouteComponent() {
         </div>
       )}
 
-      {/* Execute Query Dialog */}
-      {showExecuteDialog && selectedQuery && (
-        <ExecuteQueryDialog
-          query={selectedQuery}
-          executeParams={executeParams}
-          setExecuteParams={setExecuteParams}
-          executionResult={executionResult}
-          isExecuting={isExecuting}
-          onExecute={executeQuery}
-          onDownload={downloadCSV}
-          onClose={() => setShowExecuteDialog(false)}
-        />
-      )}
-
       {/* Delete Confirmation Dialog */}
       {showDeleteDialog && queryToDelete && (
         <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
@@ -472,7 +407,7 @@ function RouteComponent() {
   );
 }
 
-function QueryCard({ query, onEdit, onDelete, onExecute }) {
+function QueryCard({ query, onEdit, onDelete }) {
   const colorClassMap = {
     blue: "border-blue-300 bg-blue-200 text-blue-600",
     emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
@@ -525,209 +460,6 @@ function QueryCard({ query, onEdit, onDelete, onExecute }) {
             title="Delete Query"
           >
             <TrashIcon size={14} />
-          </button>
-          <button
-            onClick={() => onExecute(query)}
-            className="rounded-lg bg-green-600 p-2 text-white hover:bg-green-700"
-            title="Execute Query"
-          >
-            <PlayIcon weight="fill" size={14} />
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function ExecuteQueryDialog({
-  query,
-  executeParams,
-  setExecuteParams,
-  executionResult,
-  isExecuting,
-  onExecute,
-  onDownload,
-  onClose,
-}) {
-  const handleParamChange = (paramName, value) => {
-    setExecuteParams((prev) => ({
-      ...prev,
-      [paramName]: value,
-    }));
-  };
-
-  const canExecute = query.bindVariables.every(
-    (param) => !param.required || executeParams[param.name],
-  );
-
-  return (
-    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-      <div className="mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Execute Query: {query.name}</h3>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            <XIcon size={20} />
-          </button>
-        </div>
-
-        {/* Query Info */}
-        <div className="mb-4 rounded-lg bg-gray-50 p-4">
-          <div className="mb-2 flex items-center gap-2">
-            <CodeIcon size={16} />
-            <span className="font-medium">SQL Query</span>
-            <span className="text-sm text-gray-500">({query.database})</span>
-          </div>
-          <pre className="overflow-x-auto rounded border bg-white p-3 text-sm">
-            <code>{query.query}</code>
-          </pre>
-        </div>
-
-        {/* Parameters */}
-        {query.bindVariables.length > 0 && (
-          <div className="mb-4">
-            <h4 className="mb-3 font-medium">Parameters</h4>
-            <div className="space-y-3">
-              {query.bindVariables.map((param) => (
-                <div key={param.name} className="flex flex-col">
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
-                    {param.name}
-                    {param.required && <span className="text-red-500">*</span>}
-                  </label>
-                  {param.description && (
-                    <p className="mb-1 text-xs text-gray-500">
-                      {param.description}
-                    </p>
-                  )}
-                  {param.type === "select" ? (
-                    <select
-                      value={
-                        executeParams[param.name] || param.defaultValue || ""
-                      }
-                      onChange={(e) =>
-                        handleParamChange(param.name, e.target.value)
-                      }
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
-                    >
-                      <option value="">Select option</option>
-                      {param.options?.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      type={
-                        param.type === "date"
-                          ? "date"
-                          : param.type === "number"
-                            ? "number"
-                            : "text"
-                      }
-                      value={
-                        executeParams[param.name] || param.defaultValue || ""
-                      }
-                      onChange={(e) =>
-                        handleParamChange(param.name, e.target.value)
-                      }
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
-                      placeholder={param.description}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Execute Button */}
-        <div className="mb-4">
-          <button
-            onClick={onExecute}
-            disabled={!canExecute || isExecuting}
-            className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <PlayIcon weight="fill" size={16} />
-            {isExecuting ? "Executing..." : "Execute Query"}
-          </button>
-        </div>
-
-        {/* Results */}
-        {isExecuting && (
-          <div className="mb-4 text-center">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
-            <p className="mt-2 text-gray-600">Executing query...</p>
-          </div>
-        )}
-
-        {executionResult && (
-          <div className="mb-4">
-            <div className="mb-3 flex items-center justify-between">
-              <h4 className="font-medium">Results</h4>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600">
-                  {executionResult.rowCount} rows •{" "}
-                  {executionResult.executionTime}
-                </span>
-                <button
-                  onClick={onDownload}
-                  disabled={!canExecute || isExecuting}
-                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <DownloadIcon weight="fill" size={16} />
-                  {isExecuting ? "Executing..." : "Download CSV"}
-                </button>
-              </div>
-            </div>
-
-            {/* Tabela de Resultados */}
-            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50">
-                      {executionResult.columns.map((col, index) => (
-                        <th
-                          key={index}
-                          className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500"
-                        >
-                          <div className="flex items-center">{col}</div>
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {executionResult.data.map((row, index) => (
-                      <tr
-                        key={index}
-                        className="border-t border-slate-200 hover:bg-slate-50"
-                      >
-                        {row.map((cell, cellIndex) => (
-                          <td
-                            key={cellIndex}
-                            className="p-3 text-sm text-black"
-                          >
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="rounded-lg border border-slate-200 px-4 py-2 hover:bg-slate-50"
-          >
-            Close
           </button>
         </div>
       </div>

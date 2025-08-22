@@ -8,6 +8,8 @@ import {
   DownloadIcon,
   CodeIcon,
   XIcon,
+  CaretDownIcon,
+  CaretUpIcon,
 } from "@phosphor-icons/react";
 
 import { sql_queries, users_list } from "../../utils/variables/mockData";
@@ -27,14 +29,16 @@ function ReportCard({ query, onExecute }) {
 
   const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
 
-  const createdByUser = users_list.find(u => u.id === query.createdBy);
+  const createdByUser = users_list.find((u) => u.id === query.createdBy);
 
   return (
-    <div className="h-48 rounded-lg border border-slate-200 bg-white p-4">
+    <div className="h-fit rounded-lg border border-slate-200 bg-white p-4">
       <div className="flex justify-between align-top">
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{query.name}</h3>
-          <p className="text-sm text-gray-500 line-clamp-2">{query.description}</p>
+          <p className="line-clamp-2 text-sm text-gray-500">
+            {query.description}
+          </p>
           <div className="mt-2 flex items-center gap-2 text-xs text-gray-400">
             <DatabaseIcon size={14} />
             <span>{query.database}</span>
@@ -59,29 +63,40 @@ function ReportCard({ query, onExecute }) {
           onClick={() => onExecute(query)}
           className="flex items-center gap-2 rounded-lg bg-green-600 px-3 py-2 text-sm text-white hover:bg-green-700"
         >
-          <PlayIcon size={16} />
-          Execute
+          <PlayIcon weight="fill" size={16} />
+          <p className="text-sm">Execute</p>
         </button>
       </div>
     </div>
   );
 }
 
-function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionResult, isExecuting, onExecute, onDownload, onClose }) {
+function ExecuteQueryDialog({
+  query,
+  executeParams,
+  setExecuteParams,
+  executionResult,
+  isExecuting,
+  onExecute,
+  onDownload,
+  onClose,
+}) {
+  const [isQueryCollapsed, setIsQueryCollapsed] = useState(true);
+
   const handleParamChange = (paramName, value) => {
-    setExecuteParams(prev => ({
+    setExecuteParams((prev) => ({
       ...prev,
-      [paramName]: value
+      [paramName]: value,
     }));
   };
 
-  const canExecute = query.bindVariables.every(param => 
-    !param.required || executeParams[param.name]
+  const canExecute = query.bindVariables.every(
+    (param) => !param.required || executeParams[param.name],
   );
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="mx-4 w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-lg bg-white p-6">
+    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
+      <div className="mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6">
         <div className="mb-4 flex items-center justify-between">
           <h3 className="text-lg font-semibold">Execute Query: {query.name}</h3>
           <button
@@ -93,48 +108,89 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
         </div>
 
         {/* Query Info */}
-        <div className="mb-4 rounded-lg bg-gray-50 p-4">
-          <div className="flex items-center gap-2 mb-2">
-            <CodeIcon size={16} />
-            <span className="font-medium">SQL Query</span>
-            <span className="text-sm text-gray-500">({query.database})</span>
+        <div className="mb-4 rounded-lg border border-slate-200 bg-white p-4">
+          <div
+            className={`-m-2 flex cursor-pointer justify-between rounded-lg p-2 align-top transition-colors hover:bg-slate-50 ${isQueryCollapsed ? "" : "mb-4"}`}
+            onClick={() => setIsQueryCollapsed(!isQueryCollapsed)}
+          >
+            <div className="flex items-center gap-2">
+              <div className="flex h-6 w-6 items-center justify-center rounded transition-colors hover:bg-slate-200">
+                {isQueryCollapsed ? (
+                  <CaretDownIcon size={16} className="text-slate-600" />
+                ) : (
+                  <CaretUpIcon size={16} className="text-slate-600" />
+                )}
+              </div>
+              <div className="flex items-center gap-2">
+                <CodeIcon size={16} />
+                <span className="font-medium">SQL Query</span>
+                <span className="text-sm text-gray-500">
+                  ({query.database})
+                </span>
+              </div>
+            </div>
           </div>
-          <pre className="text-sm bg-white p-3 rounded border overflow-x-auto">
-            <code>{query.query}</code>
-          </pre>
+
+          {!isQueryCollapsed && (
+            <pre className="overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm">
+              <code>{query.query}</code>
+            </pre>
+          )}
         </div>
 
         {/* Parameters */}
         {query.bindVariables.length > 0 && (
           <div className="mb-4">
             <h4 className="mb-3 font-medium">Parameters</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {query.bindVariables.map((param) => (
                 <div key={param.name} className="flex flex-col">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="mb-1 block text-sm font-medium text-gray-700">
                     {param.name}
                     {param.required && <span className="text-red-500">*</span>}
-                    {!param.required && <span className="text-gray-400 text-xs ml-1">(optional)</span>}
+                    {!param.required && (
+                      <span className="ml-1 text-xs text-gray-400">
+                        (optional)
+                      </span>
+                    )}
                   </label>
                   {param.description && (
-                    <p className="text-xs text-gray-500 mb-2">{param.description}</p>
+                    <p className="mb-2 text-xs text-gray-500">
+                      {param.description}
+                    </p>
                   )}
                   {param.type === "select" ? (
                     <select
-                      value={executeParams[param.name] || param.defaultValue || ""}
-                      onChange={(e) => handleParamChange(param.name, e.target.value)}
+                      value={
+                        executeParams[param.name] || param.defaultValue || ""
+                      }
+                      onChange={(e) =>
+                        handleParamChange(param.name, e.target.value)
+                      }
                       className="w-full rounded-lg border border-slate-200 px-3 py-2"
                     >
                       <option value="">Select option</option>
-                      {param.options?.map(option => (
-                        <option key={option} value={option}>{option}</option>
+                      {param.options?.map((option) => (
+                        <option key={option} value={option}>
+                          {option}
+                        </option>
                       ))}
                     </select>
                   ) : (
                     <input
-                      type={param.type === "date" ? "date" : param.type === "number" ? "number" : "text"}
-                      value={executeParams[param.name] || param.defaultValue || ""}
-                      onChange={(e) => handleParamChange(param.name, e.target.value)}
+                      type={
+                        param.type === "date"
+                          ? "date"
+                          : param.type === "number"
+                            ? "number"
+                            : "text"
+                      }
+                      value={
+                        executeParams[param.name] || param.defaultValue || ""
+                      }
+                      onChange={(e) =>
+                        handleParamChange(param.name, e.target.value)
+                      }
                       className="w-full rounded-lg border border-slate-200 px-3 py-2"
                       placeholder={param.required ? "Required" : "Optional"}
                     />
@@ -150,12 +206,12 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
           <button
             onClick={onExecute}
             disabled={!canExecute || isExecuting}
-            className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-2 text-white hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex h-9 items-center gap-2 rounded-md bg-green-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            <PlayIcon size={16} />
+            <PlayIcon weight="fill" size={16} />
             {isExecuting ? "Executing..." : "Execute Query"}
           </button>
-          {!canExecute && query.bindVariables.some(p => p.required) && (
+          {!canExecute && query.bindVariables.some((p) => p.required) && (
             <p className="mt-2 text-sm text-red-600">
               Please fill in all required parameters
             </p>
@@ -165,7 +221,7 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
         {/* Loading */}
         {isExecuting && (
           <div className="mb-4 text-center">
-            <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-green-600"></div>
+            <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
             <p className="mt-2 text-gray-600">Executing query...</p>
           </div>
         )}
@@ -177,41 +233,53 @@ function ExecuteQueryDialog({ query, executeParams, setExecuteParams, executionR
               <h4 className="font-medium">Results</h4>
               <div className="flex items-center gap-4">
                 <span className="text-sm text-gray-600">
-                  {executionResult.rowCount} rows • {executionResult.executionTime}
+                  {executionResult.rowCount} rows •{" "}
+                  {executionResult.executionTime}
                 </span>
                 <button
                   onClick={onDownload}
-                  className="flex items-center gap-2 rounded-lg bg-blue-600 px-3 py-1 text-sm text-white hover:bg-blue-700"
+                  className="flex h-9 items-center gap-2 rounded-md bg-blue-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-700"
                 >
-                  <DownloadIcon size={14} />
+                  <DownloadIcon size={16} />
                   Download CSV
                 </button>
               </div>
             </div>
-            
-            <div className="overflow-x-auto rounded-lg border max-h-96">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 sticky top-0">
-                  <tr>
-                    {executionResult.columns.map((col, index) => (
-                      <th key={index} className="px-4 py-2 text-left font-medium">
-                        {col}
-                      </th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {executionResult.data.map((row, index) => (
-                    <tr key={index} className="border-t hover:bg-gray-50">
-                      {row.map((cell, cellIndex) => (
-                        <td key={cellIndex} className="px-4 py-2">
-                          {cell}
-                        </td>
+
+            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+              <div className="overflow-x-auto">
+                <table className="w-full">
+                  <thead>
+                    <tr className="border-b border-slate-200 bg-slate-50">
+                      {executionResult.columns.map((col, index) => (
+                        <th
+                          key={index}
+                          className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500"
+                        >
+                          <div className="flex items-center">{col}</div>
+                        </th>
                       ))}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {executionResult.data.map((row, index) => (
+                      <tr
+                        key={index}
+                        className="border-t border-slate-200 hover:bg-slate-50"
+                      >
+                        {row.map((cell, cellIndex) => (
+                          <td
+                            key={cellIndex}
+                            className="p-3 text-sm text-black"
+                          >
+                            {cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
         )}
@@ -246,11 +314,11 @@ function RouteComponent() {
 
   const executeQuery = async () => {
     setIsExecuting(true);
-    
+
     // Simulate API call with different results based on query
     setTimeout(() => {
       let mockResult;
-      
+
       if (selectedQuery.id === 1) {
         // Sales Report by Region
         mockResult = {
@@ -262,12 +330,18 @@ function RouteComponent() {
             ["West", "876,543.21", "567"],
           ],
           rowCount: 4,
-          executionTime: "0.234s"
+          executionTime: "0.234s",
         };
       } else if (selectedQuery.id === 2) {
         // Customer Performance
         mockResult = {
-          columns: ["customer_id", "customer_name", "lifetime_value", "total_orders", "avg_order_value"],
+          columns: [
+            "customer_id",
+            "customer_name",
+            "lifetime_value",
+            "total_orders",
+            "avg_order_value",
+          ],
           data: [
             ["1001", "Acme Corp", "45,678.90", "23", "1,986.90"],
             ["1002", "TechCorp Inc", "32,456.78", "18", "1,803.15"],
@@ -275,12 +349,18 @@ function RouteComponent() {
             ["1004", "StartUp LLC", "12,345.67", "8", "1,543.21"],
           ],
           rowCount: 4,
-          executionTime: "0.156s"
+          executionTime: "0.156s",
         };
       } else {
         // Inventory Status
         mockResult = {
-          columns: ["product_code", "product_name", "current_stock", "minimum_stock", "stock_status"],
+          columns: [
+            "product_code",
+            "product_name",
+            "current_stock",
+            "minimum_stock",
+            "stock_status",
+          ],
           data: [
             ["P001", "Widget A", "5", "10", "Low Stock"],
             ["P002", "Widget B", "25", "20", "Normal"],
@@ -288,10 +368,10 @@ function RouteComponent() {
             ["P004", "Widget D", "50", "25", "Normal"],
           ],
           rowCount: 4,
-          executionTime: "0.089s"
+          executionTime: "0.089s",
         };
       }
-      
+
       setExecutionResult(mockResult);
       setIsExecuting(false);
     }, 1500);
@@ -299,12 +379,12 @@ function RouteComponent() {
 
   const downloadCSV = () => {
     if (!executionResult) return;
-    
+
     const csv = [
       executionResult.columns.join(","),
-      ...executionResult.data.map(row => row.join(","))
+      ...executionResult.data.map((row) => row.join(",")),
     ].join("\n");
-    
+
     const blob = new Blob([csv], { type: "text/csv" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");

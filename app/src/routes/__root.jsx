@@ -24,16 +24,22 @@ let menu_items = [
     admin_only: false,
   },
   {
+    route: "admin/users",
+    icon: <UsersIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Users",
+    admin_only: true,
+  },
+  {
+    route: "admin/groups",
+    icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Groups",
+    admin_only: true,
+  },
+  {
     route: "reports/list-reports",
     icon: <FileTextIcon size={22} className="mr-2 inline-block" />,
     routeName: "My Reports",
     admin_only: false,
-  },
-  {
-    route: "admin/workspaces",
-    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
-    routeName: "Workspaces",
-    admin_only: true,
   },
   {
     route: "admin/reports",
@@ -48,15 +54,9 @@ let menu_items = [
     admin_only: true,
   },
   {
-    route: "admin/users",
-    icon: <UsersIcon size={22} className="mr-2 inline-block" />,
-    routeName: "Users",
-    admin_only: true,
-  },
-  {
-    route: "admin/groups",
-    icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
-    routeName: "Groups",
+    route: "admin/workspaces",
+    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Workspaces",
     admin_only: true,
   },
   {
