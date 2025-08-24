@@ -21,6 +21,7 @@ import { Route as AdminSettingsRouteImport } from './routes/admin/settings'
 import { Route as AdminReportsRouteImport } from './routes/admin/reports'
 import { Route as AdminGroupsRouteImport } from './routes/admin/groups'
 import { Route as AdminDatabasesRouteImport } from './routes/admin/databases'
+import { Route as AdminDashboardsRouteImport } from './routes/admin/dashboards'
 import { Route as AdminAdmin_dashboardRouteImport } from './routes/admin/admin_dashboard'
 import { Route as AccountSettingsRouteImport } from './routes/account/settings'
 import { Route as AccountProfileRouteImport } from './routes/account/profile'
@@ -85,6 +86,11 @@ const AdminDatabasesRoute = AdminDatabasesRouteImport.update({
   path: '/admin/databases',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminDashboardsRoute = AdminDashboardsRouteImport.update({
+  id: '/admin/dashboards',
+  path: '/admin/dashboards',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminAdmin_dashboardRoute = AdminAdmin_dashboardRouteImport.update({
   id: '/admin/admin_dashboard',
   path: '/admin/admin_dashboard',
@@ -106,6 +112,7 @@ export interface FileRoutesByFullPath {
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboards': typeof AdminDashboardsRoute
   '/admin/databases': typeof AdminDatabasesRoute
   '/admin/groups': typeof AdminGroupsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -123,6 +130,7 @@ export interface FileRoutesByTo {
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboards': typeof AdminDashboardsRoute
   '/admin/databases': typeof AdminDatabasesRoute
   '/admin/groups': typeof AdminGroupsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -141,6 +149,7 @@ export interface FileRoutesById {
   '/account/profile': typeof AccountProfileRoute
   '/account/settings': typeof AccountSettingsRoute
   '/admin/admin_dashboard': typeof AdminAdmin_dashboardRoute
+  '/admin/dashboards': typeof AdminDashboardsRoute
   '/admin/databases': typeof AdminDatabasesRoute
   '/admin/groups': typeof AdminGroupsRoute
   '/admin/reports': typeof AdminReportsRoute
@@ -160,6 +169,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/settings'
     | '/admin/admin_dashboard'
+    | '/admin/dashboards'
     | '/admin/databases'
     | '/admin/groups'
     | '/admin/reports'
@@ -177,6 +187,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/settings'
     | '/admin/admin_dashboard'
+    | '/admin/dashboards'
     | '/admin/databases'
     | '/admin/groups'
     | '/admin/reports'
@@ -194,6 +205,7 @@ export interface FileRouteTypes {
     | '/account/profile'
     | '/account/settings'
     | '/admin/admin_dashboard'
+    | '/admin/dashboards'
     | '/admin/databases'
     | '/admin/groups'
     | '/admin/reports'
@@ -212,6 +224,7 @@ export interface RootRouteChildren {
   AccountProfileRoute: typeof AccountProfileRoute
   AccountSettingsRoute: typeof AccountSettingsRoute
   AdminAdmin_dashboardRoute: typeof AdminAdmin_dashboardRoute
+  AdminDashboardsRoute: typeof AdminDashboardsRoute
   AdminDatabasesRoute: typeof AdminDatabasesRoute
   AdminGroupsRoute: typeof AdminGroupsRoute
   AdminReportsRoute: typeof AdminReportsRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminDatabasesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/dashboards': {
+      id: '/admin/dashboards'
+      path: '/admin/dashboards'
+      fullPath: '/admin/dashboards'
+      preLoaderRoute: typeof AdminDashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/admin_dashboard': {
       id: '/admin/admin_dashboard'
       path: '/admin/admin_dashboard'
@@ -340,6 +360,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountProfileRoute: AccountProfileRoute,
   AccountSettingsRoute: AccountSettingsRoute,
   AdminAdmin_dashboardRoute: AdminAdmin_dashboardRoute,
+  AdminDashboardsRoute: AdminDashboardsRoute,
   AdminDatabasesRoute: AdminDatabasesRoute,
   AdminGroupsRoute: AdminGroupsRoute,
   AdminReportsRoute: AdminReportsRoute,

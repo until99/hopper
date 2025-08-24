@@ -42,6 +42,7 @@ function RouteComponent() {
   const [selectedDashboardIds, setSelectedDashboardIds] = useState([]);
   const [dashboardSelectionSearchTerm, setDashboardSelectionSearchTerm] =
     useState("");
+  const [workspaceListSearch, setWorkspaceListSearch] = useState("");
 
   const workspaceRef = useRef(null);
 
@@ -102,6 +103,11 @@ function RouteComponent() {
 
   const filteredWorkspaces = workspaces.filter((workspace) =>
     workspace.toLowerCase().includes(workspaceSearch.toLowerCase()),
+  );
+
+  // Filtrar workspaces para a lista principal
+  const filteredWorkspacesList = workspaces.filter((workspace) =>
+    workspace.toLowerCase().includes(workspaceListSearch.toLowerCase()),
   );
 
   // Criar mapeamento de workspace para dashboards
@@ -640,8 +646,26 @@ function RouteComponent() {
                 </div>
               </div>
             </div>
+
+            {/* Search Bar for Workspaces */}
+            <div className="border-x border-slate-200 bg-white p-4">
+              <div className="relative">
+                <MagnifyingGlassIcon
+                  size={18}
+                  className="absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
+                />
+                <input
+                  type="text"
+                  value={workspaceListSearch}
+                  onChange={(e) => setWorkspaceListSearch(e.target.value)}
+                  className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
+                  placeholder="Search workspaces..."
+                />
+              </div>
+            </div>
+
             <div className="flex flex-col rounded-b-md border-x border-b border-slate-200 bg-white p-2">
-              {workspaces.map((workspace) => (
+              {filteredWorkspacesList.map((workspace) => (
                 <div key={workspace} className="group mb-3 last:mb-0">
                   <div
                     className={`flex cursor-pointer items-center justify-between rounded-md border-slate-200 p-3 transition-colors hover:bg-slate-100 ${
@@ -692,7 +716,20 @@ function RouteComponent() {
                 </div>
               ))}
 
-              {workspaces.length === 0 && (
+              {filteredWorkspacesList.length === 0 && workspaceListSearch && (
+                <div className="py-8 text-center">
+                  <MagnifyingGlassIcon className="mx-auto mb-4 h-12 w-12 text-slate-300" />
+                  <p className="font-medium text-slate-500">
+                    No workspaces found
+                  </p>
+                  <p className="text-sm text-slate-400">
+                    No workspaces match your search criteria: "
+                    {workspaceListSearch}"
+                  </p>
+                </div>
+              )}
+
+              {workspaces.length === 0 && !workspaceListSearch && (
                 <div className="py-8 text-center">
                   <FolderIcon className="mx-auto mb-4 h-12 w-12 text-slate-300" />
                   <p className="font-medium text-slate-500">

@@ -1,5 +1,6 @@
 import {
   ChartBarIcon,
+  ChartLineIcon,
   ChartPieSliceIcon,
   DatabaseIcon,
   FileSqlIcon,
@@ -88,6 +89,12 @@ let menu_items = [
     admin_only: false,
   },
   {
+    route: "admin/dashboards",
+    icon: <ChartLineIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Dashboards",
+    admin_only: true,
+  },
+  {
     route: "admin/users",
     icon: <UsersIcon size={22} className="mr-2 inline-block" />,
     routeName: "Users",
@@ -97,6 +104,12 @@ let menu_items = [
     route: "admin/groups",
     icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
     routeName: "Groups",
+    admin_only: true,
+  },
+  {
+    route: "admin/workspaces",
+    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
+    routeName: "Workspaces",
     admin_only: true,
   },
   {
@@ -115,12 +128,6 @@ let menu_items = [
     route: "admin/databases",
     icon: <DatabaseIcon size={22} className="mr-2 inline-block" />,
     routeName: "Databases",
-    admin_only: true,
-  },
-  {
-    route: "admin/workspaces",
-    icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
-    routeName: "Workspaces",
     admin_only: true,
   },
   {

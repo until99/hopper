@@ -51,7 +51,7 @@ function ReportCard({
       params={{ dashboardId: dashboardId }}
       search={{ dashboardTitle: title, dashboardDescription: description }}
     >
-      <div className="h-40 rounded-lg border border-slate-200 bg-white p-4">
+      <div className="flex min-h-50 flex-col justify-between rounded-lg border border-slate-200 bg-white p-4">
         <div className="flex justify-between align-top">
           <div>
             <h3 className="text-lg font-semibold">{title}</h3>

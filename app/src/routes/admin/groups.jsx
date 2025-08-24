@@ -9,7 +9,6 @@ import {
   UserIcon,
   FolderIcon,
   UserPlusIcon,
-  CheckIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
@@ -43,6 +42,7 @@ function RouteComponent() {
   const [memberSearchTerm, setMemberSearchTerm] = useState("");
   const [selectedDashboardIds, setSelectedDashboardIds] = useState([]);
   const [dashboardSearchTerm, setDashboardSearchTerm] = useState("");
+  const [groupSearch, setGroupSearch] = useState("");
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({
@@ -236,6 +236,13 @@ function RouteComponent() {
 
   const groupUsers = getGroupUsers();
   const groupDashboards = getGroupDashboards();
+
+  // Filtrar grupos pela pesquisa
+  const filteredGroups = groups_list.filter(
+    (group) =>
+      group.name.toLowerCase().includes(groupSearch.toLowerCase()) ||
+      group.description.toLowerCase().includes(groupSearch.toLowerCase()),
+  );
 
   // Filtrar usuários pela pesquisa
   const filteredUsers = groupUsers.filter(
@@ -683,8 +690,26 @@ function RouteComponent() {
                 Select a group to view members and permissions
               </p>
             </div>
+
+            {/* Search Bar for Groups */}
+            <div className="border-x border-slate-200 bg-white p-4">
+              <div className="relative">
+                <MagnifyingGlassIcon
+                  size={18}
+                  className="absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
+                />
+                <input
+                  type="text"
+                  value={groupSearch}
+                  onChange={(e) => setGroupSearch(e.target.value)}
+                  className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
+                  placeholder="Search groups by name or description..."
+                />
+              </div>
+            </div>
+
             <div className="flex flex-col rounded-b-md border-x border-b border-slate-200 bg-white p-2">
-              {groups_list.map((group) => (
+              {filteredGroups.map((group) => (
                 <div key={group.id} className="group mb-3 last:mb-0">
                   <div
                     className={`flex cursor-pointer items-center justify-between rounded-md border-slate-200 p-3 transition-colors hover:bg-slate-100 ${
@@ -737,7 +762,17 @@ function RouteComponent() {
                 </div>
               ))}
 
-              {groups_list.length === 0 && (
+              {filteredGroups.length === 0 && groupSearch && (
+                <div className="py-8 text-center">
+                  <MagnifyingGlassIcon className="mx-auto mb-4 h-12 w-12 text-slate-300" />
+                  <p className="font-medium text-slate-500">No groups found</p>
+                  <p className="text-sm text-slate-400">
+                    No groups match your search criteria: "{groupSearch}"
+                  </p>
+                </div>
+              )}
+
+              {groups_list.length === 0 && !groupSearch && (
                 <div className="py-8 text-center">
                   <UsersIcon className="mx-auto mb-4 h-12 w-12 text-slate-300" />
                   <p className="font-medium text-slate-500">No groups found</p>
