@@ -1,16 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import {
-  MagnifyingGlassIcon,
   PlayIcon,
   DatabaseIcon,
   FunnelIcon,
   DownloadIcon,
   CodeIcon,
-  XIcon,
   CaretDownIcon,
   CaretUpIcon,
 } from "@phosphor-icons/react";
+
+import {
+  Button,
+  Card,
+  Badge,
+  PageHeader,
+  SearchInput,
+  Modal,
+  FormField,
+  Select,
+  Input,
+} from "../../components/ui";
 
 import { sql_queries, users_list } from "../../utils/variables/mockData.jsx";
 
@@ -19,20 +29,18 @@ export const Route = createFileRoute("/reports/list-reports")({
 });
 
 function ReportCard({ query, onExecute }) {
-  const colorClassMap = {
-    blue: "border-blue-300 bg-blue-200 text-blue-600",
-    emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
-    violet: "border-violet-300 bg-violet-200 text-violet-600",
-    red: "border-red-300 bg-red-200 text-red-600",
-    yellow: "border-yellow-300 bg-yellow-200 text-yellow-600",
+  const colorVariants = {
+    blue: "primary",
+    emerald: "success",
+    violet: "default",
+    red: "danger",
+    yellow: "warning",
   };
-
-  const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
 
   const createdByUser = users_list.find((u) => u.id === query.createdBy);
 
   return (
-    <div className="h-fit rounded-lg border border-slate-200 bg-white p-4">
+    <Card className="h-fit">
       <div className="flex justify-between align-top">
         <div className="flex-1">
           <h3 className="text-lg font-semibold">{query.name}</h3>
@@ -51,7 +59,9 @@ function ReportCard({ query, onExecute }) {
             )}
           </div>
         </div>
-        <div className={categoryStyle}>{query.category}</div>
+        <Badge variant={colorVariants[query.categoryColor] || "default"}>
+          {query.category}
+        </Badge>
       </div>
 
       <div className="mt-4 flex items-end justify-between">
@@ -59,15 +69,17 @@ function ReportCard({ query, onExecute }) {
           <p>By {createdByUser?.fullName || "Unknown"}</p>
           <p>Updated {query.updatedAt}</p>
         </div>
-        <button
+        <Button
           onClick={() => onExecute(query)}
-          className="flex items-center gap-2 rounded-lg bg-green-600 px-3 py-2 text-sm text-white hover:bg-green-700"
+          variant="default"
+          size="sm"
+          className="bg-green-600 hover:bg-green-700"
         >
           <PlayIcon weight="fill" size={16} />
-          <p className="text-sm">Execute</p>
-        </button>
+          Execute
+        </Button>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -95,205 +107,187 @@ function ExecuteQueryDialog({
   );
 
   return (
-    <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-      <div className="mx-4 max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-6">
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Execute Query: {query.name}</h3>
-          <button
-            onClick={onClose}
-            className="text-gray-500 hover:text-gray-700"
-          >
-            <XIcon size={20} />
-          </button>
-        </div>
-
-        {/* Query Info */}
-        <div className="mb-4 rounded-lg border border-slate-200 bg-white p-4">
-          <div
-            className={`-m-2 flex cursor-pointer justify-between rounded-lg p-2 align-top transition-colors hover:bg-slate-50 ${isQueryCollapsed ? "" : "mb-4"}`}
-            onClick={() => setIsQueryCollapsed(!isQueryCollapsed)}
-          >
+    <Modal
+      isOpen={true}
+      onClose={onClose}
+      title={`Execute Query: ${query.name}`}
+      size="xl"
+    >
+      {/* Query Info */}
+      <Card className="mb-4">
+        <div
+          className={`-m-2 flex cursor-pointer justify-between rounded-lg p-2 align-top transition-colors hover:bg-slate-50 ${isQueryCollapsed ? "" : "mb-4"}`}
+          onClick={() => setIsQueryCollapsed(!isQueryCollapsed)}
+        >
+          <div className="flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded transition-colors hover:bg-slate-200">
+              {isQueryCollapsed ? (
+                <CaretDownIcon size={16} className="text-slate-600" />
+              ) : (
+                <CaretUpIcon size={16} className="text-slate-600" />
+              )}
+            </div>
             <div className="flex items-center gap-2">
-              <div className="flex h-6 w-6 items-center justify-center rounded transition-colors hover:bg-slate-200">
-                {isQueryCollapsed ? (
-                  <CaretDownIcon size={16} className="text-slate-600" />
-                ) : (
-                  <CaretUpIcon size={16} className="text-slate-600" />
-                )}
-              </div>
-              <div className="flex items-center gap-2">
-                <CodeIcon size={16} />
-                <span className="font-medium">SQL Query</span>
-                <span className="text-sm text-gray-500">
-                  ({query.database})
-                </span>
-              </div>
+              <CodeIcon size={16} />
+              <span className="font-medium">SQL Query</span>
+              <Badge variant="default">{query.database}</Badge>
             </div>
           </div>
-
-          {!isQueryCollapsed && (
-            <pre className="overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm">
-              <code>{query.query}</code>
-            </pre>
-          )}
         </div>
 
-        {/* Parameters */}
-        {query.bindVariables.length > 0 && (
-          <div className="mb-4">
-            <h4 className="mb-3 font-medium">Parameters</h4>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              {query.bindVariables.map((param) => (
-                <div key={param.name} className="flex flex-col">
-                  <label className="mb-1 block text-sm font-medium text-gray-700">
-                    {param.name}
-                    {param.required && <span className="text-red-500">*</span>}
-                    {!param.required && (
-                      <span className="ml-1 text-xs text-gray-400">
-                        (optional)
-                      </span>
-                    )}
-                  </label>
-                  {param.description && (
-                    <p className="mb-2 text-xs text-gray-500">
-                      {param.description}
-                    </p>
-                  )}
-                  {param.type === "select" ? (
-                    <select
-                      value={
-                        executeParams[param.name] || param.defaultValue || ""
-                      }
-                      onChange={(e) =>
-                        handleParamChange(param.name, e.target.value)
-                      }
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
-                    >
-                      <option value="">Select option</option>
-                      {param.options?.map((option) => (
-                        <option key={option} value={option}>
-                          {option}
-                        </option>
-                      ))}
-                    </select>
-                  ) : (
-                    <input
-                      type={
-                        param.type === "date"
-                          ? "date"
-                          : param.type === "number"
-                            ? "number"
-                            : "text"
-                      }
-                      value={
-                        executeParams[param.name] || param.defaultValue || ""
-                      }
-                      onChange={(e) =>
-                        handleParamChange(param.name, e.target.value)
-                      }
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2"
-                      placeholder={param.required ? "Required" : "Optional"}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+        {!isQueryCollapsed && (
+          <pre className="overflow-x-auto rounded-lg border border-slate-200 bg-slate-50 p-3 text-sm">
+            <code>{query.query}</code>
+          </pre>
         )}
+      </Card>
 
-        {/* Execute Button */}
+      {/* Parameters */}
+      {query.bindVariables.length > 0 && (
         <div className="mb-4">
-          <button
-            onClick={onExecute}
-            disabled={!canExecute || isExecuting}
-            className="flex h-9 items-center gap-2 rounded-md bg-green-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
-          >
-            <PlayIcon weight="fill" size={16} />
-            {isExecuting ? "Executing..." : "Execute Query"}
-          </button>
-          {!canExecute && query.bindVariables.some((p) => p.required) && (
-            <p className="mt-2 text-sm text-red-600">
-              Please fill in all required parameters
-            </p>
-          )}
-        </div>
-
-        {/* Loading */}
-        {isExecuting && (
-          <div className="mb-4 text-center">
-            <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
-            <p className="mt-2 text-gray-600">Executing query...</p>
+          <h4 className="mb-3 font-medium">Parameters</h4>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {query.bindVariables.map((param) => (
+              <FormField
+                key={param.name}
+                label={param.name}
+                required={param.required}
+                htmlFor={param.name}
+              >
+                {param.description && (
+                  <p className="mb-2 text-xs text-gray-500">
+                    {param.description}
+                  </p>
+                )}
+                {param.type === "select" ? (
+                  <Select
+                    id={param.name}
+                    value={
+                      executeParams[param.name] || param.defaultValue || ""
+                    }
+                    onChange={(e) =>
+                      handleParamChange(param.name, e.target.value)
+                    }
+                  >
+                    <option value="">Select option</option>
+                    {param.options?.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Input
+                    id={param.name}
+                    type={
+                      param.type === "date"
+                        ? "date"
+                        : param.type === "number"
+                          ? "number"
+                          : "text"
+                    }
+                    value={
+                      executeParams[param.name] || param.defaultValue || ""
+                    }
+                    onChange={(e) =>
+                      handleParamChange(param.name, e.target.value)
+                    }
+                    placeholder={param.required ? "Required" : "Optional"}
+                  />
+                )}
+              </FormField>
+            ))}
           </div>
+        </div>
+      )}
+
+      {/* Execute Button */}
+      <div className="mb-4">
+        <Button
+          onClick={onExecute}
+          disabled={!canExecute || isExecuting}
+          className="bg-green-600 hover:bg-green-700"
+        >
+          <PlayIcon weight="fill" size={16} />
+          {isExecuting ? "Executing..." : "Execute Query"}
+        </Button>
+        {!canExecute && query.bindVariables.some((p) => p.required) && (
+          <p className="mt-2 text-sm text-red-600">
+            Please fill in all required parameters
+          </p>
         )}
+      </div>
 
-        {/* Results */}
-        {executionResult && (
-          <div className="mb-4">
-            <div className="mb-3 flex items-center justify-between">
-              <h4 className="font-medium">Results</h4>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-600">
-                  {executionResult.rowCount} rows •{" "}
-                  {executionResult.executionTime}
-                </span>
-                <button
-                  onClick={onDownload}
-                  className="flex h-9 items-center gap-2 rounded-md bg-blue-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-700"
-                >
-                  <DownloadIcon size={16} />
-                  Download CSV
-                </button>
-              </div>
+      {/* Loading */}
+      {isExecuting && (
+        <div className="mb-4 text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-b-2 border-green-600"></div>
+          <p className="mt-2 text-gray-600">Executing query...</p>
+        </div>
+      )}
+
+      {/* Results */}
+      {executionResult && (
+        <Card className="mb-4">
+          <div className="mb-3 flex items-center justify-between">
+            <h4 className="font-medium">Results</h4>
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-600">
+                {executionResult.rowCount} rows •{" "}
+                {executionResult.executionTime}
+              </span>
+              <Button
+                onClick={onDownload}
+                variant="default"
+                className="bg-blue-600 hover:bg-blue-700"
+              >
+                <DownloadIcon size={16} />
+                Download CSV
+              </Button>
             </div>
+          </div>
 
-            <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b border-slate-200 bg-slate-50">
-                      {executionResult.columns.map((col, index) => (
-                        <th
-                          key={index}
-                          className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500"
-                        >
-                          <div className="flex items-center">{col}</div>
-                        </th>
+          <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-slate-200 bg-slate-50">
+                    {executionResult.columns.map((col, index) => (
+                      <th
+                        key={index}
+                        className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500"
+                      >
+                        <div className="flex items-center">{col}</div>
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {executionResult.data.map((row, index) => (
+                    <tr
+                      key={index}
+                      className="border-t border-slate-200 hover:bg-slate-50"
+                    >
+                      {row.map((cell, cellIndex) => (
+                        <td key={cellIndex} className="p-3 text-sm text-black">
+                          {cell}
+                        </td>
                       ))}
                     </tr>
-                  </thead>
-                  <tbody>
-                    {executionResult.data.map((row, index) => (
-                      <tr
-                        key={index}
-                        className="border-t border-slate-200 hover:bg-slate-50"
-                      >
-                        {row.map((cell, cellIndex) => (
-                          <td
-                            key={cellIndex}
-                            className="p-3 text-sm text-black"
-                          >
-                            {cell}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
-        )}
+        </Card>
+      )}
 
-        <div className="flex justify-end">
-          <button
-            onClick={onClose}
-            className="rounded-lg border border-slate-200 px-4 py-2 hover:bg-slate-50"
-          >
-            Close
-          </button>
-        </div>
+      <div className="flex justify-end">
+        <Button variant="outline" onClick={onClose}>
+          Close
+        </Button>
       </div>
-    </div>
+    </Modal>
   );
 }
 
@@ -305,7 +299,7 @@ function WorkspaceGroup({
   onExecute,
 }) {
   return (
-    <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4">
+    <Card className="mb-6">
       <div
         className={`-m-2 flex cursor-pointer justify-between rounded-lg p-2 align-top transition-colors hover:bg-slate-50 ${isCollapsed ? "" : "mb-4"}`}
         onClick={() => onToggleCollapse(workspace)}
@@ -325,23 +319,17 @@ function WorkspaceGroup({
             </p>
           </div>
         </div>
-        <div className="h-fit rounded-full border-slate-300 bg-slate-200 px-3 pb-0.5 text-sm font-semibold text-slate-600">
-          Workspace
-        </div>
+        <Badge variant="default">Workspace</Badge>
       </div>
 
       {!isCollapsed && (
         <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {queries.map((query) => (
-            <ReportCard
-              key={query.id}
-              query={query}
-              onExecute={onExecute}
-            />
+            <ReportCard key={query.id} query={query} onExecute={onExecute} />
           ))}
         </div>
       )}
-    </div>
+    </Card>
   );
 }
 
@@ -498,28 +486,17 @@ function RouteComponent() {
   return (
     <>
       <section className="p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Reports</h1>
-            <h2 className="text-md text-gray-500">
-              Execute queries and download results as CSV
-            </h2>
-          </div>
-        </div>
+        <PageHeader
+          title="Reports"
+          subtitle="Execute queries and download results as CSV"
+        />
 
-        <div className="relative my-6">
-          <MagnifyingGlassIcon
-            size={18}
-            className="absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
-          />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
-            placeholder="Search reports... (Use :des=text for description, :cat=text for category, :db=text for database)"
-          />
-        </div>
+        <SearchInput
+          className="my-6"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search reports... (Use :des=text for description, :cat=text for category, :db=text for database)"
+        />
 
         <div className="space-y-5">
           {Object.entries(groupedQueries).length === 0 ? (

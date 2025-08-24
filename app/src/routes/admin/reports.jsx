@@ -1,17 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState, useRef, useEffect } from "react";
 import {
-  MagnifyingGlassIcon,
   PlusIcon,
   PencilIcon,
   TrashIcon,
   DatabaseIcon,
-  CodeIcon,
-  XIcon,
-  CheckIcon,
-  DownloadIcon,
   FunnelIcon,
 } from "@phosphor-icons/react";
+
+// Import UI components
+import Button from "../../components/ui/Button";
+import SearchInput from "../../components/ui/SearchInput";
+import Modal from "../../components/ui/Modal";
+import Badge from "../../components/ui/Badge";
+import FormField from "../../components/ui/FormField";
+import Input from "../../components/ui/Input";
+import Select from "../../components/ui/Select";
+import PageHeader from "../../components/ui/PageHeader";
 
 import {
   sql_queries,
@@ -158,15 +163,9 @@ function RouteComponent() {
 
   return (
     <section className="p-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">SQL Reports</h1>
-          <h2 className="text-md text-gray-500">
-            Manage and execute SQL queries
-          </h2>
-        </div>
-        <button
-          className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
+      <PageHeader title="SQL Reports" subtitle="Manage and execute SQL queries">
+        <Button
+          variant="default"
           onClick={() => {
             setSelectedQuery(null);
             setFormData({
@@ -183,19 +182,13 @@ function RouteComponent() {
         >
           <PlusIcon size={16} />
           New Query
-        </button>
-      </div>
+        </Button>
+      </PageHeader>
 
-      <div className="relative my-6">
-        <MagnifyingGlassIcon
-          size={18}
-          className="absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
-        />
-        <input
-          type="text"
+      <div className="my-6">
+        <SearchInput
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none"
           placeholder="Search queries by name, description, category, or database..."
         />
       </div>
@@ -247,228 +240,179 @@ function RouteComponent() {
       </div>
 
       {/* Create/Edit Query Dialog */}
-      {showQueryDialog && (
-        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="mx-4 w-full max-w-2xl rounded-lg bg-white p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-lg font-semibold">
-                {selectedQuery ? "Edit Query" : "Create New Query"}
-              </h3>
-              <button
-                onClick={() => {
-                  setShowQueryDialog(false);
-                  setSelectedQuery(null);
-                  setFormData({
-                    name: "",
-                    description: "",
-                    database: "",
-                    query: "",
-                    category: "Analytics",
-                    categoryColor: "blue",
-                  });
+      <Modal
+        isOpen={showQueryDialog}
+        onClose={() => {
+          setShowQueryDialog(false);
+          setSelectedQuery(null);
+          setFormData({
+            name: "",
+            description: "",
+            database: "",
+            query: "",
+            category: "Analytics",
+            categoryColor: "blue",
+            workspace: "",
+          });
+        }}
+        title={selectedQuery ? "Edit Query" : "Create New Query"}
+        size="lg"
+      >
+        <div className="space-y-4">
+          <FormField label="Name" required>
+            <Input
+              type="text"
+              value={formData.name}
+              onChange={(e) => handleInputChange("name", e.target.value)}
+              placeholder="Query name"
+            />
+          </FormField>
+
+          <FormField label="Description">
+            <textarea
+              value={formData.description}
+              onChange={(e) => handleInputChange("description", e.target.value)}
+              className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              rows="2"
+              placeholder="Query description"
+            />
+          </FormField>
+
+          <div className="grid grid-cols-2 gap-4">
+            <FormField label="Database" required>
+              <Select
+                value={formData.database}
+                onChange={(e) => handleInputChange("database", e.target.value)}
+              >
+                <option value="">Select database</option>
+                {databases.map((db) => (
+                  <option key={db.id} value={db.name}>
+                    {db.name} ({db.type})
+                  </option>
+                ))}
+              </Select>
+            </FormField>
+
+            <FormField label="Category">
+              <Select
+                value={formData.category}
+                onChange={(e) => {
+                  const category = e.target.value;
+                  handleInputChange("category", category);
+                  handleInputChange(
+                    "categoryColor",
+                    categoryColors[category] || "blue",
+                  );
                 }}
-                className="text-gray-500 hover:text-gray-700"
               >
-                <XIcon size={20} />
-              </button>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
-                  placeholder="Query name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Description
-                </label>
-                <textarea
-                  value={formData.description}
-                  onChange={(e) =>
-                    handleInputChange("description", e.target.value)
-                  }
-                  className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
-                  rows="2"
-                  placeholder="Query description"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Database
-                  </label>
-                  <select
-                    value={formData.database}
-                    onChange={(e) =>
-                      handleInputChange("database", e.target.value)
-                    }
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
-                  >
-                    <option value="">Select database</option>
-                    {databases.map((db) => (
-                      <option key={db.id} value={db.name}>
-                        {db.name} ({db.type})
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-gray-700">
-                    Category
-                  </label>
-                  <select
-                    value={formData.category}
-                    onChange={(e) => {
-                      const category = e.target.value;
-                      handleInputChange("category", category);
-                      handleInputChange(
-                        "categoryColor",
-                        categoryColors[category] || "blue",
-                      );
-                    }}
-                    className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
-                  >
-                    {Object.keys(categoryColors).map((cat) => (
-                      <option key={cat} value={cat}>
-                        {cat}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Workspace
-                </label>
-                <input
-                  type="text"
-                  value={formData.workspace}
-                  onChange={(e) =>
-                    handleInputChange("workspace", e.target.value)
-                  }
-                  className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2"
-                  placeholder="Workspace name"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  SQL Query
-                </label>
-                <textarea
-                  value={formData.query}
-                  onChange={(e) => handleInputChange("query", e.target.value)}
-                  className="mt-1 w-full rounded-lg border border-slate-200 px-3 py-2 font-mono text-sm"
-                  rows="8"
-                  placeholder="SELECT * FROM table WHERE column = :parameter"
-                />
-                <p className="mt-1 text-xs text-gray-500">
-                  Use :parameter_name for bind variables (e.g., :start_date,
-                  :user_id)
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex justify-end gap-2">
-              <button
-                onClick={() => {
-                  setShowQueryDialog(false);
-                  setSelectedQuery(null);
-                  setFormData({
-                    name: "",
-                    description: "",
-                    database: "",
-                    query: "",
-                    category: "Analytics",
-                    categoryColor: "blue",
-                    workspace: "",
-                  });
-                }}
-                className="rounded-lg border border-slate-200 px-4 py-2 text-sm hover:bg-slate-50"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={handleCreateQuery}
-                className="rounded-lg bg-blue-600 px-4 py-2 text-sm text-white hover:bg-blue-700"
-              >
-                {selectedQuery ? "Update" : "Create"} Query
-              </button>
-            </div>
+                {Object.keys(categoryColors).map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </Select>
+            </FormField>
           </div>
+
+          <FormField label="Workspace">
+            <Input
+              type="text"
+              value={formData.workspace}
+              onChange={(e) => handleInputChange("workspace", e.target.value)}
+              placeholder="Workspace name"
+            />
+          </FormField>
+
+          <FormField label="SQL Query" required>
+            <textarea
+              value={formData.query}
+              onChange={(e) => handleInputChange("query", e.target.value)}
+              className="w-full rounded-lg border border-slate-200 px-3 py-2 font-mono text-sm transition-colors focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              rows="8"
+              placeholder="SELECT * FROM table WHERE column = :parameter"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Use :parameter_name for bind variables (e.g., :start_date,
+              :user_id)
+            </p>
+          </FormField>
         </div>
-      )}
+
+        <div className="mt-6 flex justify-end gap-2">
+          <Button
+            variant="outline"
+            onClick={() => {
+              setShowQueryDialog(false);
+              setSelectedQuery(null);
+              setFormData({
+                name: "",
+                description: "",
+                database: "",
+                query: "",
+                category: "Analytics",
+                categoryColor: "blue",
+                workspace: "",
+              });
+            }}
+          >
+            Cancel
+          </Button>
+          <Button variant="default" onClick={handleCreateQuery}>
+            {selectedQuery ? "Update" : "Create"} Query
+          </Button>
+        </div>
+      </Modal>
 
       {/* Delete Confirmation Dialog */}
-      {showDeleteDialog && queryToDelete && (
-        <div className="bg-opacity-50 fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="mx-4 w-fit max-w-lg rounded-lg bg-white p-6">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
-                <TrashIcon size={20} className="text-red-600" />
-              </div>
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900">
-                  Confirmar exclusão
-                </h3>
-                <p className="text-sm text-gray-500">
-                  Esta ação não pode ser desfeita
-                </p>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <p className="text-sm text-gray-700">
-                Tem certeza que deseja excluir a query{" "}
-                <span className="font-semibold">"{queryToDelete.name}"</span>?
-              </p>
-            </div>
-
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={cancelDelete}
-                className="rounded-lg border border-slate-200 px-4 py-2 text-gray-700 hover:bg-slate-50"
-              >
-                <p className="text-sm">Cancelar</p>
-              </button>
-              <button
-                onClick={confirmDelete}
-                className="flex items-center gap-2 rounded-lg bg-red-600 px-4 py-2 text-white hover:bg-red-700"
-              >
-                <TrashIcon size={16} weight="bold" />
-                <p className="text-sm">Excluir</p>
-              </button>
-            </div>
+      <Modal
+        isOpen={showDeleteDialog && queryToDelete}
+        onClose={cancelDelete}
+        title="Confirmar exclusão"
+        size="md"
+        showCloseButton={false}
+      >
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-red-100">
+            <TrashIcon size={20} className="text-red-600" />
+          </div>
+          <div>
+            <p className="text-sm text-gray-500">
+              Esta ação não pode ser desfeita
+            </p>
           </div>
         </div>
-      )}
+
+        <div className="mb-6">
+          <p className="text-sm text-gray-700">
+            Tem certeza que deseja excluir a query{" "}
+            <span className="font-semibold">"{queryToDelete?.name}"</span>?
+          </p>
+        </div>
+
+        <div className="flex justify-end gap-3">
+          <Button variant="outline" onClick={cancelDelete}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={confirmDelete}>
+            <TrashIcon size={16} weight="bold" />
+            Excluir
+          </Button>
+        </div>
+      </Modal>
     </section>
   );
 }
 
 function QueryRow({ query, onEdit, onDelete }) {
-  const colorClassMap = {
-    blue: "border-blue-300 bg-blue-200 text-blue-600",
-    emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
-    violet: "border-violet-300 bg-violet-200 text-violet-600",
-    red: "border-red-300 bg-red-200 text-red-600",
-    yellow: "border-yellow-300 bg-yellow-200 text-yellow-600",
+  const colorVariantMap = {
+    blue: "primary",
+    emerald: "success",
+    violet: "primary",
+    red: "danger",
+    yellow: "warning",
   };
 
-  const categoryStyle = `w-fit rounded-full border px-3 py-0.5 text-xs font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
-
+  const categoryVariant = colorVariantMap[query.categoryColor] || "default";
   const createdByUser = users_list.find((u) => u.id === query.createdBy);
 
   return (
@@ -486,12 +430,10 @@ function QueryRow({ query, onEdit, onDelete }) {
         </div>
       </td>
       <td className="p-3 text-sm text-black">
-        <div className={categoryStyle}>{query.category}</div>
+        <Badge variant={categoryVariant}>{query.category}</Badge>
       </td>
       <td className="p-3 text-sm text-black">
-        <div className="w-fit rounded-full border border-slate-300 bg-slate-200 px-3 py-0.5 text-xs font-semibold text-slate-600">
-          {query.workspace || "Default"}
-        </div>
+        <Badge variant="default">{query.workspace || "Default"}</Badge>
       </td>
       <td className="p-3 text-sm text-black">
         {query.bindVariables?.length > 0 && (
@@ -504,20 +446,22 @@ function QueryRow({ query, onEdit, onDelete }) {
       <td className="p-3 text-sm text-black">{query.updatedAt}</td>
       <td className="p-3 text-sm text-black">
         <div className="flex gap-1">
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onEdit(query)}
-            className="rounded-lg p-2 text-blue-600 hover:bg-blue-100"
-            title="Edit Query"
+            className="text-blue-600 hover:bg-blue-100"
           >
             <PencilIcon size={16} />
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onDelete(query)}
-            className="rounded-lg p-2 text-red-600 hover:bg-red-100"
-            title="Delete Query"
+            className="text-red-600 hover:bg-red-100"
           >
             <TrashIcon size={16} />
-          </button>
+          </Button>
         </div>
       </td>
     </tr>
@@ -525,16 +469,15 @@ function QueryRow({ query, onEdit, onDelete }) {
 }
 
 function QueryCard({ query, onEdit, onDelete }) {
-  const colorClassMap = {
-    blue: "border-blue-300 bg-blue-200 text-blue-600",
-    emerald: "border-emerald-300 bg-emerald-200 text-emerald-600",
-    violet: "border-violet-300 bg-violet-200 text-violet-600",
-    red: "border-red-300 bg-red-200 text-red-600",
-    yellow: "border-yellow-300 bg-yellow-200 text-yellow-600",
+  const colorVariantMap = {
+    blue: "primary",
+    emerald: "success",
+    violet: "primary",
+    red: "danger",
+    yellow: "warning",
   };
 
-  const categoryStyle = `h-fit rounded-full px-3 pb-0.5 text-sm font-semibold ${colorClassMap[query.categoryColor] || "border-gray-300 bg-gray-200 text-gray-600"}`;
-
+  const categoryVariant = colorVariantMap[query.categoryColor] || "default";
   const createdByUser = users_list.find((u) => u.id === query.createdBy);
 
   return (
@@ -555,7 +498,7 @@ function QueryCard({ query, onEdit, onDelete }) {
             )}
           </div>
         </div>
-        <div className={categoryStyle}>{query.category}</div>
+        <Badge variant={categoryVariant}>{query.category}</Badge>
       </div>
 
       <div className="mt-4 flex items-center justify-between">
@@ -564,20 +507,22 @@ function QueryCard({ query, onEdit, onDelete }) {
           <p>Updated {query.updatedAt}</p>
         </div>
         <div className="flex gap-2">
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onEdit(query)}
-            className="rounded-lg p-2 text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-blue-200"
-            title="Edit Query"
+            className="text-blue-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-blue-200"
           >
             <PencilIcon size={14} />
-          </button>
-          <button
+          </Button>
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => onDelete(query)}
-            className="rounded-lg p-2 text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-200"
-            title="Delete Query"
+            className="text-red-600 opacity-0 transition-opacity group-hover:opacity-100 hover:bg-red-200"
           >
             <TrashIcon size={14} />
-          </button>
+          </Button>
         </div>
       </div>
     </div>

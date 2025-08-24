@@ -32,7 +32,7 @@ const Button = forwardRef(
     return (
       <button
         className={cn(
-          "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
+          "inline-flex items-center justify-center gap-2 rounded-lg font-medium transition-colors focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50",
           variants[variant],
           sizes[size],
           className,
@@ -42,7 +42,7 @@ const Button = forwardRef(
         {...props}
       >
         {loading && (
-          <div className="mr-2 h-4 w-4 animate-spin rounded-full border-b-2 border-current"></div>
+          <div className="h-4 w-4 animate-spin rounded-full border-b-2 border-current"></div>
         )}
         {children}
       </button>
