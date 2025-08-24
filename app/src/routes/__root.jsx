@@ -17,16 +17,13 @@ export const Route = createRootRoute({
         setIsLoading(false);
       };
 
-      // Verificar autenticação inicialmente
       checkAuth();
 
-      // Escutar mudanças no estado de autenticação
       const handleAuthChange = (e) => {
         console.log("Auth status changed:", e.detail.isAuthenticated);
         setIsAuthenticated(e.detail.isAuthenticated);
       };
 
-      // Escutar mudanças no localStorage (para outras abas)
       const handleStorageChange = (e) => {
         if (e.key === "isAuthenticated") {
           checkAuth();
@@ -53,7 +50,6 @@ export const Route = createRootRoute({
       );
     }
 
-    // Se não estiver autenticado e estiver numa rota de auth, renderizar sem layout
     const currentPath = window.location.pathname;
     const isAuthRoute =
       currentPath === "/auth/login" || currentPath === "/auth/register";
@@ -62,7 +58,6 @@ export const Route = createRootRoute({
       return <Outlet />;
     }
 
-    // Se estiver autenticado, renderizar com o layout principal
     if (isAuthenticated) {
       console.log("Rendering with Main layout");
       return (
@@ -72,7 +67,6 @@ export const Route = createRootRoute({
       );
     }
 
-    // Fallback: renderizar apenas o Outlet para rotas não autenticadas
     console.log("Rendering fallback Outlet");
     return <Outlet />;
   },

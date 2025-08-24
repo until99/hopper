@@ -1,9 +1,6 @@
 import {
-  FilePlusIcon,
-  UploadIcon,
   XIcon,
   MagnifyingGlassIcon,
-  CaretDownIcon,
   FolderIcon,
   ChartBarIcon,
   PencilSimpleIcon,
@@ -13,7 +10,7 @@ import {
   FolderPlusIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { dashboards_list } from "../../utils/variables/mockData.jsx";
 
 export const Route = createFileRoute("/admin/workspaces")({
@@ -21,18 +18,11 @@ export const Route = createFileRoute("/admin/workspaces")({
 });
 
 function RouteComponent() {
-  const [showDashboardDialog, setShowDashboardDialog] = useState(false);
   const [showWorkspaceDialog, setShowWorkspaceDialog] = useState(false);
-  const [formData, setFormData] = useState({
-    pbixFile: null,
-    workspace: "",
-  });
   const [workspaceFormData, setWorkspaceFormData] = useState({
     name: "",
     description: "",
   });
-  const [workspaceSearch, setWorkspaceSearch] = useState("");
-  const [showWorkspaceDropdown, setShowWorkspaceDropdown] = useState(false);
   const [selectedWorkspace, setSelectedWorkspace] = useState(null);
   const [dashboardSearch, setDashboardSearch] = useState("");
   const [
@@ -44,41 +34,11 @@ function RouteComponent() {
     useState("");
   const [workspaceListSearch, setWorkspaceListSearch] = useState("");
 
-  const workspaceRef = useRef(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        workspaceRef.current &&
-        !workspaceRef.current.contains(event.target)
-      ) {
-        setShowWorkspaceDropdown(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const handleInputChange = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
   const handleWorkspaceInputChange = (field, value) => {
     setWorkspaceFormData((prev) => ({
       ...prev,
       [field]: value,
     }));
-  };
-
-  const handleCreateDashboard = () => {
-    console.log("Form Data:", formData);
-    setShowDashboardDialog(false);
   };
 
   const handleCreateWorkspace = () => {
@@ -99,10 +59,6 @@ function RouteComponent() {
 
   const workspaces = Array.from(
     new Set(dashboards_list.map((dashboard) => dashboard.workspace)),
-  );
-
-  const filteredWorkspaces = workspaces.filter((workspace) =>
-    workspace.toLowerCase().includes(workspaceSearch.toLowerCase()),
   );
 
   // Filtrar workspaces para a lista principal
@@ -310,127 +266,6 @@ function RouteComponent() {
         </div>
       )}
 
-      {showDashboardDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-            <div className="items-top flex justify-between">
-              <div>
-                <h2 className="mb-2 text-xl font-bold">Upload PBIX File</h2>
-                <p className="text-md mb-6 text-slate-500">
-                  Upload a Power BI report file to add it to your workspace.
-                </p>
-              </div>
-              <button
-                className="flex hover:cursor-pointer"
-                onClick={() => setShowDashboardDialog(false)}
-              >
-                <XIcon />
-              </button>
-            </div>
-
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <div className="h-42 w-full">
-                  <input
-                    type="file"
-                    accept=".pbix"
-                    onChange={(e) =>
-                      handleInputChange("pbixFile", e.target.files[0])
-                    }
-                    className="hidden"
-                    id="pbixFile"
-                  />
-                  <label
-                    htmlFor="pbixFile"
-                    className="flex h-full cursor-pointer flex-col items-center justify-center rounded-md border-2 border-dashed border-slate-300 text-slate-400 hover:bg-slate-50"
-                  >
-                    <FilePlusIcon className="mr-2 mb-2 size-8" />
-                    <p className="text-center">
-                      Drag and drop your PBIX file here <br />
-                      or click to browse
-                    </p>
-                  </label>
-                </div>
-
-                <label className="text-sm font-semibold">Workspace</label>
-                <div className="relative" ref={workspaceRef}>
-                  <div
-                    className="flex w-full cursor-pointer items-center justify-between rounded-md border border-slate-200 bg-white p-2 text-sm"
-                    onClick={() =>
-                      setShowWorkspaceDropdown(!showWorkspaceDropdown)
-                    }
-                  >
-                    <span
-                      className={
-                        formData.workspace ? "text-black" : "text-slate-500"
-                      }
-                    >
-                      {formData.workspace || "Select a workspace"}
-                    </span>
-                    <CaretDownIcon
-                      className={`transition-transform ${showWorkspaceDropdown ? `rotate-180` : ``}`}
-                    />
-                  </div>
-
-                  {showWorkspaceDropdown && (
-                    <div className="absolute z-10 mt-1 w-full rounded-md border border-slate-200 bg-white shadow-lg">
-                      <div className="p-2">
-                        <div className="relative">
-                          <MagnifyingGlassIcon className="absolute top-1/2 left-2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                          <input
-                            type="text"
-                            placeholder="Search workspaces..."
-                            value={workspaceSearch}
-                            onChange={(e) => setWorkspaceSearch(e.target.value)}
-                            className="w-full rounded border border-slate-200 py-1 pr-2 pl-8 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                          />
-                        </div>
-                      </div>
-                      <div className="max-h-40 overflow-y-auto">
-                        {filteredWorkspaces.length === 0 ? (
-                          <div className="px-3 py-2 text-sm text-slate-500">
-                            No workspaces found
-                          </div>
-                        ) : (
-                          filteredWorkspaces.map((workspace) => (
-                            <div
-                              key={workspace}
-                              className="cursor-pointer px-3 py-2 text-sm hover:bg-slate-100"
-                              onClick={() => {
-                                handleInputChange("workspace", workspace);
-                                setShowWorkspaceDropdown(false);
-                                setWorkspaceSearch("");
-                              }}
-                            >
-                              {workspace}
-                            </div>
-                          ))
-                        )}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 flex justify-end gap-2">
-              <button
-                className="rounded bg-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-300"
-                onClick={() => setShowDashboardDialog(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                onClick={handleCreateDashboard}
-              >
-                Create
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
       {showAddDashboardToWorkspaceDialog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
           <div className="w-full max-w-2xl rounded-lg bg-white shadow-lg">
@@ -624,12 +459,6 @@ function RouteComponent() {
               onClick={() => setShowWorkspaceDialog(true)}
             >
               <FolderPlusIcon /> Create Workspace
-            </button>
-            <button
-              className="flex h-9 items-center gap-2 rounded-md bg-blue-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-700"
-              onClick={() => setShowDashboardDialog(true)}
-            >
-              <UploadIcon /> Upload PBIX
             </button>
           </div>
         </div>
