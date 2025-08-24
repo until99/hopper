@@ -25,7 +25,7 @@ const Toggle = forwardRef(
           <input
             type="checkbox"
             checked={checked}
-            onChange={onChange}
+            onChange={(e) => onChange?.(e.target.checked)}
             disabled={disabled}
             className="peer sr-only"
             ref={ref}
@@ -33,7 +33,7 @@ const Toggle = forwardRef(
           />
           <div
             className={cn(
-              "peer relative h-6 w-11 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600 peer-focus:outline-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+              "peer relative h-6 w-11.25 rounded-full bg-gray-200 transition-colors peer-checked:bg-blue-600 peer-focus:outline-none peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
               "after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full peer-checked:after:border-white",
               className,
             )}
