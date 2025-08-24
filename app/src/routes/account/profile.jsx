@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   UserIcon,
   PencilSimpleIcon,
@@ -8,9 +8,19 @@ import {
   CalendarIcon,
   EnvelopeIcon,
   PhoneIcon,
-  BellIcon,
-  KeyIcon,
 } from "@phosphor-icons/react";
+import {
+  Button,
+  Input,
+  Select,
+  FormField,
+  Card,
+  PageHeader,
+  Badge,
+} from "../../components/ui";
+import useFormValidation, {
+  validationRules,
+} from "../../hooks/useFormValidation";
 
 export const Route = createFileRoute("/account/profile")({
   component: RouteComponent,
@@ -31,50 +41,54 @@ function RouteComponent() {
     language: "en",
   });
 
-  const [editForm, setEditForm] = useState(userData);
-
-  const handleInputChange = (field, value) => {
-    setEditForm((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  const {
+    formData: editForm,
+    errors,
+    handleChange,
+    validateForm,
+    setFormData,
+  } = useFormValidation(userData, {
+    fullName: [validationRules.required, validationRules.minLength(2)],
+    email: [validationRules.required, validationRules.email],
+    phone: [validationRules.required],
+    department: [validationRules.required],
+  });
 
   const handleSave = () => {
+    if (!validateForm()) return;
+
     setUserData(editForm);
     setIsEditing(false);
-    // Aqui seria feita a chamada para a API para salvar os dados
     console.log("Profile updated:", editForm);
   };
 
   const handleCancel = () => {
-    setEditForm(userData);
+    setFormData(userData);
     setIsEditing(false);
+  };
+
+  const startEditing = () => {
+    setFormData(userData);
+    setIsEditing(true);
   };
 
   return (
     <section className="p-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">My Profile</h1>
-          <h2 className="text-md text-gray-500">
-            Manage your personal information and preferences
-          </h2>
-        </div>
+      <PageHeader
+        title="My Profile"
+        subtitle="Manage your personal information and preferences"
+      >
         {!isEditing && (
-          <button
-            onClick={() => setIsEditing(true)}
-            className="flex h-9 items-center gap-2 rounded-md bg-blue-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-700"
-          >
+          <Button onClick={startEditing}>
             <PencilSimpleIcon size={16} /> Edit Profile
-          </button>
+          </Button>
         )}
-      </div>
+      </PageHeader>
 
       <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
         {/* Profile Card */}
         <div className="lg:col-span-1">
-          <div className="rounded-lg border border-slate-200 bg-white p-6">
+          <Card>
             <div className="text-center">
               <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-blue-100">
                 <UserIcon size={32} className="text-blue-600" />
@@ -82,107 +96,121 @@ function RouteComponent() {
               <h3 className="text-lg font-semibold">{userData.fullName}</h3>
               <p className="text-sm text-gray-500">{userData.email}</p>
               <div className="mt-3 inline-flex items-center gap-1">
-                <span
-                  className={`w-fit rounded-full border px-3 py-1 text-xs font-semibold ${
+                <Badge
+                  variant={
                     userData.role === "Admin"
-                      ? "border-violet-400 bg-violet-200 text-violet-700"
+                      ? "primary"
                       : userData.role === "Analyst"
-                        ? "border-blue-400 bg-blue-200 text-blue-700"
-                        : "border-yellow-400 bg-yellow-200 text-yellow-700"
-                  }`}
+                        ? "success"
+                        : "warning"
+                  }
                 >
                   {userData.role}
-                </span>
+                </Badge>
               </div>
               <div className="mt-4 flex items-center justify-center gap-1 text-xs text-gray-500">
                 <ClockIcon size={14} />
                 <span>Last login: {userData.lastLogin}</span>
               </div>
             </div>
-          </div>
+          </Card>
         </div>
 
         {/* Profile Information */}
         <div className="lg:col-span-2">
-          <div className="rounded-lg border border-slate-200 bg-white p-6">
-            <h3 className="text-lg font-semibold mb-4">Profile Information</h3>
-            
+          <Card>
+            <h3 className="mb-4 text-lg font-semibold">Profile Information</h3>
+
             {isEditing ? (
               <div className="space-y-4">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Full Name
                     </label>
                     <input
                       type="text"
                       value={editForm.fullName}
-                      onChange={(e) => handleInputChange("fullName", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("fullName", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Email Address
                     </label>
                     <input
                       type="email"
                       value={editForm.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Phone Number
                     </label>
                     <input
                       type="tel"
                       value={editForm.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("phone", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Department
                     </label>
                     <input
                       type="text"
                       value={editForm.department}
-                      onChange={(e) => handleInputChange("department", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("department", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     />
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Timezone
                     </label>
                     <select
                       value={editForm.timezone}
-                      onChange={(e) => handleInputChange("timezone", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("timezone", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="America/New_York">America/New York</option>
-                      <option value="America/Sao_Paulo">America/São Paulo</option>
+                      <option value="America/Sao_Paulo">
+                        America/São Paulo
+                      </option>
                       <option value="Europe/London">Europe/London</option>
                       <option value="Asia/Tokyo">Asia/Tokyo</option>
                       <option value="UTC">UTC</option>
                     </select>
                   </div>
-                  
+
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
                       Language
                     </label>
                     <select
                       value={editForm.language}
-                      onChange={(e) => handleInputChange("language", e.target.value)}
-                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      onChange={(e) =>
+                        handleInputChange("language", e.target.value)
+                      }
+                      className="w-full rounded-lg border border-slate-200 px-3 py-2 focus:border-transparent focus:ring-2 focus:ring-blue-500"
                     >
                       <option value="en">English</option>
                       <option value="pt">Português</option>
@@ -191,17 +219,17 @@ function RouteComponent() {
                     </select>
                   </div>
                 </div>
-                
+
                 <div className="flex justify-end gap-3 pt-4">
                   <button
                     onClick={handleCancel}
-                    className="px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
+                    className="rounded-lg border border-gray-300 px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleSave}
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                    className="rounded-lg bg-blue-600 px-4 py-2 text-white transition-colors hover:bg-blue-700"
                   >
                     Save Changes
                   </button>
@@ -217,7 +245,7 @@ function RouteComponent() {
                       <p className="font-medium">{userData.email}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <PhoneIcon size={16} className="text-gray-400" />
                     <div>
@@ -225,7 +253,7 @@ function RouteComponent() {
                       <p className="font-medium">{userData.phone}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <ShieldIcon size={16} className="text-gray-400" />
                     <div>
@@ -233,7 +261,7 @@ function RouteComponent() {
                       <p className="font-medium">{userData.role}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <UserIcon size={16} className="text-gray-400" />
                     <div>
@@ -241,7 +269,7 @@ function RouteComponent() {
                       <p className="font-medium">{userData.department}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <CalendarIcon size={16} className="text-gray-400" />
                     <div>
@@ -249,7 +277,7 @@ function RouteComponent() {
                       <p className="font-medium">{userData.joinDate}</p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center gap-3">
                     <ClockIcon size={16} className="text-gray-400" />
                     <div>
@@ -260,29 +288,38 @@ function RouteComponent() {
                 </div>
               </div>
             )}
-          </div>
+          </Card>
         </div>
       </div>
 
       {/* Account Status */}
       <div className="mt-6">
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
-          <h3 className="text-lg font-semibold mb-4">Account Status</h3>
+        <Card>
+          <h3 className="mb-4 text-lg font-semibold">Account Status</h3>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             <div className="flex items-center gap-3">
-              <div className={`rounded-full p-2 ${userData.isActive ? 'bg-green-100' : 'bg-red-100'}`}>
-                <ShieldIcon size={16} className={userData.isActive ? 'text-green-600' : 'text-red-600'} />
+              <div
+                className={`rounded-full p-2 ${userData.isActive ? "bg-green-100" : "bg-red-100"}`}
+              >
+                <ShieldIcon
+                  size={16}
+                  className={
+                    userData.isActive ? "text-green-600" : "text-red-600"
+                  }
+                />
               </div>
               <div>
                 <p className="text-sm text-gray-500">Status</p>
-                <p className={`font-medium ${userData.isActive ? 'text-green-600' : 'text-red-600'}`}>
-                  {userData.isActive ? 'Active' : 'Inactive'}
+                <p
+                  className={`font-medium ${userData.isActive ? "text-green-600" : "text-red-600"}`}
+                >
+                  {userData.isActive ? "Active" : "Inactive"}
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
-              <div className="rounded-full p-2 bg-blue-100">
+              <div className="rounded-full bg-blue-100 p-2">
                 <CalendarIcon size={16} className="text-blue-600" />
               </div>
               <div>
@@ -290,9 +327,9 @@ function RouteComponent() {
                 <p className="font-medium">{userData.joinDate}</p>
               </div>
             </div>
-            
+
             <div className="flex items-center gap-3">
-              <div className="rounded-full p-2 bg-gray-100">
+              <div className="rounded-full bg-gray-100 p-2">
                 <ClockIcon size={16} className="text-gray-600" />
               </div>
               <div>
@@ -301,7 +338,7 @@ function RouteComponent() {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
     </section>
   );

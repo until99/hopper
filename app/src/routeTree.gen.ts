@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ReportsListReportsRouteImport } from './routes/reports/list-reports'
+import { Route as DemoComponentsRouteImport } from './routes/demo/components'
 import { Route as DashboardListDashboardsRouteImport } from './routes/dashboard/list-dashboards'
 import { Route as DashboardDashboardIdRouteImport } from './routes/dashboard/$dashboardId'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
@@ -34,6 +35,11 @@ const IndexRoute = IndexRouteImport.update({
 const ReportsListReportsRoute = ReportsListReportsRouteImport.update({
   id: '/reports/list-reports',
   path: '/reports/list-reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoComponentsRoute = DemoComponentsRouteImport.update({
+  id: '/demo/components',
+  path: '/demo/components',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DashboardListDashboardsRoute = DashboardListDashboardsRouteImport.update({
@@ -123,6 +129,7 @@ export interface FileRoutesByFullPath {
   '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/demo/components': typeof DemoComponentsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRoutesByTo {
@@ -141,6 +148,7 @@ export interface FileRoutesByTo {
   '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/demo/components': typeof DemoComponentsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRoutesById {
@@ -160,6 +168,7 @@ export interface FileRoutesById {
   '/auth/register': typeof AuthRegisterRoute
   '/dashboard/$dashboardId': typeof DashboardDashboardIdRoute
   '/dashboard/list-dashboards': typeof DashboardListDashboardsRoute
+  '/demo/components': typeof DemoComponentsRoute
   '/reports/list-reports': typeof ReportsListReportsRoute
 }
 export interface FileRouteTypes {
@@ -180,6 +189,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
+    | '/demo/components'
     | '/reports/list-reports'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -198,6 +208,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
+    | '/demo/components'
     | '/reports/list-reports'
   id:
     | '__root__'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/auth/register'
     | '/dashboard/$dashboardId'
     | '/dashboard/list-dashboards'
+    | '/demo/components'
     | '/reports/list-reports'
   fileRoutesById: FileRoutesById
 }
@@ -235,6 +247,7 @@ export interface RootRouteChildren {
   AuthRegisterRoute: typeof AuthRegisterRoute
   DashboardDashboardIdRoute: typeof DashboardDashboardIdRoute
   DashboardListDashboardsRoute: typeof DashboardListDashboardsRoute
+  DemoComponentsRoute: typeof DemoComponentsRoute
   ReportsListReportsRoute: typeof ReportsListReportsRoute
 }
 
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       path: '/reports/list-reports'
       fullPath: '/reports/list-reports'
       preLoaderRoute: typeof ReportsListReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo/components': {
+      id: '/demo/components'
+      path: '/demo/components'
+      fullPath: '/demo/components'
+      preLoaderRoute: typeof DemoComponentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/dashboard/list-dashboards': {
@@ -371,6 +391,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRegisterRoute: AuthRegisterRoute,
   DashboardDashboardIdRoute: DashboardDashboardIdRoute,
   DashboardListDashboardsRoute: DashboardListDashboardsRoute,
+  DemoComponentsRoute: DemoComponentsRoute,
   ReportsListReportsRoute: ReportsListReportsRoute,
 }
 export const routeTree = rootRouteImport

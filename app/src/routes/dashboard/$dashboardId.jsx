@@ -9,6 +9,7 @@ import {
   ShareIcon,
 } from "@phosphor-icons/react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button, PageHeader } from "../../components/ui";
 
 export const Route = createFileRoute("/dashboard/$dashboardId")({
   component: RouteComponent,
@@ -74,47 +75,44 @@ function RouteComponent() {
 
   return (
     <section className="flex h-[calc(100vh-4.5rem)] flex-col overflow-hidden p-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold">{dashboardTitle}</h1>
-          <h2 className="text-md text-gray-500">
-            {dashboardDescription || "No description available"}
-          </h2>
-        </div>
-        <Link
-          to="/dashboard/list-dashboards"
-          className="flex items-center gap-2 rounded-lg p-2 hover:cursor-pointer hover:bg-slate-200"
-        >
-          <ArrowLeftIcon weight="bold" size={16} />
-          <p className="pb-1 text-sm font-semibold">Back to Dashboards</p>
-        </Link>
-      </div>
+      <PageHeader
+        title={dashboardTitle || "Dashboard"}
+        subtitle={dashboardDescription || "No description available"}
+      >
+        <Button variant="outline" as={Link} to="/dashboard/list-dashboards">
+          <ArrowLeftIcon size={16} />
+          Back to Dashboards
+        </Button>
+      </PageHeader>
+
       <div className="relative mt-6 flex h-screen flex-1 flex-col bg-white shadow">
         {/* Toggle Controls Button */}
         {iframeLoaded && (
-          <button
-            className="absolute top-7 left-4 z-30 rounded-full bg-white p-2 shadow hover:bg-slate-100"
+          <Button
+            variant="ghost"
+            size="sm"
+            className="absolute top-4 left-4 z-30 rounded-full p-2 shadow"
             onClick={() => setShowControls((v) => !v)}
-            type="button"
             aria-label={showControls ? "Hide controls" : "Show controls"}
           >
             {showControls ? <EyeIcon /> : <EyeClosedIcon />}
-          </button>
+          </Button>
         )}
 
         {/* Controls Overlay */}
         {iframeLoaded && showControls && (
-          <div className="absolute top-4 left-16 z-20 flex items-center gap-4 rounded-lg bg-white/80 p-2 shadow">
+          <div className="absolute top-4 left-16 z-20 flex items-center gap-2 rounded-lg bg-white/80 p-2 shadow">
             {controls.map((control) => (
-              <button
+              <Button
                 key={control.label}
-                className="flex items-center gap-2 rounded-lg bg-white px-4 py-2 hover:cursor-pointer hover:bg-slate-100"
+                variant="ghost"
+                size="sm"
+                className="flex items-center gap-2"
                 onClick={control.onClick}
-                type="button"
               >
                 {control.icon}
-                <p className="pb-1 text-sm font-semibold">{control.label}</p>
-              </button>
+                <span className="text-sm font-medium">{control.label}</span>
+              </Button>
             ))}
           </div>
         )}

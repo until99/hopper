@@ -1,14 +1,31 @@
 import { createFileRoute } from "@tanstack/react-router";
-
 import {
   PlusIcon,
-  MagnifyingGlassIcon,
   TrashIcon,
   PencilSimpleIcon,
   XIcon,
+  UserIcon,
+  EnvelopeIcon,
 } from "@phosphor-icons/react";
 import { useState } from "react";
 import { users_list } from "../../utils/variables/mockData.jsx";
+import {
+  Button,
+  Input,
+  Select,
+  Toggle,
+  Modal,
+  PageHeader,
+  SearchInput,
+  FormField,
+  Card,
+  Badge,
+  DataTable,
+} from "../../components/ui";
+import { createMultiFieldFilter } from "../../lib/filterUtils";
+import useFormValidation, {
+  validationRules,
+} from "../../hooks/useFormValidation";
 
 export const Route = createFileRoute("/admin/users")({
   component: RouteComponent,
@@ -16,224 +33,185 @@ export const Route = createFileRoute("/admin/users")({
 
 function RouteComponent() {
   const [showAddUserDialog, setShowAddUserDialog] = useState(false);
-  const [formData, setFormData] = useState({
-    fullName: "",
-    email: "",
-    role: "Admin",
-    isActive: false,
-  });
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const handleInputChange = (field, value) => {
-    setFormData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
+  const { formData, errors, handleChange, validateForm, resetForm } =
+    useFormValidation(
+      {
+        fullName: "",
+        email: "",
+        role: "Admin",
+        isActive: false,
+      },
+      {
+        fullName: [validationRules.required, validationRules.minLength(2)],
+        email: [validationRules.required, validationRules.email],
+      },
+    );
 
   const handleCreateUser = () => {
+    if (!validateForm()) return;
+
     console.log("Form Data:", formData);
     setShowAddUserDialog(false);
+    resetForm();
   };
+
+  const filteredUsers = users_list.filter(
+    createMultiFieldFilter(["fullName", "email", "role"], searchQuery),
+  );
+
+  const columns = [
+    {
+      key: "fullName",
+      label: "Name",
+    },
+    {
+      key: "email",
+      label: "Email",
+    },
+    {
+      key: "role",
+      label: "Role",
+      render: (value) => (
+        <Badge
+          variant={
+            value === "Admin"
+              ? "primary"
+              : value === "Analyst"
+                ? "success"
+                : "warning"
+          }
+        >
+          {value}
+        </Badge>
+      ),
+    },
+    {
+      key: "isActive",
+      label: "Status",
+      render: (value) => (
+        <Badge variant={value ? "success" : "default"}>
+          {value ? "Active" : "Inactive"}
+        </Badge>
+      ),
+    },
+    {
+      key: "lastLogin",
+      label: "Last Login",
+    },
+    {
+      key: "actions",
+      label: "Actions",
+      render: (_, row) => (
+        <div className="flex gap-1">
+          <Button variant="ghost" size="sm">
+            <PencilSimpleIcon size={16} />
+          </Button>
+          <Button variant="ghost" size="sm">
+            <TrashIcon size={16} className="text-red-600" />
+          </Button>
+        </div>
+      ),
+    },
+  ];
 
   return (
     <>
-      {showAddUserDialog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="w-full max-w-lg rounded-lg bg-white p-8 shadow-lg">
-            <div className="items-top flex justify-between">
-              <div>
-                <h2 className="mb-2 text-xl font-bold">Add New User</h2>
-                <p className="text-md mb-6 text-gray-500">
-                  Add a new user and set their permissions.
-                </p>
-              </div>
-              <button
-                className="flex hover:cursor-pointer"
-                onClick={() => setShowAddUserDialog(false)}
-              >
-                <XIcon />
-              </button>
+      <Modal
+        isOpen={showAddUserDialog}
+        onClose={() => setShowAddUserDialog(false)}
+        title="Add New User"
+        subtitle="Add a new user and set their permissions."
+      >
+        <form
+          className="space-y-6"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCreateUser();
+          }}
+        >
+          <FormField label="Full Name" error={errors.fullName} required>
+            <Input
+              type="text"
+              value={formData.fullName}
+              onChange={(e) => handleChange("fullName", e.target.value)}
+              icon={UserIcon}
+              placeholder="Enter full name"
+              error={errors.fullName}
+            />
+          </FormField>
+
+          <FormField label="Email Address" error={errors.email} required>
+            <Input
+              type="email"
+              value={formData.email}
+              onChange={(e) => handleChange("email", e.target.value)}
+              icon={EnvelopeIcon}
+              placeholder="user@example.com"
+              error={errors.email}
+            />
+          </FormField>
+
+          <FormField label="Role">
+            <Select
+              value={formData.role}
+              onChange={(e) => handleChange("role", e.target.value)}
+            >
+              <option value="Admin">Admin</option>
+              <option value="Analyst">Analyst</option>
+              <option value="Viewer">Viewer</option>
+            </Select>
+          </FormField>
+
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-gray-700">Active Status</p>
+              <p className="text-xs text-gray-500">
+                Allow user to access the system
+              </p>
             </div>
-
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold">Full Name</label>
-                <input
-                  type="text"
-                  value={formData.fullName}
-                  onChange={(e) =>
-                    handleInputChange("fullName", e.target.value)
-                  }
-                  className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
-                  placeholder=""
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold">Email Address</label>
-                <input
-                  type="text"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
-                  placeholder=""
-                />
-              </div>
-
-              <div className="flex flex-col gap-2">
-                <label className="text-sm font-semibold">Role</label>
-                <select
-                  id="role"
-                  value={formData.role}
-                  onChange={(e) => handleInputChange("role", e.target.value)}
-                  className="w-full rounded-md border border-slate-200 bg-white p-2 text-sm"
-                >
-                  <option>Admin</option>
-                  <option>Analyst</option>
-                  <option>Viewer</option>
-                </select>
-              </div>
-
-              <div className="flex items-center justify-between">
-                <div className="flex flex-col">
-                  <p className="text-sm font-semibold">Active Status</p>
-                  <p className="text-sm text-slate-400">
-                    Allow user to access the system
-                  </p>
-                </div>
-                <label className="inline-flex cursor-pointer items-center">
-                  <input
-                    type="checkbox"
-                    checked={formData.isActive}
-                    onChange={(e) =>
-                      handleInputChange("isActive", e.target.checked)
-                    }
-                    className="peer sr-only"
-                  />
-                  <div className="peer relative h-6 w-11 rounded-full bg-gray-200 peer-checked:bg-blue-600 peer-focus:outline-none after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:after:translate-x-full"></div>
-                </label>
-              </div>
-            </div>
-
-            <div className="mt-6 flex justify-end gap-2">
-              <button
-                className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-300"
-                onClick={() => setShowAddUserDialog(false)}
-              >
-                Cancel
-              </button>
-              <button
-                className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700"
-                onClick={handleCreateUser}
-              >
-                Create
-              </button>
-            </div>
+            <Toggle
+              checked={formData.isActive}
+              onChange={(checked) => handleChange("isActive", checked)}
+            />
           </div>
-        </div>
-      )}
+
+          <div className="flex justify-end gap-3">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() => setShowAddUserDialog(false)}
+            >
+              Cancel
+            </Button>
+            <Button type="submit">Create User</Button>
+          </div>
+        </form>
+      </Modal>
 
       <section className="p-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">Users</h1>
-            <h2 className="text-md text-gray-500">
-              Manage user access and permissions
-            </h2>
-          </div>
-          <button
-            className="flex h-9 items-center gap-2 rounded-md bg-blue-600 px-4 text-sm font-semibold text-white hover:cursor-pointer hover:bg-blue-700"
-            onClick={() => setShowAddUserDialog(true)}
-          >
-            <PlusIcon /> Add User
-          </button>
-        </div>
+        <PageHeader title="Users" subtitle="Manage user access and permissions">
+          <Button onClick={() => setShowAddUserDialog(true)}>
+            <PlusIcon size={16} /> Add User
+          </Button>
+        </PageHeader>
 
-        <div className="relative my-6">
-          <MagnifyingGlassIcon
-            size={18}
-            className="absolute top-1/2 left-3 -translate-y-1/2 text-slate-400"
-          />
-          <input
-            type="text"
-            className="flex h-9 w-full rounded-lg border border-slate-200 bg-white px-3 py-1 pl-10 text-sm placeholder:text-slate-500 focus-visible:outline-none disabled:cursor-not-allowed"
+        <div className="my-6">
+          <SearchInput
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search users..."
+            className="max-w-md"
           />
         </div>
 
         {/* Tabela de Usuários */}
-        <div className="overflow-hidden rounded-lg border border-slate-200 bg-white">
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-50">
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Name</div>
-                  </th>
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Email</div>
-                  </th>
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Role</div>
-                  </th>
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Status</div>
-                  </th>
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Last Login</div>
-                  </th>
-                  <th className="cursor-pointer p-3 text-left text-sm font-medium text-slate-500">
-                    <div className="flex items-center">Actions</div>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {users_list.map((user) => (
-                  <tr
-                    key={user.id}
-                    className="border-t border-slate-200 hover:bg-slate-50"
-                  >
-                    <td className="p-3 text-sm text-black">{user.fullName}</td>
-                    <td className="p-3 text-sm text-black">{user.email}</td>
-                    <td className="p-3 text-sm text-black">
-                      <p
-                        className={`w-fit rounded-full border px-4 py-0.5 text-xs font-semibold ${
-                          user.role === "Admin"
-                            ? "border-violet-400 bg-violet-200 text-violet-700"
-                            : user.role === "Analyst"
-                              ? "border-blue-400 bg-blue-200 text-blue-700"
-                              : "border-yellow-400 bg-yellow-200 text-yellow-700"
-                        }`}
-                      >
-                        {user.role}
-                      </p>
-                    </td>
-                    <td className="p-3 text-sm text-black">
-                      <p
-                        className={`w-fit rounded-full border px-4 py-0.5 text-xs font-semibold ${
-                          user.isActive
-                            ? "border-green-400 bg-green-200 text-green-700"
-                            : "border-gray-400 bg-gray-200 text-gray-700"
-                        }`}
-                      >
-                        {user.isActive ? "Active" : "Inactive"}
-                      </p>
-                    </td>
-                    <td className="p-3 text-sm text-black">{user.lastLogin}</td>
-                    <td className="p-3 text-sm text-black">
-                      <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
-                        <PencilSimpleIcon size={16} className="text-black" />
-                      </button>
-                      <button className="rounded-lg p-3 hover:cursor-pointer hover:bg-slate-200">
-                        <TrashIcon size={16} className="text-red-600" />
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <DataTable
+          columns={columns}
+          data={filteredUsers}
+          emptyMessage="No users found matching your search criteria"
+        />
       </section>
     </>
   );
