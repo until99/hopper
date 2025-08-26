@@ -1,43 +1,25 @@
-import { createFileRoute, useRouter } from '@tanstack/react-router';
-import { useAuth } from '../../../lib/useAuth';
-import { useEffect } from 'react';
+import { createFileRoute, Navigate } from '@tanstack/react-router';
+
+import { useAuth } from '../../../hooks/auth/useAuth';
 
 export const Route = createFileRoute('/app/dashboard/')({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const { user, signOut, loading } = useAuth();
-  const router = useRouter();
-
-  useEffect(() => {
-    // Redirecionar para login se não estiver autenticado
-    if (!loading && !user) {
-      router.navigate({ to: '/signin' });
-    }
-  }, [user, loading, router]);
-
-  const handleSignOut = async () => {
-    const { error } = await signOut();
-    if (!error) {
-      router.navigate({ to: '/signin' });
-    }
-  };
+  const { user, loading, signOut } = useAuth();
 
   if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
-          <p className="mt-2 text-sm text-gray-600">Carregando...</p>
-        </div>
-      </div>
-    );
+    return <div>Loading...</div>;
   }
 
   if (!user) {
-    return null; // Será redirecionado pelo useEffect
+    return <Navigate to="/signin" />;
   }
+
+  const handleSignOut = () => {
+    signOut();
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -49,7 +31,7 @@ function RouteComponent() {
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-gray-600">
-                Olá, {user.email}
+                {user.email?.split('@')[0]}
               </span>
               <button
                 onClick={handleSignOut}

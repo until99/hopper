@@ -1,36 +1,30 @@
-import { useState, useEffect } from 'react';
-import { supabase } from './supabaseClient';
-import type { User, AuthError } from '@supabase/supabase-js';
+import { useState, useEffect } from "react";
+import { supabase } from "../../lib/supabaseClient";
 
-export interface UseAuthReturn {
-  user: User | null;
-  loading: boolean;
-  signIn: (email: string, password: string) => Promise<{ error: AuthError | null }>;
-  signUp: (email: string, password: string) => Promise<{ error: AuthError | null }>;
-  signOut: () => Promise<{ error: AuthError | null }>;
-}
+import type { UseAuthReturn } from "../../interfaces/auth";
+import type { User } from "@supabase/supabase-js";
 
 export const useAuth = (): UseAuthReturn => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Verificar se há sessão ativa
     const getSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       setUser(session?.user ?? null);
       setLoading(false);
     };
 
     getSession();
 
-    // Escutar mudanças na autenticação
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        setUser(session?.user ?? null);
-        setLoading(false);
-      }
-    );
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(async (_event, session) => {
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
 
     return () => subscription.unsubscribe();
   }, []);

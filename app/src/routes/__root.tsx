@@ -1,4 +1,4 @@
-import { createRootRoute, Outlet, Link } from "@tanstack/react-router";
+import { createRootRoute, Outlet, Link } from "@tanstack/react-router"
 
 function NotFoundComponent() {
   return (
@@ -10,7 +10,7 @@ function NotFoundComponent() {
           A página que você está procurando não existe ou foi movida.
         </p>
         <Link
-          to="/"
+          to="/app/dashboard"
           className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-colors inline-block"
         >
           Voltar para o início
