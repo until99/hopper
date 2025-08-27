@@ -1,7 +1,6 @@
 import type { Icon } from "@phosphor-icons/react";
 import { InputError } from "./InputError";
 import { InputIcon } from "./InputIcon";
-import type { ElementType } from "react";
 
 interface InputFieldProps {
   id: string;
@@ -33,7 +32,7 @@ export const InputField = ({
   return (
     <>
       <div className="border rounded-lg border-slate-300 flex items-center">
-        {icon && <InputIcon icon={icon} />}
+        {icon && <InputIcon IconComponent={icon} />}
         <input
           id={id}
           type={type}
