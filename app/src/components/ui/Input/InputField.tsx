@@ -36,7 +36,7 @@ export const InputField = ({
         <input
           id={id}
           type={type}
-          className="border-none outline-none w-full border border-slate-300 rounded-lg p-2 text-sm"
+          className={`border-none outline-none w-full border border-slate-300 rounded-lg p-2 text-sm ${error ? 'border-red-500' : ''}`}
           placeholder={placeholder}
           value={value}
           minLength={minLength}

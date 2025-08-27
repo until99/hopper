@@ -1,4 +1,8 @@
-import { createRootRoute, Outlet, Link } from "@tanstack/react-router"
+import { createRootRoute, Outlet, Link, useRouter } from "@tanstack/react-router"
+
+function RootComponent() {
+  return <Outlet />;
+}
 
 function NotFoundComponent() {
   return (
@@ -17,10 +21,10 @@ function NotFoundComponent() {
         </Link>
       </div>
     </div>
-  );
+  )
 }
 
 export const Route = createRootRoute({
-  component: () => <Outlet />,
+  component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
