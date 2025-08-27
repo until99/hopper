@@ -1,8 +1,12 @@
 import { createFileRoute, useRouter } from "@tanstack/react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 import { useAuth } from "../hooks/auth/useAuth";
+
 import { Logo } from "../components/Logo";
+
+import { EnvelopeIcon } from "@phosphor-icons/react";
+import { Input } from "../components/Input";
 
 export const Route = createFileRoute("/signin")({
   component: RouteComponent,
@@ -12,19 +16,143 @@ function RouteComponent() {
   const router = useRouter();
   const { user } = useAuth();
 
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  const [errors, setErrors] = useState<{ email?: string; password?: string }>(
+    {}
+  );
+
   useEffect(() => {
     if (user) {
       router.navigate({ to: "/app/dashboard" });
     }
   }, [user, router]);
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+
+    const newErrors: { email?: string; password?: string } = {};
+
+    if (!email) {
+      newErrors.email = "Email é obrigatório";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email inválido";
+    }
+
+    if (!password) {
+      newErrors.password = "Senha é obrigatória";
+    } else if (password.length !== 6) {
+      newErrors.password = "Senha deve ter exatamente 6 caracteres";
+    } else if (!/[A-Z]/.test(password)) {
+      newErrors.password = "Senha deve conter pelo menos uma letra maiúscula";
+    } else if (!/[a-z]/.test(password)) {
+      newErrors.password = "Senha deve conter pelo menos uma letra minúscula";
+    } else if (!/[^A-Za-z0-9]/.test(password)) {
+      newErrors.password = "Senha deve conter pelo menos um caractere especial";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      setLoading(false);
+      return;
+    }
+
+    // TODO: Implement actual authentication logic here
+    console.log("Login attempt:", { email, password });
+
+    setLoading(false);
+  };
+
   return (
-    <>
-      <h1 className="text-2xl font-bold">teste</h1>
-    </>
-    // <div className="bg-red-500 h-screen w-screen flex flex-col justify-center items-center">
-    //   <Logo.Root />
-    // </div>
+    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-8 flex-col space-y-8">
+      <div className="text-center">
+        <div className="mb-6 flex justify-center">
+          <Logo.Root />
+        </div>
+
+        <h1 className="mb-2 text-2xl font-bold text-slate-900">Hopper</h1>
+
+        <h2 className="text-xl font-semibold text-slate-900">
+          Entrar na sua conta
+        </h2>
+      </div>
+
+      <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-sm">
+        <form className="space-y-6" onSubmit={handleSubmit}>
+          <Input.Root>
+            <Input.Label htmlFor="email" innerText="E-mail" required />
+            <Input.Field
+              id="email"
+              type="email"
+              placeholder="Seu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              error={!!errors.email}
+              disabled={loading}
+              required={true}
+              icon={EnvelopeIcon}
+            />
+          </Input.Root>
+
+          {/* <Input.Root>
+            <Input.Label htmlFor="password" required>
+              Senha
+            </Input.Label>
+            <Input.Field
+              id="password"
+              type="password"
+              placeholder="Sua senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              error={!!errors.password}
+              disabled={loading}
+              autoComplete="current-password"
+              minLength={6}
+              hasLeftIcon={true}
+            />
+            {errors.password && <Input.Error>{errors.password}</Input.Error>}
+          </Input.Root> */}
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full flex justify-center py-2 px-4 border border-transparent rounded-lg text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          >
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Entrando...
+              </>
+            ) : (
+              "Entrar"
+            )}
+          </button>
+        </form>
+      </div>
+    </div>
     // <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     //     <div className="max-w-md w-full space-y-8">
     //         <div>
