@@ -1,25 +1,50 @@
-import type { Icon } from "@phosphor-icons/react";
+import { useIconContext } from './IconRoot';
 
 interface IconButtonProps {
-    size: number;
-    bgColor: "blue" | "red" | "green" | "purple" | "yellow" | "gray" | "slate";
-    icon: Icon;
+    onClick?: () => void;
+    disabled?: boolean;
+    className?: string;
+    type?: "button" | "submit" | "reset";
+    padding?: number;
+    hoverEffect?: boolean;
+    hoverScale?: boolean;
+    hoverTranslate?: boolean;
 }
 
-const colorMap = {
-    blue: "bg-blue-500",
-    red: "bg-red-500",
-    green: "bg-green-500",
-    purple: "bg-purple-500",
-    yellow: "bg-yellow-500",
-    gray: "bg-gray-500",
-    slate: "bg-slate-500",
-};
+export const IconButton = ({
+    onClick,
+    disabled = false,
+    className = "",
+    type = "button",
+    padding = 2,
+    hoverEffect = true,
+    hoverScale = false,
+    hoverTranslate = false
+}: IconButtonProps) => {
+    const { size, bgColor, fontColor, weight, colorMap, Icon } = useIconContext();
 
-export const IconButton = ({ size, bgColor, icon: Icon }: IconButtonProps) => {
+    const hoverClasses = [
+        hoverEffect ? "hover:opacity-80" : "",
+        hoverScale ? "hover:scale-105" : "",
+        hoverTranslate ? "hover:translate-y-[-1px]" : ""
+    ].filter(Boolean).join(" ");
+
     return (
-        <button className={`rounded-lg p-3 ${colorMap[bgColor]}`}>
-            <Icon size={size} className="text-white" />
+        <button
+            type={type}
+            onClick={onClick}
+            disabled={disabled}
+            className={`
+                rounded-lg 
+                ${padding ? `p-${padding}` : "p-2"}
+                ${colorMap[bgColor]} 
+                transition-all duration-200 
+                ${hoverClasses}
+                ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}
+                ${className}
+            `.replace(/\s+/g, ' ').trim()}
+        >
+            <Icon size={size} className={`text-${fontColor}`} weight={weight} />
         </button>
     );
 };

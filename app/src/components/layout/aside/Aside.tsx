@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { IconRoot } from "../../ui/icon/IconRoot";
-import { ChartBarIcon, ChartLineIcon, ChartPieSliceIcon, DatabaseIcon, FileSqlIcon, FileTextIcon, FolderOpenIcon, GearIcon, ShieldIcon, UsersIcon } from "@phosphor-icons/react";
+import { Icon } from "../../ui/icon/index";
+import { ChartBarIcon, ChartLineIcon, ChartPieSliceIcon, CpuIcon, DatabaseIcon, FileSqlIcon, FileTextIcon, FolderOpenIcon, GearIcon, ShieldIcon, UsersIcon } from "@phosphor-icons/react";
 
 let menu_items = [
     {
@@ -87,7 +87,9 @@ export const Aside = () => {
     return (
         <aside className="border-r bg-slate-900">
             <div className="flex h-16 items-center gap-4 border-b border-slate-200 bg-slate-900 p-4">
-                <IconRoot size={42} />
+                <Icon.Root size={24} bgColor="blue" icon={CpuIcon} hasHover={false}>
+                    <Icon.Button />
+                </Icon.Root>
                 <h1 className="text-2xl font-bold text-white">Hopper</h1>
             </div>
             <ul className="p-2">

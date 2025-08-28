@@ -9,49 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SigninRouteImport } from './routes/signin'
-import { Route as AppWorkspaceIndexRouteImport } from './routes/app/workspace/index'
-import { Route as AppUserIndexRouteImport } from './routes/app/user/index'
-import { Route as AppReportIndexRouteImport } from './routes/app/report/index'
-import { Route as AppGroupIndexRouteImport } from './routes/app/group/index'
-import { Route as AppDatabaseIndexRouteImport } from './routes/app/database/index'
-import { Route as AppDashboardIndexRouteImport } from './routes/app/dashboard/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as NotFoundRouteImport } from './routes/NotFound'
 import { Route as AppSettingUserIndexRouteImport } from './routes/app/setting/user/index'
-import { Route as AppSettingSystemIndexRouteImport } from './routes/app/setting/system/index'
+import { Route as AppAdminWorkspaceIndexRouteImport } from './routes/app/admin/workspace/index'
+import { Route as AppAdminUserIndexRouteImport } from './routes/app/admin/user/index'
+import { Route as AppAdminReportIndexRouteImport } from './routes/app/admin/report/index'
+import { Route as AppAdminGroupIndexRouteImport } from './routes/app/admin/group/index'
+import { Route as AppAdminDashboardIndexRouteImport } from './routes/app/admin/dashboard/index'
+import { Route as AppAdminSettingSystemIndexRouteImport } from './routes/app/admin/setting/system/index'
 
-const SigninRoute = SigninRouteImport.update({
-  id: '/signin',
-  path: '/signin',
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppWorkspaceIndexRoute = AppWorkspaceIndexRouteImport.update({
-  id: '/app/workspace/',
-  path: '/app/workspace/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppUserIndexRoute = AppUserIndexRouteImport.update({
-  id: '/app/user/',
-  path: '/app/user/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppReportIndexRoute = AppReportIndexRouteImport.update({
-  id: '/app/report/',
-  path: '/app/report/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppGroupIndexRoute = AppGroupIndexRouteImport.update({
-  id: '/app/group/',
-  path: '/app/group/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppDatabaseIndexRoute = AppDatabaseIndexRouteImport.update({
-  id: '/app/database/',
-  path: '/app/database/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AppDashboardIndexRoute = AppDashboardIndexRouteImport.update({
-  id: '/app/dashboard/',
-  path: '/app/dashboard/',
+const NotFoundRoute = NotFoundRouteImport.update({
+  id: '/NotFound',
+  path: '/NotFound',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AppSettingUserIndexRoute = AppSettingUserIndexRouteImport.update({
@@ -59,143 +34,134 @@ const AppSettingUserIndexRoute = AppSettingUserIndexRouteImport.update({
   path: '/app/setting/user/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AppSettingSystemIndexRoute = AppSettingSystemIndexRouteImport.update({
-  id: '/app/setting/system/',
-  path: '/app/setting/system/',
+const AppAdminWorkspaceIndexRoute = AppAdminWorkspaceIndexRouteImport.update({
+  id: '/app/admin/workspace/',
+  path: '/app/admin/workspace/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAdminUserIndexRoute = AppAdminUserIndexRouteImport.update({
+  id: '/app/admin/user/',
+  path: '/app/admin/user/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAdminReportIndexRoute = AppAdminReportIndexRouteImport.update({
+  id: '/app/admin/report/',
+  path: '/app/admin/report/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAdminGroupIndexRoute = AppAdminGroupIndexRouteImport.update({
+  id: '/app/admin/group/',
+  path: '/app/admin/group/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAdminDashboardIndexRoute = AppAdminDashboardIndexRouteImport.update({
+  id: '/app/admin/dashboard/',
+  path: '/app/admin/dashboard/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppAdminSettingSystemIndexRoute =
+  AppAdminSettingSystemIndexRouteImport.update({
+    id: '/app/admin/setting/system/',
+    path: '/app/admin/setting/system/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/signin': typeof SigninRoute
-  '/app/dashboard': typeof AppDashboardIndexRoute
-  '/app/database': typeof AppDatabaseIndexRoute
-  '/app/group': typeof AppGroupIndexRoute
-  '/app/report': typeof AppReportIndexRoute
-  '/app/user': typeof AppUserIndexRoute
-  '/app/workspace': typeof AppWorkspaceIndexRoute
-  '/app/setting/system': typeof AppSettingSystemIndexRoute
+  '/NotFound': typeof NotFoundRoute
+  '/login': typeof LoginRoute
+  '/app/admin/dashboard': typeof AppAdminDashboardIndexRoute
+  '/app/admin/group': typeof AppAdminGroupIndexRoute
+  '/app/admin/report': typeof AppAdminReportIndexRoute
+  '/app/admin/user': typeof AppAdminUserIndexRoute
+  '/app/admin/workspace': typeof AppAdminWorkspaceIndexRoute
   '/app/setting/user': typeof AppSettingUserIndexRoute
+  '/app/admin/setting/system': typeof AppAdminSettingSystemIndexRoute
 }
 export interface FileRoutesByTo {
-  '/signin': typeof SigninRoute
-  '/app/dashboard': typeof AppDashboardIndexRoute
-  '/app/database': typeof AppDatabaseIndexRoute
-  '/app/group': typeof AppGroupIndexRoute
-  '/app/report': typeof AppReportIndexRoute
-  '/app/user': typeof AppUserIndexRoute
-  '/app/workspace': typeof AppWorkspaceIndexRoute
-  '/app/setting/system': typeof AppSettingSystemIndexRoute
+  '/NotFound': typeof NotFoundRoute
+  '/login': typeof LoginRoute
+  '/app/admin/dashboard': typeof AppAdminDashboardIndexRoute
+  '/app/admin/group': typeof AppAdminGroupIndexRoute
+  '/app/admin/report': typeof AppAdminReportIndexRoute
+  '/app/admin/user': typeof AppAdminUserIndexRoute
+  '/app/admin/workspace': typeof AppAdminWorkspaceIndexRoute
   '/app/setting/user': typeof AppSettingUserIndexRoute
+  '/app/admin/setting/system': typeof AppAdminSettingSystemIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/signin': typeof SigninRoute
-  '/app/dashboard/': typeof AppDashboardIndexRoute
-  '/app/database/': typeof AppDatabaseIndexRoute
-  '/app/group/': typeof AppGroupIndexRoute
-  '/app/report/': typeof AppReportIndexRoute
-  '/app/user/': typeof AppUserIndexRoute
-  '/app/workspace/': typeof AppWorkspaceIndexRoute
-  '/app/setting/system/': typeof AppSettingSystemIndexRoute
+  '/NotFound': typeof NotFoundRoute
+  '/login': typeof LoginRoute
+  '/app/admin/dashboard/': typeof AppAdminDashboardIndexRoute
+  '/app/admin/group/': typeof AppAdminGroupIndexRoute
+  '/app/admin/report/': typeof AppAdminReportIndexRoute
+  '/app/admin/user/': typeof AppAdminUserIndexRoute
+  '/app/admin/workspace/': typeof AppAdminWorkspaceIndexRoute
   '/app/setting/user/': typeof AppSettingUserIndexRoute
+  '/app/admin/setting/system/': typeof AppAdminSettingSystemIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    | '/signin'
-    | '/app/dashboard'
-    | '/app/database'
-    | '/app/group'
-    | '/app/report'
-    | '/app/user'
-    | '/app/workspace'
-    | '/app/setting/system'
+    | '/NotFound'
+    | '/login'
+    | '/app/admin/dashboard'
+    | '/app/admin/group'
+    | '/app/admin/report'
+    | '/app/admin/user'
+    | '/app/admin/workspace'
     | '/app/setting/user'
+    | '/app/admin/setting/system'
   fileRoutesByTo: FileRoutesByTo
   to:
-    | '/signin'
-    | '/app/dashboard'
-    | '/app/database'
-    | '/app/group'
-    | '/app/report'
-    | '/app/user'
-    | '/app/workspace'
-    | '/app/setting/system'
+    | '/NotFound'
+    | '/login'
+    | '/app/admin/dashboard'
+    | '/app/admin/group'
+    | '/app/admin/report'
+    | '/app/admin/user'
+    | '/app/admin/workspace'
     | '/app/setting/user'
+    | '/app/admin/setting/system'
   id:
     | '__root__'
-    | '/signin'
-    | '/app/dashboard/'
-    | '/app/database/'
-    | '/app/group/'
-    | '/app/report/'
-    | '/app/user/'
-    | '/app/workspace/'
-    | '/app/setting/system/'
+    | '/NotFound'
+    | '/login'
+    | '/app/admin/dashboard/'
+    | '/app/admin/group/'
+    | '/app/admin/report/'
+    | '/app/admin/user/'
+    | '/app/admin/workspace/'
     | '/app/setting/user/'
+    | '/app/admin/setting/system/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  SigninRoute: typeof SigninRoute
-  AppDashboardIndexRoute: typeof AppDashboardIndexRoute
-  AppDatabaseIndexRoute: typeof AppDatabaseIndexRoute
-  AppGroupIndexRoute: typeof AppGroupIndexRoute
-  AppReportIndexRoute: typeof AppReportIndexRoute
-  AppUserIndexRoute: typeof AppUserIndexRoute
-  AppWorkspaceIndexRoute: typeof AppWorkspaceIndexRoute
-  AppSettingSystemIndexRoute: typeof AppSettingSystemIndexRoute
+  NotFoundRoute: typeof NotFoundRoute
+  LoginRoute: typeof LoginRoute
+  AppAdminDashboardIndexRoute: typeof AppAdminDashboardIndexRoute
+  AppAdminGroupIndexRoute: typeof AppAdminGroupIndexRoute
+  AppAdminReportIndexRoute: typeof AppAdminReportIndexRoute
+  AppAdminUserIndexRoute: typeof AppAdminUserIndexRoute
+  AppAdminWorkspaceIndexRoute: typeof AppAdminWorkspaceIndexRoute
   AppSettingUserIndexRoute: typeof AppSettingUserIndexRoute
+  AppAdminSettingSystemIndexRoute: typeof AppAdminSettingSystemIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/signin': {
-      id: '/signin'
-      path: '/signin'
-      fullPath: '/signin'
-      preLoaderRoute: typeof SigninRouteImport
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/app/workspace/': {
-      id: '/app/workspace/'
-      path: '/app/workspace'
-      fullPath: '/app/workspace'
-      preLoaderRoute: typeof AppWorkspaceIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/user/': {
-      id: '/app/user/'
-      path: '/app/user'
-      fullPath: '/app/user'
-      preLoaderRoute: typeof AppUserIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/report/': {
-      id: '/app/report/'
-      path: '/app/report'
-      fullPath: '/app/report'
-      preLoaderRoute: typeof AppReportIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/group/': {
-      id: '/app/group/'
-      path: '/app/group'
-      fullPath: '/app/group'
-      preLoaderRoute: typeof AppGroupIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/database/': {
-      id: '/app/database/'
-      path: '/app/database'
-      fullPath: '/app/database'
-      preLoaderRoute: typeof AppDatabaseIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/app/dashboard/': {
-      id: '/app/dashboard/'
-      path: '/app/dashboard'
-      fullPath: '/app/dashboard'
-      preLoaderRoute: typeof AppDashboardIndexRouteImport
+    '/NotFound': {
+      id: '/NotFound'
+      path: '/NotFound'
+      fullPath: '/NotFound'
+      preLoaderRoute: typeof NotFoundRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/setting/user/': {
@@ -205,26 +171,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingUserIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/app/setting/system/': {
-      id: '/app/setting/system/'
-      path: '/app/setting/system'
-      fullPath: '/app/setting/system'
-      preLoaderRoute: typeof AppSettingSystemIndexRouteImport
+    '/app/admin/workspace/': {
+      id: '/app/admin/workspace/'
+      path: '/app/admin/workspace'
+      fullPath: '/app/admin/workspace'
+      preLoaderRoute: typeof AppAdminWorkspaceIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/admin/user/': {
+      id: '/app/admin/user/'
+      path: '/app/admin/user'
+      fullPath: '/app/admin/user'
+      preLoaderRoute: typeof AppAdminUserIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/admin/report/': {
+      id: '/app/admin/report/'
+      path: '/app/admin/report'
+      fullPath: '/app/admin/report'
+      preLoaderRoute: typeof AppAdminReportIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/admin/group/': {
+      id: '/app/admin/group/'
+      path: '/app/admin/group'
+      fullPath: '/app/admin/group'
+      preLoaderRoute: typeof AppAdminGroupIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/admin/dashboard/': {
+      id: '/app/admin/dashboard/'
+      path: '/app/admin/dashboard'
+      fullPath: '/app/admin/dashboard'
+      preLoaderRoute: typeof AppAdminDashboardIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/admin/setting/system/': {
+      id: '/app/admin/setting/system/'
+      path: '/app/admin/setting/system'
+      fullPath: '/app/admin/setting/system'
+      preLoaderRoute: typeof AppAdminSettingSystemIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  SigninRoute: SigninRoute,
-  AppDashboardIndexRoute: AppDashboardIndexRoute,
-  AppDatabaseIndexRoute: AppDatabaseIndexRoute,
-  AppGroupIndexRoute: AppGroupIndexRoute,
-  AppReportIndexRoute: AppReportIndexRoute,
-  AppUserIndexRoute: AppUserIndexRoute,
-  AppWorkspaceIndexRoute: AppWorkspaceIndexRoute,
-  AppSettingSystemIndexRoute: AppSettingSystemIndexRoute,
+  NotFoundRoute: NotFoundRoute,
+  LoginRoute: LoginRoute,
+  AppAdminDashboardIndexRoute: AppAdminDashboardIndexRoute,
+  AppAdminGroupIndexRoute: AppAdminGroupIndexRoute,
+  AppAdminReportIndexRoute: AppAdminReportIndexRoute,
+  AppAdminUserIndexRoute: AppAdminUserIndexRoute,
+  AppAdminWorkspaceIndexRoute: AppAdminWorkspaceIndexRoute,
   AppSettingUserIndexRoute: AppSettingUserIndexRoute,
+  AppAdminSettingSystemIndexRoute: AppAdminSettingSystemIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

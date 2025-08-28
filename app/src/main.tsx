@@ -8,8 +8,18 @@ import "./index.css";
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
+// Import the AuthProvider
+import { AuthProvider, useAuth } from "./hooks/auth/useAuth";
+
 // Create a new router instance
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  defaultPreload: 'intent',
+  scrollRestoration: true,
+  context: {
+    auth: undefined!, // This will be set after we wrap the app in an AuthProvider
+  },
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
@@ -18,13 +28,27 @@ declare module "@tanstack/react-router" {
   }
 }
 
+function InnerApp() {
+  const auth = useAuth()
+  return <RouterProvider router={router} context={{ auth }} />
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <InnerApp />
+    </AuthProvider>
+  )
+}
+
 // Render the app
 const rootElement = document.getElementById("root")!;
+
 if (!rootElement.innerHTML) {
-  const root = ReactDOM.createRoot(rootElement);
+  const root = ReactDOM.createRoot(rootElement)
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
-    </StrictMode>
-  );
+      <App />
+    </StrictMode>,
+  )
 }

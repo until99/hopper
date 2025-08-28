@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/auth/useAuth";
 
 
-import { EnvelopeIcon } from "@phosphor-icons/react";
+import { CpuIcon, EnvelopeIcon, KeyIcon } from "@phosphor-icons/react";
 import { Icon } from "../components/ui/icon";
 import { Input } from "../components/ui/Input";
 
-export const Route = createFileRoute("/signin")({
-  component: RouteComponent,
+export const Route = createFileRoute("/login")({
+  component: LoginPage,
 });
 
-function RouteComponent() {
+export function LoginPage() {
   const router = useRouter();
-  const { user, signIn } = useAuth();
+  const { user, login } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -26,9 +26,9 @@ function RouteComponent() {
   );
 
   useEffect(() => {
-    // if (user) {
-    //   router.navigate({ to: "/app/dashboard" });
-    // }
+    if (user) {
+      router.navigate({ to: "/app/admin/dashboard" });
+    }
   }, [user, router]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -64,12 +64,12 @@ function RouteComponent() {
     }
 
     try {
-      const { error } = await signIn(email, password);
+      const { error } = await login(email, password);
       if (error) {
         console.log("Usuário ou senha incorretos");
         setErrors({ password: "Usuário ou senha incorretos" });
       } else {
-        router.navigate({ to: "/app/dashboard" });
+        router.navigate({ to: "/app/admin/dashboard" });
       }
     } catch (error) {
 
@@ -82,7 +82,9 @@ function RouteComponent() {
     <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4 py-8 flex-col space-y-8">
       <div className="text-center">
         <div className="mb-6 flex justify-center">
-          <Icon.Root size={48} />
+          <Icon.Root icon={CpuIcon} size={48} bgColor="blue">
+            <Icon.Button padding={3} />
+          </Icon.Root>
         </div>
 
         <h1 className="mb-2 text-2xl font-bold text-slate-900">Hopper</h1>
@@ -122,7 +124,7 @@ function RouteComponent() {
               onChange={(e) => setPassword(e.target.value)}
               error={!!errors.password}
               disabled={loading}
-              icon={EnvelopeIcon}
+              icon={KeyIcon}
             />
             {errors.password && <Input.Error errorMessage={errors.password} />}
           </Input.Root>
