@@ -2,7 +2,7 @@ import { createRootRoute, Outlet, useRouter } from "@tanstack/react-router"
 import { useEffect } from "react";
 import { useAuth } from "../hooks/auth/useAuth";
 
-import { NotFoundPage } from "./NotFound"
+import { NotFoundPage } from "./not-found"
 import { LoginPage } from "./login"
 
 function RootComponent() {

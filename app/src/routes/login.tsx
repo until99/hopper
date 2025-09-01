@@ -14,6 +14,8 @@ export const Route = createFileRoute("/login")({
 });
 
 export function LoginPage() {
+  const defaultRoute = "/app/dashboards/list-dashboards";
+
   const router = useRouter();
   const { user, login } = useAuth();
 
@@ -27,7 +29,7 @@ export function LoginPage() {
 
   useEffect(() => {
     if (user) {
-      router.navigate({ to: "/app/admin/dashboard" });
+      router.navigate({ to: defaultRoute });
     }
   }, [user, router]);
 
@@ -69,7 +71,7 @@ export function LoginPage() {
         console.log("Usuário ou senha incorretos");
         setErrors({ password: "Usuário ou senha incorretos" });
       } else {
-        router.navigate({ to: "/app/admin/dashboard" });
+        router.navigate({ to: defaultRoute });
       }
     } catch (error) {
 

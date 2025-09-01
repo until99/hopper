@@ -1,87 +1,64 @@
-import { Link } from "@tanstack/react-router";
 import { Icon } from "../../ui/icon/index";
 import { ChartBarIcon, ChartLineIcon, ChartPieSliceIcon, CpuIcon, DatabaseIcon, FileSqlIcon, FileTextIcon, FolderOpenIcon, GearIcon, ShieldIcon, UsersIcon } from "@phosphor-icons/react";
+import { MenuItems } from "./MenuItem";
 
 let menu_items = [
     {
-        route: "dashboard/list-dashboards",
-        icon: <ChartBarIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/dashboards/list-dashboards",
+        icon: ChartBarIcon,
         routeName: "My Dashboards",
         admin_only: false,
     },
     {
-        route: "admin/dashboards",
-        icon: <ChartLineIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/dashboard",
+        icon: ChartLineIcon,
         routeName: "Dashboards",
         admin_only: true,
     },
     {
-        route: "admin/users",
-        icon: <UsersIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/user",
+        icon: UsersIcon,
         routeName: "Users",
         admin_only: true,
     },
     {
-        route: "admin/groups",
-        icon: <FolderOpenIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/group",
+        icon: FolderOpenIcon,
         routeName: "Groups",
         admin_only: true,
     },
     {
-        route: "admin/workspaces",
-        icon: <ChartPieSliceIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/workspace",
+        icon: ChartPieSliceIcon,
         routeName: "Workspaces",
         admin_only: true,
     },
     {
-        route: "reports/list-reports",
-        icon: <FileTextIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/reports/list-reports",
+        icon: FileTextIcon,
         routeName: "My Reports",
         admin_only: false,
     },
     {
-        route: "admin/reports",
-        icon: <FileSqlIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/report",
+        icon: FileSqlIcon,
         routeName: "Reports",
         admin_only: true,
     },
     {
-        route: "admin/databases",
-        icon: <DatabaseIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/database",
+        icon: DatabaseIcon,
         routeName: "Databases",
         admin_only: true,
     },
     {
-        route: "admin/settings",
-        icon: <GearIcon size={22} className="mr-2 inline-block" />,
+        route: "/app/admin/setting/system",
+        icon: GearIcon,
         routeName: "Settings",
         admin_only: false,
     },
 ];
 
-interface MenuItemsProps {
-    route: string;
-    icon: React.ReactNode;
-    routeName: string;
-    admin_only?: boolean;
-}
-
-const MenuItems = ({ route, icon, routeName, admin_only }: MenuItemsProps) => {
-    return (<li>
-        <Link
-            to={`/${route}` as any}
-            className="focus:ring-none flex items-center justify-between rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
-        >
-            <div className="flex items-center">
-                {icon}
-                <p>{routeName}</p>
-            </div>
-            {admin_only && (
-                <ShieldIcon size={14} className="ml-21 inline-block text-blue-400" />
-            )}
-        </Link>
-    </li>)
-}
 
 export const Aside = () => {
     return (
@@ -94,7 +71,7 @@ export const Aside = () => {
             </div>
             <ul className="p-2">
                 {menu_items.map(({ ...item }) => (
-                    <MenuItems key={item.route} {...item} />
+                    <MenuItems key={item.route} route={item.route} IconComponent={item.icon} routeName={item.routeName} admin_only={item.admin_only} className="mb-2" />
                 ))}
             </ul>
         </aside>

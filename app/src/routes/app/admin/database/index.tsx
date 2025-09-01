@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { Main } from '../../../../../components/layout/main'
+import { Main } from '../../../../components/layout/main'
 
-export const Route = createFileRoute('/app/admin/setting/system/')({
+export const Route = createFileRoute('/app/admin/database/')({
   component: RouteComponent,
 })
 
@@ -10,7 +10,7 @@ function RouteComponent() {
     <Main.Root>
       <Main.Aside />
       <Main.Body>
-        <h1>System Settings</h1>
+        <h1>Database</h1>
       </Main.Body>
     </Main.Root>
   )
