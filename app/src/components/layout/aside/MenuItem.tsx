@@ -24,18 +24,5 @@ export const MenuItems = ({ route, IconComponent, routeName, admin_only, classNa
                 )}
             </Button.Root>
         </Link>
-
-        {/* <Link
-            to={`/${route}` as any}
-            className="focus:ring-none flex items-center justify-between rounded-lg p-3 text-sm font-semibold text-nowrap text-white hover:bg-slate-800 focus:bg-blue-600 focus:outline-none"
-        >
-            <div className="flex items-center">
-                {IconComponent}
-                <p>{routeName}</p>
-            </div>
-            {admin_only && (
-                <ShieldIcon size={14} className="ml-21 inline-block text-blue-400" />
-            )}
-        </Link> */}
     </li>)
 }

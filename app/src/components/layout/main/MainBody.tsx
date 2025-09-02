@@ -4,7 +4,9 @@ export const MainBody = ({ children }: { children: React.ReactNode }) => {
     return (
         <div className="flex flex-col w-full">
             <Navbar />
-            {children}
+            <div className="p-4">
+                {children}
+            </div>
         </div>
     )
 }

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../hooks/auth/useAuth";
 
 
-import { CpuIcon, EnvelopeIcon, KeyIcon } from "@phosphor-icons/react";
+import { CpuIcon, EnvelopeIcon, KeyIcon, SpinnerGapIcon } from "@phosphor-icons/react";
 import { Icon } from "../components/ui/icon";
 import { Input } from "../components/ui/Input";
 
@@ -67,9 +67,13 @@ export function LoginPage() {
 
     try {
       const { error } = await login(email, password);
+
+      // Adiciona um delay fixo de 1 segundo
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
       if (error) {
-        console.log("Usuário ou senha incorretos");
-        setErrors({ password: "Usuário ou senha incorretos" });
+        console.log("Username or password is incorrect");
+        setErrors({ password: "Username or password is incorrect" });
       } else {
         router.navigate({ to: defaultRoute });
       }
@@ -110,7 +114,7 @@ export function LoginPage() {
               onChange={(e) => setEmail(e.target.value)}
               error={!!errors.email}
               disabled={loading}
-              icon={EnvelopeIcon}
+              icon={<EnvelopeIcon />}
             />
             {errors.email && <Input.Error errorMessage={errors.email} />}
           </Input.Root>
@@ -126,7 +130,7 @@ export function LoginPage() {
               onChange={(e) => setPassword(e.target.value)}
               error={!!errors.password}
               disabled={loading}
-              icon={KeyIcon}
+              icon={<KeyIcon />}
             />
             {errors.password && <Input.Error errorMessage={errors.password} />}
           </Input.Root>
@@ -138,7 +142,7 @@ export function LoginPage() {
           >
             {loading ? (
               <>
-                Entrando...
+                <SpinnerGapIcon transform="translate-x-1 animate-spin" />
               </>
             ) : (
               "Entrar"

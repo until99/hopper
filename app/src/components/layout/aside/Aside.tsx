@@ -1,5 +1,5 @@
 import { Icon } from "../../ui/icon/index";
-import { ChartBarIcon, ChartLineIcon, ChartPieSliceIcon, CpuIcon, DatabaseIcon, FileSqlIcon, FileTextIcon, FolderOpenIcon, GearIcon, ShieldIcon, UsersIcon } from "@phosphor-icons/react";
+import { ChartBarIcon, ChartLineIcon, ChartPieSliceIcon, CpuIcon, DatabaseIcon, FileSqlIcon, FileTextIcon, FolderOpenIcon, GearIcon, UsersIcon } from "@phosphor-icons/react";
 import { MenuItems } from "./MenuItem";
 
 let menu_items = [

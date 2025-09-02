@@ -1,13 +1,11 @@
-import type { Icon } from "@phosphor-icons/react";
-
 interface InputIconProps {
-  IconComponent?: Icon;
+  icon: React.ReactNode
 }
 
-export const InputIcon = ({ IconComponent }: InputIconProps) => {
+export const InputIcon = ({ icon }: InputIconProps) => {
   return (
     <span className="text-slate-400 pl-3">
-      {IconComponent && <IconComponent />}
+      {icon}
     </span>
   );
 };

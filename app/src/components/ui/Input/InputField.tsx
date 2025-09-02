@@ -1,4 +1,3 @@
-import type { Icon } from "@phosphor-icons/react";
 import { InputError } from "./InputError";
 import { InputIcon } from "./InputIcon";
 
@@ -11,7 +10,7 @@ interface InputFieldProps {
   errorMessage?: string;
   disabled?: boolean;
   minLength?: number;
-  icon?: Icon;
+  icon?: React.ReactNode;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   required?: boolean;
 }
@@ -32,7 +31,7 @@ export const InputField = ({
   return (
     <>
       <div className="border rounded-lg border-slate-300 flex items-center">
-        {icon && <InputIcon IconComponent={icon} />}
+        {icon && <InputIcon icon={icon} />}
         <input
           id={id}
           type={type}
