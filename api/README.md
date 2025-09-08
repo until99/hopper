@@ -75,38 +75,22 @@ tests/
 uv sync --group test
 ```
 
-#### Todos os testes:
+#### Comandos principais:
 ```bash
-# Usando pytest diretamente
+# Testes unitários (recomendado)
+uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v --cov=src --cov-report=term-missing
+
+# Todos os testes  
 uv run pytest tests/ -v
 
-# Usando make (Windows: .\make.bat, Unix: make)
-.\make.bat test       # Windows
-make test             # Unix/Linux/macOS
-```
-
-#### Apenas testes unitários:
-```bash
-uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v
-# ou
-.\make.bat test-unit  # Windows  
-make test-unit        # Unix/Linux/macOS
-```
-
-#### Com relatório de cobertura:
-```bash
-uv run pytest tests/ -v --cov=src --cov-report=term-missing
-# ou  
-.\make.bat test-cov   # Windows
-make test-cov         # Unix/Linux/macOS
-```
-
-#### Apenas testes de integração:
-```bash
+# Apenas testes de integração
 uv run pytest tests/test_integration.py -v -m integration
-# ou
-.\make.bat test-integration  # Windows
-make test-integration        # Unix/Linux/macOS
+
+# Com cobertura detalhada
+uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v --cov=src --cov-report=term-missing
+
+# Para CI/CD
+uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py --cov=src --cov-report=xml
 ```
 
 ### Cobertura de Código
@@ -115,8 +99,7 @@ Atualmente o projeto possui **87% de cobertura** de código nos testes unitário
 
 Para visualizar o relatório detalhado:
 ```bash
-.\make.bat test-cov   # Windows
-make test-cov         # Unix/Linux/macOS
+uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v --cov=src --cov-report=term-missing
 # O relatório será exibido no terminal
 ```
 
@@ -189,7 +172,7 @@ O projeto inclui configuração para GitHub Actions (`.github/workflows/test.yml
 1. Fork o projeto
 2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
 3. Faça commit das mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. **Execute os testes** (`make test` ou `uv run pytest`)
+4. **Execute os testes** (`uv run pytest tests/ -v`)
 5. Push para a branch (`git push origin feature/AmazingFeature`)
 6. Abra um Pull Request
 
