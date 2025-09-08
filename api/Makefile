@@ -20,14 +20,13 @@ test-integration: ## Executa apenas os testes de integração
 	uv run pytest tests/test_integration.py -v -m integration
 
 test-cov: ## Executa testes com relatório de cobertura
-	uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v --cov=src --cov-report=html --cov-report=term-missing
+	uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v --cov=src --cov-report=term-missing
 
 test-cov-all: ## Executa todos os testes com cobertura
-	uv run pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
+	uv run pytest tests/ -v --cov=src --cov-report=term-missing
 
 clean: ## Remove arquivos temporários e cache
 	rm -rf .pytest_cache/
-	rm -rf htmlcov/
 	rm -rf .coverage
 	rm -rf coverage.xml
 	find . -type d -name __pycache__ -exec rm -rf {} +

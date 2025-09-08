@@ -80,33 +80,33 @@ uv sync --group test
 # Usando pytest diretamente
 uv run pytest tests/ -v
 
-# Usando make (se disponível)
-make test
-
-# Usando scripts
-.\run_tests.bat     # Windows
-.\run_tests.ps1     # PowerShell
+# Usando make (Windows: .\make.bat, Unix: make)
+.\make.bat test       # Windows
+make test             # Unix/Linux/macOS
 ```
 
 #### Apenas testes unitários:
 ```bash
 uv run pytest tests/test_api.py tests/test_powerbi.py tests/test_models.py -v
 # ou
-make test-unit
+.\make.bat test-unit  # Windows  
+make test-unit        # Unix/Linux/macOS
 ```
 
 #### Com relatório de cobertura:
 ```bash
-uv run pytest tests/ -v --cov=src --cov-report=html --cov-report=term-missing
+uv run pytest tests/ -v --cov=src --cov-report=term-missing
 # ou  
-make test-cov
+.\make.bat test-cov   # Windows
+make test-cov         # Unix/Linux/macOS
 ```
 
 #### Apenas testes de integração:
 ```bash
 uv run pytest tests/test_integration.py -v -m integration
 # ou
-make test-integration
+.\make.bat test-integration  # Windows
+make test-integration        # Unix/Linux/macOS
 ```
 
 ### Cobertura de Código
@@ -115,8 +115,9 @@ Atualmente o projeto possui **87% de cobertura** de código nos testes unitário
 
 Para visualizar o relatório detalhado:
 ```bash
-make test-cov
-# Abra o arquivo htmlcov/index.html no navegador
+.\make.bat test-cov   # Windows
+make test-cov         # Unix/Linux/macOS
+# O relatório será exibido no terminal
 ```
 
 ### Tipos de Testes

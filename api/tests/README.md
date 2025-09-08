@@ -84,12 +84,6 @@ uv run pytest -m slow
 
 ## Relatórios de Cobertura
 
-### Gerar Relatório HTML
-```bash
-uv run pytest --cov=src --cov-report=html
-# Abrir htmlcov/index.html no navegador
-```
-
 ### Gerar Relatório XML (para CI/CD)
 ```bash
 uv run pytest --cov=src --cov-report=xml
