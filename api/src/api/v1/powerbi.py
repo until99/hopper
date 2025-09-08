@@ -102,6 +102,29 @@ class Powerbi:
         response.raise_for_status()
         return response.json()
 
+    # POST
+    async def create_report_in_group(
+        self,
+        group_id: str,
+        pbix_file: bytes,
+        nameConflict: str = "Overwrite",
+        subfolderObjectId=None,
+    ):
+        url = f"{self.base_url}/groups/{group_id}/imports"
+
+        params = {}
+        if nameConflict is not None:
+            params["nameConflict"] = nameConflict
+        if subfolderObjectId is not None:
+            params["subfolderObjectId"] = subfolderObjectId
+
+        files = {"file": pbix_file}
+
+        response = requests.post(url, headers=self.header, params=params, files=files)
+
+        response.raise_for_status()
+        return response.json()
+
     # DELETE
     async def delete_powerbi_report(self, group_id: str, report_id: str):
         url = f"{self.base_url}/groups/{group_id}/reports/{report_id}"
@@ -152,5 +175,3 @@ class Powerbi:
 
         response.raise_for_status()
         return response.json()
-
-    # IMPORTS

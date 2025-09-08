@@ -76,6 +76,7 @@ async def get_reports():
 async def get_report(report_id: str):
     """Obtém um relatório do PowerBI pelo ID"""
     try:
+        print("eita")
         return await pbi.get_powerbi_report(report_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -85,7 +86,27 @@ async def get_report(report_id: str):
 async def get_reports_in_group(group_id: str):
     """Obtém todos os relatórios do PowerBI dentro de um grupo"""
     try:
+        print("opa")
         return await pbi.get_all_powerbi_reports_in_group(group_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@reports_router.post("/")
+async def create_report(
+    group_id: str,
+    pbix_file: bytes,
+    nameConflict: str,
+    subfolderObjectId=None,
+):
+    """Cria um novo relatório no PowerBI"""
+    try:
+        return await pbi.create_report_in_group(
+            group_id=group_id,
+            pbix_file=pbix_file,
+            nameConflict=nameConflict,
+            subfolderObjectId=subfolderObjectId,
+        )
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
