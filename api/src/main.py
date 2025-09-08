@@ -1,96 +1,172 @@
 import os
-from typing import List, Dict, Any
-import msal
-from fastapi import FastAPI, HTTPException
-from pbipy import PowerBI
+from fastapi import FastAPI, HTTPException, APIRouter
 from dotenv import load_dotenv
+
+from api.v1.powerbi import Powerbi
 
 load_dotenv()
 
-app = FastAPI(
-    title="Hopper API",
-    # description="",
-    version="1.0.0"
+
+pbi = Powerbi(
+    tenant_id=os.getenv("TENANT_ID"),
+    client_id=os.getenv("CLIENT_ID"),
+    client_secret=os.getenv("CLIENT_SECRET"),
 )
 
+app = FastAPI(
+    title="Hopper API",
+    description="API para integração com o PowerBI",
+    version="1.0.0",
+)
 
-def acquire_bearer_token(tenant_id: str, client_id: str, client_secret: str) -> str:
-    """Adquire um token de acesso para a API do PowerBI"""
-    authority = f"https://login.microsoftonline.com/{tenant_id}"
-    app_msal = msal.ConfidentialClientApplication(
-        client_id,
-        authority=authority,
-        client_credential=client_secret,
-    )
-    token_result = app_msal.acquire_token_for_client(
-        scopes=["https://analysis.windows.net/powerbi/api/.default"]
-    )
-    if token_result and "access_token" in token_result:
-        return token_result["access_token"]
-    else:
-        error_desc = (
-            token_result.get("error_description", "Unknown error")
-            if token_result
-            else "No token result returned"
-        )
-        raise Exception(f"Failed to acquire token: {error_desc}")
+health_router = APIRouter(tags=["Health"])
+groups_router = APIRouter(prefix="/powerbi/groups", tags=["Groups"])
+datasets_router = APIRouter(prefix="/powerbi/groups", tags=["Datasets"])
+reports_router = APIRouter(prefix="/powerbi/reports", tags=["Reports"])
 
 
-def setup_powerbi_client() -> PowerBI:
-    """Configura o cliente do PowerBI usando variáveis de ambiente"""
-    tenant_id = os.getenv("TENANT_ID")
-    client_id = os.getenv("CLIENT_ID")
-    client_secret = os.getenv("CLIENT_SECRET")
-    
-    if not tenant_id or not client_id or not client_secret:
-        raise ValueError("Variáveis de ambiente TENANT_ID, CLIENT_ID e CLIENT_SECRET são obrigatórias")
-    
-    access_token = acquire_bearer_token(tenant_id, client_id, client_secret)
-    pbi = PowerBI(bearer_token=access_token)
-    
-    return pbi
-
-
-@app.get("/")
+@app.get("/", tags=["Root"])
 async def root():
     """Endpoint raiz da API"""
     return {
         "message": "Hopper PowerBI API",
         "version": "1.0.0",
         "endpoints": {
-            "groups": "/groups - Lista todos os grupos do PowerBI"
-        }
+            "groups": "/powerbi/groups - Lista todos os grupos do PowerBI",
+            "reports": "/powerbi/reports - Lista todos os relatórios do PowerBI",
+            "health": "/health - Verificação de saúde da API",
+        },
     }
 
 
-@app.get("/groups", response_model=List[Dict[str, Any]])
-async def list_groups():
-    """Lista todos os grupos do PowerBI"""
-    try:
-        pbi = setup_powerbi_client()
-        groups = []
-        
-        for group in pbi.groups():
-            groups.append({
-                "id": group.id,
-                "name": str(group),
-                "type": "workspace"
-            })
-        
-        return groups
-        
-    except ValueError as ve:
-        raise HTTPException(status_code=400, detail=str(ve))
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro interno: {str(e)}")
-
-
-@app.get("/health")
+@health_router.get("/health")
 async def health_check():
     """Endpoint de verificação de saúde da API"""
     return {"status": "healthy"}
 
 
+@groups_router.get("")
+async def get_groups():
+    """Lista todos os grupos do PowerBI"""
+    try:
+        return await pbi.get_all_powerbi_groups()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@groups_router.get("/{group_id}")
+async def get_group(group_id: str):
+    """Obtém um grupo do PowerBI pelo ID"""
+    try:
+        return await pbi.get_powerbi_group_by_id(group_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@reports_router.get("")
+async def get_reports():
+    """Lista todos os relatórios do PowerBI"""
+    try:
+        return await pbi.get_all_powerbi_reports()
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@reports_router.get("/{report_id}")
+async def get_report(report_id: str):
+    """Obtém um relatório do PowerBI pelo ID"""
+    try:
+        return await pbi.get_powerbi_report(report_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@reports_router.get("/{group_id}")
+async def get_reports_in_group(group_id: str):
+    """Obtém todos os relatórios do PowerBI dentro de um grupo"""
+    try:
+        return await pbi.get_all_powerbi_reports_in_group(group_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@reports_router.delete("/{group_id}/reports/{report_id}")
+async def delete_report(group_id: str, report_id: str):
+    """Deleta um relatório do PowerBI pelo ID"""
+    try:
+        return await pbi.delete_powerbi_report(group_id=group_id, report_id=report_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@datasets_router.post("/{group_id}/datasets/{dataset_id}/refresh")
+async def refresh_dataset(group_id: str, dataset_id: str):
+    """Atualiza um conjunto de dados do PowerBI pelo ID"""
+    try:
+        return await pbi.refresh_powerbi_dataset(
+            group_id=group_id, dataset_id=dataset_id
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@datasets_router.get("/{group_id}/datasets/{dataset_id}/refreshes")
+async def get_refreshes(group_id: str, dataset_id: str):
+    """Obtém as atualizações de um conjunto de dados do PowerBI pelo ID"""
+    try:
+        return await pbi.get_powerbi_refresh_dataset(
+            group_id=group_id, dataset_id=dataset_id
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+@datasets_router.patch("/{group_id}/datasets/{dataset_id}/refreshSchedule")
+async def update_refresh_schedule(
+    group_id: str, dataset_id: str, refresh_schedule: dict, disable: bool
+):
+    """Atualiza o agendamento de atualização de um conjunto de dados do PowerBI pelo ID
+
+    Exemplo:
+    {
+      "value":
+      {
+        "days":
+        [
+          "Sunday",
+          "Tuesday",
+          "Friday",
+          "Saturday"
+        ],
+        "times":
+        [
+          "07:00",
+          "11:30",
+          "16:00",
+          "23:30"
+        ],
+        "localTimeZoneId": "UTC"
+      }
+    }
+    """
+    try:
+        return await pbi.update_powerbi_dataset_refresh_schedule(
+            group_id=group_id,
+            dataset_id=dataset_id,
+            refresh_schedule=refresh_schedule,
+            disable=disable,
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
+app.include_router(health_router)
+app.include_router(groups_router)
+app.include_router(reports_router)
+app.include_router(datasets_router)
+
+
 if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
