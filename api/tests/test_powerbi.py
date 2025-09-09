@@ -99,7 +99,16 @@ class TestPowerbi:
     async def test_get_all_powerbi_groups_success(self, powerbi_instance):
         """Testa a busca bem-sucedida de todos os grupos do PowerBI"""
         mock_response = Mock()
-        mock_response.json.return_value = {"value": [{"id": "group1", "name": "Test Group"}]}
+        mock_response.json.return_value = {
+            "value": [
+                {
+                    "id": "group1", 
+                    "name": "Test Group", 
+                    "description": "Test description",
+                    "isOnDedicatedCapacity": False
+                }
+            ]
+        }
         mock_response.raise_for_status = Mock()
         
         with patch('src.api.v1.powerbi.requests.get', return_value=mock_response) as mock_get:
@@ -109,14 +118,23 @@ class TestPowerbi:
                 "https://api.powerbi.com/v1.0/myorg/groups",
                 headers={"Authorization": "Bearer test-access-token"}
             )
-            assert result == {"value": [{"id": "group1", "name": "Test Group"}]}
+            # Verifica se retorna um objeto GroupsResponse
+            assert hasattr(result, 'value')
+            assert len(result.value) == 1
+            assert result.value[0].id == "group1"
+            assert result.value[0].name == "Test Group"
 
     @pytest.mark.asyncio
     async def test_get_powerbi_group_by_id_success(self, powerbi_instance):
         """Testa a busca bem-sucedida de um grupo específico do PowerBI"""
         group_id = "test-group-id"
         mock_response = Mock()
-        mock_response.json.return_value = {"id": group_id, "name": "Test Group"}
+        mock_response.json.return_value = {
+            "id": group_id, 
+            "name": "Test Group", 
+            "description": "Test description",
+            "isOnDedicatedCapacity": False
+        }
         mock_response.raise_for_status = Mock()
         
         with patch('src.api.v1.powerbi.requests.get', return_value=mock_response) as mock_get:
@@ -126,7 +144,9 @@ class TestPowerbi:
                 f"https://api.powerbi.com/v1.0/myorg/groups/{group_id}",
                 headers={"Authorization": "Bearer test-access-token"}
             )
-            assert result == {"id": group_id, "name": "Test Group"}
+            # Verifica se retorna um objeto Group
+            assert result.id == group_id
+            assert result.name == "Test Group"
 
     @pytest.mark.asyncio
     async def test_get_all_powerbi_reports_success(self, powerbi_instance):
@@ -194,7 +214,9 @@ class TestPowerbi:
                 f"https://api.powerbi.com/v1.0/myorg/groups/{group_id}/reports/{report_id}",
                 headers={"Authorization": "Bearer test-access-token"}
             )
-            assert result == {"status": "deleted", "status_code": 200}
+            # Verifica se retorna um objeto DeleteResponse
+            assert result.status == "deleted"
+            assert result.status_code == 200
 
     @pytest.mark.asyncio
     async def test_refresh_powerbi_dataset_success(self, powerbi_instance):

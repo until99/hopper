@@ -1,5 +1,16 @@
 import msal
 import requests
+from models.powerbi import (
+    Group,
+    GroupsResponse,
+    Report,
+    ReportsResponse,
+    DatasetRefresh,
+    DatasetRefreshesResponse,
+    ImportInfo,
+    DeleteResponse,
+    RefreshSchedule,
+)
 
 
 class Powerbi:
@@ -43,7 +54,7 @@ class Powerbi:
             raise Exception(f"Failed to acquire token: {error_desc}")
 
     # GROUPS
-    async def get_all_powerbi_groups(self):
+    async def get_all_powerbi_groups(self) -> GroupsResponse:
         url = f"{self.base_url}/groups"
 
         response = requests.get(
@@ -53,9 +64,11 @@ class Powerbi:
 
         response.raise_for_status()
 
-        return response.json()
+        data = response.json()
+        groups = [Group(**group) for group in data.get("value", [])]
+        return GroupsResponse(value=groups)
 
-    async def get_powerbi_group_by_id(self, group_id: str):
+    async def get_powerbi_group_by_id(self, group_id: str) -> Group:
         url = f"{self.base_url}/groups/{group_id}"
 
         response = requests.get(
@@ -64,12 +77,13 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        return Group(**data)
 
     # REPORTS
 
     # GET
-    async def get_powerbi_report(self, report_id: str):
+    async def get_powerbi_report(self, report_id: str) -> Report:
         url = f"{self.base_url}/reports/{report_id}"
 
         response = requests.get(
@@ -78,20 +92,31 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        return Report(**data)
 
-    async def get_all_powerbi_reports(self):
-        url = f"{self.base_url}/reports"
+    async def get_all_powerbi_reports(self) -> ReportsResponse:
+        all_reports = []
 
-        response = requests.get(
-            url,
-            headers=self.header,
-        )
+        groups_response = await self.get_all_powerbi_groups()
 
-        response.raise_for_status()
-        return response.json()
+        for group in groups_response.value:
+            group_id = group.id
+            if group_id:
+                try:
+                    group_reports = await self.get_all_powerbi_reports_in_group(
+                        group_id
+                    )
 
-    async def get_all_powerbi_reports_in_group(self, group_id: str):
+                    for report in group_reports.value:
+                        all_reports.append(report)
+
+                except Exception as e:
+                    raise e
+
+        return ReportsResponse(value=all_reports)
+
+    async def get_all_powerbi_reports_in_group(self, group_id: str) -> ReportsResponse:
         url = f"{self.base_url}/groups/{group_id}/reports"
 
         response = requests.get(
@@ -100,7 +125,9 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        reports = [Report(**report) for report in data.get("value", [])]
+        return ReportsResponse(value=reports)
 
     # POST
     async def create_report_in_group(
@@ -109,7 +136,7 @@ class Powerbi:
         pbix_file: bytes,
         nameConflict: str = "Overwrite",
         subfolderObjectId=None,
-    ):
+    ) -> ImportInfo:
         url = f"{self.base_url}/groups/{group_id}/imports"
 
         params = {}
@@ -123,10 +150,13 @@ class Powerbi:
         response = requests.post(url, headers=self.header, params=params, files=files)
 
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        return ImportInfo(**data)
 
     # DELETE
-    async def delete_powerbi_report(self, group_id: str, report_id: str):
+    async def delete_powerbi_report(
+        self, group_id: str, report_id: str
+    ) -> DeleteResponse:
         url = f"{self.base_url}/groups/{group_id}/reports/{report_id}"
 
         response = requests.delete(
@@ -135,10 +165,10 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return {"status": "deleted", "status_code": response.status_code}
+        return DeleteResponse(status="deleted", status_code=response.status_code)
 
     # DATASETS
-    async def refresh_powerbi_dataset(self, group_id: str, dataset_id: str):
+    async def refresh_powerbi_dataset(self, group_id: str, dataset_id: str) -> dict:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshes"
 
         response = requests.post(
@@ -150,7 +180,9 @@ class Powerbi:
         return response.json()
 
     # REFRESHES
-    async def get_powerbi_refresh_dataset(self, group_id: str, dataset_id: str):
+    async def get_powerbi_refresh_dataset(
+        self, group_id: str, dataset_id: str
+    ) -> DatasetRefreshesResponse:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshes"
 
         response = requests.get(
@@ -159,18 +191,24 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return response.json()
+        data = response.json()
+        refreshes = [DatasetRefresh(**refresh) for refresh in data.get("value", [])]
+        return DatasetRefreshesResponse(value=refreshes)
 
     # UPDATE
     async def update_powerbi_dataset_refresh_schedule(
-        self, group_id: str, dataset_id: str, refresh_schedule: dict, disable: bool
-    ):
+        self,
+        group_id: str,
+        dataset_id: str,
+        refresh_schedule: RefreshSchedule,
+        disable: bool,
+    ) -> dict:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshSchedule"
 
         response = requests.patch(
             url,
             headers=self.header,
-            json={"value": refresh_schedule, "disable": disable},
+            json={"value": refresh_schedule.dict(by_alias=True), "disable": disable},
         )
 
         response.raise_for_status()

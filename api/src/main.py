@@ -34,6 +34,7 @@ async def root():
         "endpoints": {
             "groups": "/powerbi/groups - Lista todos os grupos do PowerBI",
             "reports": "/powerbi/reports - Lista todos os relatórios do PowerBI",
+            "reports_by_group": "/powerbi/reports/group/{group_id} - Lista relatórios de um grupo específico",
             "health": "/health - Verificação de saúde da API",
         },
     }
@@ -72,22 +73,22 @@ async def get_reports():
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@reports_router.get("/group/{group_id}")
+async def get_reports_in_group(group_id: str):
+    """Obtém todos os relatórios do PowerBI dentro de um grupo"""
+    try:
+        print("opa")
+        return await pbi.get_all_powerbi_reports_in_group(group_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @reports_router.get("/{report_id}")
 async def get_report(report_id: str):
     """Obtém um relatório do PowerBI pelo ID"""
     try:
         print("eita")
         return await pbi.get_powerbi_report(report_id)
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-@reports_router.get("/{group_id}")
-async def get_reports_in_group(group_id: str):
-    """Obtém todos os relatórios do PowerBI dentro de um grupo"""
-    try:
-        print("opa")
-        return await pbi.get_all_powerbi_reports_in_group(group_id)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
