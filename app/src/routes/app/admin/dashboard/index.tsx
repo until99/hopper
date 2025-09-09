@@ -11,6 +11,7 @@ import { Header } from '../../../../components/layout/header';
 import { Main } from '../../../../components/layout/main/index';
 import { Pagination } from '../../../../components/ui/pagination';
 import { type Dashboard } from '../../../../interfaces/dashboard';
+import { useDashboards } from '../../../../hooks/useDashboards';
 
 import { Cell } from '../../../../components/ui/cells';
 
@@ -18,35 +19,7 @@ export const Route = createFileRoute('/app/admin/dashboard/')({
   component: RouteComponent,
 });
 
-const mockDashboards: Dashboard[] = [
-  {
-    id: '1',
-    title: 'Sales Dashboard',
-    description: 'Comprehensive sales analytics and performance metrics',
-    workspace: 'Sales',
-    category: 'Analytics',
-    categoryColor: 'blue',
-    dashboardId: 'abc123def456ghi789jkl012mno345pqr678stu901vwx234yz',
-  },
-  {
-    id: '2',
-    title: 'Marketing ROI',
-    description: 'Return on investment analysis for marketing campaigns',
-    workspace: 'Marketing',
-    category: 'Finance',
-    categoryColor: 'green',
-    dashboardId: 'def456ghi789jkl012mno345pqr678stu901vwx234yza567bcd',
-  },
-  {
-    id: '3',
-    title: 'Customer Insights',
-    description: 'Customer behavior and satisfaction analysis',
-    workspace: 'Customer Success',
-    category: 'Research',
-    categoryColor: 'violet',
-    dashboardId: 'ghi789jkl012mno345pqr678stu901vwx234yza567bcdef890hij',
-  },
-];
+const initialPageSize = 10;
 
 const columnHelper = createColumnHelper<Dashboard>();
 
@@ -65,20 +38,21 @@ function RouteComponent() {
   const [globalFilter, setGlobalFilter] = useState('');
   const [showSuccessToast, setShowSuccessToast] = useState(false);
 
+  const { dashboards, loading, error, deleteDashboard } = useDashboards();
+
   const handleCopyDashboardId = (dashboardId: string) => {
     navigator.clipboard.writeText(dashboardId);
     setShowSuccessToast(true);
     setTimeout(() => setShowSuccessToast(false), 3000);
   };
 
-  const handleEditDashboard = (dashboard: Dashboard) => {
-    console.log('Edit dashboard:', dashboard);
-    // Implementar lógica de edição
-  };
-
-  const handleDeleteDashboard = (dashboard: Dashboard) => {
-    console.log('Delete dashboard:', dashboard);
-    // Implementar lógica de exclusão
+  const handleDeleteDashboard = async (dashboard: Dashboard) => {
+    try {
+      await deleteDashboard(dashboard);
+    } catch (err) {
+      console.error('Error deleting dashboard:', err);
+      // Aqui você pode mostrar uma mensagem de erro para o usuário
+    }
   };
 
   const columns = [
@@ -159,7 +133,6 @@ function RouteComponent() {
           type="actions"
           item={row.original}
           actionsConfig={{
-            onEdit: handleEditDashboard,
             onDelete: handleDeleteDashboard
           }}
         />
@@ -168,7 +141,7 @@ function RouteComponent() {
   ];
 
   const table = useReactTable({
-    data: mockDashboards,
+    data: dashboards,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -180,7 +153,7 @@ function RouteComponent() {
     onGlobalFilterChange: setGlobalFilter,
     initialState: {
       pagination: {
-        pageSize: 10,
+        pageSize: initialPageSize,
       },
     },
   });
@@ -202,6 +175,34 @@ function RouteComponent() {
   }
 
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
+
+  // Mostrar loading
+  if (loading) {
+    return (
+      <Main.Root>
+        <Main.Aside />
+        <Main.Body>
+          <div className="flex justify-center items-center h-64">
+            <div className="text-lg">Loading dashboards...</div>
+          </div>
+        </Main.Body>
+      </Main.Root>
+    );
+  }
+
+  // Mostrar erro
+  if (error) {
+    return (
+      <Main.Root>
+        <Main.Aside />
+        <Main.Body>
+          <div className="flex justify-center items-center h-64">
+            <div className="text-red-600">Error: {error}</div>
+          </div>
+        </Main.Body>
+      </Main.Root>
+    );
+  }
 
   return (
     <Main.Root>
@@ -241,6 +242,7 @@ function RouteComponent() {
           </Input.Root>
         </div>
 
+        {/* Table */}
         <section className='mt-6'>
           <Table.Root>
             <Table.Header>
@@ -270,6 +272,7 @@ function RouteComponent() {
             </Table.Body>
           </Table.Root>
 
+          {/* Pagination */}
           <div className="mt-6 block">
             <Pagination.Root
               showInfo
@@ -330,7 +333,7 @@ function RouteComponent() {
           </div>
         </section>
 
-        {/* Toast de Sucesso */}
+        {/* Success Toast */}
         {showSuccessToast && (
           <div className="fixed bottom-4 right-4 z-50 animate-in slide-in-from-bottom-2 duration-300">
             <div className="flex items-center gap-2 rounded-lg bg-green-600 px-4 py-3 text-white shadow-lg">

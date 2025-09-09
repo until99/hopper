@@ -20,6 +20,8 @@ class Report(BaseModel):
     embed_url: Optional[str] = Field(alias="embedUrl", default=None)
     is_from_pbix: Optional[bool] = Field(alias="isFromPbix", default=None)
     is_owned_by_me: Optional[bool] = Field(alias="isOwnedByMe", default=None)
+    workspace_id: Optional[str] = None
+    workspace_name: Optional[str] = None
 
 
 class Group(BaseModel):

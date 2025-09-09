@@ -109,6 +109,9 @@ class Powerbi:
                     )
 
                     for report in group_reports.value:
+                        # Adicionar informações do workspace ao relatório
+                        report.workspace_id = group.id
+                        report.workspace_name = group.name
                         all_reports.append(report)
 
                 except Exception as e:
