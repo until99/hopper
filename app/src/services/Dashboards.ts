@@ -29,7 +29,9 @@ export const api = {
   async getReports() {
     const response = await fetch(`${API_BASE_URL}/powerbi/reports`);
     if (!response.ok) throw new Error("Failed to fetch reports");
-    return response.json();
+
+    const data = await response.json();
+    return data;
   },
 
   // Buscar relatórios por grupo

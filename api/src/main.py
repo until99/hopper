@@ -1,5 +1,6 @@
 import os
 from fastapi import FastAPI, HTTPException, APIRouter
+from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from api.v1.powerbi import Powerbi
@@ -17,6 +18,17 @@ app = FastAPI(
     title="Hopper API",
     description="API para integração com o PowerBI",
     version="1.0.0",
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+    ],
+    allow_credentials=True,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    allow_headers=["*"],
 )
 
 health_router = APIRouter(tags=["Health"])
