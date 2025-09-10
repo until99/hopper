@@ -4,15 +4,30 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from api.v1.powerbi import Powerbi
+from api.logger import configure_api_logging, configure_external_loggers, get_logger
+from api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
+
+# Configura o sistema de logging antes de qualquer outra coisa
+configure_api_logging()
+configure_external_loggers()
+
+# Logger para o módulo principal
+logger = get_logger("hopper.api.main")
 
 load_dotenv()
 
+logger.info("Iniciando aplicação Hopper API")
 
-pbi = Powerbi(
-    tenant_id=os.getenv("TENANT_ID"),
-    client_id=os.getenv("CLIENT_ID"),
-    client_secret=os.getenv("CLIENT_SECRET"),
-)
+try:
+    pbi = Powerbi(
+        tenant_id=os.getenv("TENANT_ID"),
+        client_id=os.getenv("CLIENT_ID"),
+        client_secret=os.getenv("CLIENT_SECRET"),
+    )
+    logger.info("Cliente PowerBI inicializado com sucesso")
+except Exception as e:
+    logger.error(f"Erro ao inicializar cliente PowerBI: {str(e)}")
+    raise
 
 app = FastAPI(
     title="Hopper API",
@@ -20,6 +35,11 @@ app = FastAPI(
     version="1.0.0",
 )
 
+# Adiciona middlewares de logging
+app.add_middleware(LoggingMiddleware)
+app.add_middleware(SecurityLoggingMiddleware)
+
+# Middleware CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -30,6 +50,8 @@ app.add_middleware(
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allow_headers=["*"],
 )
+
+logger.info("Middlewares configurados")
 
 health_router = APIRouter(tags=["Health"])
 groups_router = APIRouter(prefix="/powerbi/groups", tags=["Groups"])
@@ -62,8 +84,12 @@ async def health_check():
 async def get_groups():
     """Lista todos os grupos do PowerBI"""
     try:
-        return await pbi.get_all_powerbi_groups()
+        logger.info("Requisição para listar todos os grupos do PowerBI")
+        result = await pbi.get_all_powerbi_groups()
+        logger.info("Grupos listados com sucesso")
+        return result
     except Exception as e:
+        logger.error(f"Erro ao listar grupos: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -71,8 +97,12 @@ async def get_groups():
 async def get_group(group_id: str):
     """Obtém um grupo do PowerBI pelo ID"""
     try:
-        return await pbi.get_powerbi_group_by_id(group_id)
+        logger.info(f"Requisição para obter grupo por ID: {group_id}")
+        result = await pbi.get_powerbi_group_by_id(group_id)
+        logger.info(f"Grupo {group_id} obtido com sucesso")
+        return result
     except Exception as e:
+        logger.error(f"Erro ao obter grupo {group_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -80,8 +110,12 @@ async def get_group(group_id: str):
 async def get_reports():
     """Lista todos os relatórios do PowerBI"""
     try:
-        return await pbi.get_all_powerbi_reports()
+        logger.info("Requisição para listar todos os relatórios do PowerBI")
+        result = await pbi.get_all_powerbi_reports()
+        logger.info("Relatórios listados com sucesso")
+        return result
     except Exception as e:
+        logger.error(f"Erro ao listar relatórios: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -89,9 +123,12 @@ async def get_reports():
 async def get_reports_in_group(group_id: str):
     """Obtém todos os relatórios do PowerBI dentro de um grupo"""
     try:
-        print("opa")
-        return await pbi.get_all_powerbi_reports_in_group(group_id)
+        logger.info(f"Requisição para listar relatórios do grupo: {group_id}")
+        result = await pbi.get_all_powerbi_reports_in_group(group_id)
+        logger.info(f"Relatórios do grupo {group_id} listados com sucesso")
+        return result
     except Exception as e:
+        logger.error(f"Erro ao listar relatórios do grupo {group_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 
@@ -99,9 +136,12 @@ async def get_reports_in_group(group_id: str):
 async def get_report(report_id: str):
     """Obtém um relatório do PowerBI pelo ID"""
     try:
-        print("eita")
-        return await pbi.get_powerbi_report(report_id)
+        logger.info(f"Requisição para obter relatório por ID: {report_id}")
+        result = await pbi.get_powerbi_report(report_id)
+        logger.info(f"Relatório {report_id} obtido com sucesso")
+        return result
     except Exception as e:
+        logger.error(f"Erro ao obter relatório {report_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 

@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8000";
+const API_BASE_URL = "http://localhost:8000/powerbi";
 
 export interface APIPowerBIReport {
   id: string;
@@ -26,7 +26,7 @@ export interface PowerBIGroup {
 
 export const api = {
   async getGroups() {
-    const response = await fetch(`${API_BASE_URL}/powerbi/groups`);
+    const response = await fetch(`${API_BASE_URL}/groups`);
     if (!response.ok) throw new Error("Failed to fetch groups");
     const res = await response.json();
     // console.log(res);
@@ -35,7 +35,7 @@ export const api = {
   },
 
   async getReports() {
-    const response = await fetch(`${API_BASE_URL}/powerbi/reports`);
+    const response = await fetch(`${API_BASE_URL}/reports`);
     if (!response.ok) throw new Error("Failed to fetch reports");
 
     const res = await response.json();
@@ -45,9 +45,7 @@ export const api = {
   },
 
   async getReportsByGroup(groupId: string) {
-    const response = await fetch(
-      `${API_BASE_URL}/powerbi/reports/group/${groupId}`
-    );
+    const response = await fetch(`${API_BASE_URL}/reports/group/${groupId}`);
     if (!response.ok) throw new Error("Failed to fetch reports by group");
     const res = await response.json();
     // console.log(res);
@@ -56,15 +54,17 @@ export const api = {
   },
 
   async deleteReport(groupId: string, reportId: string) {
+    console.log(`${API_BASE_URL}/groups/${groupId}/reports/${reportId}`);
+
     const response = await fetch(
-      `${API_BASE_URL}/powerbi/groups/${groupId}/reports/${reportId}`,
+      `${API_BASE_URL}/groups/${groupId}/reports/${reportId}`,
       {
         method: "DELETE",
       }
     );
     if (!response.ok) throw new Error("Failed to delete report");
     const res = await response.json();
-    // console.log(res);
+    console.log(res);
 
     return res;
   },

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, type FilterFn, useReactTable } from '@tanstack/react-table';
-import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, MagnifyingGlassIcon, SpinnerIcon, UploadIcon } from '@phosphor-icons/react';
+import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, FolderIcon, MagnifyingGlassIcon, SpinnerIcon, UploadIcon } from '@phosphor-icons/react';
 
 import { Table } from '../../../../components/ui/table';
 import { Input } from '../../../../components/ui/Input';
@@ -45,20 +45,17 @@ function RouteComponent() {
 
   const handleRefresh = async () => {
     if (isRefreshDisabled || refreshing) return;
-    
+
     try {
       await refetch();
-      
-      // Start cooldown period (1 minute = 60 seconds)
+
       setIsRefreshDisabled(true);
       setRefreshCooldown(60);
-      
-      // Clear any existing timer
+
       if (timerRef.current) {
         clearInterval(timerRef.current);
       }
-      
-      // Countdown timer
+
       timerRef.current = setInterval(() => {
         setRefreshCooldown((prev) => {
           if (prev <= 1) {
@@ -77,7 +74,6 @@ function RouteComponent() {
     }
   };
 
-  // Cleanup any running timers on unmount
   useEffect(() => {
     return () => {
       if (timerRef.current) {
@@ -97,7 +93,6 @@ function RouteComponent() {
       await deleteDashboard(dashboard);
     } catch (err) {
       console.error('Error deleting dashboard:', err);
-      // Aqui você pode mostrar uma mensagem de erro para o usuário
     }
   };
 
@@ -137,6 +132,7 @@ function RouteComponent() {
         <Cell
           type="text"
           value={getValue()}
+          icon={<FolderIcon size={16} weight="regular" className="text-slate-500" />}
           style={{
             fontWeight: 'medium',
             textColor: 'text-gray-700'
@@ -267,10 +263,10 @@ function RouteComponent() {
                   weight='bold'
                 />
               )}
-              {isRefreshDisabled && refreshCooldown > 0 
-                ? `Refresh (${refreshCooldown}s)` 
-                : refreshing 
-                  ? 'Refreshing...' 
+              {isRefreshDisabled && refreshCooldown > 0
+                ? `Refresh (${refreshCooldown}s)`
+                : refreshing
+                  ? 'Refreshing...'
                   : 'Refresh'
               }
             </Button.Root>
@@ -313,10 +309,10 @@ function RouteComponent() {
                   <Table.Cell colSpan={6}>
                     <div className="flex justify-center items-center py-8">
                       <div className="flex items-center gap-2">
-                        <SpinnerIcon 
-                          size={20} 
-                          weight='bold' 
-                          className="animate-spin text-blue-600" 
+                        <SpinnerIcon
+                          size={20}
+                          weight='bold'
+                          className="animate-spin text-blue-600"
                         />
                         <span className="text-gray-600">
                           {loading ? 'Loading dashboards...' : 'Refreshing dashboards...'}

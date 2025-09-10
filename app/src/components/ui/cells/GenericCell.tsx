@@ -38,6 +38,7 @@ export interface GenericCellProps {
     truncatedCopyConfig?: TruncatedCopyConfig;
     actionsConfig?: ActionsConfig;
     item?: any;
+    icon?: ReactNode;
 }
 
 const colorClasses = {
@@ -77,7 +78,8 @@ export const GenericCell = ({
     badgeConfig,
     truncatedCopyConfig,
     actionsConfig,
-    item
+    item,
+    icon
 }: GenericCellProps) => {
     const {
         className = '',
@@ -92,8 +94,15 @@ export const GenericCell = ({
     switch (type) {
         case 'text':
             return (
-                <div className={baseClasses}>
-                    {children || value}
+                <div className={`flex items-center gap-2 ${baseClasses}`}>
+                    {icon && (
+                        <span className="flex-shrink-0">
+                            {icon}
+                        </span>
+                    )}
+                    <span>
+                        {children || value}
+                    </span>
                 </div>
             );
 

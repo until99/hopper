@@ -67,7 +67,7 @@ export const useDashboards = () => {
       await api.deleteReport(dashboard.workspaceId, dashboard.dashboardId);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
-      console.error("Error fetching dashboards:", err);
+      console.error(err);
     } finally {
       setLoading(false);
     }
