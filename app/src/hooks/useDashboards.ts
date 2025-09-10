@@ -6,6 +6,7 @@ export const useDashboards = () => {
   const [dashboards, setDashboards] = useState<Dashboard[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
+  const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const fetchDashboards = async (isRefresh = false) => {
@@ -64,12 +65,18 @@ export const useDashboards = () => {
         throw new Error("Workspace ID not available for this dashboard");
       }
 
+      setDeleting(true);
+      setError(null);
+      
       await api.deleteReport(dashboard.workspaceId, dashboard.dashboardId);
+      
+      // Refetch the dashboards to update the table
+      await fetchDashboards();
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
-      console.error(err);
+      console.error("Error deleting dashboard:", err);
     } finally {
-      setLoading(false);
+      setDeleting(false);
     }
   };
 
@@ -81,6 +88,7 @@ export const useDashboards = () => {
     dashboards,
     loading,
     refreshing,
+    deleting,
     error,
     refetch: refetchDashboards,
     deleteDashboard,

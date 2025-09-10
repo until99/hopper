@@ -41,7 +41,7 @@ function RouteComponent() {
   const [refreshCooldown, setRefreshCooldown] = useState(0);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { dashboards, loading, refreshing, error, deleteDashboard, refetch } = useDashboards();
+  const { dashboards, loading, refreshing, deleting, error, deleteDashboard, refetch } = useDashboards();
 
   const handleRefresh = async () => {
     if (isRefreshDisabled || refreshing) return;
@@ -304,7 +304,7 @@ function RouteComponent() {
               )}
             </Table.Header>
             <Table.Body>
-              {loading || refreshing ? (
+              {loading || refreshing || deleting ? (
                 <Table.Row>
                   <Table.Cell colSpan={6}>
                     <div className="flex justify-center items-center py-8">
@@ -315,7 +315,12 @@ function RouteComponent() {
                           className="animate-spin text-blue-600"
                         />
                         <span className="text-gray-600">
-                          {loading ? 'Loading dashboards...' : 'Refreshing dashboards...'}
+                          {loading 
+                            ? 'Loading dashboards...' 
+                            : refreshing 
+                            ? 'Refreshing dashboards...'
+                            : 'Deleting dashboard...'
+                          }
                         </span>
                       </div>
                     </div>

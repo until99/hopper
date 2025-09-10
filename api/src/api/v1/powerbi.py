@@ -346,6 +346,22 @@ class Powerbi:
                 self.tenant_id, self.client_id, self.client_secret
             )
 
+        try:
+            self.logger.info(
+                f"Obtendo detalhes do relatório {report_id} antes da exclusão"
+            )
+            report_details = await self.get_powerbi_report_from_group(
+                group_id, report_id
+            )
+            dataset_id = report_details.get("datasetId")
+            self.logger.info(f"Dataset ID associado ao relatório: {dataset_id}")
+        except Exception as e:
+            self.logger.warning(
+                f"Não foi possível obter detalhes do relatório {report_id}: {str(e)}"
+            )
+            dataset_id = None
+
+        self.logger.info(f"Excluindo relatório {report_id} do grupo {group_id}")
         url = f"{self.base_url}/groups/{group_id}/reports/{report_id}"
 
         response = requests.delete(
@@ -354,9 +370,64 @@ class Powerbi:
         )
 
         response.raise_for_status()
-        return {"status": "deleted", "status_code": response.status_code}
+
+        result = {
+            "status": "report_deleted",
+            "status_code": response.status_code,
+            "report_id": report_id,
+        }
+
+        if dataset_id:
+            try:
+                self.logger.info(f"Tentando excluir dataset {dataset_id} associado")
+                await self.delete_powerbi_dataset(group_id, dataset_id)
+                result["dataset_status"] = "deleted"
+                result["dataset_id"] = dataset_id
+                self.logger.info(f"Dataset {dataset_id} excluído com sucesso")
+            except Exception as e:
+                self.logger.warning(f"Erro ao excluir dataset {dataset_id}: {str(e)}")
+                result["dataset_status"] = "error"
+                result["dataset_error"] = str(e)
+        else:
+            result["dataset_status"] = "not_found"
+
+        return result
 
     # DATASETS
+    async def delete_powerbi_dataset(self, group_id: str, dataset_id: str):
+        """
+        Exclui um dataset do PowerBI de um grupo específico.
+        """
+        self.logger.info(f"Excluindo dataset {dataset_id} do grupo {group_id}")
+
+        if not self.access_token:
+            self.access_token = self.acquire_bearer_token(
+                self.tenant_id, self.client_id, self.client_secret
+            )
+
+        url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}"
+
+        try:
+            response = requests.delete(
+                url,
+                headers=self.header,
+            )
+            response.raise_for_status()
+
+            self.logger.info(
+                f"Dataset {dataset_id} excluído com sucesso do grupo {group_id}"
+            )
+            return {
+                "status": "deleted",
+                "status_code": response.status_code,
+                "dataset_id": dataset_id,
+            }
+        except Exception as e:
+            self.logger.error(
+                f"Erro ao excluir dataset {dataset_id} do grupo {group_id}: {str(e)}"
+            )
+            raise
+
     async def refresh_powerbi_dataset(self, group_id: str, dataset_id: str) -> dict:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshes"
 

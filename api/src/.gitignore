@@ -2,5 +2,3 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
-api/logs/*.log
-api/logs/api.log
