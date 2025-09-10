@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, type FilterFn, useReactTable } from '@tanstack/react-table';
-import { CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, MagnifyingGlassIcon, UploadIcon } from '@phosphor-icons/react';
+import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, MagnifyingGlassIcon, SpinnerIcon, UploadIcon } from '@phosphor-icons/react';
 
 import { Table } from '../../../../components/ui/table';
 import { Input } from '../../../../components/ui/Input';
@@ -37,8 +37,54 @@ const globalFilterFn: FilterFn<Dashboard> = (row, _columnId, value) => {
 function RouteComponent() {
   const [globalFilter, setGlobalFilter] = useState('');
   const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const [isRefreshDisabled, setIsRefreshDisabled] = useState(false);
+  const [refreshCooldown, setRefreshCooldown] = useState(0);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { dashboards, loading, error, deleteDashboard } = useDashboards();
+  const { dashboards, loading, refreshing, error, deleteDashboard, refetch } = useDashboards();
+
+  const handleRefresh = async () => {
+    if (isRefreshDisabled || refreshing) return;
+    
+    try {
+      await refetch();
+      
+      // Start cooldown period (1 minute = 60 seconds)
+      setIsRefreshDisabled(true);
+      setRefreshCooldown(60);
+      
+      // Clear any existing timer
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+      
+      // Countdown timer
+      timerRef.current = setInterval(() => {
+        setRefreshCooldown((prev) => {
+          if (prev <= 1) {
+            if (timerRef.current) {
+              clearInterval(timerRef.current);
+              timerRef.current = null;
+            }
+            setIsRefreshDisabled(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } catch (err) {
+      console.error('Error refreshing dashboards:', err);
+    }
+  };
+
+  // Cleanup any running timers on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearInterval(timerRef.current);
+      }
+    };
+  }, []);
 
   const handleCopyDashboardId = (dashboardId: string) => {
     navigator.clipboard.writeText(dashboardId);
@@ -176,34 +222,6 @@ function RouteComponent() {
 
   const pageNumbers = Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
 
-  // Mostrar loading
-  if (loading) {
-    return (
-      <Main.Root>
-        <Main.Aside />
-        <Main.Body>
-          <div className="flex justify-center items-center h-64">
-            <div className="text-lg">Loading dashboards...</div>
-          </div>
-        </Main.Body>
-      </Main.Root>
-    );
-  }
-
-  // Mostrar erro
-  if (error) {
-    return (
-      <Main.Root>
-        <Main.Aside />
-        <Main.Body>
-          <div className="flex justify-center items-center h-64">
-            <div className="text-red-600">Error: {error}</div>
-          </div>
-        </Main.Body>
-      </Main.Root>
-    );
-  }
-
   return (
     <Main.Root>
       <Main.Aside />
@@ -213,20 +231,50 @@ function RouteComponent() {
             title="Dashboards"
             subtitle="Manage published dashboards and upload new ones"
           />
-          <Button.Root
-            bgColor='bg-blue-600'
-            hover
-            hoverColor='bg-blue-700'
-            textColor='text-white'
-            onClick={() => { }}
-            className='font-medium'
-          >
-            <UploadIcon
-              size={16}
-              weight='bold'
-            />
-            Upload PBIX
-          </Button.Root>
+          <div className="flex gap-3">
+            <Button.Root
+              bgColor='bg-blue-600'
+              hover
+              hoverColor='bg-blue-700'
+              textColor='text-white'
+              onClick={() => { }}
+              className='font-medium'
+            >
+              <UploadIcon
+                size={16}
+                weight='bold'
+              />
+              Upload PBIX
+            </Button.Root>
+            <Button.Root
+              bgColor='bg-blue-600'
+              hover
+              hoverColor='bg-blue-700'
+              textColor='text-white'
+              onClick={handleRefresh}
+              className='font-medium'
+              disabled={isRefreshDisabled || refreshing}
+            >
+              {refreshing ? (
+                <SpinnerIcon
+                  size={16}
+                  weight='bold'
+                  className="animate-spin"
+                />
+              ) : (
+                <ArrowsClockwiseIcon
+                  size={16}
+                  weight='bold'
+                />
+              )}
+              {isRefreshDisabled && refreshCooldown > 0 
+                ? `Refresh (${refreshCooldown}s)` 
+                : refreshing 
+                  ? 'Refreshing...' 
+                  : 'Refresh'
+              }
+            </Button.Root>
+          </div>
         </div>
 
         <div className="mt-6">
@@ -260,15 +308,50 @@ function RouteComponent() {
               )}
             </Table.Header>
             <Table.Body>
-              {table.getRowModel().rows.map((row) => (
-                <Table.Row key={row.id}>
-                  {row.getVisibleCells().map((cell) => (
-                    <Table.Cell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </Table.Cell>
-                  ))}
+              {loading || refreshing ? (
+                <Table.Row>
+                  <Table.Cell colSpan={6}>
+                    <div className="flex justify-center items-center py-8">
+                      <div className="flex items-center gap-2">
+                        <SpinnerIcon 
+                          size={20} 
+                          weight='bold' 
+                          className="animate-spin text-blue-600" 
+                        />
+                        <span className="text-gray-600">
+                          {loading ? 'Loading dashboards...' : 'Refreshing dashboards...'}
+                        </span>
+                      </div>
+                    </div>
+                  </Table.Cell>
                 </Table.Row>
-              ))}
+              ) : error ? (
+                <Table.Row>
+                  <Table.Cell colSpan={6}>
+                    <div className="flex justify-center items-center py-8">
+                      <div className="text-red-600">Error: {error}</div>
+                    </div>
+                  </Table.Cell>
+                </Table.Row>
+              ) : table.getRowModel().rows.length === 0 ? (
+                <Table.Row>
+                  <Table.Cell colSpan={6}>
+                    <div className="flex justify-center items-center py-8">
+                      <div className="text-gray-500">No dashboards found</div>
+                    </div>
+                  </Table.Cell>
+                </Table.Row>
+              ) : (
+                table.getRowModel().rows.map((row) => (
+                  <Table.Row key={row.id}>
+                    {row.getVisibleCells().map((cell) => (
+                      <Table.Cell key={cell.id}>
+                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      </Table.Cell>
+                    ))}
+                  </Table.Row>
+                ))
+              )}
             </Table.Body>
           </Table.Root>
 

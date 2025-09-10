@@ -91,6 +91,7 @@ class Powerbi:
                     group_reports = await self.get_all_powerbi_reports_in_group(group['id'])
 
                     for report in group_reports['value']:
+                        report['workspace_id'] = group['id']
                         report['workspace_name'] = group['name']
                         all_reports.append(report)
 

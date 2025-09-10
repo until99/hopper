@@ -1,14 +1,21 @@
 const API_BASE_URL = "http://localhost:8000";
 
-export interface PowerBIReport {
+export interface APIPowerBIReport {
   id: string;
   name: string;
   description?: string;
   datasetId: string;
   webUrl: string;
   embedUrl: string;
-  workspaceId?: string;
-  workspaceName?: string;
+  datasetWorkspaceId: string;
+  workspace_id: string;
+  workspace_name: string;
+  reportType?: string;
+  isFromPbix?: boolean;
+  isOwnedByMe?: boolean;
+  users?: any[];
+  subscriptions?: any[];
+  reportFlags?: number;
 }
 
 export interface PowerBIGroup {
@@ -18,32 +25,36 @@ export interface PowerBIGroup {
 }
 
 export const api = {
-  // Buscar todos os grupos
   async getGroups() {
     const response = await fetch(`${API_BASE_URL}/powerbi/groups`);
     if (!response.ok) throw new Error("Failed to fetch groups");
-    return response.json();
+    const res = await response.json();
+    // console.log(res);
+
+    return res;
   },
 
-  // Buscar todos os relatórios
   async getReports() {
     const response = await fetch(`${API_BASE_URL}/powerbi/reports`);
     if (!response.ok) throw new Error("Failed to fetch reports");
 
-    const data = await response.json();
-    return data;
+    const res = await response.json();
+    // console.log(res);
+
+    return res;
   },
 
-  // Buscar relatórios por grupo
   async getReportsByGroup(groupId: string) {
     const response = await fetch(
       `${API_BASE_URL}/powerbi/reports/group/${groupId}`
     );
     if (!response.ok) throw new Error("Failed to fetch reports by group");
-    return response.json();
+    const res = await response.json();
+    // console.log(res);
+
+    return res;
   },
 
-  // Deletar relatório
   async deleteReport(groupId: string, reportId: string) {
     const response = await fetch(
       `${API_BASE_URL}/powerbi/groups/${groupId}/reports/${reportId}`,
@@ -52,6 +63,9 @@ export const api = {
       }
     );
     if (!response.ok) throw new Error("Failed to delete report");
-    return response.json();
+    const res = await response.json();
+    // console.log(res);
+
+    return res;
   },
 };
