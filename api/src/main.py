@@ -67,7 +67,10 @@ async def root():
         "version": "1.0.0",
         "endpoints": {
             "groups": "/powerbi/groups - Lista todos os grupos do PowerBI",
+            "group_by_id": "/powerbi/groups/{group_id} - Obtém um grupo específico",
             "reports": "/powerbi/reports - Lista todos os relatórios do PowerBI",
+            "report_by_id": "/powerbi/reports/{report_id} - Obtém um relatório por ID (busca em todos os workspaces)",
+            "report_from_group": "/powerbi/reports/group/{group_id}/reports/{report_id} - Obtém um relatório de um workspace específico",
             "reports_by_group": "/powerbi/reports/group/{group_id} - Lista relatórios de um grupo específico",
             "health": "/health - Verificação de saúde da API",
         },
@@ -145,6 +148,21 @@ async def get_report(report_id: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
+@reports_router.get("/group/{group_id}/reports/{report_id}")
+async def get_report_from_group(group_id: str, report_id: str):
+    """Obtém um relatório específico de um workspace/grupo específico"""
+    try:
+        logger.info(f"Requisição para obter relatório {report_id} do grupo {group_id}")
+        result = await pbi.get_powerbi_report_from_group(group_id, report_id)
+        logger.info(f"Relatório {report_id} obtido com sucesso do grupo {group_id}")
+        return result
+    except Exception as e:
+        logger.error(
+            f"Erro ao obter relatório {report_id} do grupo {group_id}: {str(e)}"
+        )
+        raise HTTPException(status_code=500, detail=str(e))
+
+
 @reports_router.post("/")
 async def create_report(
     group_id: str,
@@ -164,7 +182,7 @@ async def create_report(
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@reports_router.delete("/{group_id}/reports/{report_id}")
+@groups_router.delete("/{group_id}/reports/{report_id}")
 async def delete_report(group_id: str, report_id: str):
     """Deleta um relatório do PowerBI pelo ID"""
     try:

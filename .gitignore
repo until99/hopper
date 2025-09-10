@@ -4,3 +4,4 @@ airflow/airflow-venv
 TODO.md
 .env
 api/logs/*.log
+api/logs/api.log

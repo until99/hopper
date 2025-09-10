@@ -12,7 +12,9 @@ class Powerbi:
         self.base_url = "https://api.powerbi.com/v1.0/myorg"
 
         if not self.tenant_id or not self.client_id or not self.client_secret:
-            self.logger.error("Variáveis de ambiente TENANT_ID, CLIENT_ID e CLIENT_SECRET são obrigatórias")
+            self.logger.error(
+                "Variáveis de ambiente TENANT_ID, CLIENT_ID e CLIENT_SECRET são obrigatórias"
+            )
             raise ValueError(
                 "Variáveis de ambiente TENANT_ID, CLIENT_ID e CLIENT_SECRET são obrigatórias"
             )
@@ -33,7 +35,7 @@ class Powerbi:
         (ex: Report.Read.All, Report.ReadWrite.All) com admin consent.
         """
         authority = f"https://login.microsoftonline.com/{tenant_id}"
-        
+
         self.logger.debug(f"Solicitando token de acesso para tenant: {tenant_id}")
 
         try:
@@ -55,13 +57,12 @@ class Powerbi:
                 self.logger.info("Token de acesso adquirido com sucesso")
                 return token_result["access_token"]
 
-            # Tratamento de erros retornados pela API de autenticação
             error = token_result.get("error", "unknown_error")
             error_desc = token_result.get(
                 "error_description", "No description provided"
             )
             error_uri = token_result.get("error_uri", "")
-            
+
             error_msg = f"Failed to acquire token: {error}\nDescription: {error_desc}\nURI: {error_uri}"
             self.logger.error(error_msg)
             raise Exception(error_msg)
@@ -80,12 +81,16 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            
+
             if response.status_code == 200:
-                self.logger.info(f"Grupos obtidos com sucesso: {len(response.json().get('value', []))} grupos encontrados")
+                self.logger.info(
+                    f"Grupos obtidos com sucesso: {len(response.json().get('value', []))} grupos encontrados"
+                )
             else:
-                self.logger.warning(f"Resposta inesperada ao obter grupos: {response.status_code}")
-                
+                self.logger.warning(
+                    f"Resposta inesperada ao obter grupos: {response.status_code}"
+                )
+
             return response.json()
         except Exception as e:
             self.logger.error(f"Erro ao obter grupos do PowerBI: {str(e)}")
@@ -112,13 +117,14 @@ class Powerbi:
     # GET
     async def get_powerbi_report(self, report_id: str):
         self.logger.info(f"Obtendo relatório do PowerBI por ID: {report_id}")
-        
+
         if not self.access_token:
             self.logger.debug("Token de acesso expirado, renovando...")
             self.access_token = self.acquire_bearer_token(
                 self.tenant_id, self.client_id, self.client_secret
             )
 
+        # Primeiro, tenta acessar o relatório diretamente (My Workspace)
         url = f"{self.base_url}/reports/{report_id}"
 
         try:
@@ -127,15 +133,123 @@ class Powerbi:
                 headers=self.header,
             )
             response.raise_for_status()
-            self.logger.info(f"Relatório {report_id} obtido com sucesso")
+            self.logger.info(
+                f"Relatório {report_id} obtido com sucesso da My Workspace"
+            )
             return response.json()
+        except requests.exceptions.HTTPError as e:
+            if e.response.status_code == 403:
+                self.logger.debug(
+                    f"Acesso direto ao relatório {report_id} negado, tentando localizar em workspaces..."
+                )
+                # Se o acesso direto falhar com 403, tenta encontrar o relatório em todos os grupos
+                return await self._find_report_in_groups(report_id)
+            else:
+                self.logger.error(f"Erro HTTP ao obter relatório {report_id}: {str(e)}")
+                raise
         except Exception as e:
             self.logger.error(f"Erro ao obter relatório {report_id}: {str(e)}")
             raise
 
+    async def _find_report_in_groups(self, report_id: str):
+        """
+        Procura um relatório específico em todos os grupos/workspaces disponíveis.
+        Usado como fallback quando o acesso direto ao relatório falha.
+        """
+        self.logger.debug(f"Procurando relatório {report_id} em todos os workspaces...")
+
+        try:
+            groups_response = await self.get_all_powerbi_groups()
+
+            for group in groups_response["value"]:
+                try:
+                    self.logger.debug(
+                        f"Verificando grupo: {group['name']} ({group['id']})"
+                    )
+
+                    url = f"{self.base_url}/groups/{group['id']}/reports/{report_id}"
+                    response = requests.get(url, headers=self.header)
+
+                    if response.status_code == 200:
+                        report_data = response.json()
+                        report_data["workspace_id"] = group["id"]
+                        report_data["workspace_name"] = group["name"]
+
+                        self.logger.info(
+                            f"Relatório {report_id} encontrado no workspace: {group['name']} ({group['id']})"
+                        )
+                        return report_data
+                    elif response.status_code == 404:
+                        continue
+                    else:
+                        self.logger.debug(
+                            f"Erro {response.status_code} ao verificar relatório no grupo {group['name']}"
+                        )
+                        continue
+
+                except Exception as e:
+                    self.logger.debug(
+                        f"Erro ao verificar grupo {group.get('name', 'unknown')}: {str(e)}"
+                    )
+                    continue
+
+            self.logger.error(
+                f"Relatório {report_id} não encontrado em nenhum workspace acessível"
+            )
+            raise Exception(
+                f"Relatório {report_id} não encontrado em nenhum workspace acessível"
+            )
+
+        except Exception as e:
+            self.logger.error(
+                f"Erro ao procurar relatório {report_id} nos workspaces: {str(e)}"
+            )
+            raise
+
+    async def get_powerbi_report_from_group(self, group_id: str, report_id: str):
+        """
+        Obtém um relatório específico de um workspace/grupo específico.
+        Mais eficiente quando você conhece o workspace do relatório.
+        """
+        self.logger.info(f"Obtendo relatório {report_id} do grupo {group_id}")
+
+        if not self.access_token:
+            self.logger.debug("Token de acesso expirado, renovando...")
+            self.access_token = self.acquire_bearer_token(
+                self.tenant_id, self.client_id, self.client_secret
+            )
+
+        url = f"{self.base_url}/groups/{group_id}/reports/{report_id}"
+
+        try:
+            response = requests.get(
+                url,
+                headers=self.header,
+            )
+            response.raise_for_status()
+
+            report_data = response.json()
+            report_data["workspace_id"] = group_id
+
+            try:
+                group_data = await self.get_powerbi_group_by_id(group_id)
+                report_data["workspace_name"] = group_data.get("name", "Unknown")
+            except Exception:
+                report_data["workspace_name"] = "Unknown"
+
+            self.logger.info(
+                f"Relatório {report_id} obtido com sucesso do grupo {group_id}"
+            )
+            return report_data
+        except Exception as e:
+            self.logger.error(
+                f"Erro ao obter relatório {report_id} do grupo {group_id}: {str(e)}"
+            )
+            raise
+
     async def get_all_powerbi_reports(self):
         self.logger.info("Obtendo todos os relatórios do PowerBI")
-        
+
         if not self.access_token:
             self.logger.debug("Token de acesso expirado, renovando...")
             self.access_token = self.acquire_bearer_token(
@@ -149,7 +263,9 @@ class Powerbi:
         for group in groups_response["value"]:
             if group["id"]:
                 try:
-                    self.logger.debug(f"Obtendo relatórios do grupo: {group['name']} ({group['id']})")
+                    self.logger.debug(
+                        f"Obtendo relatórios do grupo: {group['name']} ({group['id']})"
+                    )
                     group_reports = await self.get_all_powerbi_reports_in_group(
                         group["id"]
                     )
@@ -160,7 +276,9 @@ class Powerbi:
                         all_reports.append(report)
 
                 except Exception as e:
-                    self.logger.error(f"Erro ao obter relatórios do grupo {group['name']}: {str(e)}")
+                    self.logger.error(
+                        f"Erro ao obter relatórios do grupo {group['name']}: {str(e)}"
+                    )
                     raise e
 
         self.logger.info(f"Total de relatórios obtidos: {len(all_reports)}")
@@ -168,7 +286,7 @@ class Powerbi:
 
     async def get_all_powerbi_reports_in_group(self, group_id: str):
         self.logger.debug(f"Obtendo relatórios do grupo: {group_id}")
-        
+
         if not self.access_token:
             self.logger.debug("Token de acesso expirado, renovando...")
             self.access_token = self.acquire_bearer_token(
@@ -183,11 +301,11 @@ class Powerbi:
                 headers=self.header,
             )
             response.raise_for_status()
-            
+
             reports_data = response.json()
-            reports_count = len(reports_data.get('value', []))
+            reports_count = len(reports_data.get("value", []))
             self.logger.debug(f"Obtidos {reports_count} relatórios do grupo {group_id}")
-            
+
             return reports_data
         except Exception as e:
             self.logger.error(f"Erro ao obter relatórios do grupo {group_id}: {str(e)}")
