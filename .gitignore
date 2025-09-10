@@ -3,4 +3,4 @@ airflow/airflow.cfg
 airflow/airflow-venv
 TODO.md
 .env
-api/logs/api_20250910.log
+api/logs/*.log
