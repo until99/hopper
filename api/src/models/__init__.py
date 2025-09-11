@@ -6,6 +6,12 @@ from .auth import (
     TokenData,
     AuthResponse
 )
+from .category import (
+    CategoryCreate,
+    CategoryUpdate,
+    CategoryResponse,
+    CategoryListResponse
+)
 
 __all__ = [
     "UserLogin",
@@ -13,5 +19,9 @@ __all__ = [
     "UserResponse",
     "Token",
     "TokenData",
-    "AuthResponse"
+    "AuthResponse",
+    "CategoryCreate",
+    "CategoryUpdate",
+    "CategoryResponse",
+    "CategoryListResponse"
 ]

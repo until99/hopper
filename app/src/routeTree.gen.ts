@@ -23,6 +23,7 @@ import { Route as AppAdminReportIndexRouteImport } from './routes/app/admin/repo
 import { Route as AppAdminGroupIndexRouteImport } from './routes/app/admin/group/index'
 import { Route as AppAdminDatabaseIndexRouteImport } from './routes/app/admin/database/index'
 import { Route as AppAdminDashboardIndexRouteImport } from './routes/app/admin/dashboard/index'
+import { Route as AppAdminCategoryIndexRouteImport } from './routes/app/admin/category/index'
 import { Route as AppAdminSettingSystemIndexRouteImport } from './routes/app/admin/setting/system/index'
 
 const NotFoundRoute = NotFoundRouteImport.update({
@@ -96,6 +97,11 @@ const AppAdminDashboardIndexRoute = AppAdminDashboardIndexRouteImport.update({
   path: '/app/admin/dashboard/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppAdminCategoryIndexRoute = AppAdminCategoryIndexRouteImport.update({
+  id: '/app/admin/category/',
+  path: '/app/admin/category/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AppAdminSettingSystemIndexRoute =
   AppAdminSettingSystemIndexRouteImport.update({
     id: '/app/admin/setting/system/',
@@ -111,6 +117,7 @@ export interface FileRoutesByFullPath {
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
   '/app/admin': typeof AppAdminIndexRoute
   '/app/profile': typeof AppProfileIndexRoute
+  '/app/admin/category': typeof AppAdminCategoryIndexRoute
   '/app/admin/dashboard': typeof AppAdminDashboardIndexRoute
   '/app/admin/database': typeof AppAdminDatabaseIndexRoute
   '/app/admin/group': typeof AppAdminGroupIndexRoute
@@ -128,6 +135,7 @@ export interface FileRoutesByTo {
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
   '/app/admin': typeof AppAdminIndexRoute
   '/app/profile': typeof AppProfileIndexRoute
+  '/app/admin/category': typeof AppAdminCategoryIndexRoute
   '/app/admin/dashboard': typeof AppAdminDashboardIndexRoute
   '/app/admin/database': typeof AppAdminDatabaseIndexRoute
   '/app/admin/group': typeof AppAdminGroupIndexRoute
@@ -146,6 +154,7 @@ export interface FileRoutesById {
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
   '/app/admin/': typeof AppAdminIndexRoute
   '/app/profile/': typeof AppProfileIndexRoute
+  '/app/admin/category/': typeof AppAdminCategoryIndexRoute
   '/app/admin/dashboard/': typeof AppAdminDashboardIndexRoute
   '/app/admin/database/': typeof AppAdminDatabaseIndexRoute
   '/app/admin/group/': typeof AppAdminGroupIndexRoute
@@ -165,6 +174,7 @@ export interface FileRouteTypes {
     | '/app/reports/list-reports'
     | '/app/admin'
     | '/app/profile'
+    | '/app/admin/category'
     | '/app/admin/dashboard'
     | '/app/admin/database'
     | '/app/admin/group'
@@ -182,6 +192,7 @@ export interface FileRouteTypes {
     | '/app/reports/list-reports'
     | '/app/admin'
     | '/app/profile'
+    | '/app/admin/category'
     | '/app/admin/dashboard'
     | '/app/admin/database'
     | '/app/admin/group'
@@ -199,6 +210,7 @@ export interface FileRouteTypes {
     | '/app/reports/list-reports'
     | '/app/admin/'
     | '/app/profile/'
+    | '/app/admin/category/'
     | '/app/admin/dashboard/'
     | '/app/admin/database/'
     | '/app/admin/group/'
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   AppReportsListReportsRoute: typeof AppReportsListReportsRoute
   AppAdminIndexRoute: typeof AppAdminIndexRoute
   AppProfileIndexRoute: typeof AppProfileIndexRoute
+  AppAdminCategoryIndexRoute: typeof AppAdminCategoryIndexRoute
   AppAdminDashboardIndexRoute: typeof AppAdminDashboardIndexRoute
   AppAdminDatabaseIndexRoute: typeof AppAdminDatabaseIndexRoute
   AppAdminGroupIndexRoute: typeof AppAdminGroupIndexRoute
@@ -327,6 +340,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAdminDashboardIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app/admin/category/': {
+      id: '/app/admin/category/'
+      path: '/app/admin/category'
+      fullPath: '/app/admin/category'
+      preLoaderRoute: typeof AppAdminCategoryIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/app/admin/setting/system/': {
       id: '/app/admin/setting/system/'
       path: '/app/admin/setting/system'
@@ -345,6 +365,7 @@ const rootRouteChildren: RootRouteChildren = {
   AppReportsListReportsRoute: AppReportsListReportsRoute,
   AppAdminIndexRoute: AppAdminIndexRoute,
   AppProfileIndexRoute: AppProfileIndexRoute,
+  AppAdminCategoryIndexRoute: AppAdminCategoryIndexRoute,
   AppAdminDashboardIndexRoute: AppAdminDashboardIndexRoute,
   AppAdminDatabaseIndexRoute: AppAdminDatabaseIndexRoute,
   AppAdminGroupIndexRoute: AppAdminGroupIndexRoute,

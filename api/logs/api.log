@@ -5687,3 +5687,676 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-09-11 18:09:47 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [79ac88ee] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.787s - Size: 82 bytes
 2025-09-11 18:09:47 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
 2025-09-11 18:09:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56177 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:10:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a2771abf] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:05 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:05 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a2771abf] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:10:05 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56198 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:10:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56198 - "OPTIONS /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [d8f602c2] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:06 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [d8f602c2] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.015s - Size: 181 bytes
+2025-09-11 18:10:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56198 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [872eca0d] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [872eca0d] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:10:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56198 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [57c5be2a] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [57c5be2a] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.004s - Size: 0 bytes
+2025-09-11 18:10:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56200 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:10:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [73350c3f] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:06 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:10:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:10:08 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:10:08 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [73350c3f] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 1.345s - Size: 82 bytes
+2025-09-11 18:10:08 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [35976389] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [35976389] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.024s - Size: 181 bytes
+2025-09-11 18:10:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56200 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e539717d] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e539717d] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.028s - Size: 181 bytes
+2025-09-11 18:10:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56200 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c2db0011] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c2db0011] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.004s - Size: 0 bytes
+2025-09-11 18:10:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56200 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f98fb7d6] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f98fb7d6] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.007s - Size: 0 bytes
+2025-09-11 18:10:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [257ddf28] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56212 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:10:08 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:10:08 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:10:09 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:10:09 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [257ddf28] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.814s - Size: 82 bytes
+2025-09-11 18:10:09 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:10:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56200 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:10:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [90ad81dc] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:09 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:10:09 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:10:10 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:10:10 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [90ad81dc] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.593s - Size: 82 bytes
+2025-09-11 18:10:10 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:10:10 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56212 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:10:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f9cd0528] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:10:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:10:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f9cd0528] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:10:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56234 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:11:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [6ec5546d] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:11:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:11:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:11:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [6ec5546d] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:11:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56235 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:11:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [d7ff20aa] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:11:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:11:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:11:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [d7ff20aa] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:11:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56341 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:11:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56342 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 18:11:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9586ea00] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:11:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9586ea00] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 18:11:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56342 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:11:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56342 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:11:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [892304b9] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:11:47 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:11:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:11:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:11:48 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:11:48 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [892304b9] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.778s - Size: 82 bytes
+2025-09-11 18:11:48 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:11:48 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56342 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:12:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [19022a97] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:12:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:12:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:12:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [19022a97] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.013s - Size: 63 bytes
+2025-09-11 18:12:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56408 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:12:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c529b781] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:12:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:12:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:12:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c529b781] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.007s - Size: 63 bytes
+2025-09-11 18:12:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56409 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:13:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [96c95e6d] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:13:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:13:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:13:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [96c95e6d] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:13:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56518 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:13:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56519 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:13:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [deee68ff] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:13:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:13:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:13:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [deee68ff] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:13:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56519 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:13:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [940c045c] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:13:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [940c045c] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:13:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56519 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:13:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [08c2b787] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:13:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:13:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:13:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:13:39 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:13:39 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [08c2b787] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.622s - Size: 82 bytes
+2025-09-11 18:13:39 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:13:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56519 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:14:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7fdb021f] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:14:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:14:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:14:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7fdb021f] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:14:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56556 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:14:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [be93d128] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:14:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:14:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:14:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [be93d128] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:14:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56557 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:14:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [2f15a0d3] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:14:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [2f15a0d3] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:14:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56568 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:14:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [28fa296c] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:14:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:14:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:14:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:14:56 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:14:56 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [28fa296c] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 1.055s - Size: 82 bytes
+2025-09-11 18:14:56 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:14:56 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56568 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:15:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7e723761] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:15:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:15:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:15:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7e723761] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:15:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56570 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:15:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4599dda9] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:15:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:15:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:15:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4599dda9] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:15:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56603 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:16:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a23fe75f] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:16:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:16:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:16:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a23fe75f] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:16:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56665 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:16:12 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a4d499ce] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:16:12 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a4d499ce] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:16:12 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56665 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:16:12 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [07450c5d] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:16:12 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:16:12 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:16:12 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:16:12 - hopper.api.powerbi - [33;20mWARNING[0m - [powerbi.py:97] - Resposta inesperada ao obter grupos: 403
+2025-09-11 18:16:12 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [07450c5d] GET http://localhost:8000/powerbi/reports/ - Status: 403 - Time: 0.591s - Size: 82 bytes
+2025-09-11 18:16:12 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:151] - Forbidden access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:16:12 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56665 - "GET /powerbi/reports/ HTTP/1.1" 403
+2025-09-11 18:16:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [fee37ea2] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:16:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:16:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:16:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [fee37ea2] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.091s - Size: 63 bytes
+2025-09-11 18:16:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56669 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:17:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3a567b12] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:17:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:17:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:17:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3a567b12] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:17:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56743 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:17:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9d2133d8] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:17:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:17:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:17:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9d2133d8] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.014s - Size: 63 bytes
+2025-09-11 18:17:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:56744 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:40:22 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:40:22 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:40:22 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:40:22 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:40:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:40:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:40:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:40:23 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:40:23 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:40:23 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:40:23 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:40:23 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:40:23 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:40:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:40:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:40:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:40:23 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:40:23 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:40:24 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [20172]
+2025-09-11 18:40:24 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 18:40:24 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 18:40:24 - hopper.api.main - [34;20mINFO[0m - [main.py:261] - Conexão com banco de dados estabelecida
+2025-09-11 18:40:24 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 18:40:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [fd551e5c] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:24 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:40:24 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:40:24 - passlib.handlers.bcrypt - [33;20mWARNING[0m - [bcrypt.py:622] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-11 18:40:25 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:111] - Usuário autenticado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 18:40:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:107] - Login realizado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 18:40:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [fd551e5c] POST http://localhost:8000/api/v1/auth/login - Status: 200 - Time: 0.638s - Size: 497 bytes
+2025-09-11 18:40:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57469 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 18:40:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57469 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 18:40:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57470 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 18:40:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [79c65555] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [79c65555] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:40:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57469 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:40:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3346ca0e] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3346ca0e] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 18:40:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57470 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:40:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57469 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:40:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c7c4dd2a] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:27 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:40:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:40:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:40:28 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 18:40:30 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 18:40:30 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c7c4dd2a] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.155s - Size: 6886 bytes
+2025-09-11 18:40:30 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57469 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:40:30 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7825e711] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:30 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:40:30 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:40:30 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:40:31 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 18:40:33 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 18:40:33 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7825e711] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.237s - Size: 6886 bytes
+2025-09-11 18:40:33 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57470 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:40:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57518 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:40:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [1845b26f] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:40:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:40:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:40:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [1845b26f] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:40:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57518 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:41:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [77eb1536] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:41:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:41:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:41:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [77eb1536] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 18:41:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57519 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:41:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [65ecba7f] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:41:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:41:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:41:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [65ecba7f] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.011s - Size: 63 bytes
+2025-09-11 18:41:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57528 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:42:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f61862ac] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:42:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:42:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:42:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f61862ac] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:42:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57530 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:42:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [273bdf0c] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:42:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:42:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:42:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [273bdf0c] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 18:42:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57540 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:43:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [8171fc0f] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:43:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:43:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:43:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [8171fc0f] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.006s - Size: 63 bytes
+2025-09-11 18:43:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57541 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:43:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [dde6c5a8] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:43:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:43:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:43:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [dde6c5a8] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:43:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57551 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:44:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [63cc2570] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:44:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:44:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:44:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [63cc2570] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.014s - Size: 63 bytes
+2025-09-11 18:44:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57552 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:45:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [13907f5c] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:45:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:45:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:45:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [13907f5c] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:45:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57602 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:46:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [dd17bc24] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:46:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:46:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:46:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [dd17bc24] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:46:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57603 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:47:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [552829b5] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:47:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:47:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:47:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [552829b5] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 18:47:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57652 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:48:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [35fc0394] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:48:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:48:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:48:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [35fc0394] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 18:48:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57653 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:49:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e02ef9c1] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:49:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:49:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:49:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e02ef9c1] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.011s - Size: 63 bytes
+2025-09-11 18:49:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57753 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:50:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57754 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:50:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [254da490] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:50:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:50:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:50:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [254da490] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 18:50:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57754 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:51:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [127f1957] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:51:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:51:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:51:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [127f1957] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.018s - Size: 63 bytes
+2025-09-11 18:51:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57802 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:52:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [8194c4f4] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:52:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:52:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:52:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [8194c4f4] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.013s - Size: 63 bytes
+2025-09-11 18:52:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57803 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:53:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0c0135bc] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:53:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:53:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:53:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0c0135bc] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.008s - Size: 63 bytes
+2025-09-11 18:53:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57830 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 18:54:16 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57844 - "OPTIONS /dashboards/ HTTP/1.1" 400
+2025-09-11 18:59:11 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58058 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 18:59:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [76461890] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:59:11 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:59:11 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:111] - Usuário autenticado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 18:59:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:107] - Login realizado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 18:59:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [76461890] POST http://localhost:8000/api/v1/auth/login - Status: 200 - Time: 0.572s - Size: 497 bytes
+2025-09-11 18:59:11 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58058 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 18:59:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58058 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 18:59:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58059 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 18:59:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [315c8f13] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [315c8f13] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 18:59:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58059 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:59:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [896bc588] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [896bc588] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.003s - Size: 0 bytes
+2025-09-11 18:59:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58058 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 18:59:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58059 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:59:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [31ee55a0] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:59:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:59:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:59:14 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 18:59:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 18:59:17 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [31ee55a0] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 4.247s - Size: 6886 bytes
+2025-09-11 18:59:17 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58059 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:59:17 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ede8df1e] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:17 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:59:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 18:59:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 18:59:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 18:59:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 18:59:20 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ede8df1e] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.491s - Size: 6886 bytes
+2025-09-11 18:59:20 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58058 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 18:59:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [8ef6e71d] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:59:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:59:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:59:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [8ef6e71d] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.008s - Size: 63 bytes
+2025-09-11 18:59:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58089 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:00:12 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ff4514a6] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:00:12 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:00:12 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:00:12 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ff4514a6] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 19:00:12 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58090 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:00:21 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:00:21 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:00:21 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:00:21 - hopper.api.main - [34;20mINFO[0m - [main.py:272] - Conexão com banco de dados encerrada
+2025-09-11 19:00:21 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:00:21 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [20172]
+2025-09-11 19:00:24 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:00:24 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:00:24 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:00:24 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:00:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:06:39 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:06:39 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:06:39 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:06:39 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:06:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:06:40 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:06:40 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:06:40 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:06:40 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:06:40 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:06:40 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:06:40 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:06:40 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:06:40 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:06:41 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:06:41 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:06:41 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:06:41 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:06:41 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [4648]
+2025-09-11 19:06:41 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:06:41 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:06:41 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:06:41 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58310 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58242 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58266 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58326 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58206 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58144 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:06:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5c7cd48d] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:06:41 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:06:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ce53ed0e] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:06:41 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:06:41 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 19:06:41 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:06:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5c7cd48d] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.056s - Size: 63 bytes
+2025-09-11 19:06:41 - passlib.handlers.bcrypt - [33;20mWARNING[0m - [bcrypt.py:622] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-11 19:06:43 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:111] - Usuário autenticado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:06:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:107] - Login realizado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:06:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ce53ed0e] POST http://localhost:8000/api/v1/auth/login - Status: 200 - Time: 1.146s - Size: 497 bytes
+2025-09-11 19:06:43 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58310 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 19:06:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5618908e] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:06:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5618908e] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:06:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58434 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:06:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a51c15e0] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:06:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a51c15e0] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 19:06:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58434 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:06:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7102a6ea] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:06:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:06:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:06:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:06:59 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:07:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:07:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7102a6ea] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.719s - Size: 6886 bytes
+2025-09-11 19:07:01 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58434 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:07:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [19e8f986] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58441 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:07:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58434 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:07:02 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:07:02 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:07:03 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:07:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:07:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [19e8f986] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 4.063s - Size: 6886 bytes
+2025-09-11 19:07:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c039b32d] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58439 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:07:06 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:06 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:07:06 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:07:06 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:07:06 - hopper.api.category_controller - [31;20mERROR[0m - [category_controller.py:82] - Erro ao listar categorias: no such table: categories
+2025-09-11 19:07:06 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [c039b32d] GET http://localhost:8000/api/v1/categories/ - Status: 500 - Time: 0.019s - Size: 42 bytes
+2025-09-11 19:07:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58441 - "GET /api/v1/categories/ HTTP/1.1" 500
+2025-09-11 19:07:06 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [1bb5b967] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:06 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:06 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:07:06 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:07:06 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:07:06 - hopper.api.category_controller - [31;20mERROR[0m - [category_controller.py:82] - Erro ao listar categorias: no such table: categories
+2025-09-11 19:07:06 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [1bb5b967] GET http://localhost:8000/api/v1/categories/ - Status: 500 - Time: 0.018s - Size: 42 bytes
+2025-09-11 19:07:06 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58439 - "GET /api/v1/categories/ HTTP/1.1" 500
+2025-09-11 19:07:08 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:07:08 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:07:08 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:07:08 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:07:08 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:07:08 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [4648]
+2025-09-11 19:07:11 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:07:11 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:07:11 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:07:11 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:07:11 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:07:11 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:07:11 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:07:11 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:07:11 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:07:12 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:07:12 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:07:12 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:07:12 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:07:12 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:07:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:07:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:07:13 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:07:13 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:07:13 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [5836]
+2025-09-11 19:07:13 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:07:13 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:07:13 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:07:13 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7998641b] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7998641b] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.039s - Size: 63 bytes
+2025-09-11 19:07:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58467 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4c7a7939] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4c7a7939] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:07:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58467 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [564c7281] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [564c7281] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.003s - Size: 0 bytes
+2025-09-11 19:07:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ad330968] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58468 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:07:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:07:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:07:14 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:07:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:07:16 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ad330968] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 2.579s - Size: 6886 bytes
+2025-09-11 19:07:16 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58467 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:07:16 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c3f24bf5] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:16 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:07:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:07:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:07:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:07:18 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c3f24bf5] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 2.406s - Size: 6886 bytes
+2025-09-11 19:07:18 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58468 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:07:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [cbd6c96b] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:19 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:19 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:07:19 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:07:19 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:07:19 - hopper.api.category_controller - [31;20mERROR[0m - [category_controller.py:82] - Erro ao listar categorias: no such table: categories
+2025-09-11 19:07:19 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [cbd6c96b] GET http://localhost:8000/api/v1/categories/ - Status: 500 - Time: 0.018s - Size: 42 bytes
+2025-09-11 19:07:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58468 - "GET /api/v1/categories/ HTTP/1.1" 500
+2025-09-11 19:07:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [17fb4c9b] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:19 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:19 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:07:19 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:07:19 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:07:19 - hopper.api.category_controller - [31;20mERROR[0m - [category_controller.py:82] - Erro ao listar categorias: no such table: categories
+2025-09-11 19:07:19 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [17fb4c9b] GET http://localhost:8000/api/v1/categories/ - Status: 500 - Time: 0.017s - Size: 42 bytes
+2025-09-11 19:07:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58467 - "GET /api/v1/categories/ HTTP/1.1" 500
+2025-09-11 19:07:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9962af0b] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:07:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:07:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9962af0b] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:07:43 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58470 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:08:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [996c13f4] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:08:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:08:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:08:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [996c13f4] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 19:08:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58541 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:08:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5967e635] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:08:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:08:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:08:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5967e635] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.007s - Size: 63 bytes
+2025-09-11 19:08:43 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58542 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:09:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [26994c10] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:09:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:09:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:09:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [26994c10] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.015s - Size: 63 bytes
+2025-09-11 19:09:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58570 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:09:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a6b611a1] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:09:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:09:43 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:09:43 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a6b611a1] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:09:43 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58571 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:10:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [24ad8451] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:10:13 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:10:13 - hopper.api.auth_service - [31;20mERROR[0m - [auth_service.py:157] - Erro ao obter usuário atual: 401: Usuário não encontrado
+2025-09-11 19:10:13 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [24ad8451] GET http://localhost:8000/api/v1/auth/verify - Status: 401 - Time: 0.013s - Size: 28 bytes
+2025-09-11 19:10:13 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/verify
+2025-09-11 19:10:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58613 - "GET /api/v1/auth/verify HTTP/1.1" 401
+2025-09-11 19:10:18 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:10:18 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:10:18 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:10:18 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:10:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:10:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:10:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:10:19 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:10:19 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:10:19 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:10:19 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:10:19 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:10:19 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:10:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:10:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:10:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:10:20 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:10:20 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:10:20 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [9176]
+2025-09-11 19:10:20 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:10:20 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:10:20 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:10:20 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:13:18 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58703 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 19:13:18 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ce3b29a4] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:18 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:18 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 19:13:18 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [ce3b29a4] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.013s - Size: 35 bytes
+2025-09-11 19:13:18 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 19:13:18 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58703 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 19:13:31 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "OPTIONS /api/v1/auth/register HTTP/1.1" 200
+2025-09-11 19:13:31 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e454ecad] POST http://localhost:8000/api/v1/auth/register - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:31 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:31 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:26] - Tentativa de registro para o email: gabriel.kasten@outlook.com
+2025-09-11 19:13:31 - passlib.handlers.bcrypt - [33;20mWARNING[0m - [bcrypt.py:622] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-11 19:13:32 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:56] - Usuário criado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:13:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:60] - Usuário registrado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:13:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e454ecad] POST http://localhost:8000/api/v1/auth/register - Status: 201 - Time: 0.849s - Size: 497 bytes
+2025-09-11 19:13:32 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "POST /api/v1/auth/register HTTP/1.1" 201
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 19:13:35 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4f3c898d] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:35 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4f3c898d] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:13:35 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4d9ebae4] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:35 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4d9ebae4] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:13:35 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:13:35 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c0e1a4c6] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:35 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:13:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:13:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:13:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:13:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c0e1a4c6] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.344s - Size: 6886 bytes
+2025-09-11 19:13:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:13:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [20929f8d] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:39 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:13:39 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:13:39 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:13:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [20929f8d] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.019s - Size: 1302 bytes
+2025-09-11 19:13:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58716 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:13:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [b7c5f1e0] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:39 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:13:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:13:40 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:13:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [b7c5f1e0] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.003s - Size: 6886 bytes
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [38a95873] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4cb1ff2e] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58717 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:13:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [38a95873] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.011s - Size: 0 bytes
+2025-09-11 19:13:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58716 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:13:42 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:13:42 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:13:42 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e5427f1f] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e5427f1f] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:13:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58717 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5fb69136] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4cb1ff2e] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.080s - Size: 1302 bytes
+2025-09-11 19:13:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:13:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:13:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:13:43 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:13:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:13:45 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5fb69136] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.091s - Size: 6886 bytes
+2025-09-11 19:13:45 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58716 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:13:45 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [18d8e840] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:13:45 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:13:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:13:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:13:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:13:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:13:48 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [18d8e840] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.132s - Size: 6886 bytes
+2025-09-11 19:13:48 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /powerbi/reports/ HTTP/1.1" 200
