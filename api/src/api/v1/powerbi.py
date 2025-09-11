@@ -1,6 +1,7 @@
 import msal
 import requests
 from api.logger import get_logger
+from api.v1.exceptions import PowerBIAPIException
 
 
 class Powerbi:
@@ -86,15 +87,21 @@ class Powerbi:
                 self.logger.info(
                     f"Grupos obtidos com sucesso: {len(response.json().get('value', []))} grupos encontrados"
                 )
+                return response.json()
             else:
                 self.logger.warning(
                     f"Resposta inesperada ao obter grupos: {response.status_code}"
                 )
+                raise PowerBIAPIException.from_response(response, "Erro ao obter grupos do PowerBI")
 
-            return response.json()
-        except Exception as e:
-            self.logger.error(f"Erro ao obter grupos do PowerBI: {str(e)}")
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter grupos do PowerBI: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except PowerBIAPIException:
             raise
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter grupos do PowerBI: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     async def get_powerbi_group_by_id(self, group_id: str):
         self.logger.info(f"Obtendo grupo do PowerBI por ID: {group_id}")
@@ -105,12 +112,21 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            response.raise_for_status()
-            self.logger.info(f"Grupo {group_id} obtido com sucesso")
-            return response.json()
-        except Exception as e:
-            self.logger.error(f"Erro ao obter grupo {group_id}: {str(e)}")
+            
+            if response.status_code == 200:
+                self.logger.info(f"Grupo {group_id} obtido com sucesso")
+                return response.json()
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao obter grupo {group_id}")
+                
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except PowerBIAPIException:
             raise
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     # REPORTS
 
@@ -132,24 +148,29 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            response.raise_for_status()
-            self.logger.info(
-                f"Relatório {report_id} obtido com sucesso da My Workspace"
-            )
-            return response.json()
-        except requests.exceptions.HTTPError as e:
-            if e.response.status_code == 403:
+            
+            if response.status_code == 200:
+                self.logger.info(
+                    f"Relatório {report_id} obtido com sucesso da My Workspace"
+                )
+                return response.json()
+            elif response.status_code == 403:
                 self.logger.debug(
                     f"Acesso direto ao relatório {report_id} negado, tentando localizar em workspaces..."
                 )
                 # Se o acesso direto falhar com 403, tenta encontrar o relatório em todos os grupos
                 return await self._find_report_in_groups(report_id)
             else:
-                self.logger.error(f"Erro HTTP ao obter relatório {report_id}: {str(e)}")
-                raise
-        except Exception as e:
-            self.logger.error(f"Erro ao obter relatório {report_id}: {str(e)}")
+                raise PowerBIAPIException.from_response(response, f"Erro ao obter relatório {report_id}")
+                
+        except PowerBIAPIException:
             raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter relatório {report_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter relatório {report_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     async def _find_report_in_groups(self, report_id: str):
         """
@@ -196,15 +217,18 @@ class Powerbi:
             self.logger.error(
                 f"Relatório {report_id} não encontrado em nenhum workspace acessível"
             )
-            raise Exception(
-                f"Relatório {report_id} não encontrado em nenhum workspace acessível"
+            raise PowerBIAPIException(
+                f"Relatório {report_id} não encontrado em nenhum workspace acessível", 
+                404
             )
 
+        except PowerBIAPIException:
+            raise
         except Exception as e:
             self.logger.error(
                 f"Erro ao procurar relatório {report_id} nos workspaces: {str(e)}"
             )
-            raise
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     async def get_powerbi_report_from_group(self, group_id: str, report_id: str):
         """
@@ -226,26 +250,32 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            response.raise_for_status()
+            
+            if response.status_code == 200:
+                report_data = response.json()
+                report_data["workspace_id"] = group_id
 
-            report_data = response.json()
-            report_data["workspace_id"] = group_id
+                try:
+                    group_data = await self.get_powerbi_group_by_id(group_id)
+                    report_data["workspace_name"] = group_data.get("name", "Unknown")
+                except Exception:
+                    report_data["workspace_name"] = "Unknown"
 
-            try:
-                group_data = await self.get_powerbi_group_by_id(group_id)
-                report_data["workspace_name"] = group_data.get("name", "Unknown")
-            except Exception:
-                report_data["workspace_name"] = "Unknown"
-
-            self.logger.info(
-                f"Relatório {report_id} obtido com sucesso do grupo {group_id}"
-            )
-            return report_data
-        except Exception as e:
-            self.logger.error(
-                f"Erro ao obter relatório {report_id} do grupo {group_id}: {str(e)}"
-            )
+                self.logger.info(
+                    f"Relatório {report_id} obtido com sucesso do grupo {group_id}"
+                )
+                return report_data
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao obter relatório {report_id} do grupo {group_id}")
+                
+        except PowerBIAPIException:
             raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter relatório {report_id} do grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter relatório {report_id} do grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     async def get_all_powerbi_reports(self):
         self.logger.info("Obtendo todos os relatórios do PowerBI")
@@ -300,16 +330,23 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            response.raise_for_status()
-
-            reports_data = response.json()
-            reports_count = len(reports_data.get("value", []))
-            self.logger.debug(f"Obtidos {reports_count} relatórios do grupo {group_id}")
-
-            return reports_data
-        except Exception as e:
-            self.logger.error(f"Erro ao obter relatórios do grupo {group_id}: {str(e)}")
+            
+            if response.status_code == 200:
+                reports_data = response.json()
+                reports_count = len(reports_data.get("value", []))
+                self.logger.debug(f"Obtidos {reports_count} relatórios do grupo {group_id}")
+                return reports_data
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao obter relatórios do grupo {group_id}")
+                
+        except PowerBIAPIException:
             raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter relatórios do grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter relatórios do grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     # POST
     async def create_report_in_group(
@@ -334,10 +371,22 @@ class Powerbi:
 
         files = {"file": pbix_file}
 
-        response = requests.post(url, headers=self.header, params=params, files=files)
+        try:
+            response = requests.post(url, headers=self.header, params=params, files=files)
 
-        response.raise_for_status()
-        return response.json()
+            if response.status_code in [200, 201, 202]:
+                return response.json()
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao criar relatório no grupo {group_id}")
+                
+        except PowerBIAPIException:
+            raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao criar relatório no grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao criar relatório no grupo {group_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     # DELETE
     async def delete_powerbi_report(self, group_id: str, report_id: str):
@@ -412,44 +461,74 @@ class Powerbi:
                 url,
                 headers=self.header,
             )
-            response.raise_for_status()
-
-            self.logger.info(
-                f"Dataset {dataset_id} excluído com sucesso do grupo {group_id}"
-            )
-            return {
-                "status": "deleted",
-                "status_code": response.status_code,
-                "dataset_id": dataset_id,
-            }
-        except Exception as e:
-            self.logger.error(
-                f"Erro ao excluir dataset {dataset_id} do grupo {group_id}: {str(e)}"
-            )
+            
+            if response.status_code in [200, 204]:
+                self.logger.info(
+                    f"Dataset {dataset_id} excluído com sucesso do grupo {group_id}"
+                )
+                return {
+                    "status": "deleted",
+                    "status_code": response.status_code,
+                    "dataset_id": dataset_id,
+                }
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao excluir dataset {dataset_id}")
+                
+        except PowerBIAPIException:
             raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao excluir dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao excluir dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     async def refresh_powerbi_dataset(self, group_id: str, dataset_id: str) -> dict:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshes"
 
-        response = requests.post(
-            url,
-            headers=self.header,
-        )
+        try:
+            response = requests.post(
+                url,
+                headers=self.header,
+            )
 
-        response.raise_for_status()
-        return response.json()
+            if response.status_code in [200, 202]:
+                return response.json()
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao atualizar dataset {dataset_id}")
+                
+        except PowerBIAPIException:
+            raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao atualizar dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao atualizar dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     # REFRESHES
     async def get_powerbi_refresh_dataset(self, group_id: str, dataset_id: str):
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshes"
 
-        response = requests.get(
-            url,
-            headers=self.header,
-        )
+        try:
+            response = requests.get(
+                url,
+                headers=self.header,
+            )
 
-        response.raise_for_status()
-        return response.json()
+            if response.status_code == 200:
+                return response.json()
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao obter refreshes do dataset {dataset_id}")
+                
+        except PowerBIAPIException:
+            raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao obter refreshes do dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao obter refreshes do dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)
 
     # UPDATE
     async def update_powerbi_dataset_refresh_schedule(
@@ -461,11 +540,23 @@ class Powerbi:
     ) -> dict:
         url = f"{self.base_url}/groups/{group_id}/datasets/{dataset_id}/refreshSchedule"
 
-        response = requests.patch(
-            url,
-            headers=self.header,
-            json={"value": refresh_schedule, "disable": disable},
-        )
+        try:
+            response = requests.patch(
+                url,
+                headers=self.header,
+                json={"value": refresh_schedule, "disable": disable},
+            )
 
-        response.raise_for_status()
-        return response.json()
+            if response.status_code == 200:
+                return response.json()
+            else:
+                raise PowerBIAPIException.from_response(response, f"Erro ao atualizar agendamento do dataset {dataset_id}")
+                
+        except PowerBIAPIException:
+            raise
+        except requests.exceptions.RequestException as e:
+            self.logger.error(f"Erro de conexão ao atualizar agendamento do dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro de conexão: {str(e)}", 503)
+        except Exception as e:
+            self.logger.error(f"Erro inesperado ao atualizar agendamento do dataset {dataset_id}: {str(e)}")
+            raise PowerBIAPIException(f"Erro inesperado: {str(e)}", 500)

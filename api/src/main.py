@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
 from api.v1.powerbi import Powerbi
+from api.v1.exceptions import PowerBIAPIException
 from api.logger import configure_api_logging, configure_external_loggers, get_logger
 from api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
 
@@ -91,9 +92,12 @@ async def get_groups():
         result = await pbi.get_all_powerbi_groups()
         logger.info("Grupos listados com sucesso")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao listar grupos: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro ao listar grupos: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao listar grupos: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @groups_router.get("/{group_id}")
@@ -104,9 +108,12 @@ async def get_group(group_id: str):
         result = await pbi.get_powerbi_group_by_id(group_id)
         logger.info(f"Grupo {group_id} obtido com sucesso")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao obter grupo {group_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro ao obter grupo {group_id}: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao obter grupo {group_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @reports_router.get("")
@@ -117,9 +124,12 @@ async def get_reports():
         result = await pbi.get_all_powerbi_reports()
         logger.info("Relatórios listados com sucesso")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao listar relatórios: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro ao listar relatórios: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao listar relatórios: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @reports_router.get("/group/{group_id}")
@@ -130,9 +140,12 @@ async def get_reports_in_group(group_id: str):
         result = await pbi.get_all_powerbi_reports_in_group(group_id)
         logger.info(f"Relatórios do grupo {group_id} listados com sucesso")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao listar relatórios do grupo {group_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro ao listar relatórios do grupo {group_id}: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao listar relatórios do grupo {group_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @reports_router.get("/{report_id}")
@@ -143,9 +156,12 @@ async def get_report(report_id: str):
         result = await pbi.get_powerbi_report(report_id)
         logger.info(f"Relatório {report_id} obtido com sucesso")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao obter relatório {report_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro ao obter relatório {report_id}: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao obter relatório {report_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @reports_router.get("/group/{group_id}/reports/{report_id}")
@@ -156,11 +172,12 @@ async def get_report_from_group(group_id: str, report_id: str):
         result = await pbi.get_powerbi_report_from_group(group_id, report_id)
         logger.info(f"Relatório {report_id} obtido com sucesso do grupo {group_id}")
         return result
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao obter relatório {report_id} do grupo {group_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(
-            f"Erro ao obter relatório {report_id} do grupo {group_id}: {str(e)}"
-        )
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao obter relatório {report_id} do grupo {group_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @reports_router.post("/")
@@ -178,8 +195,12 @@ async def create_report(
             nameConflict=nameConflict,
             subfolderObjectId=subfolderObjectId,
         )
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao criar relatório: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao criar relatório: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @groups_router.delete("/{group_id}/reports/{report_id}")
@@ -187,8 +208,12 @@ async def delete_report(group_id: str, report_id: str):
     """Deleta um relatório do PowerBI pelo ID"""
     try:
         return await pbi.delete_powerbi_report(group_id=group_id, report_id=report_id)
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao deletar relatório {report_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao deletar relatório {report_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @datasets_router.post("/{group_id}/datasets/{dataset_id}/refresh")
@@ -198,8 +223,12 @@ async def refresh_dataset(group_id: str, dataset_id: str):
         return await pbi.refresh_powerbi_dataset(
             group_id=group_id, dataset_id=dataset_id
         )
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao atualizar dataset {dataset_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao atualizar dataset {dataset_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @datasets_router.get("/{group_id}/datasets/{dataset_id}/refreshes")
@@ -209,8 +238,12 @@ async def get_refreshes(group_id: str, dataset_id: str):
         return await pbi.get_powerbi_refresh_dataset(
             group_id=group_id, dataset_id=dataset_id
         )
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao obter refreshes do dataset {dataset_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao obter refreshes do dataset {dataset_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 @datasets_router.patch("/{group_id}/datasets/{dataset_id}/refreshSchedule")
@@ -248,8 +281,12 @@ async def update_refresh_schedule(
             refresh_schedule=refresh_schedule,
             disable=disable,
         )
+    except PowerBIAPIException as e:
+        logger.error(f"Erro da API PowerBI ao atualizar agendamento do dataset {dataset_id}: {e.message}")
+        raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Erro inesperado ao atualizar agendamento do dataset {dataset_id}: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
 app.include_router(health_router)
