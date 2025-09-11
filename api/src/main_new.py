@@ -11,11 +11,7 @@ try:
     from .api.v1 import auth_routes
     from .api.v1.dependencies import get_current_active_user
     from .api.v1.models import UserResponse
-    from .api.logger import (
-        configure_api_logging,
-        configure_external_loggers,
-        get_logger,
-    )
+    from .api.logger import configure_api_logging, configure_external_loggers, get_logger
     from .api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
     from .api.database import db_manager
 except ImportError:
@@ -46,7 +42,7 @@ try:
     tenant_id = os.getenv("TENANT_ID")
     client_id = os.getenv("CLIENT_ID")
     client_secret = os.getenv("CLIENT_SECRET")
-
+    
     if all([tenant_id, client_id, client_secret]) and tenant_id != "SEU-TENANT-ID":
         pbi = Powerbi(
             tenant_id=tenant_id,
@@ -55,9 +51,7 @@ try:
         )
         logger.info("Cliente PowerBI inicializado com sucesso")
     else:
-        logger.warning(
-            "PowerBI não configurado - credenciais não encontradas ou são valores de exemplo"
-        )
+        logger.warning("PowerBI não configurado - credenciais não encontradas ou são valores de exemplo")
 except Exception as e:
     logger.error(f"Erro ao inicializar cliente PowerBI: {str(e)}")
     pbi = None
@@ -118,14 +112,12 @@ async def health_check():
     return {
         "status": "healthy",
         "powerbi_configured": pbi is not None,
-        "database_type": os.getenv("DB_TYPE", "sqlite"),
+        "database_type": os.getenv("DB_TYPE", "sqlite")
     }
 
 
 @groups_router.get("/")
-async def get_all_powerbi_groups(
-    current_user: UserResponse = Depends(get_current_active_user),
-):
+async def get_all_powerbi_groups(current_user: UserResponse = Depends(get_current_active_user)):
     """Lista todos os grupos do PowerBI"""
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
@@ -156,29 +148,42 @@ async def get_powerbi_group_by_id(
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
 
 
-@groups_router.delete("/{group_id}/reports/{report_id}")
-async def delete_powerbi_report(
-    group_id: str,
-    report_id: str,
-    current_user: UserResponse = Depends(get_current_active_user),
+@datasets_router.get("/{group_id}/datasets")
+async def get_datasets_in_group(
+    group_id: str, current_user: UserResponse = Depends(get_current_active_user)
 ):
-    """Exclui um relatório específico de um grupo do PowerBI"""
+    """Obtém todos os datasets de um grupo específico"""
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
     try:
-        result = await pbi.delete_powerbi_report(group_id, report_id)
+        result = await pbi.get_datasets_in_group(group_id)
         return result
     except PowerBIAPIException as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)
     except Exception as e:
-        logger.error(f"Erro inesperado ao excluir relatório: {str(e)}")
+        logger.error(f"Erro inesperado ao obter datasets: {str(e)}")
+        raise HTTPException(status_code=500, detail="Erro interno do servidor")
+
+
+@datasets_router.get("/{group_id}/datasets/{dataset_id}")
+async def get_dataset_by_id(
+    group_id: str, dataset_id: str, current_user: UserResponse = Depends(get_current_active_user)
+):
+    """Obtém um dataset específico de um grupo"""
+    if not pbi:
+        raise HTTPException(status_code=503, detail="PowerBI não está configurado")
+    try:
+        result = await pbi.get_dataset_by_id(group_id, dataset_id)
+        return result
+    except PowerBIAPIException as e:
+        raise HTTPException(status_code=e.status_code, detail=e.message)
+    except Exception as e:
+        logger.error(f"Erro inesperado ao obter dataset: {str(e)}")
         raise HTTPException(status_code=500, detail="Erro interno do servidor")
 
 
 @reports_router.get("/")
-async def get_all_powerbi_reports(
-    current_user: UserResponse = Depends(get_current_active_user),
-):
+async def get_all_powerbi_reports(current_user: UserResponse = Depends(get_current_active_user)):
     """Lista todos os relatórios do PowerBI"""
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
@@ -200,7 +205,7 @@ async def get_powerbi_report_by_id(
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
     try:
-        result = await pbi.get_powerbi_report(report_id)
+        result = await pbi.get_powerbi_report_by_id(report_id)
         return result
     except PowerBIAPIException as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)
@@ -217,7 +222,7 @@ async def get_reports_by_group(
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
     try:
-        result = await pbi.get_all_powerbi_reports_in_group(group_id)
+        result = await pbi.get_reports_by_group(group_id)
         return result
     except PowerBIAPIException as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)
@@ -228,15 +233,13 @@ async def get_reports_by_group(
 
 @reports_router.get("/group/{group_id}/reports/{report_id}")
 async def get_report_from_group(
-    group_id: str,
-    report_id: str,
-    current_user: UserResponse = Depends(get_current_active_user),
+    group_id: str, report_id: str, current_user: UserResponse = Depends(get_current_active_user)
 ):
     """Obtém um relatório de um workspace específico"""
     if not pbi:
         raise HTTPException(status_code=503, detail="PowerBI não está configurado")
     try:
-        result = await pbi.get_powerbi_report_from_group(group_id, report_id)
+        result = await pbi.get_report_from_group(group_id, report_id)
         return result
     except PowerBIAPIException as e:
         raise HTTPException(status_code=e.status_code, detail=e.message)

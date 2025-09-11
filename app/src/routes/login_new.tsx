@@ -8,7 +8,7 @@ import { CpuIcon, EnvelopeIcon, KeyIcon, SpinnerGapIcon, UserIcon } from "@phosp
 import { Icon } from "../components/ui/icon";
 import { Input } from "../components/ui/Input";
 
-export const Route = createFileRoute("/login")({
+export const Route = createFileRoute("/login_new")({
   component: LoginPage,
 });
 

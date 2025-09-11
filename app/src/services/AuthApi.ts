@@ -125,4 +125,3 @@ class AuthApiService {
 
 export const authApiService = new AuthApiService();
 export type { LoginRequest, RegisterRequest, User, Token, AuthResponse };
-cd c:\Projects\hopper\api ; C:/Projects/hopper/api/.venv/Scripts/python.exe -c "from src.api.v1.models import UserCreate; print('Models imported successfully')"

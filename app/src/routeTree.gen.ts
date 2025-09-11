@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as NotFoundRouteImport } from './routes/not-found'
+import { Route as Login_newRouteImport } from './routes/login_new'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as AppProfileIndexRouteImport } from './routes/app/profile/index'
 import { Route as AppAdminIndexRouteImport } from './routes/app/admin/index'
@@ -28,6 +29,11 @@ import { Route as AppAdminSettingSystemIndexRouteImport } from './routes/app/adm
 const NotFoundRoute = NotFoundRouteImport.update({
   id: '/not-found',
   path: '/not-found',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Login_newRoute = Login_newRouteImport.update({
+  id: '/login_new',
+  path: '/login_new',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LoginRoute = LoginRouteImport.update({
@@ -105,6 +111,7 @@ const AppAdminSettingSystemIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
+  '/login_new': typeof Login_newRoute
   '/not-found': typeof NotFoundRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
+  '/login_new': typeof Login_newRoute
   '/not-found': typeof NotFoundRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
@@ -140,6 +148,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/login': typeof LoginRoute
+  '/login_new': typeof Login_newRoute
   '/not-found': typeof NotFoundRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/login'
+    | '/login_new'
     | '/not-found'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
+    | '/login_new'
     | '/not-found'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/login'
+    | '/login_new'
     | '/not-found'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
@@ -211,6 +223,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
+  Login_newRoute: typeof Login_newRoute
   NotFoundRoute: typeof NotFoundRoute
   AppDashboardsListDashboardsRoute: typeof AppDashboardsListDashboardsRoute
   AppProfileSettingsRoute: typeof AppProfileSettingsRoute
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/not-found'
       fullPath: '/not-found'
       preLoaderRoute: typeof NotFoundRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login_new': {
+      id: '/login_new'
+      path: '/login_new'
+      fullPath: '/login_new'
+      preLoaderRoute: typeof Login_newRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/login': {
@@ -339,6 +359,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
+  Login_newRoute: Login_newRoute,
   NotFoundRoute: NotFoundRoute,
   AppDashboardsListDashboardsRoute: AppDashboardsListDashboardsRoute,
   AppProfileSettingsRoute: AppProfileSettingsRoute,
