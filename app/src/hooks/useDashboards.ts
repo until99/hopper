@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { api, type APIPowerBIReport } from "../services/Dashboards";
+import { dashboardApi } from "../services/DashboardApi";
 import { type Dashboard } from "../interfaces/dashboard";
 
 export const useDashboards = () => {
@@ -18,12 +19,25 @@ export const useDashboards = () => {
       }
       setError(null);
 
-      const res = await api.getReports();
-      console.log("Raw API response:", res);
+      // Busca dashboards do PowerBI
+      const powerbiReports = await api.getReports();
+      console.log("Raw PowerBI reports:", powerbiReports);
 
-      let reports: APIPowerBIReport[] = res || [];
+      let reports: APIPowerBIReport[] = powerbiReports || [];
 
-      console.log("Processed reports:", reports);
+      // Busca dashboards com categorias do nosso banco
+      const dashboardsWithCategories = await dashboardApi.getAllDashboardsWithCategories();
+      console.log("Dashboards with categories:", dashboardsWithCategories);
+
+      // Cria um mapa das categorias por dashboard_id
+      const categoryMap = new Map();
+      dashboardsWithCategories.forEach(dashboard => {
+        if (dashboard.categories && dashboard.categories.length > 0) {
+          categoryMap.set(dashboard.dashboard_id, dashboard.categories[0]); // Primeira categoria
+        }
+      });
+
+      console.log("Category map:", categoryMap);
 
       const dashboards = reports.map((report) => {
         const dashboardId = report.id;
@@ -31,8 +45,12 @@ export const useDashboards = () => {
         const description = report.description || "No description available";
         const workspace = report.workspace_name || "Unknown Workspace";
         const workspaceId = report.workspace_id || "";
-        const category = "Not Categorized"; // Definir uma lógica para categorização
-        const categoryColor = "slate" as const; // Definir regra
+        
+        // Busca a categoria real do banco
+        const categoryData = categoryMap.get(dashboardId);
+        const category = categoryData ? categoryData.name : "Not Categorized";
+        const categoryColor = categoryData ? categoryData.color : "slate";
+        
         return {
           dashboardId,
           title,
@@ -44,6 +62,7 @@ export const useDashboards = () => {
         };
       });
 
+      console.log("Final dashboards:", dashboards);
       setDashboards(dashboards);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
@@ -80,6 +99,18 @@ export const useDashboards = () => {
     }
   };
 
+  const assignCategoryToDashboard = async (dashboardId: string, categoryId: string): Promise<void> => {
+    try {
+      await dashboardApi.assignCategoryToDashboard(dashboardId, categoryId);
+      // Após atribuir, refaz o fetch para atualizar a lista
+      await fetchDashboards(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Failed to assign category");
+      console.error("Error assigning category:", err);
+      throw err;
+    }
+  };
+
   useEffect(() => {
     fetchDashboards();
   }, []);
@@ -92,5 +123,6 @@ export const useDashboards = () => {
     error,
     refetch: refetchDashboards,
     deleteDashboard,
+    assignCategoryToDashboard,
   };
 };

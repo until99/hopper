@@ -17,8 +17,12 @@ export interface TruncatedCopyConfig {
 export interface ActionsConfig {
     onEdit?: (item: any) => void;
     onDelete?: (item: any) => void;
+    onCustomAction?: (item: any) => void;
+    customActionIcon?: ReactNode;
+    customActionColor?: 'blue' | 'green' | 'red' | 'yellow' | 'purple';
     editLabel?: string;
     deleteLabel?: string;
+    customActionLabel?: string;
 }
 
 export interface StyleConfig {
@@ -142,8 +146,43 @@ export const GenericCell = ({
 
         case 'actions':
             if (!actionsConfig || !item) return null;
+            
+            const getCustomActionColors = (color?: string) => {
+                switch (color) {
+                    case 'blue':
+                        return { bg: 'bg-blue-100', text: 'text-blue-700', hover: 'bg-blue-200' };
+                    case 'green':
+                        return { bg: 'bg-green-100', text: 'text-green-700', hover: 'bg-green-200' };
+                    case 'red':
+                        return { bg: 'bg-red-100', text: 'text-red-700', hover: 'bg-red-200' };
+                    case 'yellow':
+                        return { bg: 'bg-yellow-100', text: 'text-yellow-700', hover: 'bg-yellow-200' };
+                    case 'purple':
+                        return { bg: 'bg-purple-100', text: 'text-purple-700', hover: 'bg-purple-200' };
+                    default:
+                        return { bg: 'bg-gray-100', text: 'text-gray-700', hover: 'bg-gray-200' };
+                }
+            };
+
             return (
                 <div className={`flex items-center gap-2 ${className}`}>
+                    {actionsConfig.onCustomAction && (
+                        (() => {
+                            const colors = getCustomActionColors(actionsConfig.customActionColor);
+                            return (
+                                <Button.Root
+                                    bgColor={colors.bg}
+                                    textColor={colors.text}
+                                    hover
+                                    hoverColor={colors.hover}
+                                    onClick={() => actionsConfig.onCustomAction?.(item)}
+                                    className="p-1.5 h-8"
+                                >
+                                    {actionsConfig.customActionIcon || <PencilIcon size={14} weight="bold" />}
+                                </Button.Root>
+                            );
+                        })()
+                    )}
                     {actionsConfig.onEdit && (
                         <Button.Root
                             bgColor="bg-blue-100"

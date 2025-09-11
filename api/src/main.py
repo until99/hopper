@@ -8,7 +8,7 @@ try:
     # Importações relativas (quando executado como módulo)
     from .api.v1.powerbi import Powerbi
     from .api.v1.exceptions import PowerBIAPIException
-    from .routes import auth_router, category_router
+    from .routes import auth_router, category_router, dashboard_router
     from .utils import get_current_active_user
     from .models import UserResponse
     from .api.logger import (
@@ -22,7 +22,7 @@ except ImportError:
     # Importações absolutas (quando executado diretamente)
     from api.v1.powerbi import Powerbi
     from api.v1.exceptions import PowerBIAPIException
-    from routes import auth_router, category_router
+    from routes import auth_router, category_router, dashboard_router
     from utils import get_current_active_user
     from models import UserResponse
     from api.logger import configure_api_logging, configure_external_loggers, get_logger
@@ -249,6 +249,7 @@ async def get_report_from_group(
 app.include_router(health_router)
 app.include_router(auth_router, prefix="/api/v1")
 app.include_router(category_router, prefix="/api/v1")
+app.include_router(dashboard_router, prefix="/api/v1")
 app.include_router(groups_router)
 app.include_router(datasets_router)
 app.include_router(reports_router)

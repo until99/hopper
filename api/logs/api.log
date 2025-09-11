@@ -6360,3 +6360,1455 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-09-11 19:13:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
 2025-09-11 19:13:48 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [18d8e840] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.132s - Size: 6886 bytes
 2025-09-11 19:13:48 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58704 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:14:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3d5639fd] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:14:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:14:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:14:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3d5639fd] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.022s - Size: 63 bytes
+2025-09-11 19:14:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58718 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:14:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ddef1ac1] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:14:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:14:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:14:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ddef1ac1] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.013s - Size: 63 bytes
+2025-09-11 19:14:32 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58719 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:15:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [16efa991] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:15:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:15:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:15:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [16efa991] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.014s - Size: 63 bytes
+2025-09-11 19:15:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58761 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:15:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [029c52f6] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:15:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:15:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:15:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [029c52f6] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.015s - Size: 63 bytes
+2025-09-11 19:15:32 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58762 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:16:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a3a40bea] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:16:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:16:02 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:16:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a3a40bea] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.008s - Size: 63 bytes
+2025-09-11 19:16:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58821 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:16:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5d9bcc9e] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:16:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:16:32 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:16:32 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5d9bcc9e] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:16:32 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58822 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:17:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58895 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:17:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [d248ab5c] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:17:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:17:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:17:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [d248ab5c] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.014s - Size: 63 bytes
+2025-09-11 19:17:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58895 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:18:46 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:18:46 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:18:46 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:18:46 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:18:46 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:18:46 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [5836]
+2025-09-11 19:18:46 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:18:47 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:18:47 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:18:47 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:18:47 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:18:47 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [9176]
+2025-09-11 19:18:50 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:18:50 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:18:50 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:18:50 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:18:50 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:18:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:18:50 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:18:50 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:18:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:18:51 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:18:51 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:18:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:18:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:18:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:18:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [18524]
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14212]
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:18:53 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:18:53 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:18:53 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:18:53 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:18:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [519d1537] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:18:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:18:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:18:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [519d1537] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.047s - Size: 63 bytes
+2025-09-11 19:18:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:58965 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:19:13 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:13 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:13 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:13 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:13 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:13 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [18524]
+2025-09-11 19:19:14 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:14 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:14 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:14 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:14 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:14 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14212]
+2025-09-11 19:19:16 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:16 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:16 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:16 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:17 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:17 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:17 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:17 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:17 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:17 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:18 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:18 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:18 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:18 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:18 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:19 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:19 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:19 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [2420]
+2025-09-11 19:19:19 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:19:19 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:19:19 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:19:19 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:19:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:20 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:20 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [18044]
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:19:20 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:19:20 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:20 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:20 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [2420]
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:20 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:20 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:20 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [18044]
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:22 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:22 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:22 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:23 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:23 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:23 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:23 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:23 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:23 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:23 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:23 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:24 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:24 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:24 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:24 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:24 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:24 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:24 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [12196]
+2025-09-11 19:19:24 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:19:24 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:19:24 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:19:24 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:19:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:25 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:25 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:25 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [20232]
+2025-09-11 19:19:25 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:19:25 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:19:25 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:19:25 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:19:42 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:43 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:43 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [12196]
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:19:43 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:19:43 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:19:43 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [20232]
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:45 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:45 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:45 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:46 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:46 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:46 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:19:46 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:19:46 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:19:46 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:19:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:19:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:19:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:47 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:19:47 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:19:47 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [12028]
+2025-09-11 19:19:47 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:19:47 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:19:47 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:19:47 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:19:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9f59d73a] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:19:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:19:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:19:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9f59d73a] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.037s - Size: 63 bytes
+2025-09-11 19:19:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59057 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:20:02 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:02 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:02 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:02 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:02 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:02 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [12028]
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:04 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:04 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:04 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:05 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:05 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:05 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:05 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:06 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:06 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:06 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:07 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:07 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:07 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:07 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [21372]
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [17756]
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:07 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:07 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:07 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:07 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:13 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:13 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [21372]
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:13 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:13 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:13 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [17756]
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:15 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:15 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:16 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:16 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:16 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:16 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:17 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:17 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:17 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:17 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:18 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:18 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:18 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:18 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [10060]
+2025-09-11 19:20:18 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:18 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:18 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:18 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:19 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:19 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [15688]
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:19 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:19 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:19 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:19 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:19 - uvicorn.error - [31;20mERROR[0m - [on.py:134] - Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py", line 123, in run
+    raise KeyboardInterrupt()
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\starlette\routing.py", line 701, in lifespan
+    await receive()
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\uvicorn\lifespan\on.py", line 137, in receive
+    return await self.receive_queue.get()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\gabriel.kasten\AppData\Local\Programs\Python\Python313\Lib\asyncio\queues.py", line 186, in get
+    await getter
+asyncio.exceptions.CancelledError
+
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:19 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:19 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:19 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [10060]
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:21 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:21 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:21 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:21 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:21 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:22 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:22 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:22 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [11412]
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:24 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14644]
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:24 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:24 - hopper.api.main - [34;20mINFO[0m - [main.py:262] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:24 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:31 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:31 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14644]
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:20:31 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:20:31 - hopper.api.main - [34;20mINFO[0m - [main.py:273] - Conexão com banco de dados encerrada
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:20:31 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [11412]
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:34 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:34 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:34 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:34 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:34 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:20:36 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:20:36 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:20:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:20:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:37 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:37 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:37 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [8768]
+2025-09-11 19:20:37 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:37 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:37 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:37 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:20:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:37 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:20:37 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:20:37 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [17060]
+2025-09-11 19:20:37 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:20:38 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:20:38 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:20:38 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:20:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [cf76e886] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:20:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:20:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:20:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [cf76e886] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.025s - Size: 63 bytes
+2025-09-11 19:20:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59158 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:21:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [250744f9] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:21:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [250744f9] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:21:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59159 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:21:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [2d18faa6] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:21:09 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:21:09 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:21:09 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:21:10 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:21:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:21:13 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [2d18faa6] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.678s - Size: 6886 bytes
+2025-09-11 19:21:13 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59159 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:21:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59209 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:21:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59208 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:21:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a7cea64f] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:21:53 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:21:53 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:21:53 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:21:53 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:21:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a7cea64f] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.017s - Size: 1302 bytes
+2025-09-11 19:21:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59209 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:21:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c2bafe77] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:21:53 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:21:53 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:21:53 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:21:53 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:21:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c2bafe77] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.015s - Size: 1302 bytes
+2025-09-11 19:21:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59208 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:21:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a460bf51] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:21:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:21:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:21:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a460bf51] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.011s - Size: 63 bytes
+2025-09-11 19:21:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59208 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:22:34 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9b89aa5c] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:34 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:34 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:34 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9b89aa5c] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.056s - Size: 63 bytes
+2025-09-11 19:22:34 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:22:37 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "OPTIONS /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:22:37 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "OPTIONS /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:22:37 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5aaba56e] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:37 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:37 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5aaba56e] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.020s - Size: 181 bytes
+2025-09-11 19:22:37 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:22:37 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f4dd5644] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:37 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:37 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f4dd5644] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.030s - Size: 181 bytes
+2025-09-11 19:22:37 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ff74516a] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [cd344a86] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [cd344a86] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:22:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59235 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:22:38 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:22:38 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:22:38 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ff74516a] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.022s - Size: 1302 bytes
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [35fa8bfa] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [35fa8bfa] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.004s - Size: 0 bytes
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [356fd890] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:22:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3e45462c] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:22:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:22:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:22:41 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:22:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [356fd890] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.621s - Size: 6886 bytes
+2025-09-11 19:22:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59235 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:22:41 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:22:41 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:22:41 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:22:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3e45462c] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 3.625s - Size: 1302 bytes
+2025-09-11 19:22:41 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c06da886] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:41 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59210 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:22:41 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:41 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:22:41 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:22:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:22:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:22:45 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c06da886] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.399s - Size: 6886 bytes
+2025-09-11 19:22:45 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:22:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "OPTIONS /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:22:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [df89fffd] POST http://localhost:8000/api/v1/dashboards/assign-category - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:47 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:47 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:28] - Usuário gabriel.kasten@outlook.com atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:22:47 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:22:47 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:22:47 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:34] - Dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4 não existe, criando registro básico
+2025-09-11 19:22:47 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:96] - Categoria atribuída com sucesso ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:22:47 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:46] - Categoria atribuída com sucesso: 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:22:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [df89fffd] POST http://localhost:8000/api/v1/dashboards/assign-category - Status: 200 - Time: 0.060s - Size: 44 bytes
+2025-09-11 19:22:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "POST /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:22:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [6080461f] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [6080461f] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:22:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:22:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e0da7bf5] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:47 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:22:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:22:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:22:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:22:50 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e0da7bf5] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.411s - Size: 6886 bytes
+2025-09-11 19:22:50 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:22:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7c113678] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7c113678] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 19:22:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:22:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [cfe9bef6] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:22:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:22:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:22:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:22:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:22:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:22:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [cfe9bef6] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.361s - Size: 6886 bytes
+2025-09-11 19:22:58 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59236 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:23:07 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [71b207c5] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:23:07 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:23:07 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:23:07 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [71b207c5] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:23:07 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59238 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:23:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a93d4fd6] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:23:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:23:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:23:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a93d4fd6] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 19:23:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59240 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:24:07 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:24:07 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:24:07 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:24:07 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:24:07 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:24:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [36b5ec1d] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:24:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:24:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:24:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [36b5ec1d] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:24:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59320 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:24:08 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:24:08 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:24:08 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:24:08 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:24:09 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:24:09 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:24:09 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:24:09 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:24:09 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:24:10 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:24:10 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:24:10 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:24:10 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:24:10 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [20688]
+2025-09-11 19:24:10 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:24:10 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:24:10 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:24:10 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:24:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4382d177] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:24:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:24:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:24:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4382d177] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.008s - Size: 63 bytes
+2025-09-11 19:24:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59321 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:24:56 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:24:56 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:24:56 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:24:56 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:24:56 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:24:57 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [20688]
+2025-09-11 19:25:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0c0ef898] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:25:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:25:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:25:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0c0ef898] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.011s - Size: 63 bytes
+2025-09-11 19:25:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59371 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:25:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [fbed160b] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:25:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:25:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:25:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [fbed160b] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:25:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59372 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:25:43 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:25:43 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:25:43 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:25:43 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:25:43 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:25:43 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [17060]
+2025-09-11 19:25:46 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:25:46 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:25:46 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:25:46 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:25:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:25:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:25:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:25:47 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:25:47 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:25:47 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:25:47 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:25:47 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:25:47 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:25:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:25:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:25:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:25:48 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:25:48 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:25:48 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [5340]
+2025-09-11 19:25:48 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:25:48 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:25:48 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:25:48 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:26:40 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4f53eb08] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:40 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:40 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:40 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4f53eb08] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:26:40 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59425 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:26:45 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3c1115a2] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:45 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:45 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3c1115a2] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.015s - Size: 181 bytes
+2025-09-11 19:26:45 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [416b058d] GET http://localhost:8000/api/v1/auth/me - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [416b058d] GET http://localhost:8000/api/v1/auth/me - Status: 200 - Time: 0.012s - Size: 181 bytes
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "GET /api/v1/auth/me HTTP/1.1" 200
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ef8595ca] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 19:26:46 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:26:46 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:26:46 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ef8595ca] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.020s - Size: 1302 bytes
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3473d551] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3473d551] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0da9138e] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:46 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:26:46 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:26:46 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9fe6c9ca] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [9fe6c9ca] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0da9138e] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.022s - Size: 1302 bytes
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:26:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:26:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c37618eb] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:26:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:26:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:26:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:26:50 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [c37618eb] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.643s - Size: 6886 bytes
+2025-09-11 19:26:50 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59433 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:26:50 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [59239d02] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:50 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:26:50 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:26:51 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:26:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:26:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [59239d02] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.017s - Size: 6886 bytes
+2025-09-11 19:26:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59426 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:26:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [00e9fb33] POST http://localhost:8000/api/v1/dashboards/assign-category - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:59 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:28] - Usuário gabriel.kasten@outlook.com atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:26:59 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:26:59 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Atribuindo categoria 68b0d9270a5ba42d78281a5273a26e8e ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:26:59 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:96] - Categoria atribuída com sucesso ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:26:59 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:46] - Categoria atribuída com sucesso: 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:26:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [00e9fb33] POST http://localhost:8000/api/v1/dashboards/assign-category - Status: 200 - Time: 0.060s - Size: 44 bytes
+2025-09-11 19:26:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59440 - "POST /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:26:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [377021e6] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [377021e6] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.001s - Size: 0 bytes
+2025-09-11 19:26:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59440 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:26:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [2e3af552] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:26:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:26:59 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:26:59 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:27:00 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:27:03 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:27:03 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [2e3af552] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.438s - Size: 6886 bytes
+2025-09-11 19:27:03 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59440 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:27:16 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e8cf0f57] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:27:16 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:27:16 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:27:16 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e8cf0f57] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:27:16 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59441 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:30:53 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59541 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 19:30:53 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [65e32aae] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:53 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:30:53 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 19:30:53 - passlib.handlers.bcrypt - [33;20mWARNING[0m - [bcrypt.py:622] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Projects\hopper\API\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-11 19:30:54 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:111] - Usuário autenticado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:30:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:107] - Login realizado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 19:30:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [65e32aae] POST http://localhost:8000/api/v1/auth/login - Status: 200 - Time: 0.655s - Size: 497 bytes
+2025-09-11 19:30:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59541 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [77849030] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:57 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3817c0aa] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3817c0aa] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.004s - Size: 0 bytes
+2025-09-11 19:30:57 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:30:57 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:30:57 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:30:57 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [77849030] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.028s - Size: 1302 bytes
+2025-09-11 19:30:57 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59541 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [608554b2] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [608554b2] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:30:57 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:30:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [36059ae0] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:30:58 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [2aef80fe] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:30:58 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:30:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:30:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:30:58 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:31:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:31:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [36059ae0] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.278s - Size: 6886 bytes
+2025-09-11 19:31:01 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59541 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:31:01 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:31:01 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:31:01 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:31:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [2aef80fe] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 3.285s - Size: 1302 bytes
+2025-09-11 19:31:01 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:31:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [45bbb843] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:01 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:31:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:31:02 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:31:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:31:04 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [45bbb843] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.071s - Size: 6886 bytes
+2025-09-11 19:31:04 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:31:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [edd155a8] POST http://localhost:8000/api/v1/dashboards/assign-category - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:05 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:05 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:28] - Usuário gabriel.kasten@outlook.com atribuindo categoria 4dfeeafedc3a491ae9dd549e8accf9bb ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:31:05 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Atribuindo categoria 4dfeeafedc3a491ae9dd549e8accf9bb ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:31:05 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Atribuindo categoria 4dfeeafedc3a491ae9dd549e8accf9bb ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:31:05 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:96] - Categoria atribuída com sucesso ao dashboard 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:31:05 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:46] - Categoria atribuída com sucesso: 84199815-6dd4-461f-b52d-39d0a9ded8a4
+2025-09-11 19:31:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [edd155a8] POST http://localhost:8000/api/v1/dashboards/assign-category - Status: 200 - Time: 0.057s - Size: 44 bytes
+2025-09-11 19:31:05 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "POST /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:31:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [57dbf978] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [57dbf978] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:31:05 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:31:05 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f3e07b02] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:05 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:31:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:31:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:31:08 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:31:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f3e07b02] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.327s - Size: 6886 bytes
+2025-09-11 19:31:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59542 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:31:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59555 - "OPTIONS /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:31:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e6af81cb] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e6af81cb] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:31:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59555 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:31:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [07fd2bc6] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:31:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:31:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [07fd2bc6] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:31:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59556 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:32:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [87c1bf44] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:32:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:32:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:32:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [87c1bf44] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:32:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59598 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:32:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f7514b75] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:32:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:32:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:32:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f7514b75] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 19:32:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59599 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:33:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [d356ef62] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:33:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:33:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:33:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [d356ef62] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:33:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59607 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:33:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [aacf0c68] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:33:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:33:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:33:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [aacf0c68] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-09-11 19:33:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59608 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:34:24 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59651 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:24 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59650 - "OPTIONS /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [563b13b2] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:24 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:24 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:34:24 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:34:24 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [563b13b2] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.033s - Size: 1302 bytes
+2025-09-11 19:34:24 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59650 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [b4d8008d] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:24 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:24 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:34:24 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:34:24 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [b4d8008d] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.029s - Size: 1302 bytes
+2025-09-11 19:34:24 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59651 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [7eee388c] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:24 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:24 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:24 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [7eee388c] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.029s - Size: 63 bytes
+2025-09-11 19:34:24 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59651 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:34:29 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:34:29 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [8768]
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:34:29 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:34:29 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:34:29 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [5340]
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:34:44 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:34:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:34:44 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:34:44 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:34:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:34:46 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:34:46 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:34:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:34:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:34:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:34:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:34:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [11664]
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [5796]
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:34:47 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:34:47 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:34:47 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:34:47 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:34:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f35319ea] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:47 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:34:47 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:34:47 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:34:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f35319ea] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.039s - Size: 1302 bytes
+2025-09-11 19:34:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59664 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5608d295] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:47 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:47 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:34:47 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:34:47 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:34:47 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [5608d295] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.013s - Size: 1302 bytes
+2025-09-11 19:34:47 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59665 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:34:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [53c52c48] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:34:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:34:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [53c52c48] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-09-11 19:34:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59691 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [a15c3f56] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:19 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:19 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:35:19 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:35:19 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [a15c3f56] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.028s - Size: 1302 bytes
+2025-09-11 19:35:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [94621bc7] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [94621bc7] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:35:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e2d1ffc2] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:19 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:19 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:35:19 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:35:19 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e2d1ffc2] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.020s - Size: 1302 bytes
+2025-09-11 19:35:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [af313bdf] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [af313bdf] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:35:20 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:35:20 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [46aa7f33] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:20 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:35:20 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:35:21 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:35:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:35:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [46aa7f33] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.714s - Size: 6886 bytes
+2025-09-11 19:35:23 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:35:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [f6763936] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:23 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:35:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:35:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:35:28 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:35:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [f6763936] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 4.352s - Size: 6886 bytes
+2025-09-11 19:35:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [82f188c3] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:28 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59704 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:35:28 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:28 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [82f188c3] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.020s - Size: 63 bytes
+2025-09-11 19:35:28 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59692 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:30 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:30 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [11664]
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:30 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:30 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:30 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [5796]
+2025-09-11 19:35:33 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:33 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:33 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:33 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:33 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:34 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:34 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:34 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:34 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:34 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:35 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:35 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:35 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:36 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:36 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:36 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [8272]
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:37 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:37 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:35:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:37 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:37 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14192]
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:37 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:37 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:37 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:39 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:39 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [8272]
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:39 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:39 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:39 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14192]
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:42 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:42 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:42 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:42 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:44 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:44 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:44 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [6076]
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:46 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:35:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:46 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [12552]
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:46 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:46 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:46 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:51 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:51 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [6076]
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:35:51 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:35:51 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:35:51 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [12552]
+2025-09-11 19:35:53 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:53 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:53 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:53 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:54 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:54 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:54 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:54 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:35:55 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:35:55 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:35:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:35:56 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:56 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:56 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:56 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:56 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14752]
+2025-09-11 19:35:56 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:56 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:56 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:56 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:35:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [87e0876a] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:35:56 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:56 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:35:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [87e0876a] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.039s - Size: 63 bytes
+2025-09-11 19:35:56 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59795 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:35:57 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:35:57 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:57 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:35:57 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:35:57 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [15008]
+2025-09-11 19:35:57 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:35:57 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:35:57 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:35:57 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:36:00 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:36:00 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14752]
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:36:00 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:36:00 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:36:00 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [15008]
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:36:03 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:36:03 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:36:03 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:36:03 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:36:03 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:36:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:36:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:04 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:04 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:36:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:36:04 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:36:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:04 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:36:04 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:04 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:36:04 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:36:04 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:36:04 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:36:05 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:36:05 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:36:05 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:36:05 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:36:05 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:36:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:36:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:36:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:36:06 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [6820]
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [3152]
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 19:36:06 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:36:06 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 19:36:06 - hopper.api.main - [34;20mINFO[0m - [main.py:263] - Conexão com banco de dados estabelecida
+2025-09-11 19:36:06 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 19:36:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [1ad09c68] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:25 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:25 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [1ad09c68] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.041s - Size: 63 bytes
+2025-09-11 19:36:25 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59832 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:36:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "OPTIONS /powerbi/reports HTTP/1.1" 200
+2025-09-11 19:36:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0d111646] GET http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:55 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:38] - Usuário gabriel.kasten@outlook.com listando categorias
+2025-09-11 19:36:55 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:71] - Listando todas as categorias
+2025-09-11 19:36:55 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:65] - Listando todas as categorias
+2025-09-11 19:36:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0d111646] GET http://localhost:8000/api/v1/categories/ - Status: 200 - Time: 0.024s - Size: 1302 bytes
+2025-09-11 19:36:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "GET /api/v1/categories/ HTTP/1.1" 200
+2025-09-11 19:36:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [20d05e25] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [20d05e25] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:36:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:36:55 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "OPTIONS /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:36:55 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [8864a3c2] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:55 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:36:55 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:36:56 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:36:59 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:36:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [8864a3c2] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.823s - Size: 6886 bytes
+2025-09-11 19:36:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:36:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [531b6297] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [531b6297] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.020s - Size: 63 bytes
+2025-09-11 19:36:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59862 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:36:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "OPTIONS /api/v1/dashboards/ HTTP/1.1" 200
+2025-09-11 19:36:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e5622c36] GET http://localhost:8000/api/v1/dashboards/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:36:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:36:59 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:30] - Usuário gabriel.kasten@outlook.com listando dashboards com categorias
+2025-09-11 19:36:59 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Listando dashboards com categorias
+2025-09-11 19:36:59 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Listando todos os dashboards com categorias
+2025-09-11 19:36:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [e5622c36] GET http://localhost:8000/api/v1/dashboards/ - Status: 200 - Time: 0.017s - Size: 420 bytes
+2025-09-11 19:36:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59833 - "GET /api/v1/dashboards/ HTTP/1.1" 200
+2025-09-11 19:37:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [20ed0116] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:46 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:46 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [20ed0116] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.020s - Size: 63 bytes
+2025-09-11 19:37:46 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59863 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:37:52 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59921 - "OPTIONS /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:37:52 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4afd221a] POST http://localhost:8000/api/v1/dashboards/assign-category - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:52 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:52 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:41] - Usuário gabriel.kasten@outlook.com atribuindo categoria 0cbe688a844a44871d12ad83520fc458 ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:37:52 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:42] - Atribuindo categoria 0cbe688a844a44871d12ad83520fc458 ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:37:52 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:72] - Atribuindo categoria 0cbe688a844a44871d12ad83520fc458 ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:37:52 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:86] - Dashboard 577da494-5741-4f43-a67c-ca690c668dc4 não existe, criando registro básico
+2025-09-11 19:37:52 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:148] - Categoria atribuída com sucesso ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:37:52 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:61] - Categoria atribuída com sucesso: 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:37:52 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4afd221a] POST http://localhost:8000/api/v1/dashboards/assign-category - Status: 200 - Time: 0.066s - Size: 44 bytes
+2025-09-11 19:37:52 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59921 - "POST /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:37:52 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [46333dda] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:52 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [46333dda] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:37:52 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59921 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:37:52 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [de669b34] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:52 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:52 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:37:52 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:37:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:37:56 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:37:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [de669b34] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.552s - Size: 6886 bytes
+2025-09-11 19:37:56 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59921 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:37:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [74325f47] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:56 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:56 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [74325f47] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.012s - Size: 63 bytes
+2025-09-11 19:37:56 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59923 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:37:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [dfa229ab] GET http://localhost:8000/api/v1/dashboards/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:37:56 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:37:56 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:30] - Usuário gabriel.kasten@outlook.com listando dashboards com categorias
+2025-09-11 19:37:56 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Listando dashboards com categorias
+2025-09-11 19:37:56 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Listando todos os dashboards com categorias
+2025-09-11 19:37:56 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [dfa229ab] GET http://localhost:8000/api/v1/dashboards/ - Status: 200 - Time: 0.015s - Size: 841 bytes
+2025-09-11 19:37:56 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59921 - "GET /api/v1/dashboards/ HTTP/1.1" 200
+2025-09-11 19:38:14 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [bccee345] POST http://localhost:8000/api/v1/categories/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:14 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:14 - hopper.api.category_routes - [34;20mINFO[0m - [category.py:28] - Usuário gabriel.kasten@outlook.com criando categoria: teste
+2025-09-11 19:38:14 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:24] - Criando nova categoria: teste
+2025-09-11 19:38:14 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:20] - Criando categoria: teste
+2025-09-11 19:38:14 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:40] - Categoria criada com ID: c07450837b8c01d68babd2bcbbbc13eb
+2025-09-11 19:38:14 - hopper.api.category_repository - [34;20mINFO[0m - [category_repository.py:45] - Buscando categoria por ID: c07450837b8c01d68babd2bcbbbc13eb
+2025-09-11 19:38:14 - hopper.api.category_controller - [34;20mINFO[0m - [category_controller.py:44] - Categoria criada com sucesso: c07450837b8c01d68babd2bcbbbc13eb
+2025-09-11 19:38:14 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [bccee345] POST http://localhost:8000/api/v1/categories/ - Status: 201 - Time: 0.041s - Size: 185 bytes
+2025-09-11 19:38:14 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "POST /api/v1/categories/ HTTP/1.1" 201
+2025-09-11 19:38:14 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0a824f67] POST http://localhost:8000/api/v1/dashboards/assign-category - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:14 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:14 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:41] - Usuário gabriel.kasten@outlook.com atribuindo categoria c07450837b8c01d68babd2bcbbbc13eb ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:38:14 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:42] - Atribuindo categoria c07450837b8c01d68babd2bcbbbc13eb ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:38:14 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:72] - Atribuindo categoria c07450837b8c01d68babd2bcbbbc13eb ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:38:15 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:148] - Categoria atribuída com sucesso ao dashboard 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:38:15 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:61] - Categoria atribuída com sucesso: 577da494-5741-4f43-a67c-ca690c668dc4
+2025-09-11 19:38:15 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0a824f67] POST http://localhost:8000/api/v1/dashboards/assign-category - Status: 200 - Time: 0.055s - Size: 44 bytes
+2025-09-11 19:38:15 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "POST /api/v1/dashboards/assign-category HTTP/1.1" 200
+2025-09-11 19:38:15 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [df3cb18f] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:15 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [df3cb18f] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:38:15 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:38:15 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3867d17e] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:15 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:38:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:38:16 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:38:19 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:38:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3867d17e] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 4.017s - Size: 6886 bytes
+2025-09-11 19:38:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:38:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [45187c20] GET http://localhost:8000/api/v1/dashboards/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:19 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:19 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:30] - Usuário gabriel.kasten@outlook.com listando dashboards com categorias
+2025-09-11 19:38:19 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Listando dashboards com categorias
+2025-09-11 19:38:19 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Listando todos os dashboards com categorias
+2025-09-11 19:38:19 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [45187c20] GET http://localhost:8000/api/v1/dashboards/ - Status: 200 - Time: 0.033s - Size: 838 bytes
+2025-09-11 19:38:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /api/v1/dashboards/ HTTP/1.1" 200
+2025-09-11 19:38:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ce77f8da] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [ce77f8da] GET http://localhost:8000/powerbi/reports - Status: 307 - Time: 0.002s - Size: 0 bytes
+2025-09-11 19:38:23 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /powerbi/reports HTTP/1.1" 307
+2025-09-11 19:38:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3b732483] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:23 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:286] - Obtendo todos os relatórios do PowerBI
+2025-09-11 19:38:23 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:82] - Obtendo todos os grupos do PowerBI
+2025-09-11 19:38:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:92] - Grupos obtidos com sucesso: 3 grupos encontrados
+2025-09-11 19:38:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:319] - Total de relatórios obtidos: 8
+2025-09-11 19:38:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3b732483] GET http://localhost:8000/powerbi/reports/ - Status: 200 - Time: 3.515s - Size: 6886 bytes
+2025-09-11 19:38:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [b522d5bb] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /powerbi/reports/ HTTP/1.1" 200
+2025-09-11 19:38:27 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:27 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [b522d5bb] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.014s - Size: 63 bytes
+2025-09-11 19:38:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59948 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-09-11 19:38:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [0506dbe7] GET http://localhost:8000/api/v1/dashboards/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 19:38:27 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 19:38:27 - hopper.api.dashboard_routes - [34;20mINFO[0m - [dashboard.py:30] - Usuário gabriel.kasten@outlook.com listando dashboards com categorias
+2025-09-11 19:38:27 - hopper.api.dashboard_controller - [34;20mINFO[0m - [dashboard_controller.py:27] - Listando dashboards com categorias
+2025-09-11 19:38:27 - hopper.api.dashboard_repository - [34;20mINFO[0m - [dashboard_repository.py:20] - Listando todos os dashboards com categorias
+2025-09-11 19:38:27 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [0506dbe7] GET http://localhost:8000/api/v1/dashboards/ - Status: 200 - Time: 0.018s - Size: 838 bytes
+2025-09-11 19:38:27 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59945 - "GET /api/v1/dashboards/ HTTP/1.1" 200
+2025-09-11 19:38:32 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:38:32 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:38:32 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:38:32 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:38:32 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:38:32 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [3152]
+2025-09-11 19:38:32 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 19:38:33 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 19:38:33 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 19:38:33 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-09-11 19:38:33 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 19:38:33 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [6820]
+2025-09-11 19:38:37 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:38:37 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:38:37 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+
+2025-09-11 19:38:37 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:38:37 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:38:37 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:38:37 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:38:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:38:37 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:38:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:38:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:38:38 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:38:38 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:38:38 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:38:38 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:38:38 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:38:38 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:38:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 19:38:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 19:38:38 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:38:38 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 19:38:38 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 19:38:39 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 19:38:39 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 19:38:39 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 19:38:39 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 19:38:39 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI

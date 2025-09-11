@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, type FilterFn, useReactTable } from '@tanstack/react-table';
-import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, FolderIcon, MagnifyingGlassIcon, SpinnerIcon, UploadIcon } from '@phosphor-icons/react';
+import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, FolderIcon, MagnifyingGlassIcon, SpinnerIcon, TagIcon, UploadIcon } from '@phosphor-icons/react';
 
 import { Table } from '../../../../components/ui/table';
 import { Input } from '../../../../components/ui/Input';
@@ -12,6 +12,7 @@ import { Main } from '../../../../components/layout/main/index';
 import { Pagination } from '../../../../components/ui/pagination';
 import { type Dashboard } from '../../../../interfaces/dashboard';
 import { useDashboards } from '../../../../hooks/useDashboards';
+import { DashboardCategoryModal } from '../../../../components/admin/dashboard/DashboardCategoryModal';
 
 import { Cell } from '../../../../components/ui/cells';
 
@@ -39,9 +40,11 @@ function RouteComponent() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const [isRefreshDisabled, setIsRefreshDisabled] = useState(false);
   const [refreshCooldown, setRefreshCooldown] = useState(0);
+  const [isCategoryModalOpen, setIsCategoryModalOpen] = useState(false);
+  const [selectedDashboard, setSelectedDashboard] = useState<Dashboard | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { dashboards, loading, refreshing, deleting, error, deleteDashboard, refetch } = useDashboards();
+  const { dashboards, loading, refreshing, deleting, error, deleteDashboard, refetch, assignCategoryToDashboard } = useDashboards();
 
   const handleRefresh = async () => {
     if (isRefreshDisabled || refreshing) return;
@@ -93,6 +96,21 @@ function RouteComponent() {
       await deleteDashboard(dashboard);
     } catch (err) {
       console.error('Error deleting dashboard:', err);
+    }
+  };
+
+  const handleOpenCategoryModal = (dashboard: Dashboard) => {
+    setSelectedDashboard(dashboard);
+    setIsCategoryModalOpen(true);
+  };
+
+  const handleAssignCategory = async (dashboardId: string, categoryId: string) => {
+    try {
+      await assignCategoryToDashboard(dashboardId, categoryId);
+      setShowSuccessToast(true);
+      setTimeout(() => setShowSuccessToast(false), 3000);
+    } catch (err) {
+      console.error('Error assigning category:', err);
     }
   };
 
@@ -175,6 +193,10 @@ function RouteComponent() {
           type="actions"
           item={row.original}
           actionsConfig={{
+            onCustomAction: handleOpenCategoryModal,
+            customActionIcon: <TagIcon size={14} weight="bold" />,
+            customActionColor: 'blue',
+            customActionLabel: 'Atribuir Categoria',
             onDelete: handleDeleteDashboard
           }}
         />
@@ -426,6 +448,14 @@ function RouteComponent() {
             </div>
           </div>
         )}
+
+        {/* Dashboard Category Modal */}
+        <DashboardCategoryModal
+          isOpen={isCategoryModalOpen}
+          onClose={() => setIsCategoryModalOpen(false)}
+          dashboard={selectedDashboard}
+          onAssignCategory={handleAssignCategory}
+        />
 
       </Main.Body>
     </Main.Root>

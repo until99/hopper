@@ -12,6 +12,11 @@ from .category import (
     CategoryResponse,
     CategoryListResponse
 )
+from .dashboard import (
+    DashboardCategoryAssign,
+    DashboardCreate,
+    DashboardResponse
+)
 
 __all__ = [
     "UserLogin",
@@ -23,5 +28,8 @@ __all__ = [
     "CategoryCreate",
     "CategoryUpdate",
     "CategoryResponse",
-    "CategoryListResponse"
+    "CategoryListResponse",
+    "DashboardCategoryAssign",
+    "DashboardCreate",
+    "DashboardResponse"
 ]
