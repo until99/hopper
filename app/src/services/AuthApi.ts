@@ -113,7 +113,13 @@ class AuthApiService {
   }
 
   async getCurrentUser(): Promise<User> {
-    return this.request<User>('/me');
+    try {
+      return await this.request<User>('/me');
+    } catch (error) {
+      // Se falhar ao obter usuário atual, remove o token
+      localStorage.removeItem('auth_token');
+      throw error;
+    }
   }
 
   async verifyToken(): Promise<{ valid: boolean; user_id: string }> {
@@ -125,7 +131,8 @@ class AuthApiService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    const token = this.getToken();
+    return !!token; // Por enquanto, só verifica se existe token
   }
 }
 

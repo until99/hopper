@@ -36,8 +36,11 @@ export function useSessionTimer({
         console.log(`Token expira em ${timeToExpiry} segundos`);
       }
 
-      // Verifica com o servidor se o token ainda é válido
-      await authApiService.verifyToken();
+      // Só verifica com o servidor se ainda há tempo suficiente no token
+      if (timeToExpiry > 60) {
+        // Verifica com o servidor se o token ainda é válido
+        await authApiService.verifyToken();
+      }
       
       // Atualiza a última atividade
       lastActivityRef.current = Date.now();

@@ -11,7 +11,11 @@ try:
     from .routes import auth_router
     from .utils import get_current_active_user
     from .models import UserResponse
-    from .api.logger import configure_api_logging, configure_external_loggers, get_logger
+    from .api.logger import (
+        configure_api_logging,
+        configure_external_loggers,
+        get_logger,
+    )
     from .api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
     from .api.database import db_manager
 except ImportError:
@@ -244,6 +248,9 @@ async def get_report_from_group(
 # Inclui rotas na aplicação
 app.include_router(health_router)
 app.include_router(auth_router, prefix="/api/v1")
+app.include_router(groups_router)
+app.include_router(datasets_router)
+app.include_router(reports_router)
 
 
 @app.on_event("startup")
