@@ -8,23 +8,19 @@ try:
     # Importações relativas (quando executado como módulo)
     from .api.v1.powerbi import Powerbi
     from .api.v1.exceptions import PowerBIAPIException
-    from .api.v1 import auth_routes
-    from .api.v1.dependencies import get_current_active_user
-    from .api.v1.models import UserResponse
-    from .api.logger import (
-        configure_api_logging,
-        configure_external_loggers,
-        get_logger,
-    )
+    from .routes import auth_router
+    from .utils import get_current_active_user
+    from .models import UserResponse
+    from .api.logger import configure_api_logging, configure_external_loggers, get_logger
     from .api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
     from .api.database import db_manager
 except ImportError:
     # Importações absolutas (quando executado diretamente)
     from api.v1.powerbi import Powerbi
     from api.v1.exceptions import PowerBIAPIException
-    from api.v1 import auth_routes
-    from api.v1.dependencies import get_current_active_user
-    from api.v1.models import UserResponse
+    from routes import auth_router
+    from utils import get_current_active_user
+    from models import UserResponse
     from api.logger import configure_api_logging, configure_external_loggers, get_logger
     from api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
     from api.database import db_manager
@@ -118,7 +114,7 @@ async def health_check():
     return {
         "status": "healthy",
         "powerbi_configured": pbi is not None,
-        "database_type": os.getenv("DB_TYPE", "sqlite"),
+        "database_type": "sqlite",
     }
 
 
@@ -246,11 +242,8 @@ async def get_report_from_group(
 
 
 # Inclui rotas na aplicação
-app.include_router(auth_routes.router, prefix="/api/v1")
 app.include_router(health_router)
-app.include_router(groups_router)
-app.include_router(reports_router)
-app.include_router(datasets_router)
+app.include_router(auth_router, prefix="/api/v1")
 
 
 @app.on_event("startup")

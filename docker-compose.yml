@@ -47,24 +47,7 @@ services:
       - "8000:8000"
     volumes:
       - ./api:/app
-
-  api_database:
-    image: postgres:15
-    container_name: hopper_postgres
-    environment:
-      POSTGRES_DB: hopper
-      POSTGRES_USER: dinner_bone
-      POSTGRES_PASSWORD: K^bjn9*DWGsEj6
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - ./api/init.sql:/docker-entrypoint-initdb.d/init.sql
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U dinner_bone"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-    ports:
-      - "5432:5432"
+      - ./api/hopper.db:/app/hopper.db
 
   # [AIRFLOW]
   airflow_postgres:
@@ -172,4 +155,3 @@ services:
 
 volumes:
   postgres-db-volume:
-  postgres_data:

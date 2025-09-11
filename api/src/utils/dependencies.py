@@ -1,10 +1,11 @@
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from databases import Database
-from .auth import AuthService
-from .models import UserResponse
-from ..database import get_database
-from ..logger import get_logger
+
+from ..services import AuthService
+from ..models import UserResponse
+from ..api.database import get_database
+from ..api.logger import get_logger
 
 logger = get_logger("hopper.api.dependencies")
 

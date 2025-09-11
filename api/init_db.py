@@ -17,7 +17,7 @@ async def init_sqlite_database():
     conn = sqlite3.connect(db_path)
     
     # Lê o script SQL
-    script_path = Path(__file__).parent / "init_sqlite.sql"
+    script_path = Path(__file__).parent / "init.sql"
     with open(script_path, 'r', encoding='utf-8') as f:
         sql_script = f.read()
     

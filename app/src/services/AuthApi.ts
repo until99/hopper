@@ -62,6 +62,12 @@ class AuthApiService {
     const response = await fetch(url, config);
 
     if (!response.ok) {
+      // Se for erro 401 ou 403, significa que o token expirou
+      if (response.status === 401 || response.status === 403) {
+        localStorage.removeItem('auth_token');
+        throw new Error('Token expirado ou inválido');
+      }
+      
       const error = await response.json().catch(() => ({ 
         detail: 'Erro desconhecido' 
       }));

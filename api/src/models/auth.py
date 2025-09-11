@@ -3,6 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 
+# Auth Models
 class UserLogin(BaseModel):
     email: str
     password: str

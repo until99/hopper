@@ -4,18 +4,21 @@ from jose import jwt, JWTError
 from datetime import datetime, timedelta
 from fastapi import HTTPException, status
 from databases import Database
-from .models import UserCreate, UserResponse, Token, AuthResponse
-from .user_repository import UserRepository
-from ..logger import get_logger
 
-logger = get_logger("hopper.api.auth")
+from ..models import UserCreate, UserResponse, Token, AuthResponse
+from ..repositories import UserRepository
+from ..api.logger import get_logger
+
+logger = get_logger("hopper.api.auth_service")
 
 
 class AuthService:
+    """Serviço de autenticação responsável por login, registro e gerenciamento de tokens JWT"""
+    
     def __init__(self, database: Database):
         self.jwt_secret = os.getenv("JWT_SECRET", "your-secret-key-change-this-in-production")
         self.algorithm = "HS256"
-        self.access_token_expire_minutes = 60 * 24  # 24 horas
+        self.access_token_expire_minutes = 15  # 15 minutos
         self.user_repository = UserRepository(database)
         
         logger.info("AuthService inicializado com sucesso")

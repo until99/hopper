@@ -1,9 +1,8 @@
 from typing import Optional, Dict, Any
 from databases import Database
 from passlib.context import CryptContext
-from datetime import datetime
 import uuid
-from ..logger import get_logger
+from ..api.logger import get_logger
 
 logger = get_logger("hopper.api.user_repository")
 
@@ -32,7 +31,7 @@ class UserRepository:
             hashed_password = self._hash_password(password)
             user_id = str(uuid.uuid4())
             
-            # Query compatible with both PostgreSQL and SQLite
+            # Query para inserção no SQLite
             query = """
                 INSERT INTO users (id, email, password_hash, full_name)
                 VALUES (:id, :email, :password_hash, :full_name)
