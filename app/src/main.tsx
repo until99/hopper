@@ -5,6 +5,9 @@ import { RouterProvider, createRouter } from "@tanstack/react-router";
 // Import the Tailwind CSS styles
 import "./index.css";
 
+// Import auth interceptor
+import "./lib/authInterceptor";
+
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 

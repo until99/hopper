@@ -1839,3 +1839,63 @@ asyncio.exceptions.CancelledError
 2025-09-11 09:13:02 - hopper.api.main - [34;20mINFO[0m - [main.py:125] - Relatórios listados com sucesso
 2025-09-11 09:13:02 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [3b006041] GET http://localhost:8000/powerbi/reports - Status: 200 - Time: 3.704s - Size: 10288 bytes
 2025-09-11 09:13:02 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:59313 - "GET /powerbi/reports HTTP/1.1" 200
+2025-09-11 09:15:59 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 09:15:59 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 09:15:59 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 09:15:59 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [12528]
+2025-09-11 09:16:00 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 09:16:00 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: DEBUG
+2025-09-11 09:16:00 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 09:16:00 - hopper.api.main - [34;20mINFO[0m - [main.py:20] - Iniciando aplicação Hopper API
+2025-09-11 09:16:00 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:23] - Inicializando cliente PowerBI
+2025-09-11 09:16:00 - hopper.api.powerbi - [38;20mDEBUG[0m - [powerbi.py:40] - Solicitando token de acesso para tenant: a5504f25-7802-4f62-9940-f4a2f7eba746
+2025-09-11 09:16:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:58] - Token de acesso adquirido com sucesso
+2025-09-11 09:16:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:01 - hopper.api.main - [34;20mINFO[0m - [main.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:01 - hopper.api.main - [34;20mINFO[0m - [main.py:55] - Middlewares configurados
+2025-09-11 09:16:01 - asyncio - [38;20mDEBUG[0m - [selector_events.py:64] - Using selector: SelectSelector
+2025-09-11 09:16:01 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 09:16:01 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: DEBUG
+2025-09-11 09:16:01 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 09:16:01 - hopper.api.main - [34;20mINFO[0m - [main.py:20] - Iniciando aplicação Hopper API
+2025-09-11 09:16:01 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:23] - Inicializando cliente PowerBI
+2025-09-11 09:16:01 - hopper.api.powerbi - [38;20mDEBUG[0m - [powerbi.py:40] - Solicitando token de acesso para tenant: a5504f25-7802-4f62-9940-f4a2f7eba746
+2025-09-11 09:16:02 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:58] - Token de acesso adquirido com sucesso
+2025-09-11 09:16:02 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:02 - hopper.api.main - [34;20mINFO[0m - [main.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:02 - hopper.api.main - [34;20mINFO[0m - [main.py:55] - Middlewares configurados
+2025-09-11 09:16:02 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [10564]
+2025-09-11 09:16:02 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 09:16:02 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 09:16:25 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 09:16:25 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 09:16:25 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 09:16:25 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [10564]
+2025-09-11 09:16:26 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 09:16:26 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: DEBUG
+2025-09-11 09:16:26 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 09:16:26 - hopper.api.main - [34;20mINFO[0m - [main.py:20] - Iniciando aplicação Hopper API
+2025-09-11 09:16:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:23] - Inicializando cliente PowerBI
+2025-09-11 09:16:26 - hopper.api.powerbi - [38;20mDEBUG[0m - [powerbi.py:40] - Solicitando token de acesso para tenant: a5504f25-7802-4f62-9940-f4a2f7eba746
+2025-09-11 09:16:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:58] - Token de acesso adquirido com sucesso
+2025-09-11 09:16:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:27 - hopper.api.main - [34;20mINFO[0m - [main.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:27 - hopper.api.main - [34;20mINFO[0m - [main.py:55] - Middlewares configurados
+2025-09-11 09:16:27 - asyncio - [38;20mDEBUG[0m - [selector_events.py:64] - Using selector: SelectSelector
+2025-09-11 09:16:27 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 09:16:27 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: DEBUG
+2025-09-11 09:16:27 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 09:16:27 - hopper.api.main - [34;20mINFO[0m - [main.py:20] - Iniciando aplicação Hopper API
+2025-09-11 09:16:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:23] - Inicializando cliente PowerBI
+2025-09-11 09:16:27 - hopper.api.powerbi - [38;20mDEBUG[0m - [powerbi.py:40] - Solicitando token de acesso para tenant: a5504f25-7802-4f62-9940-f4a2f7eba746
+2025-09-11 09:16:28 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:58] - Token de acesso adquirido com sucesso
+2025-09-11 09:16:28 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:28 - hopper.api.main - [34;20mINFO[0m - [main.py:28] - Cliente PowerBI inicializado com sucesso
+2025-09-11 09:16:28 - hopper.api.main - [34;20mINFO[0m - [main.py:55] - Middlewares configurados
+2025-09-11 09:16:28 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14124]
+2025-09-11 09:16:28 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 09:16:28 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 09:16:36 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 09:16:36 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 09:16:36 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 09:16:36 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14124]

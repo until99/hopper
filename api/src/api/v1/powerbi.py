@@ -1,7 +1,7 @@
 import msal
 import requests
-from api.logger import get_logger
-from api.v1.exceptions import PowerBIAPIException
+from ..logger import get_logger
+from .exceptions import PowerBIAPIException
 
 
 class Powerbi:

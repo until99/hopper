@@ -1,12 +1,27 @@
 import os
-from fastapi import FastAPI, HTTPException, APIRouter
+from fastapi import FastAPI, HTTPException, APIRouter, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
-from api.v1.powerbi import Powerbi
-from api.v1.exceptions import PowerBIAPIException
-from api.logger import configure_api_logging, configure_external_loggers, get_logger
-from api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
+# Lida com importações dependendo do contexto de execução
+try:
+    # Importações relativas (quando executado como módulo)
+    from .api.v1.powerbi import Powerbi
+    from .api.v1.exceptions import PowerBIAPIException
+    from .api.v1 import auth_routes
+    from .api.v1.dependencies import get_current_active_user
+    from .api.v1.models import UserResponse
+    from .api.logger import configure_api_logging, configure_external_loggers, get_logger
+    from .api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
+except ImportError:
+    # Importações absolutas (quando executado diretamente)
+    from api.v1.powerbi import Powerbi
+    from api.v1.exceptions import PowerBIAPIException
+    from api.v1 import auth_routes
+    from api.v1.dependencies import get_current_active_user
+    from api.v1.models import UserResponse
+    from api.logger import configure_api_logging, configure_external_loggers, get_logger
+    from api.middleware import LoggingMiddleware, SecurityLoggingMiddleware
 
 # Configura o sistema de logging antes de qualquer outra coisa
 configure_api_logging()
@@ -85,10 +100,10 @@ async def health_check():
 
 
 @groups_router.get("")
-async def get_groups():
+async def get_groups(current_user: UserResponse = Depends(get_current_active_user)):
     """Lista todos os grupos do PowerBI"""
     try:
-        logger.info("Requisição para listar todos os grupos do PowerBI")
+        logger.info(f"Usuário {current_user.email} requisitou lista de todos os grupos do PowerBI")
         result = await pbi.get_all_powerbi_groups()
         logger.info("Grupos listados com sucesso")
         return result
@@ -289,6 +304,7 @@ async def update_refresh_schedule(
         raise HTTPException(status_code=500, detail=f"Erro interno do servidor: {str(e)}")
 
 
+app.include_router(auth_routes.router, prefix="/api/v1")
 app.include_router(health_router)
 app.include_router(groups_router)
 app.include_router(reports_router)

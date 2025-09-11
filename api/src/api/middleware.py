@@ -6,7 +6,7 @@ from fastapi.responses import JSONResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 from starlette.types import ASGIApp
 
-from api.logger import get_logger
+from .logger import get_logger
 
 logger = get_logger("hopper.api.middleware")
 
