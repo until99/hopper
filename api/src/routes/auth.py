@@ -1,9 +1,15 @@
 from fastapi import APIRouter, Depends, status
 
-from ..models import UserLogin, UserCreate, AuthResponse, UserResponse
-from ..controllers import AuthController
-from ..utils import get_current_user
-from ..api.logger import get_logger
+try:
+    from ..models import UserLogin, UserCreate, AuthResponse, UserResponse
+    from ..controllers import AuthController
+    from ..utils import get_current_user
+    from ..api.logger import get_logger
+except ImportError:
+    from models import UserLogin, UserCreate, AuthResponse, UserResponse
+    from controllers import AuthController
+    from utils import get_current_user
+    from api.logger import get_logger
 
 logger = get_logger("hopper.api.auth_routes")
 

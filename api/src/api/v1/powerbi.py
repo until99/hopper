@@ -1,6 +1,11 @@
 import msal
 import requests
-from ..logger import get_logger
+
+try:
+    from ..logger import get_logger
+except ImportError:
+    from api.logger import get_logger
+
 from .exceptions import PowerBIAPIException
 
 

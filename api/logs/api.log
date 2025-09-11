@@ -4876,3 +4876,76 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-09-11 15:08:56 - hopper.api.main - [34;20mINFO[0m - [main.py:272] - Conexão com banco de dados encerrada
 2025-09-11 15:08:56 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
 2025-09-11 15:08:56 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [11900]
+2025-09-11 16:17:24 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 16:17:24 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 16:17:24 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 16:17:24 - hopper.api.main - [34;20mINFO[0m - [main.py:37] - Iniciando aplicação Hopper API
+2025-09-11 16:17:24 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 16:17:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 16:17:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:25 - hopper.api.main - [34;20mINFO[0m - [main.py:52] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:25 - hopper.api.main - [34;20mINFO[0m - [main.py:85] - Middlewares configurados
+2025-09-11 16:17:25 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 16:17:25 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 16:17:25 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 16:17:25 - hopper.api.main - [34;20mINFO[0m - [main.py:37] - Iniciando aplicação Hopper API
+2025-09-11 16:17:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 16:17:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 16:17:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:26 - hopper.api.main - [34;20mINFO[0m - [main.py:52] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:26 - hopper.api.main - [34;20mINFO[0m - [main.py:85] - Middlewares configurados
+2025-09-11 16:17:26 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [17268]
+2025-09-11 16:17:26 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 16:17:27 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 16:17:27 - hopper.api.main - [34;20mINFO[0m - [main.py:254] - Conexão com banco de dados estabelecida
+2025-09-11 16:17:27 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 16:17:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [fe8b8993] GET http://localhost:8000/docs - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [fe8b8993] GET http://localhost:8000/docs - Status: 200 - Time: 0.002s - Size: 934 bytes
+2025-09-11 16:17:28 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53448 - "GET /docs HTTP/1.1" 200
+2025-09-11 16:17:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [919899d1] GET http://localhost:8000/openapi.json - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:28 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [919899d1] GET http://localhost:8000/openapi.json - Status: 200 - Time: 0.020s - Size: 4725 bytes
+2025-09-11 16:17:28 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53448 - "GET /openapi.json HTTP/1.1" 200
+2025-09-11 16:17:33 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [2eba9659] GET http://localhost:8000/health - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:33 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [2eba9659] GET http://localhost:8000/health - Status: 200 - Time: 0.002s - Size: 71 bytes
+2025-09-11 16:17:33 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53448 - "GET /health HTTP/1.1" 200
+2025-09-11 16:17:37 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [6e2c46e0] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:37 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 16:17:37 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 16:17:37 - passlib.handlers.bcrypt - [33;20mWARNING[0m - [bcrypt.py:622] - (trapped) error reading bcrypt version
+Traceback (most recent call last):
+  File "C:\Projects\hopper\api\.venv\Lib\site-packages\passlib\handlers\bcrypt.py", line 620, in _load_backend_mixin
+    version = _bcrypt.__about__.__version__
+              ^^^^^^^^^^^^^^^^^
+AttributeError: module 'bcrypt' has no attribute '__about__'
+2025-09-11 16:17:38 - hopper.api.user_repository - [34;20mINFO[0m - [user_repository.py:111] - Usuário autenticado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 16:17:38 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:107] - Login realizado com sucesso: gabriel.kasten@outlook.com
+2025-09-11 16:17:38 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [6e2c46e0] POST http://localhost:8000/api/v1/auth/login - Status: 200 - Time: 0.726s - Size: 497 bytes
+2025-09-11 16:17:38 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53456 - "POST /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 16:17:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [3eaee807] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:39 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [3eaee807] GET http://localhost:8000/powerbi/reports - Status: 404 - Time: 0.002s - Size: 22 bytes
+2025-09-11 16:17:39 - hopper.api.security - [34;20mINFO[0m - [middleware.py:155] - Not found - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports
+2025-09-11 16:17:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53456 - "GET /powerbi/reports HTTP/1.1" 404
+2025-09-11 16:17:39 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [1a3e8577] GET http://localhost:8000/powerbi/reports - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 16:17:39 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [1a3e8577] GET http://localhost:8000/powerbi/reports - Status: 404 - Time: 0.003s - Size: 22 bytes
+2025-09-11 16:17:39 - hopper.api.security - [34;20mINFO[0m - [middleware.py:155] - Not found - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports
+2025-09-11 16:17:39 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:53457 - "GET /powerbi/reports HTTP/1.1" 404
+2025-09-11 16:17:43 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 16:17:44 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 16:17:44 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 16:17:44 - hopper.api.main - [34;20mINFO[0m - [main.py:265] - Conexão com banco de dados encerrada
+2025-09-11 16:17:44 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 16:17:44 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [17268]
+2025-09-11 16:17:45 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 16:17:45 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 16:17:45 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 16:17:45 - hopper.api.main - [34;20mINFO[0m - [main.py:37] - Iniciando aplicação Hopper API
+2025-09-11 16:17:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 16:17:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 16:17:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:47 - hopper.api.main - [34;20mINFO[0m - [main.py:52] - Cliente PowerBI inicializado com sucesso
+2025-09-11 16:17:47 - hopper.api.main - [34;20mINFO[0m - [main.py:85] - Middlewares configurados
+2025-09-11 16:17:47 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 16:17:47 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 16:17:47 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 16:17:47 - hopper.api.main - [34;20mINFO[0m - [main.py:37] - Iniciando aplicação Hopper API
+2025-09-11 16:17:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI

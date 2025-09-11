@@ -2,7 +2,11 @@ from typing import Optional, Dict, Any
 from databases import Database
 from passlib.context import CryptContext
 import uuid
-from ..api.logger import get_logger
+
+try:
+    from ..api.logger import get_logger
+except ImportError:
+    from api.logger import get_logger
 
 logger = get_logger("hopper.api.user_repository")
 

@@ -5,9 +5,14 @@ from datetime import datetime, timedelta
 from fastapi import HTTPException, status
 from databases import Database
 
-from ..models import UserCreate, UserResponse, Token, AuthResponse
-from ..repositories import UserRepository
-from ..api.logger import get_logger
+try:
+    from ..models import UserCreate, UserResponse, Token, AuthResponse
+    from ..repositories import UserRepository
+    from ..api.logger import get_logger
+except ImportError:
+    from models import UserCreate, UserResponse, Token, AuthResponse
+    from repositories import UserRepository
+    from api.logger import get_logger
 
 logger = get_logger("hopper.api.auth_service")
 

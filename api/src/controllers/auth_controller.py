@@ -1,10 +1,16 @@
 from fastapi import Depends
 from databases import Database
 
-from ..models import UserLogin, UserCreate, AuthResponse, UserResponse
-from ..services import AuthService
-from ..api.database import get_database
-from ..api.logger import get_logger
+try:
+    from ..models import UserLogin, UserCreate, AuthResponse, UserResponse
+    from ..services import AuthService
+    from ..api.database import get_database
+    from ..api.logger import get_logger
+except ImportError:
+    from models import UserLogin, UserCreate, AuthResponse, UserResponse
+    from services import AuthService
+    from api.database import get_database
+    from api.logger import get_logger
 
 logger = get_logger("hopper.api.auth_controller")
 
