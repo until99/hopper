@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useState, useMemo } from 'react'
+import { MagnifyingGlassIcon } from '@phosphor-icons/react'
 import { Main } from '../../../components/layout/main'
 import { Header } from '../../../components/layout/header'
 import { Input } from '../../../components/ui/Input'
@@ -91,55 +92,56 @@ function RouteComponent() {
           subtitle={`Select a dashboard to view (${totalDashboards})`}
         />
 
-        <div className="space-y-6 p-4">
+        <div className="space-y-6">
           {/* Barra de busca */}
-          <div className="max-w-lg">
+          <div className="mt-6">
             <Input.Root>
-              <Input.Icon icon="🔍" />
               <Input.Field
-                id="search-dashboards"
-                type="text"
+                id="search"
                 placeholder="Search dashboards..."
+                type='text'
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
+                icon={<MagnifyingGlassIcon size={16} weight='bold' />}
               />
             </Input.Root>
           </div>
 
           {/* Lista de dashboards agrupados por categoria */}
-          {Object.entries(dashboardsByCategory).length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">No dashboards found</p>
-              {searchTerm && (
-                <p className="text-gray-400 text-sm mt-2">
-                  Try adjusting your search criteria
-                </p>
-              )}
-            </div>
-          ) : (
-            <div className="space-y-8">
-              {Object.entries(dashboardsByCategory).map(([category, { dashboards: categoryDashboards, workspace }]) => (
-                <DashboardCategoryGroup.Root key={category}>
-                  <DashboardCategoryGroup.Header>
-                    <DashboardCategoryGroup.Title count={categoryDashboards.length}>
-                      {category}
-                    </DashboardCategoryGroup.Title>
-                    <DashboardCategoryGroup.Workspace workspace={workspace} />
-                  </DashboardCategoryGroup.Header>
+          <section className='mt-6'>
+            {Object.entries(dashboardsByCategory).length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">No dashboards found</p>
+                {searchTerm && (
+                  <p className="text-gray-400 text-sm mt-2">
+                    Try adjusting your search criteria
+                  </p>
+                )}
+              </div>
+            ) : (
+              <div className="space-y-8">
+                {Object.entries(dashboardsByCategory).map(([category, { dashboards: categoryDashboards, workspace }]) => (
+                  <DashboardCategoryGroup.Root key={category}>
+                    <DashboardCategoryGroup.Header>
+                      <DashboardCategoryGroup.Title count={categoryDashboards.length}>
+                        {category}
+                      </DashboardCategoryGroup.Title>
+                      <DashboardCategoryGroup.Workspace workspace={workspace} />
+                    </DashboardCategoryGroup.Header>
 
-                  <DashboardCategoryGroup.Grid>
-                    {categoryDashboards.map((dashboard) => (
-                      <DashboardCategoryGroup.Item
-                        key={dashboard.dashboardId}
-                        dashboard={dashboard}
-                        className="transform transition-transform duration-200 hover:scale-[1.02]"
-                      />
-                    ))}
-                  </DashboardCategoryGroup.Grid>
-                </DashboardCategoryGroup.Root>
-              ))}
-            </div>
-          )}
+                    <DashboardCategoryGroup.Grid>
+                      {categoryDashboards.map((dashboard) => (
+                        <DashboardCategoryGroup.Item
+                          key={dashboard.dashboardId}
+                          dashboard={dashboard}
+                        />
+                      ))}
+                    </DashboardCategoryGroup.Grid>
+                  </DashboardCategoryGroup.Root>
+                ))}
+              </div>
+            )}
+          </section>
         </div>
       </Main.Body>
     </Main.Root>

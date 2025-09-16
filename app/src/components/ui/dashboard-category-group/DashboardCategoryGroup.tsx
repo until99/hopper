@@ -1,15 +1,37 @@
+import { useState, createContext, useContext } from 'react'
 import { type Dashboard } from '../../../interfaces/dashboard'
 import { DashboardCard } from '../dashboard-card'
+import { CaretDownIcon } from '@phosphor-icons/react'
+
+interface DashboardCategoryGroupContextType {
+    isCollapsed: boolean
+    setIsCollapsed: (collapsed: boolean) => void
+}
+
+const DashboardCategoryGroupContext = createContext<DashboardCategoryGroupContextType | undefined>(undefined)
+
+const useDashboardCategoryGroup = () => {
+    const context = useContext(DashboardCategoryGroupContext)
+    if (!context) {
+        throw new Error('useDashboardCategoryGroup must be used within a DashboardCategoryGroupRoot')
+    }
+    return context
+}
 
 interface DashboardCategoryGroupRootProps {
     children: React.ReactNode
     className?: string
+    defaultCollapsed?: boolean
 }
 
-function DashboardCategoryGroupRoot({ children, className = '' }: DashboardCategoryGroupRootProps) {
+function DashboardCategoryGroupRoot({ children, className = '', defaultCollapsed = false }: DashboardCategoryGroupRootProps) {
+    const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed)
+
     return (
         <div className={`mb-8 ${className}`}>
-            {children}
+            <DashboardCategoryGroupContext.Provider value={{ isCollapsed, setIsCollapsed }}>
+                {children}
+            </DashboardCategoryGroupContext.Provider>
         </div>
     )
 }
@@ -34,10 +56,25 @@ interface DashboardCategoryGroupTitleProps {
 }
 
 function DashboardCategoryGroupTitle({ children, count, className = '' }: DashboardCategoryGroupTitleProps) {
+    const { isCollapsed, setIsCollapsed } = useDashboardCategoryGroup()
+
+    const handleToggle = () => {
+        setIsCollapsed(!isCollapsed)
+    }
+
     return (
         <div className={`flex items-center ${className}`}>
-            <button className="flex items-center text-lg font-semibold text-gray-900 hover:text-gray-700">
-                <span className="mr-2">▼</span>
+            <button
+                onClick={handleToggle}
+                className="flex items-center text-lg font-semibold text-gray-900 hover:text-gray-700 transition-colors"
+                aria-expanded={!isCollapsed}
+                type="button"
+            >
+                <span
+                    className={`mr-2 transition-transform duration-200 ${isCollapsed ? 'rotate-[-90deg]' : 'rotate-0'}`}
+                >
+                    <CaretDownIcon />
+                </span>
                 {children}
                 {count !== undefined && (
                     <span className="ml-2 text-sm text-gray-500 font-normal">
@@ -56,7 +93,7 @@ interface DashboardCategoryGroupWorkspaceProps {
 
 function DashboardCategoryGroupWorkspace({ workspace, className = '' }: DashboardCategoryGroupWorkspaceProps) {
     return (
-        <span className={`text-sm text-gray-500 bg-gray-100 px-2 py-1 rounded ${className}`}>
+        <span className={`text-sm  ${className}`}>
             {workspace}
         </span>
     )
@@ -68,6 +105,12 @@ interface DashboardCategoryGroupGridProps {
 }
 
 function DashboardCategoryGroupGrid({ children, className = '' }: DashboardCategoryGroupGridProps) {
+    const { isCollapsed } = useDashboardCategoryGroup()
+
+    if (isCollapsed) {
+        return null
+    }
+
     return (
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ${className}`}>
             {children}
