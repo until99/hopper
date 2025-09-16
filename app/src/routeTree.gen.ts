@@ -16,6 +16,7 @@ import { Route as AppAdminIndexRouteImport } from './routes/app/admin/index'
 import { Route as AppReportsListReportsRouteImport } from './routes/app/reports/list-reports'
 import { Route as AppProfileSettingsRouteImport } from './routes/app/profile/settings'
 import { Route as AppDashboardsListDashboardsRouteImport } from './routes/app/dashboards/list-dashboards'
+import { Route as AppDashboardsDashboardIdRouteImport } from './routes/app/dashboards/$dashboardId'
 import { Route as AppSettingUserIndexRouteImport } from './routes/app/setting/user/index'
 import { Route as AppAdminWorkspaceIndexRouteImport } from './routes/app/admin/workspace/index'
 import { Route as AppAdminUserIndexRouteImport } from './routes/app/admin/user/index'
@@ -60,6 +61,12 @@ const AppDashboardsListDashboardsRoute =
   AppDashboardsListDashboardsRouteImport.update({
     id: '/app/dashboards/list-dashboards',
     path: '/app/dashboards/list-dashboards',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const AppDashboardsDashboardIdRoute =
+  AppDashboardsDashboardIdRouteImport.update({
+    id: '/app/dashboards/$dashboardId',
+    path: '/app/dashboards/$dashboardId',
     getParentRoute: () => rootRouteImport,
   } as any)
 const AppSettingUserIndexRoute = AppSettingUserIndexRouteImport.update({
@@ -112,6 +119,7 @@ const AppAdminSettingSystemIndexRoute =
 export interface FileRoutesByFullPath {
   '/login': typeof LoginRoute
   '/not-found': typeof NotFoundRoute
+  '/app/dashboards/$dashboardId': typeof AppDashboardsDashboardIdRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/not-found': typeof NotFoundRoute
+  '/app/dashboards/$dashboardId': typeof AppDashboardsDashboardIdRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
@@ -149,6 +158,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/login': typeof LoginRoute
   '/not-found': typeof NotFoundRoute
+  '/app/dashboards/$dashboardId': typeof AppDashboardsDashboardIdRoute
   '/app/dashboards/list-dashboards': typeof AppDashboardsListDashboardsRoute
   '/app/profile/settings': typeof AppProfileSettingsRoute
   '/app/reports/list-reports': typeof AppReportsListReportsRoute
@@ -169,6 +179,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/login'
     | '/not-found'
+    | '/app/dashboards/$dashboardId'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
     | '/app/reports/list-reports'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/not-found'
+    | '/app/dashboards/$dashboardId'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
     | '/app/reports/list-reports'
@@ -205,6 +217,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/login'
     | '/not-found'
+    | '/app/dashboards/$dashboardId'
     | '/app/dashboards/list-dashboards'
     | '/app/profile/settings'
     | '/app/reports/list-reports'
@@ -224,6 +237,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   LoginRoute: typeof LoginRoute
   NotFoundRoute: typeof NotFoundRoute
+  AppDashboardsDashboardIdRoute: typeof AppDashboardsDashboardIdRoute
   AppDashboardsListDashboardsRoute: typeof AppDashboardsListDashboardsRoute
   AppProfileSettingsRoute: typeof AppProfileSettingsRoute
   AppReportsListReportsRoute: typeof AppReportsListReportsRoute
@@ -289,6 +303,13 @@ declare module '@tanstack/react-router' {
       path: '/app/dashboards/list-dashboards'
       fullPath: '/app/dashboards/list-dashboards'
       preLoaderRoute: typeof AppDashboardsListDashboardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/dashboards/$dashboardId': {
+      id: '/app/dashboards/$dashboardId'
+      path: '/app/dashboards/$dashboardId'
+      fullPath: '/app/dashboards/$dashboardId'
+      preLoaderRoute: typeof AppDashboardsDashboardIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/app/setting/user/': {
@@ -360,6 +381,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   LoginRoute: LoginRoute,
   NotFoundRoute: NotFoundRoute,
+  AppDashboardsDashboardIdRoute: AppDashboardsDashboardIdRoute,
   AppDashboardsListDashboardsRoute: AppDashboardsListDashboardsRoute,
   AppProfileSettingsRoute: AppProfileSettingsRoute,
   AppReportsListReportsRoute: AppReportsListReportsRoute,

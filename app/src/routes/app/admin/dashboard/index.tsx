@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import { createFileRoute } from '@tanstack/react-router';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, type FilterFn, useReactTable } from '@tanstack/react-table';
-import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, FolderIcon, MagnifyingGlassIcon, SpinnerIcon, TagIcon, UploadIcon } from '@phosphor-icons/react';
+import { ArrowsClockwiseIcon, CaretDoubleLeftIcon, CaretDoubleRightIcon, CaretLeftIcon, CaretRightIcon, CheckCircleIcon, FolderIcon, MagnifyingGlassIcon, SpinnerIcon, TagIcon } from '@phosphor-icons/react';
 
 import { Table } from '../../../../components/ui/table';
 import { Input } from '../../../../components/ui/Input';
@@ -44,13 +44,13 @@ function RouteComponent() {
   const [selectedDashboard, setSelectedDashboard] = useState<Dashboard | null>(null);
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
-  const { dashboards, loading, refreshing, deleting, error, deleteDashboard, refetch, assignCategoryToDashboard } = useDashboards();
+  const { dashboards, loading, refreshing, deleting, error, deleteDashboard, forceRefresh, assignCategoryToDashboard } = useDashboards();
 
   const handleRefresh = async () => {
     if (isRefreshDisabled || refreshing) return;
 
     try {
-      await refetch();
+      await forceRefresh();
 
       setIsRefreshDisabled(true);
       setRefreshCooldown(60);
@@ -247,23 +247,9 @@ function RouteComponent() {
         <div className="flex justify-between items-center">
           <Header.Root
             title="Dashboards"
-            subtitle="Manage published dashboards and upload new ones"
+            subtitle="Manage published dashboards"
           />
           <div className="flex gap-3">
-            <Button.Root
-              bgColor='bg-blue-600'
-              hover
-              hoverColor='bg-blue-700'
-              textColor='text-white'
-              onClick={() => { }}
-              className='font-medium'
-            >
-              <UploadIcon
-                size={16}
-                weight='bold'
-              />
-              Upload PBIX
-            </Button.Root>
             <Button.Root
               bgColor='bg-blue-600'
               hover

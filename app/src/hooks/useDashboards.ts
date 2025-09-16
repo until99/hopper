@@ -2,6 +2,11 @@ import { useState, useEffect } from "react";
 import { api, type APIPowerBIReport } from "../services/Dashboards";
 import { dashboardApi } from "../services/DashboardApi";
 import { type Dashboard } from "../interfaces/dashboard";
+import { 
+  saveDashboardsToCache, 
+  getValidCachedDashboards, 
+  forceRefreshDashboards 
+} from "../utils/dashboardCache";
 
 export const useDashboards = () => {
   const [dashboards, setDashboards] = useState<Dashboard[]>([]);
@@ -10,7 +15,7 @@ export const useDashboards = () => {
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchDashboards = async (isRefresh = false) => {
+  const fetchDashboards = async (isRefresh = false, forceApiCall = false) => {
     try {
       if (isRefresh) {
         setRefreshing(true);
@@ -18,6 +23,19 @@ export const useDashboards = () => {
         setLoading(true);
       }
       setError(null);
+
+      // Se não for um refresh forçado, tenta buscar do cache primeiro
+      if (!forceApiCall && !isRefresh) {
+        const cachedDashboards = getValidCachedDashboards();
+        if (cachedDashboards) {
+          setDashboards(cachedDashboards);
+          setLoading(false);
+          console.log('Dashboards carregados do cache local');
+          return;
+        }
+      }
+
+      console.log('Buscando dashboards da API...');
 
       // Busca dashboards do PowerBI
       const powerbiReports = await api.getReports();
@@ -63,6 +81,9 @@ export const useDashboards = () => {
       });
 
       console.log("Final dashboards:", dashboards);
+      
+      // Salva no cache após buscar da API
+      saveDashboardsToCache(dashboards);
       setDashboards(dashboards);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
@@ -76,7 +97,12 @@ export const useDashboards = () => {
     }
   };
 
-  const refetchDashboards = () => fetchDashboards(true);
+  const refetchDashboards = () => fetchDashboards(true, true); // Force API call on refresh
+
+  const forceRefresh = () => {
+    forceRefreshDashboards(); // Clear cache
+    fetchDashboards(true, true); // Force API call
+  };
 
   const deleteDashboard = async (dashboard: Dashboard) => {
     try {
@@ -89,8 +115,8 @@ export const useDashboards = () => {
       
       await api.deleteReport(dashboard.workspaceId, dashboard.dashboardId);
       
-      // Refetch the dashboards to update the table
-      await fetchDashboards();
+      // Refetch the dashboards to update the table and cache
+      await fetchDashboards(false, true); // Force API call to get updated data
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
       console.error("Error deleting dashboard:", err);
@@ -102,8 +128,8 @@ export const useDashboards = () => {
   const assignCategoryToDashboard = async (dashboardId: string, categoryId: string): Promise<void> => {
     try {
       await dashboardApi.assignCategoryToDashboard(dashboardId, categoryId);
-      // Após atribuir, refaz o fetch para atualizar a lista
-      await fetchDashboards(true);
+      // Após atribuir, refaz o fetch para atualizar a lista e cache
+      await fetchDashboards(true, true); // Force API call to get updated data
     } catch (err) {
       setError(err instanceof Error ? err.message : "Failed to assign category");
       console.error("Error assigning category:", err);
@@ -122,6 +148,7 @@ export const useDashboards = () => {
     deleting,
     error,
     refetch: refetchDashboards,
+    forceRefresh,
     deleteDashboard,
     assignCategoryToDashboard,
   };
