@@ -73,7 +73,7 @@ function DashboardControlsRefreshButton({
             onClick={onRefresh}
             disabled={refreshing}
             icon="🔄"
-            className={`${refreshing ? 'animate-spin' : ''} ${className}`}
+            className={`${refreshing ? 'bg-slate-200' : ''} ${className}`}
         >
             Refresh
         </DashboardControlsActionButton>

@@ -126,7 +126,6 @@ function RouteComponent() {
                       <DashboardCategoryGroup.Title count={categoryDashboards.length}>
                         {category}
                       </DashboardCategoryGroup.Title>
-                      <DashboardCategoryGroup.Workspace workspace={workspace} />
                     </DashboardCategoryGroup.Header>
 
                     <DashboardCategoryGroup.Grid>

@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Main } from '../../../components/layout/main'
 import { DashboardControls } from '../../../components/ui/dashboard-controls'
 import { useDashboards } from '../../../hooks/useDashboards'
@@ -13,10 +13,11 @@ function RouteComponent() {
   const { dashboardId } = Route.useParams()
   const navigate = useNavigate()
   const { dashboards, loading } = useDashboards()
-  
+
   const [dashboard, setDashboard] = useState<Dashboard | null>(null)
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
+  const iframeRef = useRef<HTMLIFrameElement>(null)
 
   useEffect(() => {
     if (dashboards.length > 0) {
@@ -43,19 +44,29 @@ function RouteComponent() {
   }
 
   const handleFullscreen = () => {
-    setIsFullscreen(!isFullscreen)
-    if (!isFullscreen) {
-      // Entrar em fullscreen
-      if (document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen()
+    if (!isFullscreen && iframeRef.current) {
+      if (iframeRef.current.requestFullscreen) {
+        iframeRef.current.requestFullscreen()
+        setIsFullscreen(true)
       }
     } else {
-      // Sair do fullscreen
       if (document.exitFullscreen) {
         document.exitFullscreen()
+        setIsFullscreen(false)
       }
     }
   }
+
+  useEffect(() => {
+    const onFullscreenChange = () => {
+      const isFull = document.fullscreenElement === iframeRef.current
+      setIsFullscreen(isFull)
+    }
+    document.addEventListener('fullscreenchange', onFullscreenChange)
+    return () => {
+      document.removeEventListener('fullscreenchange', onFullscreenChange)
+    }
+  }, [])
 
   const handleShare = () => {
     // Simula compartilhamento do dashboard
@@ -87,7 +98,7 @@ function RouteComponent() {
         <Main.Body>
           <div className="text-center py-12">
             <p className="text-gray-500 text-lg">Dashboard not found</p>
-            <button 
+            <button
               onClick={handleBack}
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
             >
@@ -108,19 +119,19 @@ function RouteComponent() {
           <div className="flex items-center justify-between">
             <div className="flex items-center">
               <DashboardControls.BackButton onBack={handleBack} />
-              <DashboardControls.Title 
+              <DashboardControls.Title
                 title={dashboard.title}
                 description={dashboard.description}
               />
             </div>
-            
+
             <DashboardControls.Root>
-              <DashboardControls.RefreshButton 
+              <DashboardControls.RefreshButton
                 onRefresh={handleRefresh}
                 refreshing={refreshing}
               />
               <DashboardControls.ExportButton onExport={handleExport} />
-              <DashboardControls.FullscreenButton 
+              <DashboardControls.FullscreenButton
                 onFullscreen={handleFullscreen}
                 isFullscreen={isFullscreen}
               />
@@ -131,30 +142,26 @@ function RouteComponent() {
 
         {/* Container do Power BI */}
         <div className="bg-white rounded-lg border border-gray-200 h-[600px] flex items-center justify-center">
-          <div className="text-center">
-            <div className="mb-4">
-              <span className="text-6xl">📊</span>
-            </div>
-            <h2 className="text-xl font-semibold text-yellow-600 mb-2">Power BI</h2>
-            <p className="text-gray-600 mb-4">Sign in to view this report</p>
-            <button className="bg-yellow-500 text-white px-6 py-2 rounded hover:bg-yellow-600">
-              Sign in
-            </button>
-          </div>
+          <iframe
+            ref={iframeRef}
+            title="GeoSales Dashboard - Azure Map"
+            className='w-full h-full rounded-lg border-0 outline-none'
+            src="https://app.powerbi.com/reportEmbed?reportId=84199815-6dd4-461f-b52d-39d0a9ded8a4&autoAuth=true&ctid=a5504f25-7802-4f62-9940-f4a2f7eba746"
+            allowFullScreen={true}
+          />
         </div>
 
         {/* Informações adicionais */}
         <div className="mt-6 grid grid-cols-3 gap-4 text-sm">
           <div className="bg-gray-50 p-3 rounded">
             <span className="font-medium text-gray-700">Category:</span>
-            <span className={`ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-              dashboard.categoryColor === 'blue' ? 'bg-blue-100 text-blue-800' :
+            <span className={`ml-2 inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${dashboard.categoryColor === 'blue' ? 'bg-blue-100 text-blue-800' :
               dashboard.categoryColor === 'green' ? 'bg-green-100 text-green-800' :
-              dashboard.categoryColor === 'emerald' ? 'bg-emerald-100 text-emerald-800' :
-              dashboard.categoryColor === 'violet' ? 'bg-violet-100 text-violet-800' :
-              dashboard.categoryColor === 'yellow' ? 'bg-yellow-100 text-yellow-800' :
-              'bg-slate-100 text-slate-800'
-            }`}>
+                dashboard.categoryColor === 'emerald' ? 'bg-emerald-100 text-emerald-800' :
+                  dashboard.categoryColor === 'violet' ? 'bg-violet-100 text-violet-800' :
+                    dashboard.categoryColor === 'yellow' ? 'bg-yellow-100 text-yellow-800' :
+                      'bg-slate-100 text-slate-800'
+              }`}>
               {dashboard.category}
             </span>
           </div>
