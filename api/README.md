@@ -34,6 +34,29 @@ cp .env.example .env
 # Edite o arquivo .env com suas credenciais
 ```
 
+### Variáveis de Ambiente Importantes
+
+```bash
+# Azure AD / PowerBI
+TENANT_ID=seu-tenant-id
+CLIENT_ID=seu-client-id
+CLIENT_SECRET=seu-client-secret
+
+# JWT
+JWT_SECRET=seu-secret-super-seguro-com-mais-de-32-caracteres
+
+# CORS - URL do frontend em produção
+FRONTEND_URL=https://seu-app.vercel.app
+
+# Database
+DB_PATH=hopper.db
+```
+
+**⚠️ IMPORTANTE para Deploy em Produção:**
+- Configure `FRONTEND_URL` com a URL da Vercel para permitir CORS
+- Use um `JWT_SECRET` forte e único em produção
+- Nunca commite o arquivo `.env` com credenciais reais
+
 ## 🏃‍♂️ Executando
 
 ### Desenvolvimento
