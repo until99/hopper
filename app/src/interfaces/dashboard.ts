@@ -6,4 +6,5 @@ export interface Dashboard {
   workspace: string;
   category: string;
   categoryColor: "blue" | "green" | "emerald" | "violet" | "yellow" | "slate";
+  embedUrl: string;
 }

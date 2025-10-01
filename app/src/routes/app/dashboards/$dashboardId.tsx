@@ -142,13 +142,50 @@ function RouteComponent() {
 
         {/* Container do Power BI */}
         <div className="bg-white rounded-lg border border-gray-200 h-[600px] flex items-center justify-center">
-          <iframe
-            ref={iframeRef}
-            title="GeoSales Dashboard - Azure Map"
-            className='w-full h-full rounded-lg border-0 outline-none'
-            src="https://app.powerbi.com/reportEmbed?reportId=84199815-6dd4-461f-b52d-39d0a9ded8a4&autoAuth=true&ctid=a5504f25-7802-4f62-9940-f4a2f7eba746"
-            allowFullScreen={true}
-          />
+          {dashboard.embedUrl && dashboard.embedUrl.trim() !== '' ? (
+            <iframe
+              ref={iframeRef}
+              title={`${dashboard.title} - Power BI Dashboard`}
+              className='w-full h-full rounded-lg border-0 outline-none'
+              src={dashboard.embedUrl}
+              allowFullScreen={true}
+            />
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-red-500 text-lg">ERRO: embedUrl ainda vazio após correções</p>
+              <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+                <p className="text-xs text-red-700 mb-2">Debug Info:</p>
+                <p className="text-xs text-gray-600">Dashboard ID: {dashboard.dashboardId}</p>
+                <p className="text-xs text-gray-600">Workspace ID: {dashboard.workspaceId}</p>
+                <p className="text-xs text-gray-600">Embed URL: {dashboard.embedUrl || 'AINDA VAZIO!'}</p>
+                
+                <div className="mt-4">
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('hopper_dashboards_cache');
+                      window.location.reload();
+                    }}
+                    className="px-3 py-1 bg-red-500 text-white text-xs rounded hover:bg-red-600 mr-2"
+                  >
+                    Limpar Cache e Recarregar
+                  </button>
+                  
+                  {/* Botão de teste para gerar URL manualmente */}
+                  {dashboard.dashboardId && dashboard.workspaceId && (
+                    <button
+                      onClick={() => {
+                        const testUrl = `https://app.powerbi.com/reportEmbed?reportId=${dashboard.dashboardId}&groupId=${dashboard.workspaceId}&autoAuth=true`;
+                        window.open(testUrl, '_blank');
+                      }}
+                      className="px-3 py-1 bg-blue-500 text-white text-xs rounded hover:bg-blue-600"
+                    >
+                      Testar URL Manualmente
+                    </button>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Informações adicionais */}

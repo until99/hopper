@@ -31,14 +31,13 @@ function RouteComponent() {
 
   // Agrupa dashboards por categoria
   const dashboardsByCategory = useMemo(() => {
-    const groups: Record<string, { dashboards: Dashboard[]; workspace: string }> = {}
+    const groups: Record<string, { dashboards: Dashboard[] }> = {}
 
     filteredDashboards.forEach(dashboard => {
       const category = dashboard.category || 'Not Categorized'
       if (!groups[category]) {
         groups[category] = {
-          dashboards: [],
-          workspace: dashboard.workspace
+          dashboards: []
         }
       }
       groups[category].dashboards.push(dashboard)
@@ -120,7 +119,7 @@ function RouteComponent() {
               </div>
             ) : (
               <div className="space-y-8">
-                {Object.entries(dashboardsByCategory).map(([category, { dashboards: categoryDashboards, workspace }]) => (
+                {Object.entries(dashboardsByCategory).map(([category, { dashboards: categoryDashboards }]) => (
                   <DashboardCategoryGroup.Root key={category}>
                     <DashboardCategoryGroup.Header>
                       <DashboardCategoryGroup.Title count={categoryDashboards.length}>

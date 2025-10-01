@@ -64,6 +64,11 @@ export const useDashboards = () => {
         const workspace = report.workspace_name || "Unknown Workspace";
         const workspaceId = report.workspace_id || "";
         
+        // FORÇAR construção da URL para TODOS os dashboards - temporário para debug
+        let embedUrl = `https://app.powerbi.com/reportEmbed?reportId=${dashboardId}&groupId=${workspaceId}&autoAuth=true`;
+        
+        console.log('FORCED embedUrl for', title, ':', embedUrl);
+        
         // Busca a categoria real do banco
         const categoryData = categoryMap.get(dashboardId);
         const category = categoryData ? categoryData.name : "Not Categorized";
@@ -77,6 +82,7 @@ export const useDashboards = () => {
           workspaceId,
           category,
           categoryColor,
+          embedUrl,
         };
       });
 
