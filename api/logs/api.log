@@ -10736,3 +10736,34 @@ AttributeError: module 'bcrypt' has no attribute '__about__'
 2025-10-01 16:12:10 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
 2025-10-01 16:12:10 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [6e533b3e] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.011s - Size: 63 bytes
 2025-10-01 16:12:10 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:63885 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:12:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [05a42e76] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-10-01 16:12:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:12:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:12:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [05a42e76] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-10-01 16:12:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:63982 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:13:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [56818454] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-10-01 16:13:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:13:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:13:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [56818454] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-10-01 16:13:11 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:63983 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [516fa5e0] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-10-01 16:13:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:13:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:13:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [516fa5e0] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.008s - Size: 63 bytes
+2025-10-01 16:13:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:64003 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:14:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4e648fef] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-10-01 16:14:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:14:11 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:14:11 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4e648fef] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.009s - Size: 63 bytes
+2025-10-01 16:14:11 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:64004 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:14:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [b9d24c11] GET http://localhost:8000/api/v1/auth/verify - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-10-01 16:14:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:14:42 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-10-01 16:14:42 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [b9d24c11] GET http://localhost:8000/api/v1/auth/verify - Status: 200 - Time: 0.010s - Size: 63 bytes
+2025-10-01 16:14:42 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:64029 - "GET /api/v1/auth/verify HTTP/1.1" 200
+2025-10-01 16:14:58 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-10-01 16:14:58 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-10-01 16:14:58 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-10-01 16:14:58 - hopper.api.main - [34;20mINFO[0m - [main.py:274] - Conexão com banco de dados encerrada
+2025-10-01 16:14:58 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-10-01 16:14:58 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [18464]
