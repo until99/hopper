@@ -5,7 +5,6 @@ import { Input } from '../../ui/Input';
 import { useCategories } from '../../../hooks/useCategories';
 import { CategoryModal } from '../category/CategoryModal';
 import type { Dashboard } from '../../../interfaces/dashboard';
-import type { Category } from '../../../interfaces/category';
 
 interface DashboardCategoryModalProps {
     isOpen: boolean;

@@ -1,4 +1,13 @@
-import type { User, AuthError } from "@supabase/supabase-js";
+export interface User {
+  id: string;
+  email: string;
+  [key: string]: any;
+}
+
+export interface AuthError {
+  message: string;
+  status?: number;
+}
 
 export interface UseAuthReturn {
   user: User | null;

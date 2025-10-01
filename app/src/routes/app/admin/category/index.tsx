@@ -80,7 +80,7 @@ function RouteComponent() {
         columnHelper.accessor('name', {
             id: 'name',
             header: 'Name',
-            cell: ({ getValue, row }) => (
+            cell: ({ getValue }) => (
                 <Cell
                     type="text"
                     value={getValue()}
