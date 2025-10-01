@@ -14,7 +14,7 @@ export const setTokenExpiredCallback = (callback: () => void) => {
 window.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
   // Verifica se é uma requisição para a API
   const url = typeof input === 'string' ? input : input instanceof URL ? input.href : input.url;
-  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+  const apiUrl = import.meta.env.VITE_API_URL || 'https://hopper-glyb.onrender.com';
   
   // Inclui tanto rotas de auth quanto powerbi na verificação
   const isApiCall = url.startsWith(apiUrl);

@@ -1,6 +1,6 @@
 import { authApiService } from './AuthApi';
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://hopper-glyb.onrender.com';
 
 async function authenticatedFetch(url: string, options: RequestInit = {}) {
   const token = authApiService.getToken();

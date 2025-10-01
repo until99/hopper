@@ -1,3 +1,48 @@
+# Hopper - Frontend
+
+Frontend do sistema Hopper, desenvolvido com React + TypeScript + Vite.
+
+## 🚀 Início Rápido
+
+### Instalação
+
+```bash
+pnpm install
+```
+
+### Desenvolvimento
+
+```bash
+pnpm run dev
+```
+
+O app estará disponível em `http://localhost:5173`
+
+### Build para Produção
+
+```bash
+pnpm run build
+```
+
+## 🔧 Configuração da API
+
+**Por padrão**, o frontend usa automaticamente:
+```
+https://hopper-glyb.onrender.com
+```
+
+### Para Desenvolvimento Local:
+
+Se você quer rodar o backend localmente, crie um arquivo `.env.local`:
+
+```bash
+VITE_API_URL=http://localhost:8000
+```
+
+Veja mais detalhes em [API_CONFIG.md](./API_CONFIG.md)
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

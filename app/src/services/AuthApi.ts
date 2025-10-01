@@ -33,7 +33,7 @@ class AuthApiService {
   private baseURL: string;
 
   constructor() {
-    this.baseURL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+    this.baseURL = import.meta.env.VITE_API_URL || 'https://hopper-glyb.onrender.com';
   }
 
   private async request<T>(
