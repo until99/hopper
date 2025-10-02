@@ -1,0 +1,181 @@
+2025-09-11 18:23:13 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:23:13 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:23:13 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:23:13 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:23:13 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:23:14 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:23:14 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:23:14 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:23:14 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:23:14 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:23:14 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:23:14 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:23:14 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:23:14 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:23:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:23:15 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:23:15 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:23:15 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:23:15 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [14280]
+2025-09-11 18:23:15 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 18:23:15 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 18:23:15 - hopper.api.main - [34;20mINFO[0m - [main.py:261] - Conexão com banco de dados estabelecida
+2025-09-11 18:23:15 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 18:23:57 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [ab74bd34] GET http://localhost:8000/powerbi/reports/ - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:23:57 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:23:57 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [ab74bd34] GET http://localhost:8000/powerbi/reports/ - Status: 401 - Time: 0.025s - Size: 28 bytes
+2025-09-11 18:23:57 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/powerbi/reports/
+2025-09-11 18:23:57 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57070 - "GET /powerbi/reports/ HTTP/1.1" 401
+2025-09-11 18:24:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [02b652ae] GET http://localhost:8000/?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757625847707 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.103.2 Chrome...
+2025-09-11 18:24:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [02b652ae] GET http://localhost:8000/?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757625847707 - Status: 200 - Time: 0.002s - Size: 473 bytes
+2025-09-11 18:24:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57116 - "GET /?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757625847707 HTTP/1.1" 200
+2025-09-11 18:24:15 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 18:24:15 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 18:24:15 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 18:24:15 - hopper.api.main - [34;20mINFO[0m - [main.py:272] - Conexão com banco de dados encerrada
+2025-09-11 18:24:15 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 18:24:15 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [14280]
+2025-09-11 18:24:52 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:24:52 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:24:52 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:24:52 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:24:52 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:24:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:24:53 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:24:53 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:24:53 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:24:54 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:24:54 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:24:54 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:24:54 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:24:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:24:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:24:54 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:24:54 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:24:55 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:24:55 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [17916]
+2025-09-11 18:24:55 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 18:24:55 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 18:24:55 - hopper.api.main - [34;20mINFO[0m - [main.py:261] - Conexão com banco de dados estabelecida
+2025-09-11 18:24:55 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 18:25:15 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 18:25:15 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 18:25:15 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 18:25:15 - hopper.api.main - [34;20mINFO[0m - [main.py:272] - Conexão com banco de dados encerrada
+2025-09-11 18:25:16 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 18:25:16 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [17916]
+2025-09-11 18:26:25 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:26:25 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:26:25 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:26:25 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:26:25 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:26:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:26:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:26 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:26 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:26:26 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:26:26 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:26:26 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:26:26 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:26:26 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:26:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:26:27 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:27 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:27 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:26:27 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [18580]
+2025-09-11 18:26:27 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 18:26:27 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 18:26:27 - hopper.api.main - [34;20mINFO[0m - [main.py:261] - Conexão com banco de dados estabelecida
+2025-09-11 18:26:27 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 18:26:45 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:26:45 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:26:45 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:26:45 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:26:45 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:26:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:26:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:47 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:47 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:26:47 - hopper.api - [34;20mINFO[0m - [logger.py:136] - Sistema de logging configurado
+2025-09-11 18:26:47 - hopper.api - [34;20mINFO[0m - [logger.py:137] - Nível de log: INFO
+2025-09-11 18:26:47 - hopper.api - [34;20mINFO[0m - [logger.py:138] - Arquivo de log: logs/api.log
+2025-09-11 18:26:47 - hopper.api.main - [34;20mINFO[0m - [main.py:41] - Iniciando aplicação Hopper API
+2025-09-11 18:26:47 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:28] - Inicializando cliente PowerBI
+2025-09-11 18:26:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:63] - Token de acesso adquirido com sucesso
+2025-09-11 18:26:48 - hopper.api.powerbi - [34;20mINFO[0m - [powerbi.py:33] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:48 - hopper.api.main - [34;20mINFO[0m - [main.py:56] - Cliente PowerBI inicializado com sucesso
+2025-09-11 18:26:48 - hopper.api.main - [34;20mINFO[0m - [main.py:89] - Middlewares configurados
+2025-09-11 18:26:48 - uvicorn.error - [34;20mINFO[0m - [server.py:84] - Started server process [17004]
+2025-09-11 18:26:48 - uvicorn.error - [34;20mINFO[0m - [on.py:48] - Waiting for application startup.
+2025-09-11 18:26:48 - databases - [34;20mINFO[0m - [core.py:113] - Connected to database sqlite:///hopper.db
+2025-09-11 18:26:48 - hopper.api.main - [34;20mINFO[0m - [main.py:261] - Conexão com banco de dados estabelecida
+2025-09-11 18:26:48 - uvicorn.error - [34;20mINFO[0m - [on.py:62] - Application startup complete.
+2025-09-11 18:26:49 - uvicorn.error - [34;20mINFO[0m - [server.py:264] - Shutting down
+2025-09-11 18:26:49 - uvicorn.error - [34;20mINFO[0m - [on.py:67] - Waiting for application shutdown.
+2025-09-11 18:26:49 - databases - [34;20mINFO[0m - [core.py:149] - Disconnected from database sqlite:///hopper.db
+2025-09-11 18:26:49 - hopper.api.main - [34;20mINFO[0m - [main.py:272] - Conexão com banco de dados encerrada
+2025-09-11 18:26:49 - uvicorn.error - [34;20mINFO[0m - [on.py:76] - Application shutdown complete.
+2025-09-11 18:26:49 - uvicorn.error - [34;20mINFO[0m - [server.py:94] - Finished server process [18580]
+2025-09-11 18:27:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [6a2d52eb] GET http://localhost:8000/ - IP: 127.0.0.1 - User-Agent: python-requests/2.32.5...
+2025-09-11 18:27:01 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [6a2d52eb] GET http://localhost:8000/ - Status: 200 - Time: 0.002s - Size: 473 bytes
+2025-09-11 18:27:01 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57211 - "GET / HTTP/1.1" 200
+2025-09-11 18:27:03 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [bdda1579] GET http://localhost:8000/?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626023214 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.103.2 Chrome...
+2025-09-11 18:27:03 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [bdda1579] GET http://localhost:8000/?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626023214 - Status: 200 - Time: 0.001s - Size: 473 bytes
+2025-09-11 18:27:03 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57216 - "GET /?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626023214 HTTP/1.1" 200
+2025-09-11 18:27:03 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [9964cc15] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: python-requests/2.32.5...
+2025-09-11 18:27:03 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:27:03 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: admin@admin.com
+2025-09-11 18:27:03 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email admin@admin.com: no such table: users
+2025-09-11 18:27:03 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [9964cc15] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.021s - Size: 35 bytes
+2025-09-11 18:27:03 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:27:03 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57217 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:27:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [4f6c96fd] GET http://localhost:8000/docs?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626029429 - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.103.2 Chrome...
+2025-09-11 18:27:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [4f6c96fd] GET http://localhost:8000/docs?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626029429 - Status: 200 - Time: 0.001s - Size: 934 bytes
+2025-09-11 18:27:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57218 - "GET /docs?id=8b49b73b-a30f-44fa-8d51-af07da41d555&vscodeBrowserReqId=1757626029429 HTTP/1.1" 200
+2025-09-11 18:27:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [96b94c89] GET http://localhost:8000/openapi.json - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.103.2 Chrome...
+2025-09-11 18:27:09 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:68] - [96b94c89] GET http://localhost:8000/openapi.json - Status: 200 - Time: 0.027s - Size: 8728 bytes
+2025-09-11 18:27:09 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57218 - "GET /openapi.json HTTP/1.1" 200
+2025-09-11 18:28:18 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57254 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 18:28:18 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [93e92790] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:28:18 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:28:19 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:28:19 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email gabriel.kasten@outlook.com: no such table: users
+2025-09-11 18:28:19 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [93e92790] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.210s - Size: 35 bytes
+2025-09-11 18:28:19 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:28:19 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57254 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:28:23 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [e7810d9d] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:28:23 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:28:23 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: admin@test.com
+2025-09-11 18:28:23 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email admin@test.com: no such table: users
+2025-09-11 18:28:23 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [e7810d9d] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.010s - Size: 35 bytes
+2025-09-11 18:28:23 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:28:23 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57254 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:39:04 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57362 - "OPTIONS /api/v1/auth/login HTTP/1.1" 200
+2025-09-11 18:39:04 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [c177c537] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:39:04 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:39:04 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: admin@test.com
+2025-09-11 18:39:04 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email admin@test.com: no such table: users
+2025-09-11 18:39:04 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [c177c537] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.010s - Size: 35 bytes
+2025-09-11 18:39:04 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:39:04 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57362 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:39:08 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [56806985] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:39:08 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:39:08 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:39:08 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email gabriel.kasten@outlook.com: no such table: users
+2025-09-11 18:39:08 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [56806985] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.008s - Size: 35 bytes
+2025-09-11 18:39:08 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:39:08 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57362 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:39:54 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [d3bd1f24] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:39:54 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:39:54 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:39:54 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email gabriel.kasten@outlook.com: no such table: users
+2025-09-11 18:39:54 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [d3bd1f24] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.009s - Size: 35 bytes
+2025-09-11 18:39:54 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:39:54 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57363 - "POST /api/v1/auth/login HTTP/1.1" 401
+2025-09-11 18:39:59 - hopper.api.middleware - [34;20mINFO[0m - [middleware.py:45] - [5558713a] POST http://localhost:8000/api/v1/auth/login - IP: 127.0.0.1 - User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Sa...
+2025-09-11 18:39:59 - hopper.api.auth_service - [34;20mINFO[0m - [auth_service.py:29] - AuthService inicializado com sucesso
+2025-09-11 18:39:59 - hopper.api.auth_controller - [34;20mINFO[0m - [auth_controller.py:31] - Tentativa de login para o email: gabriel.kasten@outlook.com
+2025-09-11 18:39:59 - hopper.api.user_repository - [31;20mERROR[0m - [user_repository.py:78] - Erro ao buscar usuário por email gabriel.kasten@outlook.com: no such table: users
+2025-09-11 18:39:59 - hopper.api.middleware - [33;20mWARNING[0m - [middleware.py:61] - [5558713a] POST http://localhost:8000/api/v1/auth/login - Status: 401 - Time: 0.018s - Size: 35 bytes
+2025-09-11 18:39:59 - hopper.api.security - [33;20mWARNING[0m - [middleware.py:147] - Unauthorized access attempt - IP: 127.0.0.1 - URL: http://localhost:8000/api/v1/auth/login
+2025-09-11 18:39:59 - uvicorn.access - [34;20mINFO[0m - [h11_impl.py:473] - 127.0.0.1:57363 - "POST /api/v1/auth/login HTTP/1.1" 401

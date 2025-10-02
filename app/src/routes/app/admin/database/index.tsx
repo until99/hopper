@@ -1,0 +1,17 @@
+import { createFileRoute } from '@tanstack/react-router'
+import { Main } from '../../../../components/layout/main'
+
+export const Route = createFileRoute('/app/admin/database/')({
+  component: RouteComponent,
+})
+
+function RouteComponent() {
+  return (
+    <Main.Root>
+      <Main.Aside />
+      <Main.Body>
+        <h1>Database</h1>
+      </Main.Body>
+    </Main.Root>
+  )
+}

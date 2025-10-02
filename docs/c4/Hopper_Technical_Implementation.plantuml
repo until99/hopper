@@ -1,0 +1,44 @@
+@startuml Hopper_Technical_Implementation
+title Technical Implementation - Hopper
+skinparam componentStyle rectangle
+left to right direction
+
+component "[Airflow DAG]" as dag #df6363 {
+}
+
+component "[Extract (Python Operator)]" as extract #df6363 {
+}
+
+component "[Transform (Pandas)]" as transform #df6363 {
+}
+
+component "[Load (PostgresHook)]" as load #df6363 {
+}
+
+component "[Power BI API Refresh]" as pbi_refresh #37c237 {
+}
+
+component "[Power BI Dataset]" as pbi_dataset #37c237 {
+}
+
+component "[Embedded Token (Golang)]" as golang #7e7ed6 {
+}
+
+component "[React Frontend]" as react #7e7ed6 {
+}
+
+dag --> extract
+extract --> transform
+transform --> load
+load --> pbi_refresh
+pbi_refresh --> pbi_dataset
+pbi_dataset --> golang
+golang --> react
+
+legend left
+  <color:#df6363>ETL Layer</color> | 
+  <color:#37c237>Power BI Layer</color> | 
+  <color:#7e7ed6>Web Layer</color>
+endlegend
+
+@enduml
