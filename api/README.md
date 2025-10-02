@@ -2,7 +2,20 @@
 
 API para integração com o PowerBI, desenvolvida com FastAPI.
 
-## 🚀 Funcionalidades
+## � Deploy Rápido / CORS Issues
+
+**Se você está recebendo erro 400 no OPTIONS em produção (Render.com):**
+
+👉 **[Leia o guia de correção urgente](docs/URGENTE-CORS-FIX.md)**
+
+**TL;DR:** Configure a variável `ALLOWED_ORIGINS` no Render Dashboard:
+```bash
+ALLOWED_ORIGINS=https://hopper-opal.vercel.app
+```
+
+---
+
+## �🚀 Funcionalidades
 
 - **Grupos**: Listar e gerenciar grupos do PowerBI
 - **Relatórios**: Criar, listar, visualizar e deletar relatórios
