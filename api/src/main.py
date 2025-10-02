@@ -72,30 +72,33 @@ app = FastAPI(
 app.add_middleware(LoggingMiddleware)
 app.add_middleware(SecurityLoggingMiddleware)
 
-# Middleware CORS
-# Configuração de origens permitidas
-allowed_origins = [
+# Configuração de CORS origins
+# Por padrão, permite localhost para desenvolvimento
+default_origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
 ]
 
-# Adiciona a URL do frontend em produção se configurada
-frontend_url = os.getenv("FRONTEND_URL")
-if frontend_url:
-    allowed_origins.append(frontend_url)
-    logger.info(f"Frontend URL em produção adicionada ao CORS: {frontend_url}")
+# Adiciona origins do ambiente se configurado
+allowed_origins_env = os.getenv("ALLOWED_ORIGINS", "")
+if allowed_origins_env:
+    additional_origins = [origin.strip() for origin in allowed_origins_env.split(",")]
+    default_origins.extend(additional_origins)
+    logger.info(f"CORS origins adicionais configuradas: {additional_origins}")
 
+logger.info(f"CORS configurado para origins: {default_origins}")
+
+# Middleware CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=default_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["X-Request-ID", "X-Process-Time"],
 )
-
-logger.info(f"CORS configurado para origens: {allowed_origins}")
 
 logger.info("Middlewares configurados")
 
