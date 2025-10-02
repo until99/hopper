@@ -137,10 +137,39 @@ src/
 Crie um arquivo `.env` baseado no `.env.example`:
 
 ```env
+# PowerBI / Azure AD Configuration
 TENANT_ID=your_tenant_id
 CLIENT_ID=your_client_id  
 CLIENT_SECRET=your_client_secret
+
+# Database Configuration
+DB_PATH=hopper.db
+
+# JWT Configuration
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-please
+
+# CORS Configuration (comma-separated list for production)
+# Example: ALLOWED_ORIGINS=https://your-frontend.com,https://another-domain.com
+ALLOWED_ORIGINS=
+
+# Logging Configuration
+LOG_LEVEL=INFO
+LOG_FILE=logs/api.log
 ```
+
+### Configuração de CORS
+
+Por padrão, a API permite requisições de `localhost` para desenvolvimento. Em produção, você deve configurar a variável `ALLOWED_ORIGINS` com os domínios permitidos:
+
+```env
+# Single origin
+ALLOWED_ORIGINS=https://your-frontend.vercel.app
+
+# Multiple origins (comma-separated)
+ALLOWED_ORIGINS=https://your-frontend.vercel.app,https://your-app.render.com
+```
+
+**Importante**: Nunca use `allow_origins=["*"]` em produção com `allow_credentials=True`, pois isso é uma vulnerabilidade de segurança.
 
 ## 📦 Dependências
 
