@@ -3,26 +3,16 @@ import logging
 from datetime import timedelta
 
 from fastapi import APIRouter, Depends, HTTPException, status, Request
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
 from api.auth import crud
-from api.auth.models import AuthUserSchema, LoginResponse, UserInfo
-from api.auth.utils import create_access_token, verify_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from api.auth.models import AuthUserSchema, LoginResponse
+from api.auth.utils import create_access_token, ACCESS_TOKEN_EXPIRE_MINUTES
+from api.auth.dependencies import get_db, get_current_user
 from api.user.models import User
-from db import SessionLocal
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
-security = HTTPBearer()
-
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
 
 
 @router.post("/login", response_model=LoginResponse, status_code=200)
@@ -72,32 +62,6 @@ def login(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
             detail="Internal server error"
         )
-
-
-def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(security),
-    db: Session = Depends(get_db)
-) -> User:
-    """Get current authenticated user from JWT token."""
-    token = credentials.credentials
-    email = verify_token(token)
-    
-    if email is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
-    user = crud.get_user_by_email(db, email=email)
-    if user is None:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="User not found",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
-    return user
 
 
 @router.get("/me", response_model=dict)

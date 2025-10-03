@@ -6,25 +6,21 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
 from api.user import crud
-from api.user.models import UserDB, UserSchema, UserUpdateSchema
-from db import SessionLocal
+from api.user.models import UserDB, UserSchema, UserUpdateSchema, User
+from api.auth.dependencies import get_db, get_current_user
 
 logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
-
 @router.post("/", response_model=UserDB, status_code=201)
 def create_user(
-    *, db: Session = Depends(get_db), payload: UserSchema, request: Request
+    *, 
+    db: Session = Depends(get_db), 
+    payload: UserSchema, 
+    request: Request,
+    current_user: User = Depends(get_current_user)
 ):
     request_id = getattr(request.state, "request_id", "unknown")
 
@@ -50,7 +46,11 @@ def create_user(
 
 
 @router.get("/", response_model=List[UserDB])
-def read_all_users(request: Request, db: Session = Depends(get_db)):
+def read_all_users(
+    request: Request, 
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user)
+):
     request_id = getattr(request.state, "request_id", "unknown")
 
     logger.info("Retrieving all users", extra={"request_id": request_id})
@@ -74,6 +74,7 @@ def search_users(
     request: Request,
     db: Session = Depends(get_db),
     q: str | None = None,
+    current_user: User = Depends(get_current_user)
 ):
     request_id = getattr(request.state, "request_id", "unknown")
 
@@ -105,6 +106,7 @@ def read_user(
     request: Request,
     db: Session = Depends(get_db),
     id: int = Path(..., gt=0),
+    current_user: User = Depends(get_current_user)
 ):
     request_id = getattr(request.state, "request_id", "unknown")
 
@@ -130,6 +132,7 @@ def update_user(
     payload: UserUpdateSchema,
     db: Session = Depends(get_db),
     id: int = Path(..., gt=0),
+    current_user: User = Depends(get_current_user)
 ):
     request_id = getattr(request.state, "request_id", "unknown")
 
@@ -176,6 +179,7 @@ def delete_user(
     request: Request,
     db: Session = Depends(get_db),
     id: int = Path(..., gt=0),
+    current_user: User = Depends(get_current_user)
 ):
     request_id = getattr(request.state, "request_id", "unknown")
 

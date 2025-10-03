@@ -1,15 +1,15 @@
 import logging
 
-from fastapi import APIRouter, HTTPException, Path
+from fastapi import APIRouter, HTTPException, Path, Depends
 from fastapi.responses import HTMLResponse
 
 from api.powerbi import crud
 from api.powerbi.models import (
     GroupSchema,
-    GroupUpdateSchema,
     ReportSchema,
-    ReportUpdateSchema,
 )
+from api.auth.dependencies import get_current_user
+from api.user.models import User
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +17,11 @@ router = APIRouter()
 
 
 @router.post("/groups/", response_model=GroupSchema, status_code=201)
-def create_group(*, name: str):
+def create_group(
+    *, 
+    name: str,
+    current_user: User = Depends(get_current_user)
+):
     """Create a new Power BI group (workspace)."""
 
     logger.info(f"Creating PowerBI group with name: {name}")
@@ -34,7 +38,7 @@ def create_group(*, name: str):
 
 
 @router.get("/groups/", response_model=list[GroupSchema])
-def read_all_groups():
+def read_all_groups(current_user: User = Depends(get_current_user)):
     """Get all Power BI groups (workspaces)."""
 
     logger.info("Retrieving all PowerBI groups")
@@ -52,6 +56,7 @@ def read_all_groups():
 @router.get("/groups/{group_id}/", response_model=GroupSchema)
 def read_group(
     group_id: str = Path(..., description="The ID of the PowerBI group"),
+    current_user: User = Depends(get_current_user)
 ):
     """Get a specific Power BI group (workspace)."""
 
@@ -75,6 +80,7 @@ def read_group(
 @router.delete("/groups/{group_id}/", response_model=GroupSchema)
 def delete_group(
     group_id: str = Path(..., description="The ID of the PowerBI group"),
+    current_user: User = Depends(get_current_user)
 ):
     """Delete a Power BI group (workspace)."""
 
@@ -102,6 +108,7 @@ def delete_group(
 @router.get("/groups/{group_id}/reports/", response_model=list[ReportSchema])
 def read_all_reports_in_group(
     group_id: str = Path(..., description="The ID of the PowerBI group"),
+    current_user: User = Depends(get_current_user)
 ):
     """Get all reports in a specific Power BI group (workspace)."""
 
@@ -124,6 +131,7 @@ def read_all_reports_in_group(
 def read_report_in_group(
     group_id: str = Path(..., description="The ID of the PowerBI group"),
     report_id: str = Path(..., description="The ID of the PowerBI report"),
+    current_user: User = Depends(get_current_user)
 ):
     """Get a specific report in a Power BI group (workspace)."""
 
@@ -151,6 +159,7 @@ def get_report_embed(
     report_id: str = Path(..., description="The ID of the PowerBI report"),
     width: int = 800,
     height: int = 600,
+    current_user: User = Depends(get_current_user)
 ):
     """Generate an embed iframe for a Power BI report."""
 
