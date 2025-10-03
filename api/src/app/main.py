@@ -11,6 +11,7 @@ from dotenv import load_dotenv
 from api.ping import ping as ping
 
 from api.user import routes as user
+from api.auth import routes as auth
 from api.log import routes as log_routes
 from api.powerbi import routes as powerbi
 
@@ -98,6 +99,7 @@ async def global_exception_handler(request: Request, exc: Exception):
 
 
 app.include_router(ping.router)
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(user.router, prefix="/users", tags=["users"])
 app.include_router(powerbi.router, prefix="/powerbi", tags=["powerbi"])
 app.include_router(log_routes.router, prefix="/logs", tags=["logs"])

@@ -87,7 +87,7 @@ def put(db_session: Session, user: User, payload: UserUpdateSchema):
 
         updated_fields = []
         for field, value in update_data.items():
-            if field != "password":  # Don't log password values
+            if field != "password":
                 updated_fields.append(f"{field}={value}")
             else:
                 updated_fields.append("password=***")
