@@ -52,17 +52,16 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
   - **Requisitos Funcionais (RF):**
     - **RF01:** O sistema deve permitir a configuração de pipelines ETL.
-    - **RF02:** O sistema deve permitir a execução automatizada de pipelines.
-    - **RF03:** O sistema deve extrair dados de múltiplas fontes.
+    - **RF02:** O sistema deve permitir a execução de pipelines.
+    - **RF03:** O sistema deve extrair dados.
     - **RF04:** O sistema deve transformar dados.
     - **RF05:** O sistema deve realizar carga incremental de dados no banco.
     - **RF06:** O sistema deve permitir autenticação de usuários.
-    - **RF07:** O sistema deve aplicar regras de segurança em nível de linha.
-    - **RF08:** O sistema deve permitir upload e gerenciamento de relatórios.
-    - **RF09:** O sistema deve ser capaz de publicar dashboards.
-    - **RF10:** O sistema deve permitir atualização programada dos relatórios.
-    - **RF12:** O sistema deve monitorar métricas de execução.
-    - **RF13:** O sistema deve permitir gerenciamento de relatórios.
+    - **RF07:** O sistema deve permitir a atualização de dag.
+    - **RF08:** O sistema deve permitir gerenciamento de workspaces.
+    - **RF09:** O sistema deve permitir gerenciamento de grupos.
+    - **RF10:** O sistema deve permitir gerenciamento de usuários.
+    - **RF11:** O sistema deve permitir gerenciamento de relatórios.
 
   - **Requisitos Não Funcionais (RNF):**
     - **RNF01:** O sistema deve definir cargos (Admin, Analista, Visualizador) e integrar com provedores OAuth2.
@@ -223,3 +222,4 @@ Após aprovação do documento, os próximos passos são em ordem:
 
 
 - Considerações Professor/a:
+
