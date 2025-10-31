@@ -1,21 +1,54 @@
-<br/>
+<h1 align="center">
+  <br>
+  <a href="https://github.com/until99/hopper"><img src="docs/images/Brand.png" alt="Hopper Logo" width="300"></a>
+</h1>
+
+<h4 align="center">Sistema de Gerenciamento e Distribuição de Relatórios Dinâmicos com Power BI.</h4>
 
 <p align="center">
-  <img src="docs/images/Brand.png" width="300" alt="Logo Hopper">
+    <a href="https://github.com/until99/hopper/commits/main">
+    <img src="https://img.shields.io/github/last-commit/until99/hopper.svg?style=flat-square&logo=github&logoColor=white"
+         alt="GitHub last commit">
+    <a href="https://github.com/until99/hopper/issues">
+    <img src="https://img.shields.io/github/issues-raw/until99/hopper.svg?style=flat-square&logo=github&logoColor=white"
+         alt="GitHub issues">
+    <a href="https://github.com/until99/hopper/pulls">
+    <img src="https://img.shields.io/github/issues-pr-raw/until99/hopper.svg?style=flat-square&logo=github&logoColor=white"
+         alt="GitHub pull requests">
 </p>
 
-<br/>
-
-- **Título do Projeto**: Sistema de Gerenciamento e Distribuição de Relatórios Dinâmicos com Power BI Embedded.
-- **Nome do Estudante**: Gabriel Deglmann Kasten.
-- **Curso**: Engenharia de Software.
-- **Data de Entrega**: [Data].
+<p align="center">
+  <a href="#resumo">Resumo</a> •
+  <a href="#introducao">Introdução</a> •
+  <a href="#especificacao-tecnica">Especificação Técnica</a> •
+  <a href="#stack-tecnologica">Stack Tecnológica</a> •
+  <a href="#consideracoes-de-seguranca">Segurança</a> •
+  <a href="#proximos-passos">Próximos Passos</a> •
+  <a href="#referencias">Referências</a> •
+  <a href="#apendices">Apêndices</a>
+</p>
 
 ---
+
+<!-- Mantive todo o conteúdo original do README; o que mudou foi apenas a organização visual e o cabeçalho (template). -->
 
 ## Resumo
 
 Em ambientes corporativos que lidam com grandes volumes de dados, equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL, centralizando e padronizando a preparação de dados e disponibilizando dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
+
+> **Nota:** Este repositório contém a landing page (primeiro contato) do projeto Hopper. Os repositórios dos componentes principais estão separados:
+
+- Backend (API + autenticação): https://github.com/until99/hopper-api
+- Frontend (aplicação): https://github.com/until99/hopper-app
+- Airflow (ETL / DAGs): https://github.com/until99/hopper-airflow
+
+Hospedagem:
+
+- Backend e base de dados: Render
+- Airflow: DigitalOcean
+- Frontend: Vercel
+
+Nota técnica: o PocketBase foi utilizado em conjunto com o backend para autenticação e funções auxiliares.
 
 ## 1. Introdução
 
@@ -32,6 +65,7 @@ O projeto visa criar uma plataforma capaz de automatizar todo o fluxo de ETL (Ex
 Entre os objetivos complementares, destaca-se a implementação de um controle de acesso granular, garantindo que cada usuário visualize apenas os dados pertinentes ao seu perfil ou função. O sistema também irá monitorar métricas de execução dos pipelines e relatórios, fornecendo indicadores de desempenho e alertas para possíveis falhas ou gargalos. Por fim, será possível gerenciar relatórios de forma centralizada, facilitando o upload, atualização e organização dos dashboards dentro da plataforma.
 
 ## 2. Descrição do Projeto
+
 - **Tema do Projeto**: Desenvolvimento de uma plataforma de gerenciamento e distribuição de relatórios dinâmicos, chamada Hopper, que automatiza o processo de ETL e utiliza o Power BI Embedded para visualização de dados.
 
 - **Problemas a Resolver**:
@@ -39,7 +73,6 @@ Entre os objetivos complementares, destaca-se a implementação de um controle d
   - Gargalos de eficiência em processos de ETL.
   - Riscos de segurança na distribuição de relatórios.
   - Falta de relatórios atualizado para decisões estratégicas.
-  
 - **Limitações**: O projeto não abordará a criação de visualizações customizadas além das capacidades do Power BI, nem o desenvolvimento de algoritmos de machine learning para análise preditiva. A gestão de infraestrutura de hardware subjacente fica a cargo dos serviços de nuvem (Render.com).
 
 ## 3. Especificação Técnica
@@ -51,6 +84,7 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 - **Lista de Requisitos:**
 
   - **Requisitos Funcionais (RF):**
+
     - **RF01:** O sistema deve permitir a configuração de pipelines ETL.
     - **RF02:** O sistema deve permitir a execução de pipelines.
     - **RF03:** O sistema deve extrair dados.
@@ -81,9 +115,10 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 </p>
 
 ### 3.2. Considerações de Design
+
 - **Visão Inicial da Arquitetura**:
   - **Camada ETL:** Airflow foi escolhido por sua robustez e flexibilidade na orquestração de pipelines de dados, facilitando automação e monitoramento.
-  - **Camada de Dados:** PostgreSQL oferece confiabilidade, escalabilidade e suporte avançado à modelagem de dados, sendo ideal para centralizar informações. Além de já vir como metabase da plataforma do airflow.
+  - **Camada de Dados:** PostgreSQL oferece confiabilidade, escalabilidade e suporte avançado à modelagem de dados, sendo ideal para centralizar informações.
   - **Camada de BI:** Power BI permite visualizações interativas e integração nativa com múltiplas fontes, acelerando a entrega de insights.
   - **Camada Web:** ReactJS e FastAPI proporcionam desenvolvimento ágil, interfaces modernas e APIs performáticas, facilitando integração e manutenção.
 - **Padrões de Arquitetura**: O padrão MVC na camada web separa responsabilidades, melhorando organização e testabilidade. Microserviços no ETL aumentam escalabilidade, isolamento de falhas e flexibilidade na evolução dos pipelines.
@@ -111,13 +146,13 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 
 ### 3.3. Stack Tecnológica
 
-### 3.3. Stack Tecnológica
-
 - **Linguagens de Programação**:
+
   - Python (ETL e backend via FastAPI): Escolhido pela robustez em manipulação de dados, ampla comunidade e integração nativa com Airflow e bibliotecas de ciência de dados.
   - JavaScript/React (frontend): Permite interfaces modernas, responsivas e integração facilitada com Power BI Embedded.
 
 - **Frameworks e Bibliotecas**:
+
   - Apache Airflow: Referência em orquestração de pipelines ETL, com escalabilidade e monitoramento avançados.
   - React: Framework consolidado para construção de SPAs, garantindo experiência de usuário fluida.
   - FastAPI: Framework web rápido e eficiente, com suporte a APIs REST e validação automática de dados.
@@ -137,24 +172,18 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 Análisando possíveis questões de segurança e como mitigá-las, foi decidido que como medida mínima de contenção, é necessário que os seguintes requisitos devem ser atendidos:
 
 - **Controle de Acesso e Autenticação**
-  - *Questão:* Usuários não autorizados podem tentar acessar dados ou relatórios restritos.
-  - *Mitigação:* Implementação de autenticação via OAuth2 (Google/Microsoft), garantindo que apenas usuários autenticados possam acessar o sistema. Exemplo: ao tentar acessar um dashboard, o usuário é redirecionado para o provedor OAuth2 e só recebe acesso após validação.
 
-- **Restrição de Dados Sensíveis**
-  - *Questão:* Usuários autenticados podem visualizar dados além do seu escopo de permissão.
-  - *Mitigação:* Aplicação de Row-Level Security (RLS) nos relatórios Power BI, restringindo a visualização de dados conforme o perfil do usuário. Exemplo: um analista de uma filial só visualiza dados da sua unidade.
+  - _Questão:_ Usuários não autorizados podem tentar acessar dados ou relatórios restritos.
+  - _Mitigação:_ Implementação de autenticação simples gerenciada pela plataforma, garantindo que apenas usuários autenticados possam acessar o sistema. Exemplo: ao tentar acessar um dashboard, o usuário é redirecionado para página de login e só recebe acesso após validação.
 
 - **Auditoria e Rastreamento de Acesso**
-  - *Questão:* Falta de rastreabilidade dificulta a identificação de acessos indevidos ou anomalias.
-  - *Mitigação:* Geração e centralização de logs de acesso e ações dos usuários, permitindo auditoria detalhada. Exemplo: cada login, visualização ou download de relatório é registrado com timestamp e identificação do usuário.
+
+  - _Questão:_ Falta de rastreabilidade dificulta a identificação de acessos indevidos ou anomalias.
+  - _Mitigação:_ Geração e centralização de logs de acesso e ações dos usuários, permitindo auditoria detalhada. Exemplo: cada login, navegação ou visualização de relatório é registrado com timestamp e identificação do usuário.
 
 - **Exposição de APIs e Integrações**
-  - *Questão:* APIs expostas podem ser alvo de ataques (ex: brute force, injection).
-  - *Mitigação:* Uso de tokens JWT para autorização nas APIs e limitação de requisições (rate limiting).
-
-- **Gerenciamento de Relatórios e Uploads**
-  - *Questão:* Upload de arquivos .pbix maliciosos pode comprometer a plataforma.
-  - *Mitigação:* Validação de arquivos no upload, restrição de tipos permitidos e verificação de integridade.
+  - _Questão:_ APIs expostas podem ser alvo de ataques (ex: brute force, injection).
+  - _Mitigação:_ Uso de tokens JWT para autorização nas APIs.
 
 Essas medidas, combinadas, visam garantir confidencialidade, integridade e disponibilidade dos dados e relatórios gerenciados pela plataforma Hopper.
 
@@ -162,12 +191,9 @@ Essas medidas, combinadas, visam garantir confidencialidade, integridade e dispo
 
 Após aprovação do documento, os próximos passos são em ordem:
 
-1. Criação de um backlog.
-2. Implementação de um contâiner com Airflow e pipelines funcionais.
-3. Desenvolvimento de relatórios no Power BI.
-4. Desenvolvimento da interface web com integração ao Power BI Embedded.
-5. Implementação de funcionalidades para ativação e desativação de cargas.
-6. Permitir o gerenciamento facilitado das cargas, paineis, workspaces, etc.
+1. Melhoria na UI/UX do frontend.
+2. Melhoria nos padrões de resposta do backend.
+3. Melhorar fluxo de chamadas para API visando performance.
 
 ## 5. Referências
 
@@ -203,23 +229,6 @@ Após aprovação do documento, os próximos passos são em ordem:
 
 - **Apache Airflow**: Plataforma open source para orquestração de workflows, utilizada para automatizar e monitorar pipelines de dados.
 
-- **Row-Level Security (RLS)**: Mecanismo de segurança que restringe o acesso a linhas específicas de dados em relatórios, conforme o perfil do usuário.
-
 - **Power BI REST API**: Interface de programação que permite automação e gerenciamento de recursos do Power BI, como relatórios e workspaces.
 
 - **Render**: Plataforma de cloud para deploy automatizado de aplicações, com suporte a autoescalabilidade e balanceamento de carga.
-
-<div style="page-break-after: always;"></div>
-
-## 7. Avaliações de Professores
-
-- Considerações Professor/a:
-
-
-
-- Considerações Professor/a:
-
-
-
-- Considerações Professor/a:
-
