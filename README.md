@@ -32,6 +32,13 @@
 
 <!-- Mantive todo o conteúdo original do README; o que mudou foi apenas a organização visual e o cabeçalho (template). -->
 
+## Informações do Projeto
+
+- **Nome do Estudante:** Gabriel Deglmann Kasten.
+- **Curso:** Engenharia de Software.
+- **Data de Entrega:** 31/10/2025.
+
+
 ## Resumo
 
 Em ambientes corporativos que lidam com grandes volumes de dados, equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL, centralizando e padronizando a preparação de dados e disponibilizando dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
