@@ -30,8 +30,6 @@
 
 ---
 
-<!-- Mantive todo o conteúdo original do README; o que mudou foi apenas a organização visual e o cabeçalho (template). -->
-
 ## Informações do Projeto
 
 - **Nome do Estudante:** Gabriel Deglmann Kasten.
