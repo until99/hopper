@@ -30,14 +30,11 @@
 
 ---
 
-<!-- Mantive todo o conteúdo original do README; o que mudou foi apenas a organização visual e o cabeçalho (template). -->
-
 ## Informações do Projeto
 
 - **Nome do Estudante:** Gabriel Deglmann Kasten.
 - **Curso:** Engenharia de Software.
 - **Data de Entrega:** 31/10/2025.
-
 
 ## Resumo
 
