@@ -38,7 +38,7 @@
 
 ## Resumo
 
-Em ambientes corporativos que lidam com grandes volumes de dados, equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL, centralizando e padronizando a preparação de dados e disponibilizando dashboards interativos via Power BI Embedded, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
+Em ambientes corporativos que lidam com grandes volumes de dados, equipes de negócios enfrentam atrasos e inconsistências ao consolidar e analisar informações manualmente. O Hopper surge para resolver esse problema, oferecendo uma plataforma que automatiza o fluxo de ETL, centralizando e padronizando a preparação de dados e disponibilizando dashboards interativos via Power BI, garantindo relatórios sempre atualizados, seguros e escaláveis para suportar decisões estratégicas.
 
 > **Nota:** Este repositório contém a landing page (primeiro contato) do projeto Hopper. Os repositórios dos componentes principais estão separados:
 
@@ -56,21 +56,21 @@ Nota técnica: o PocketBase foi utilizado em conjunto com o backend para autenti
 
 ## 1. Introdução
 
-A construção de um sistema como o Hopper se justifica pela necessidade crescente de automatizar e padronizar o tratamento de dados em empresas que buscam agilidade, confiabilidade e segurança na geração de relatórios. Soluções manuais são propensas a erros, dificultam a escalabilidade e aumentam o risco de exposição de informações sensíveis. Ao centralizar o gerenciamento de pipelines ETL usando o Apache Airflow e a distribuição de dashboards com o Power BI Embedded, o Hopper reduz custos operacionais, melhora a governança de dados e permite que as equipes foquem na análise estratégica, em vez de tarefas repetitivas e suscetíveis a falhas.
+A construção de um sistema como o Hopper se justifica pela necessidade crescente de automatizar e padronizar o tratamento de dados em empresas que buscam agilidade, confiabilidade e segurança na geração de relatórios. Soluções manuais são propensas a erros, dificultam a escalabilidade e aumentam o risco de exposição de informações sensíveis. Ao centralizar o gerenciamento de pipelines ETL usando o Apache Airflow e a distribuição de dashboards com o Power BI, o Hopper reduz custos operacionais, melhora a governança de dados e permite que as equipes foquem na análise estratégica, em vez de tarefas repetitivas e suscetíveis a falhas.
 
 O Apache Airflow é uma plataforma open source de orquestração de workflows, projetada para programar, monitorar e gerenciar pipelines de dados complexos de forma programática e escalável. Utilizando DAGs (Directed Acyclic Graphs), o Airflow permite a definição explícita de dependências, agendamento e execução de tarefas, além de oferecer integração nativa com diversos sistemas de armazenamento, bancos de dados e serviços em nuvem. Sua arquitetura modular e extensível facilita a automação de processos ETL, garantindo rastreabilidade, reprocessamento eficiente e monitoramento detalhado das execuções, aspectos essenciais para ambientes corporativos que demandam alta confiabilidade e auditabilidade no tratamento de dados.
 
-O Power BI Embedded é um serviço da Microsoft Azure que permite incorporar dashboards e relatórios interativos do Power BI diretamente em aplicações web ou portais internos de empresas. Diferente do Power BI tradicional, que é acessado via portal próprio, o Embedded oferece APIs e SDKs para que desenvolvedores possam integrar visualizações de dados personalizadas e seguras em suas próprias soluções, proporcionando uma experiência de análise de dados fluida para os usuários finais, sem a necessidade de alternar entre diferentes plataformas. Isso facilita o acesso a informações estratégicas, mantendo o controle de acesso e a segurança dos dados conforme as necessidades do negócio.
+O Power BI  é um serviço da Microsoft Azure que permite incorporar dashboards e relatórios interativos do Power BI diretamente em aplicações web ou portais internos de empresas. Diferente do Power BI tradicional, que é acessado via portal próprio, o  oferece APIs e SDKs para que desenvolvedores possam integrar visualizações de dados personalizadas e seguras em suas próprias soluções, proporcionando uma experiência de análise de dados fluida para os usuários finais, sem a necessidade de alternar entre diferentes plataformas. Isso facilita o acesso a informações estratégicas, mantendo o controle de acesso e a segurança dos dados conforme as necessidades do negócio.
 
 **Objetivos**
 
-O projeto visa criar uma plataforma capaz de automatizar todo o fluxo de ETL (Extração, Transformação e Carga de dados), eliminando tarefas manuais e reduzindo erros no tratamento de informações. Além disso, busca disponibilizar dashboards interativos utilizando o Power BI Embedded, permitindo que usuários acessem relatórios atualizados e visualizações dinâmicas diretamente pela aplicação, sem depender de múltiplas ferramentas ou processos manuais.
+O projeto visa criar uma plataforma capaz de automatizar todo o fluxo de ETL (Extração, Transformação e Carga de dados), eliminando tarefas manuais e reduzindo erros no tratamento de informações. Além disso, busca disponibilizar dashboards interativos utilizando o Power BI, permitindo que usuários acessem relatórios atualizados e visualizações dinâmicas diretamente pela aplicação, sem depender de múltiplas ferramentas ou processos manuais.
 
 Entre os objetivos complementares, destaca-se a implementação de um controle de acesso granular, garantindo que cada usuário visualize apenas os dados pertinentes ao seu perfil ou função. O sistema também irá monitorar métricas de execução dos pipelines e relatórios, fornecendo indicadores de desempenho e alertas para possíveis falhas ou gargalos. Por fim, será possível gerenciar relatórios de forma centralizada, facilitando o upload, atualização e organização dos dashboards dentro da plataforma.
 
 ## 2. Descrição do Projeto
 
-- **Tema do Projeto**: Desenvolvimento de uma plataforma de gerenciamento e distribuição de relatórios dinâmicos, chamada Hopper, que automatiza o processo de ETL e utiliza o Power BI Embedded para visualização de dados.
+- **Tema do Projeto**: Desenvolvimento de uma plataforma de gerenciamento e distribuição de relatórios dinâmicos, chamada Hopper, que automatiza o processo de ETL e utiliza o Power BI  para visualização de dados.
 
 - **Problemas a Resolver**:
   - Atrasos e inconsistências na consolidação e análise manual de dados.
@@ -153,7 +153,7 @@ Descrição detalhada da proposta, incluindo requisitos de software, protocolos,
 - **Linguagens de Programação**:
 
   - Python (ETL e backend via FastAPI): Escolhido pela robustez em manipulação de dados, ampla comunidade e integração nativa com Airflow e bibliotecas de ciência de dados.
-  - JavaScript/React (frontend): Permite interfaces modernas, responsivas e integração facilitada com Power BI Embedded.
+  - JavaScript/React (frontend): Permite interfaces modernas, responsivas e integração facilitada com Power BI .
 
 - **Frameworks e Bibliotecas**:
 
@@ -217,7 +217,7 @@ Após aprovação do documento, os próximos passos são em ordem:
 - [Python](https://www.python.org/)
 - [FastAPI](https://fastapi.tiangolo.com/)
 - [Powerbi](https://www.microsoft.com/pt-br/power-platform/products/power-bi)
-- [Powerbi Embedded](https://azure.microsoft.com/pt-br/products/power-bi-embedded)
+- [Powerbi ](https://azure.microsoft.com/pt-br/products/power-bi-)
 - [Powerbi React](https://github.com/microsoft/powerbi-client-react)
 - [Biblioteca de ícones](https://phosphoricons.com/)
 - [Trello](https://trello.com/b/CzrWYIOK/backlog)
@@ -227,7 +227,7 @@ Após aprovação do documento, os próximos passos são em ordem:
 
 ### Principais Termos
 
-- **Power BI Embedded**: Serviço da Microsoft que permite incorporar dashboards e relatórios interativos do Power BI em aplicações web, proporcionando visualização de dados segura e customizável para usuários finais.
+- **Power BI **: Serviço da Microsoft que permite incorporar dashboards e relatórios interativos do Power BI em aplicações web, proporcionando visualização de dados segura e customizável para usuários finais.
 
 - **ETL (Extract, Transform, Load)**: Processo de extração, transformação e carga de dados, fundamental para integração e preparação de informações provenientes de múltiplas fontes.
 
@@ -236,3 +236,4 @@ Após aprovação do documento, os próximos passos são em ordem:
 - **Power BI REST API**: Interface de programação que permite automação e gerenciamento de recursos do Power BI, como relatórios e workspaces.
 
 - **Render**: Plataforma de cloud para deploy automatizado de aplicações, com suporte a autoescalabilidade e balanceamento de carga.
+
